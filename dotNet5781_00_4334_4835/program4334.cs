@@ -10,7 +10,7 @@ namespace dotNet5781_00_4334_4835
     {
         static partial void Welcome4334()
         {
-            Console.WriteLine("Hello!");
+            Console.WriteLine("Hello there!");
         }
     }
 }
