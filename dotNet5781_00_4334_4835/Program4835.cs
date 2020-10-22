@@ -15,6 +15,7 @@ namespace dotNet5781_00_4334_4835
             Console.ReadKey();
         }
         static partial void Welcome4334();
+ 
       
         private static void Welcome4835()
         {
