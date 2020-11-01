@@ -12,7 +12,7 @@ namespace dotNet5781_01_4334_4835
         static void Main(string[] args)
         {
             List<Bus> busses = new List<Bus>();//create a list for busses
-            Choices choice;
+            Choices choice;// enum choices
             bool success;
             RM_Busses(busses, out choice, out success);//make actions with it
         }
@@ -27,40 +27,54 @@ namespace dotNet5781_01_4334_4835
                     success = Enum.TryParse(Console.ReadLine(), out choice);
                 }
                 while (success == false);
-                switch(choice)
+                switch (choice)
                 {
                     case Choices.ADD:
-                        try 
+                        try
                         {
                             busses.Add(new Bus());
-                                
+
                         }
-                        catch(Exception exception) {
+                        catch (Exception exception) {
                             Console.WriteLine(exception.Message);
-                        }
-                        /*foreach(Bus bus in busses)
-                        {
-                            Console.WriteLine(bus)\
-                        }*/
+                        } 
+                      
                         break;
                     case Choices.PICK:
-                        Console.WriteLine("enter a license number");
-                        string license = Console.ReadLine().Replace("-", String.Empty);
+                        Console.WriteLine("enter a license plate  number");
+                        string license = Console.ReadLine();
+                      Random r = new Random(DateTime.Now.Millisecond); //choosing a random number for km
+                        int ridingKm = r.Next(1, 1200);
                         Bus findBus = null;
                         foreach (Bus bus in busses)
                         {
                             if (bus.License_Plate == license)
                             {
                                 findBus = bus;//bus is found 
+                               
                                 break;
                             }
                         }
-                        if (findBus != null)
+                        if (findBus == null)
                         {
-                            Console.WriteLine(findBus);
+                            Console.WriteLine("bus does not exist");
                         }
-                        Random ridingKm=new Random(DateTime.Now.Millisecond);
-                    
+                        else
+                        {
+                            try
+                            {
+                                findBus.CheckIfOK(ridingKm);
+
+                            }
+                            catch (Exception exception)
+                            {
+                                Console.WriteLine(exception.Message);
+                            }
+                            
+                               
+                        }
+                        
+
                         break;
                     case Choices.GAS_MAINTENANCE:
                         break;
