@@ -24,7 +24,7 @@ namespace dotNet5781_01_4334_4835
                 {
                     Console.WriteLine("Choose an action");
                     Console.WriteLine("ADD, PICK, GAS_MAINTENANCE, TOTAL, EXIT = -1");
-                    success = Enum.TryParse(Console.ReadLine(), out choice);
+                    success = Enum.TryParse(Console.ReadLine(), out choice);//if true in choosing one of the enum
                 }
                 while (success == false);
                 switch(choice)
@@ -36,7 +36,7 @@ namespace dotNet5781_01_4334_4835
                                 
                         }
                         catch(Exception exception) {
-                            Console.WriteLine(exception.Message);
+                            Console.WriteLine(exception.Message);// from Bus class
                         }
                         /*foreach(Bus bus in busses)
                         {
