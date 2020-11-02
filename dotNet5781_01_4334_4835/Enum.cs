@@ -9,7 +9,7 @@ namespace dotNet5781_01_4334_4835
     
     public enum Choices
     {
-        ADD, PICK, GAS_MAINTENANCE, TOTAL, EXIT = -1
+        ADD, PICK, GAS_CHECKUP, TOTAL, EXIT = -1
     }
 }
 
