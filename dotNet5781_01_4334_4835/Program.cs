@@ -30,8 +30,7 @@ namespace dotNet5781_01_4334_4835
                     case Choices.ADD:
                         try
                         {
-                            busses.Add(new Bus());
-
+                            busses.Add(new Bus(busses));
                         }
                         catch (Exception exception)
                         {
@@ -88,7 +87,7 @@ namespace dotNet5781_01_4334_4835
                             {
                                 Console.WriteLine("invalid request");
                             } 
-                        }
+                        } 
                         break;
 
                     case Choices.TOTAL:

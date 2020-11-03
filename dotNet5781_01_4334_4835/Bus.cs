@@ -11,7 +11,7 @@ namespace dotNet5781_01_4334_4835
         private const int fullTank = 1200;//max
         public int sumKm;
         private int gas;
-       
+
 
         public string License_Plate
         {
@@ -27,16 +27,18 @@ namespace dotNet5781_01_4334_4835
                 }
                 else
                 {
-                    throw new Exception("licsence plate not valid");
+                    throw new Exception("License plate not valid");
                 }
             }
         }
-       
-        /**constructer**/
-        public Bus()
-        {
-            Console.WriteLine("Enter starting date: ");
 
+        /**constructer**/
+        public Bus(List<Bus> busses)
+        {
+            gas = 0;
+            sumKm = 0;
+            checkupDate = start_Date;
+            Console.WriteLine("Enter starting date: ");
             bool success = DateTime.TryParse(Console.ReadLine(), out start_Date);
             if (!success)
             {
@@ -44,10 +46,15 @@ namespace dotNet5781_01_4334_4835
             }
             Console.WriteLine("Enter license plate number:");
             License_Plate = Console.ReadLine();
-            gas = 0;
-            sumKm = 0;
-            checkupDate = start_Date;
-        }
+            foreach (Bus bus in busses)
+            {
+                if (this.licensePlate == License_Plate) {
+                    throw new Exception("Invalid license plate");
+                }
+            }
+        
+       
+        } 
 
         public override string ToString()
         {
