@@ -46,6 +46,7 @@ namespace dotNet5781_01_4334_4835
             }
             Console.WriteLine("Enter license plate number:");
             License_Plate = Console.ReadLine();
+            //checks if license already exists in list
             foreach (Bus bus in busses)
             {
                 if (this.licensePlate == License_Plate) {
