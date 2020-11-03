@@ -21,7 +21,7 @@ namespace dotNet5781_01_4334_4835
             }
             private set
             {
-                //checking if license plate is valid
+                //checking if license plate is valid.
                 if ((start_Date.Year < 2018 && value.Length == 7) || (start_Date.Year >= 2018 && value.Length == 8))
                 {
                     licensePlate = value;
