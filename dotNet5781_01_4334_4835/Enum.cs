@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_4334_4835
 {
-    
-    public enum Choices
+    public enum Choices // introducing the avilable actions
     {
         ADD, PICK, GAS_CHECKUP, TOTAL, EXIT = -1
     }

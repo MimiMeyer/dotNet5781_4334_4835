@@ -9,10 +9,10 @@ namespace dotNet5781_01_4334_4835
         private DateTime start_Date;
         private DateTime checkupDate;
         private const int fullTank = 1200;//max
-        public int sumKm;
+        public int sumKm;//the total KM traveled
         private int gas;
 
-
+        //get and set licensePlate
         public string License_Plate
         {
             get
@@ -21,6 +21,7 @@ namespace dotNet5781_01_4334_4835
             }
             private set
             {
+                //checking if license plate is valid
                 if ((start_Date.Year < 2018 && value.Length == 7) || (start_Date.Year >= 2018 && value.Length == 8))
                 {
                     licensePlate = value;
@@ -31,14 +32,12 @@ namespace dotNet5781_01_4334_4835
                 }
             }
         }
-
-        /**constructer**/
-        public Bus(List<Bus> busses)
+       
+        /**constructor**/
+        public Bus()
         {
-            gas = 0;
-            sumKm = 0;
-            checkupDate = start_Date;
             Console.WriteLine("Enter starting date: ");
+            //checking if date input is valid
             bool success = DateTime.TryParse(Console.ReadLine(), out start_Date);
             if (!success)
             {
@@ -46,17 +45,11 @@ namespace dotNet5781_01_4334_4835
             }
             Console.WriteLine("Enter license plate number:");
             License_Plate = Console.ReadLine();
-            //checks if license already exists in list
-            foreach (Bus bus in busses)
-            {
-                if (this.licensePlate == License_Plate) {
-                    throw new Exception("Invalid license plate");
-                }
-            }
-        
-       
-        } 
-
+            gas = 0;
+            sumKm = 0;
+            checkupDate = start_Date;//updating the last checkup date
+        }
+        //returns the fixed format of license plate and the km traveled.
         public override string ToString()
         {
             string begining, middle, end, fixedLicense;
@@ -70,7 +63,7 @@ namespace dotNet5781_01_4334_4835
             }
             else
             {
-                // if equals 7 then the fixed format should bexx-xxx-xx
+                // if equals 7 then the fixed format should be xx-xxx-xx
                 begining = licensePlate.Substring(0, 2);
                 middle = licensePlate.Substring(2, 3);
                 end = licensePlate.Substring(5, 2);
@@ -78,24 +71,29 @@ namespace dotNet5781_01_4334_4835
 
 
             }
-            return String.Format("license is: {0,-10}, Total km: {1}", fixedLicense,sumKm );
+            return String.Format("License is: {0,-10}, Total km: {1}", fixedLicense,sumKm );
         }
-
+        //checks if bus is able to travel
         public void CheckIfOK(int km)
         {
-            TimeSpan s = DateTime.Today - this.checkupDate;
-            double diffrence = s.TotalDays;
+            TimeSpan s = DateTime.Today - this.checkupDate;//the difference between today and the last checkup date
+            double diffrence = s.TotalDays;//the difference in days
+            /*checks if there's enough gas and if it needs a checkup*/
             if (( gas < km)&& (km + this.sumKm >= 20000 || diffrence > 365)) 
-            { throw new Exception("need a checkup and fill up gas"); }
+            { 
+                throw new Exception("Needs a checkup and to fill up gas"); 
+            }
+            /*checks if it only needs a checkup*/
             if (km + this.sumKm >= 20000 || diffrence > 365)
             {
-                throw new Exception("need a checkup");
+                throw new Exception("Needs a checkup");
             }
-
+            /*checks if it only needs gas*/
             if ( gas < km)
             {
-                throw new Exception("Need to fill up gas");
+                throw new Exception("Needs to fill up gas");
             }
+            /*updates the gas used and the km traveled*/
             else
             {
                 this.sumKm = this.sumKm + km;
@@ -110,6 +108,8 @@ namespace dotNet5781_01_4334_4835
         {
             this.gas = fullTank;
         }
+
+        /*after a checkup updates the km to 0 and the checkup date to today*/
         public void Checkup()
         {
             this.sumKm = 0;
