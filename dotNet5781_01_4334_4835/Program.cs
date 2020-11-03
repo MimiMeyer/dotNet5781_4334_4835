@@ -9,7 +9,7 @@ namespace dotNet5781_01_4334_4835
 
         static void Main(string[] args)
         {
-            List<Bus> busses = new List<Bus>();//create a list for busses
+            List<Bus> busses = new List<Bus>();//create a list for the busses
             Choices choice;// enum choices
             bool success;
             RM_Busses(busses, out choice, out success);//make actions with it
