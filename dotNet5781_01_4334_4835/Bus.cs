@@ -32,12 +32,14 @@ namespace dotNet5781_01_4334_4835
                 }
             }
         }
-       
+
         /**constructor**/
-        public Bus()
+        public Bus(List<Bus> busses)
         {
+            gas = 0;
+            sumKm = 0;
+            checkupDate = start_Date;
             Console.WriteLine("Enter starting date: ");
-            //checking if date input is valid
             bool success = DateTime.TryParse(Console.ReadLine(), out start_Date);
             if (!success)
             {
@@ -45,9 +47,16 @@ namespace dotNet5781_01_4334_4835
             }
             Console.WriteLine("Enter license plate number:");
             License_Plate = Console.ReadLine();
-            gas = 0;
-            sumKm = 0;
-            checkupDate = start_Date;//updating the last checkup date
+            //checks if license already exists and if it dows throws an ecexption
+            foreach (Bus bus in busses)
+            {
+                if (this.licensePlate == License_Plate)
+                {
+                    throw new Exception("Invalid license plate");
+                }
+            }
+
+
         }
         //returns the fixed format of license plate and the km traveled.
         public override string ToString()

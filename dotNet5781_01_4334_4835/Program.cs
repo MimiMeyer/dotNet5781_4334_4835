@@ -33,7 +33,7 @@ namespace dotNet5781_01_4334_4835
                     case Choices.ADD:
                         try
                         {
-                            busses.Add(new Bus());
+                            busses.Add(new Bus(busses));
 
                         }
                         catch (Exception exception)//catches if starting date or license number is not valid
