@@ -41,7 +41,7 @@ namespace dotNet5781_01_4334_4835
                     case Choices.PICK:
                         Console.WriteLine("enter a license plate number");
                         string license = Console.ReadLine();
-                        Random r = new Random(DateTime.Now.Millisecond); //choosing a random number for km
+                        Random r = new Random(DateTime.Now.Millisecond); //choosing a random number for KM
                         int ridingKm = r.Next(1, 1200);
 
                         Bus foundBus = FindBus(busses, license);
