@@ -22,7 +22,7 @@ namespace dotNet5781_01_4334_4835
             }
             private set
             {
-                //checking if license plate is valid
+                //checking if license plate is valid.
                 if ((start_Date.Year < 2018 && value.Length == 7) || (start_Date.Year >= 2018 && value.Length == 8))
                 {
                     licensePlate = value;
@@ -48,7 +48,7 @@ namespace dotNet5781_01_4334_4835
             }
             Console.WriteLine("Enter license plate number:");
             License_Plate = Console.ReadLine();
-            //checks if license already exists and if it dows throws an ecexption
+            //checks if license already exists and if it does throws an ecexption
             foreach (Bus bus in busses)
             {
                 if (this.licensePlate == License_Plate)
