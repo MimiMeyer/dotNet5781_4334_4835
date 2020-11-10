@@ -46,9 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusLine.cs" />
+    <Compile Include="BLine.cs" />
     <Compile Include="BusStop.cs" />
     <Compile Include="BusStopLine.cs" />
+    <Compile Include="EnumDistrict.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

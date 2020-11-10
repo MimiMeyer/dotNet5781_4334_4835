@@ -1,15 +1,19 @@
-﻿using System;
+﻿
+using System;
+using System.Collections.Generic;
 
 namespace dotNet5781_02_4334_4835
 {
-    class BusStop
+     public class BusStop
     {
+        //need to take care of if user outs in the same stationcode twice
+       
         private int stationCode;
         private double latitude;
         private double longitude;
         public int BusStationKey
         {
-            get => stationCode;
+            get { return stationCode; }
             set
             {
                 if (value > 0 && value < 1000000)
