@@ -53,5 +53,7 @@ namespace dotNet5781_02_4334_4835
         {
             return String.Format("Bus Station Code: {0}, {1}°N {2}°E", BusStationKey, Latitude, Longitude);
         }
+        
+}
     }
 }
