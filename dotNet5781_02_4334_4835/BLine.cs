@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace dotNet5781_02_4334_4835
 {
-    class BLine
+    class BLine : IComparable<BLine>
     {
         private List<BusStopLine> stations = new List<BusStopLine>();
         public List<BusStopLine> Stations
@@ -40,7 +40,7 @@ namespace dotNet5781_02_4334_4835
             return String.Format("Bus line number is: {0}, The district is: {1}, List of station numbers:{2}", BusLine, Area, PrintStationCodes(Stations));
 
         }
-      /*adds the first bus station*/
+        /*adds the first bus station*/
         public void AddFirst(BusStopLine busStation)
         {
             stations.Insert(0, busStation);
@@ -52,10 +52,10 @@ namespace dotNet5781_02_4334_4835
             stations.Add(busStation);
             LastStation = stations[stations.Count - 1];
         }
-       
+
         public void Add(int i, BusStopLine busStation)
         {
-            if (i == 0 && stations[0] == null)//add to first
+            if (i == 0)//add to first
             {
                 AddFirst(busStation);
             }
@@ -65,26 +65,26 @@ namespace dotNet5781_02_4334_4835
                 {
                     throw new ArgumentOutOfRangeException("index", "index should be less than or equal to" + stations.Count);
                 }
-                if (i == stations.Count && stations[i] == null)//add to last
+                if (i == stations.Count)//add to last
                 {
 
                     AddLast(busStation);
                 }
-                if (stations[i] == null)//add in the middle
+                else//add in the middle
                 {
                     stations.Insert(i, busStation);
 
 
                 }
-                else throw new Exception("already has a station there");// already has a bus in that index
+
 
             }
-            
+
         }
         /*removes station from list of stations*/
-        public void remove( BusStopLine busStation)
+        public void Remove(BusStopLine busStation)
         {
-            if (found(busStation))
+            if (Found(busStation))
             {
                 foreach (BusStopLine station in stations)
                 {
@@ -97,20 +97,108 @@ namespace dotNet5781_02_4334_4835
             else throw new Exception("station does not exist");
         }
         /*checks if station exists*/
-        public bool found(BusStopLine busStation)
+        public bool Found(BusStopLine busStation)
         {
-           
+
             foreach (BusStopLine station in stations)
             {
                 if (station == busStation)
                 {
                     return true;
                 }
-                
+
             }
             return false;
         }
+        //needs looking into
+        public double DistanceBetween(BusStopLine station1, BusStopLine station2)
+        {
+            if (!Found(station1)) { throw new Exception("station does not exist"); }
+            if (!Found(station2)) { throw new Exception("station does not exist"); }
+            return station1.Distance - station2.Distance;
 
+
+        }
+        /*time between busses*/
+        public double TimeBetween(BusStopLine station1, BusStopLine station2)
+        {
+            if (!Found(station1))
+            {
+                throw new Exception("first station does not exist");
+            }
+            if (!Found(station2))
+            {
+                throw new Exception("second station does not exist");
+
+            }
+            return station1.TravelTime.Subtract(station2.TravelTime).TotalMinutes;
+        }
+        public void StationPath(BusStopLine station1, BusStopLine station2)
+        {
+            if (!Found(station1))
+            {
+                throw new Exception("first station does not exist");
+            }
+            if (!Found(station2))
+            {
+                throw new Exception("second station does not exist");
+
+            }
+            int index1 = 0, index2 = 0;
+            int counter = 0, i;
+
+            foreach (BusStopLine station in stations)
+            {
+                if (station == station1)
+                {
+                    index1 = counter;
+                }
+                if (station == station2)
+                {
+                    index2 = counter;
+                }
+                counter++;
+
+            }
+            if (index1 > index2)
+            {
+                throw new Exception("Bus stops must be inorder of travel");
+            }
+            if (index1 == index2)
+            {
+                throw new Exception("Bus Stops must be differnt");
+            }
+            else
+            {
+
+                for (i = index1; i <= index2; i++)
+                {
+                    Console.WriteLine(stations[i]);
+                }
+            }
+        }
+
+        private double SumTime()
+        {
+            double sum = 0;
+            for (int i = 0; i < stations.Count - 1; i++)
+            {
+                sum += TimeBetween(stations[i], stations[i + 1]);
+            }
+
+            return sum;
+        }
+        public int CompareTo(BLine other)
+        {
+            double mySum = SumTime();
+            double otherSum = other.SumTime();
+
+            return mySum.CompareTo(otherSum);
+        }
+
+    
     }
-   
 }
+
+
+

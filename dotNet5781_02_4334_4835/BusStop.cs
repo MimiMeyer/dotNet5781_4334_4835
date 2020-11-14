@@ -29,7 +29,8 @@ namespace dotNet5781_02_4334_4835
             {
                 if (value >= -90 && value <= 90)
                 {
-                    latitude = value;
+                    Random r = new Random();
+                    latitude = r.NextDouble() * (33.3 - 31) + 31;//random number that will end up in israel
                 }
                 else throw new Exception("value must be between -90 to 90");
             }
@@ -41,7 +42,9 @@ namespace dotNet5781_02_4334_4835
             {
                 if (value >= -180 && value <= 180)
                 {
-                    latitude = value;
+                    Random r = new Random();
+                    longitude = r.NextDouble() * (35.5 - 34.3) + 34.3;//random number that will end up in israel
+                   
                 }
                 else throw new Exception("value must be between -180 to 180");
             }
