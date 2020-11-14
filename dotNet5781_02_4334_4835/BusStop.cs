@@ -1,13 +1,12 @@
 ﻿
 using System;
-using System.Collections.Generic;
 
 namespace dotNet5781_02_4334_4835
 {
-     public class BusStop
+    public class BusStop
     {
         //need to take care of if user outs in the same stationcode twice
-       
+
         private int stationCode;
         private double latitude;
         private double longitude;
@@ -53,7 +52,7 @@ namespace dotNet5781_02_4334_4835
         {
             return String.Format("Bus Station Code: {0}, {1}°N {2}°E", BusStationKey, Latitude, Longitude);
         }
-        
-}
+
     }
 }
+
