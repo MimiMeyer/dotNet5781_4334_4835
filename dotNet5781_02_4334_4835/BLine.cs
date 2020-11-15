@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace dotNet5781_02_4334_4835
 {
-    class BLine : IComparable<BLine>
+   public class BLine : IComparable<BLine>
     {
         private List<BusStopLine> stations = new List<BusStopLine>();
         public List<BusStopLine> Stations
