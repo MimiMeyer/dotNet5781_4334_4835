@@ -6,7 +6,7 @@ namespace dotNet5781_02_4334_4835
     public class BusStopLine : BusStop
     {
         private double distance;
-        private double time;
+        private TimeSpan time;
      
         public double Distance
         {
@@ -18,7 +18,13 @@ namespace dotNet5781_02_4334_4835
             }
 
         }
-        public TimeSpan TravelTime { get; set; }
+        public TimeSpan TravelTime { 
+            get { return time; } 
+            set {
+                TimeSpan time1 = TimeSpan.FromMinutes(2*distance);
+                time.Add(time1);
+            } 
+        }
 
 
 
