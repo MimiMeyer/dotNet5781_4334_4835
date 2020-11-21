@@ -78,14 +78,16 @@ namespace dotNet5781_02_4334_4835
             {
                 List<int> busCodes = bus.PrintStationCodes(bus.Stations);
                 foreach (int x in busCodes)
-                { if (x == stop)
+                {
+                    if (x == stop)
                         stationLines.Add(bus);
                 }
 
             }
             return stationLines;
         }
-        public List<BLine> ListOfSortedLines() {
+        public List<BLine> ListOfSortedLines()
+        {
             List<BLine> SortedLines = lines;
             BLine temp;//help
             for (int j = 0; j <= SortedLines.Count - 2; j++)
@@ -102,7 +104,24 @@ namespace dotNet5781_02_4334_4835
             }
             return SortedLines;//sorted list of bus lines according to sum of travel.
         }
-       
+        public BLine this[int index]//allows to access lines as an array instaed of as a list
+        {
+            get
+            {
+                return lines.Find(bus => bus.BusLine == index); //returns the bus in the index
+            }
+            set
+            {
+                if (value != null)//line does exist
+                {
+                    lines[index] = value;
+                }
+                else
+                {
+                    throw new Exception("bus line does not exist");//line does not exist
+                }
+            }
+        }
         public IEnumerator<BLine> GetEnumerator()
         {
             return lines.GetEnumerator();
