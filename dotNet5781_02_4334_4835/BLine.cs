@@ -10,6 +10,8 @@ namespace dotNet5781_02_4334_4835
         public BusStopLine FirstStation { get; set; }//first station
         public BusStopLine LastStation { get; set; }//last station
         public District Area { get; set; }//enum
+        
+        /*constructors*/
         public List<BusStopLine> Stations// get and set for stations
         {
             get
@@ -21,6 +23,7 @@ namespace dotNet5781_02_4334_4835
 
         }
         /**for the tostring prints out station codes***/
+      
       public List<int> PrintStationCodes(List<BusStopLine> S)//gets list of stations
         {
             List<int> listOfStops = new List<int>();//
@@ -44,17 +47,17 @@ namespace dotNet5781_02_4334_4835
         /*adds the first bus station*/
         public void AddFirst(BusStopLine busStation)
         {
-            stations.Insert(0, busStation);
-            FirstStation = stations[0];
+            stations.Insert(0, busStation);//adds station to beginging of list
+            FirstStation = stations[0];//new first station
         }
         /*adds the last bus station*/
         public void AddLast(BusStopLine busStation)
         {
-            stations.Add(busStation);
-            LastStation = stations[stations.Count - 1];
+            stations.Add(busStation);//adds to end of list
+            LastStation = stations[stations.Count - 1];//new last station
         }
-
-        public void Add(int i, BusStopLine busStation)
+        /*adds bus to list*/
+        public void AddStation(int i, BusStopLine busStation)
         {
             if (i == 0)//add to first
             {
@@ -71,7 +74,7 @@ namespace dotNet5781_02_4334_4835
 
                     AddLast(busStation);
                 }
-                else//add in the middle
+                else if(i < stations.Count) //add in the middle
                 {
                     stations.Insert(i, busStation);
 
@@ -83,7 +86,7 @@ namespace dotNet5781_02_4334_4835
 
         }
         /*removes station from list of stations*/
-        public void Remove(BusStopLine busStation)
+        public void RemoveStation(BusStopLine busStation)
         {
             if (Found(busStation))
             {

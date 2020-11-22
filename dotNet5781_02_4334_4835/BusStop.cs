@@ -1,12 +1,13 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace dotNet5781_02_4334_4835
 {
     public class BusStop
     {
         //need to take care of if user outs in the same stationcode twice
-
+        private static List<int> stationcodes = new List<int>();
         private int stationCode;
         private double latitude;
         private double longitude;
@@ -15,11 +16,16 @@ namespace dotNet5781_02_4334_4835
             get { return stationCode; }
             set
             {
-                if (value > 0 && value < 1000000)
+                if (stationcodes.Contains(value))
+                {
+                    throw new ArgumentException(String.Format("{0} key number exists allready", value));
+                }
+
+                 if (value > 0 && value < 1000000)
                 {
                     stationCode = value;
                 }
-                else throw new Exception("input not valid");
+                else if(value < 0 && value > 1000000) throw new Exception("input not valid");
             }
         }
         public double Latitude
@@ -29,8 +35,8 @@ namespace dotNet5781_02_4334_4835
             {
                 if (value >= -90 && value <= 90)
                 {
-                    Random r = new Random();
-                    latitude = r.NextDouble() * (33.3 - 31) + 31;//random number that will end up in israel
+                    
+                    latitude = value;
                 }
                 else throw new Exception("value must be between -90 to 90");
             }
@@ -42,9 +48,9 @@ namespace dotNet5781_02_4334_4835
             {
                 if (value >= -180 && value <= 180)
                 {
-                    Random r = new Random();
-                    longitude = r.NextDouble() * (35.5 - 34.3) + 34.3;//random number that will end up in israel
-                   
+                    longitude = value;
+
+
                 }
                 else throw new Exception("value must be between -180 to 180");
             }

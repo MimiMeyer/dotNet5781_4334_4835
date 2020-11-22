@@ -4,17 +4,17 @@ using System.Collections.Generic;
 
 namespace dotNet5781_02_4334_4835
 {
-    public class BusLineGroups : IEnumerable<BLine>
+    public class BusLineGroup : IEnumerable<BLine>
     {
         private List<BLine> lines;
 
         /*constructor*/
-        public BusLineGroups()
+        public BusLineGroup()
         {
             lines = new List<BLine>();
         }
         /*adds line to list*/
-        public void Add(BLine line)
+        public void AddLine(BLine line)
         {
             int count = 0, i = 0, j = 0;
             foreach (BLine bus in lines)
@@ -54,7 +54,7 @@ namespace dotNet5781_02_4334_4835
 
         }
         /*removes line from list*/
-        public void Remove(BLine line)
+        public void RemoveLine(BLine line)
         {
             int count = 0;
             foreach (BLine bus in lines)
@@ -71,6 +71,7 @@ namespace dotNet5781_02_4334_4835
 
             }
         }
+        /*Returns bys lines that go throughj requested bus stop*/
         public List<BLine> ListOfLines(int stop)
         {
             List<BLine> stationLines = new List<BLine>();// new list of lines that go through the same bus stop
@@ -86,6 +87,7 @@ namespace dotNet5781_02_4334_4835
             }
             return stationLines;
         }
+        /*returns sorted list of bus lines according to sum of travel*/
         public List<BLine> ListOfSortedLines()
         {
             List<BLine> SortedLines = lines;
@@ -104,11 +106,13 @@ namespace dotNet5781_02_4334_4835
             }
             return SortedLines;//sorted list of bus lines according to sum of travel.
         }
-        public BLine this[int index]//allows to access lines as an array instaed of as a list
+
+        /*indexer*/
+        public BLine this[int index]//allows to access lines as an array instaed of as a list(lines is a field of the class).
         {
             get
             {
-                return lines.Find(bus => bus.BusLine == index); //returns the bus in the index
+                return lines.Find(bus => bus.BusLine == index); //returns the number bus in the index
             }
             set
             {
