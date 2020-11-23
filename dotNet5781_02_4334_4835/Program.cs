@@ -106,7 +106,7 @@ namespace dotNet5781_02_4334_4835
                 for (int i = 1; i < 9; i++)//adss two more stations to the begining
 
                 {
-                    busLine.AddStation(i,tenStations[rand.Next(0, 9)]);//adds stations from list in random order.
+                    busLine.AddStation(i,tenStations[rand.Next(0, 8)]);//adds stations from list in random order.
                 }
             }
            
