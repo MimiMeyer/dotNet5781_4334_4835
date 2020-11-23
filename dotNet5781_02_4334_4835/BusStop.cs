@@ -16,16 +16,12 @@ namespace dotNet5781_02_4334_4835
             get => stationCode; 
             set
             {
-                if (stationcodes.Contains(value))
-                {
-                    throw new ArgumentException(String.Format("{0} key number exists allready", value));
-                }
 
                 if (value > 0 && value < 1000000)
                 {
                     stationCode = value;
                 }
-                else if (value <= 0|| value > 1000000) { throw new Exception("input must be under 7 digits"); }
+                else  { throw new Exception("input must be under 7 digits"); }
             }
         }
         public double Latitude

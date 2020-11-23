@@ -50,15 +50,18 @@ namespace dotNet5781_02_4334_4835
             while (input == false)
             {
                 Console.WriteLine("Enter station code");
-                try { this.BusStationKey = Convert.ToInt32(Console.ReadLine());
-                    input = true;
+                try { this.BusStationKey = Convert.ToInt32(Console.ReadLine());//checks if user input is under 7 digits
+                    input = true;//if user input is good then it could leave loop
                 }
-                catch (Exception exception)
+                catch (Exception exception)// catches exception
                 {
                     Console.WriteLine(exception.Message);
                     
                 }
-            } input = false;
+                
+            }
+            
+            input = false;
             while (input == false)
             {
                 Console.WriteLine("Enter Latitude");
@@ -86,6 +89,7 @@ namespace dotNet5781_02_4334_4835
                     Console.WriteLine(exception.Message);
 
                 }
+                
             }
             
 

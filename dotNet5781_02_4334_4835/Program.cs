@@ -8,10 +8,11 @@ namespace dotNet5781_02_4334_4835
         static void Main(string[] args)
         {
             BusLineGroup BusCompany = new BusLineGroup();//new bus Company
+            
             GenerateBusLines(BusCompany);
             bool success;//helps to check if the user choice is valid
             CHOICE choice;//choices from enum
-            RM_Busses(BusCompany, out choice, out success);//calls on the function RM_Busses
+            RM_Busses(BusCompany,  out choice, out success);//calls on the function RM_Busses
 
         }
         private static Random rand = new Random();//helps with generating random numbers
@@ -41,7 +42,7 @@ namespace dotNet5781_02_4334_4835
                         { throw new Exception("invalid input"); }
                         if (x == "ADDBUS")
                         {
-                           BLine busLine = new BLine();
+                            BLine busLine = new BLine();
                             busLine.AddBus();
                             try { BusCompany.AddLine(busLine); }
                             catch (Exception exception)
@@ -89,14 +90,24 @@ namespace dotNet5781_02_4334_4835
             {
                 int x = 10;
                 BLine busLine = getRandomBusLine(x, tenStations);
-                BusCompany.AddLine(busLine);
+                try { BusCompany.AddLine(busLine); }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+
+                }
             }
 
             for (int i = 0; i < 2; i++)//adding 2 bus lines with the stations of tenStations to make sure 10 stops have more than one bus.
             {
                 int x = 2;
                 BLine busLine = getRandomBusLine(x, tenStations);
-                BusCompany.AddLine(busLine);
+                try { BusCompany.AddLine(busLine); }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+
+                }
             }
         }
         private static BLine getRandomBusLine(int x, List<BusStopLine> tenStations)
@@ -142,18 +153,21 @@ namespace dotNet5781_02_4334_4835
 
         private static BusStopLine generateRandomStation()
         {
+
+
             int stationcode = rand.Next(1, 999999);// random number till 6 digits.
+
             double latitude = rand.NextDouble() * (33.3 - 31) + 31;//random number between 31 to 33.3 in Israel.
             double longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;//random number between 34.3 to 35.5 in Israel.
-
-            return new BusStopLine(stationcode, latitude, longitude);//return new bus stop
+            BusStopLine stop = new BusStopLine(stationcode, latitude, longitude);
+            return stop;//return new bus stop
 
 
         }
     }
-    
 
-    }
+
+}
 
 
 
