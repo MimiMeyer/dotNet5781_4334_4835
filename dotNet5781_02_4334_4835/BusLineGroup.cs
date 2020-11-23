@@ -6,13 +6,13 @@ namespace dotNet5781_02_4334_4835
 {
     public class BusLineGroup : IEnumerable<BLine>
     {
-        private List<BLine> lines;
+        private List<BLine> lines = new List<BLine>();
 
         /*constructor*/
-        public BusLineGroup()
-        {
-            lines = new List<BLine>();
-        }
+        //public BusLineGroup()
+        //{
+           // lines = new List<BLine>();
+        //}
         /*adds line to list*/
         public void AddLine(BLine line)
         {

@@ -50,7 +50,7 @@
     <Compile Include="BusLineGroup.cs" />
     <Compile Include="BusStop.cs" />
     <Compile Include="BusStopLine.cs" />
-    <Compile Include="District.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

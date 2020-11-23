@@ -4,5 +4,8 @@
     {
         GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM
     }
-
+    public enum CHOICE
+    {
+        ADD, DELETE, FIND, PRINT, EXIT = -1
+    }
 }
