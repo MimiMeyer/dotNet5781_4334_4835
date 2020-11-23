@@ -40,8 +40,14 @@ namespace dotNet5781_02_4334_4835
         }/*tostring*/
         public override string ToString()
         {
-
-            return String.Format("Bus line number is: {0}, The district is: {1}, List of station numbers:{2}", BusLine, Area, PrintStationCodes(Stations));
+            string result = "Bus line number is: " + BusLine + "\n";
+            result += "The district is:" + Area + "\n";
+            result+= "List of station numbers:" + "\n" ;
+            foreach(BusStopLine stop in stations) 
+            {
+                result += stop;
+            }
+            return result;
 
         }
         /*adds the first bus station*/
@@ -67,7 +73,7 @@ namespace dotNet5781_02_4334_4835
             {
                 if (i > stations.Count)//if i is bigger then the number bus stations throw an exception
                 {
-                    throw new ArgumentOutOfRangeException("index", "index should be less than or equal to" + stations.Count);
+                    throw new ArgumentException("incorrect index input must be smaller or bigger then the number of bus stops");
                 }
                 if (i == stations.Count)//add to last
                 {
@@ -208,8 +214,30 @@ namespace dotNet5781_02_4334_4835
 
             return mySum.CompareTo(otherSum);
         }
+        /*for user to insert a  new bus line*/
+        public  void AddBus()
+        {
+            bool success = false;
+            Console.WriteLine("Enter bus line number under 4 digits:");
+            this.BusLine = Convert.ToInt32(Console.ReadLine());
+            BusStopLine first=new BusStopLine();
+            BusStopLine last= new BusStopLine(); ;
+            first.AddStationUser();
+            last.AddStationUser();
 
-    
+            this.AddFirst(first);// new lines first station
+            this.AddLast(last); ;//new lines last station
+            while (success == false) 
+            { 
+            Console.WriteLine("Enter area GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM");
+            District area;
+            success = Enum.TryParse(Console.ReadLine(), out area);
+            if (success == false) { Console.WriteLine("invalid input"); }
+            this.Area=area; //new lines area
+            }
+            
+        }
+
     }
 }
 

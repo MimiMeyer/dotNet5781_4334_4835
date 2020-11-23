@@ -9,6 +9,11 @@ namespace dotNet5781_02_4334_4835
         
         private double distance;
         private TimeSpan time;
+
+        public BusStopLine()
+        {
+        }
+
         /*constructor*/
         public BusStopLine(int stationcode, double latitude, double longitude)
         {
@@ -37,7 +42,55 @@ namespace dotNet5781_02_4334_4835
             } 
         }
 
+        public void AddStationUser() 
+        {
+            bool input=false;
+            
 
+            while (input == false)
+            {
+                Console.WriteLine("Enter station code");
+                try { this.BusStationKey = Convert.ToInt32(Console.ReadLine());
+                    input = true;
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                    
+                }
+            } input = false;
+            while (input == false)
+            {
+                Console.WriteLine("Enter Latitude");
+
+                try { this.Latitude = Convert.ToDouble(Console.ReadLine());
+                    input = true;
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+
+                }
+            }
+            input = false;
+            while (input == false)
+            {
+                Console.WriteLine("Enter Longitude");
+                try
+                {
+                    this.Longitude = Convert.ToDouble(Console.ReadLine());
+                    input = true;
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+
+                }
+            }
+            
+
+
+        }
 
     }
 }

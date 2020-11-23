@@ -13,7 +13,7 @@ namespace dotNet5781_02_4334_4835
         private double longitude;
         public int BusStationKey
         {
-            get { return stationCode; }
+            get => stationCode; 
             set
             {
                 if (stationcodes.Contains(value))
@@ -21,11 +21,11 @@ namespace dotNet5781_02_4334_4835
                     throw new ArgumentException(String.Format("{0} key number exists allready", value));
                 }
 
-                 if (value > 0 && value < 1000000)
+                if (value > 0 && value < 1000000)
                 {
                     stationCode = value;
                 }
-                else if(value < 0 && value > 1000000) throw new Exception("input not valid");
+                else if (value <= 0|| value > 1000000) { throw new Exception("input must be under 7 digits"); }
             }
         }
         public double Latitude

@@ -126,6 +126,7 @@ namespace dotNet5781_02_4334_4835
                 }
             }
         }
+       
         public IEnumerator<BLine> GetEnumerator()
         {
             return lines.GetEnumerator();
