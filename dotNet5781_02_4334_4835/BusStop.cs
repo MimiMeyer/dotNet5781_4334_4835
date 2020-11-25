@@ -6,8 +6,7 @@ namespace dotNet5781_02_4334_4835
 {
     public class BusStop
     {
-        //need to take care of if user outs in the same stationcode twice
-        private static List<int> stationcodes = new List<int>();
+       
         private int stationCode;
         private double latitude;
         private double longitude;
@@ -16,13 +15,16 @@ namespace dotNet5781_02_4334_4835
             get => stationCode; 
             set
             {
-
-                if (value > 0 && value < 1000000)
+              
+                if (value <0 || value >1000000)
                 {
-                    stationCode = value;
+                    throw new Exception("input must be under 7 digits");
+                    
                 }
-                else  { throw new Exception("input must be under 7 digits"); }
+                stationCode = value;
+                
             }
+            
         }
         public double Latitude
         {
@@ -57,6 +59,7 @@ namespace dotNet5781_02_4334_4835
         {
             return String.Format("Bus Station Code: {0}, {1}°N {2}°E", BusStationKey, Latitude, Longitude);
         }
+        
 
     }
 }

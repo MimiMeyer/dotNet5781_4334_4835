@@ -11,11 +11,19 @@ namespace dotNet5781_02_4334_4835
         /*constructor*/
         //public BusLineGroup()
         //{
-           // lines = new List<BLine>();
+        // lines = new List<BLine>();
         //}
         /*adds line to list*/
+        bool NotEqualBackandforth(BLine Bus1, BLine Bus2)// use for addline to make sure a line is added if its the same line going the opposite way.
+        {
+            bool equal = true;
+            if (Bus1.FirstStation.BusStationKey == Bus2.LastStation.BusStationKey && Bus1.FirstStation.Latitude==Bus2.LastStation.Latitude&&
+                Bus1.FirstStation.Latitude == Bus2.LastStation.Latitude) { equal = false; }
+            return equal;
+        }
         public void AddLine(BLine line)
         {
+            
             int count = 0, i = 0, j = 0;
             foreach (BLine bus in lines)
             {
@@ -32,19 +40,21 @@ namespace dotNet5781_02_4334_4835
                 throw new ArgumentException("line already has back and forth busses");
             }
             if (count == 1)
+                
             {
-                if (line.FirstStation != lines[j].LastStation)
+                
+                if (NotEqualBackandforth(line, lines[j]))
                 {
                     throw new ArgumentException("Line must be the retrun bus, so first station must equal the last station");
                 }
-                if (line.LastStation != lines[j].FirstStation)
+                
+                if (NotEqualBackandforth(lines[j],line))
                 {
                     throw new ArgumentException("Line must be the retrun bus, so last station must equal the first station");
                 }
-                else if (line.FirstStation == lines[j].LastStation && line.LastStation == lines[j].FirstStation)
-                {
+               
                     lines.Add(line);
-                }
+              
 
             }
             if (count == 0)

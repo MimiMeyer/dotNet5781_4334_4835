@@ -45,31 +45,32 @@ namespace dotNet5781_02_4334_4835
         public void AddStationUser() 
         {
             bool input=false;
-            
 
+            
             while (input == false)
             {
                 Console.WriteLine("Enter station code");
-                try { this.BusStationKey = Convert.ToInt32(Console.ReadLine());//checks if user input is under 7 digits
+                try
+                {
+                    this.BusStationKey = Convert.ToInt32(Console.ReadLine());//checks if user input is under 7 digits
                     input = true;//if user input is good then it could leave loop
                 }
                 catch (Exception exception)// catches exception
                 {
                     Console.WriteLine(exception.Message);
-                    
+
                 }
-                
+
             }
-            
             input = false;
             while (input == false)
             {
                 Console.WriteLine("Enter Latitude");
 
-                try { this.Latitude = Convert.ToDouble(Console.ReadLine());
-                    input = true;
+               try { this.Latitude = Convert.ToDouble(Console.ReadLine());//checks that the user input is correct
+                    input = true;//if user input is good then it could leave loop
                 }
-                catch (Exception exception)
+                catch (Exception exception)// catches exception
                 {
                     Console.WriteLine(exception.Message);
 
@@ -81,8 +82,8 @@ namespace dotNet5781_02_4334_4835
                 Console.WriteLine("Enter Longitude");
                 try
                 {
-                    this.Longitude = Convert.ToDouble(Console.ReadLine());
-                    input = true;
+                    this.Longitude = Convert.ToDouble(Console.ReadLine());//checks that the user input is correct
+                    input = true;//if user input is good then it could leave loop
                 }
                 catch (Exception exception)
                 {
@@ -91,6 +92,8 @@ namespace dotNet5781_02_4334_4835
                 }
                 
             }
+           
+
             
 
 
