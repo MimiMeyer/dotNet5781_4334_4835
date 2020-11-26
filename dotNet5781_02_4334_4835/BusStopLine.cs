@@ -6,7 +6,7 @@ namespace dotNet5781_02_4334_4835
 
     public class BusStopLine : BusStop
     {
-        
+
         private double distance;
         private TimeSpan time;
 
@@ -34,20 +34,44 @@ namespace dotNet5781_02_4334_4835
             }
 
         }
-        public TimeSpan TravelTime { 
-            get { return time; } 
+        public TimeSpan TravelTime {
+            get { return time; }
             set {
-                TimeSpan time1 = TimeSpan.FromMinutes(2*distance);
+                TimeSpan time1 = TimeSpan.FromMinutes(2 * distance);
                 time.Add(time1);
-            } 
-        }
+            }
+        } 
+        /*checks if station code already exists and makes sure its the same station*/
+        public void CheckStation(List<BusStopLine> BusStops)
+        {
+            if (BusStops.Count != 0)
+            {
+                foreach (BusStopLine stop in BusStops)
+                {
+                    if (this.BusStationKey == stop.BusStationKey)
+                    {
+                        if (this.Latitude != stop.Latitude)
+                        { throw new Exception("bus already exists must have same latitude look at the list of stations to find the correct one"); }
 
+                        if (this.Longitude != stop.Longitude)
+                        { throw new Exception("bus already exists must have same latitude look at the list of stations to find the correct one"); }
+                        //no need to add because alraedy in list.
+                    }
+                    else BusStops.Add(this);//doesn't exist and needs to be added to list.
+                }
+            }
+            else BusStops.Add(this);
+
+
+        }
+    
+        /*allows user to add station*/
         public void AddStationUser() 
         {
             bool input=false;
 
             
-            while (input == false)
+            while (input == false)//incase of exception will ask user again for station code
             {
                 Console.WriteLine("Enter station code");
                 try
@@ -62,8 +86,8 @@ namespace dotNet5781_02_4334_4835
                 }
 
             }
-            input = false;
-            while (input == false)
+            input = false;//station key number is valid and now checking for latitide.
+            while (input == false)//incase of exception will ask user again for Latitude
             {
                 Console.WriteLine("Enter Latitude");
 
@@ -76,8 +100,8 @@ namespace dotNet5781_02_4334_4835
 
                 }
             }
-            input = false;
-            while (input == false)
+            input = false;//station key number is valid and now checking for longitude.
+            while (input == false)//incase of exception will ask user again for Longitude
             {
                 Console.WriteLine("Enter Longitude");
                 try
@@ -92,6 +116,7 @@ namespace dotNet5781_02_4334_4835
                 }
                 
             }
+
            
 
             

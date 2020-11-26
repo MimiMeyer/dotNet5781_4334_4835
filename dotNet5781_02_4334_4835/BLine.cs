@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace dotNet5781_02_4334_4835
 {
-   public class BLine : IComparable<BLine>
+    public class BLine : IComparable<BLine>
     {
         private List<BusStopLine> stations = new List<BusStopLine>();//list of stations in bus
         public int BusLine { get; set; }//number of the line.
         public BusStopLine FirstStation { get; set; }//first station
         public BusStopLine LastStation { get; set; }//last station
         public District Area { get; set; }//enum
-        
+
         /*constructors*/
         public List<BusStopLine> Stations// get and set for stations
         {
@@ -23,8 +23,8 @@ namespace dotNet5781_02_4334_4835
 
         }
         /**for the tostring prints out station codes***/
-      
-      public List<int> PrintStationCodes(List<BusStopLine> S)//gets list of stations
+
+        public List<int> PrintStationCodes(List<BusStopLine> S)//gets list of stations
         {
             List<int> listOfStops = new List<int>();//
 
@@ -42,10 +42,10 @@ namespace dotNet5781_02_4334_4835
         {
             string result = "Bus line number is: " + BusLine + "\n";
             result += "The district is:" + Area + "\n";
-            result+= "List of station numbers:" + "\n" ;
-            foreach(BusStopLine stop in stations) 
+            result += "List of station numbers:" + "\n";
+            foreach (BusStopLine stop in stations)
             {
-                result += stop;
+                result += stop + "\n";
             }
             return result;
 
@@ -80,7 +80,7 @@ namespace dotNet5781_02_4334_4835
 
                     AddLast(busStation);
                 }
-                else if(i < stations.Count) //add in the middle
+                else if (i < stations.Count) //add in the middle
                 {
                     stations.Insert(i, busStation);
 
@@ -146,7 +146,7 @@ namespace dotNet5781_02_4334_4835
         /*sub route of the bus*/
         public BLine StationPath(BusStopLine station1, BusStopLine station2)
         {
-            BLine stationPath=null;
+            BLine stationPath = null;
             if (!Found(station1))//station 1 not found
             {
                 throw new Exception("first station does not exist");
@@ -156,9 +156,9 @@ namespace dotNet5781_02_4334_4835
                 throw new Exception("second station does not exist");
 
             }
-            else if(Found(station2)&& Found(station2))//both bus stops are in the list.
+            else if (Found(station2) && Found(station2))//both bus stops are in the list.
             {
-                int index1 = 0, index2 = 0, counter = 0,i;//help 
+                int index1 = 0, index2 = 0, counter = 0, i;//help 
                 foreach (BusStopLine station in stations)
                 {
                     if (station == station1)//finding index of first stop 
@@ -186,18 +186,18 @@ namespace dotNet5781_02_4334_4835
                     stationPath.FirstStation = stations[index1];//updates first station to be users first station.
                     stationPath.LastStation = stations[index2];//updates second station to be users second station.
                     stationPath.Area = Area;//same bus area
-                    for(i=index1; i==index2; i++)//the  sub-route of the bus.
+                    for (i = index1; i == index2; i++)//the  sub-route of the bus.
                     {
                         stationPath.Stations.Add(stations[i]);//adding stops to the list of stations
                     }
-                    
+
 
                 }
             }
             return stationPath;
         }
         /*route of the bus time */
-        public  double SumTime()
+        public double SumTime()
         {
             double sum = 0;
             for (int i = 0; i < stations.Count - 1; i++)
@@ -215,32 +215,68 @@ namespace dotNet5781_02_4334_4835
             return mySum.CompareTo(otherSum);
         }
         /*for user to insert a  new bus line*/
-        public  void AddBus()
+        public void AddBus(List<BusStopLine> BusStops)
         {
             bool success = false;
+            /*adding busline number*/
             Console.WriteLine("Enter bus line number under 4 digits:");
-            this.BusLine = Convert.ToInt32(Console.ReadLine());
-            BusStopLine first=new BusStopLine();
-            BusStopLine last= new BusStopLine(); ;
-            first.AddStationUser();
-            last.AddStationUser();
+            this.BusLine = Convert.ToInt32(Console.ReadLine());//gets the number in int
+            /*adding firststation*/
+            BusStopLine first = new BusStopLine();//initialzing type 
 
-            this.AddFirst(first);// new lines first station
-            this.AddLast(last); ;//new lines last station
-            while (success == false) 
-            { 
-            Console.WriteLine("Enter area GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM");
-            District area;
-            success = Enum.TryParse(Console.ReadLine(), out area);
-            if (success == false) { Console.WriteLine("invalid input"); }
-            this.Area=area; //new lines area
+            while (success == false)//will stay in loop until user input is correct
+            {
+                Console.WriteLine("enter first station");
+                first.AddStationUser();//calling on the function AddStationUser() to add station.
+
+                try
+                {
+                    first.CheckStation(BusStops);//checks to see if stationcode already exists if it does must be same satation.
+                    this.AddFirst(first);//if station is valid will add the station to firststation
+                    success = true;//leave the loop
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);//cathes exception if user input not valid.
+
+                }
             }
-           
+            while (success == true)//will stay in loop until user input is correct
+            {
+                /*adding last stop*/
+                BusStopLine last = new BusStopLine();//initialzing type
+                Console.WriteLine("enter last station");
+                last.AddStationUser();//calling on the function AddStationUser() to add station.
 
-    }
+                try
+                {
+                    last.CheckStation(BusStops);//checks to see if stationcode already exists if it does must be same satatio
+                    this.AddLast(last);//if station is valid will add the station to laststation
+                    success = false;//leaves the loop
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);//cathes exception if user input not valid.
 
+                }
+            }
+
+
+                /*adding area*/
+                while (success == false)//will stay in loop until user input is correct
+            {
+                    Console.WriteLine("Enter area GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM");
+                    District area;
+                    success = Enum.TryParse(Console.ReadLine(), out area);//if user input is correct success will be true
+                    if (success == false) { Console.WriteLine("invalid input"); }//wrting user that his input is not valid
+                    this.Area = area; //new lines area
+                }
+
+
+            }
+
+        }
     }
-}
 
 
 

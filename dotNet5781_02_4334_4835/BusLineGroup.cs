@@ -8,19 +8,16 @@ namespace dotNet5781_02_4334_4835
     {
         private List<BLine> lines = new List<BLine>();
 
-        /*constructor*/
-        //public BusLineGroup()
-        //{
-        // lines = new List<BLine>();
-        //}
-        /*adds line to list*/
-        bool NotEqualBackandforth(BLine Bus1, BLine Bus2)// use for addline to make sure a line is added if its the same line going the opposite way.
+
+     bool NotEqualBackandforth(BLine Bus1, BLine Bus2)/* use for addline to make sure a line is added if its the same line going the opposite way.*/
         {
             bool equal = true;
-            if (Bus1.FirstStation.BusStationKey == Bus2.LastStation.BusStationKey && Bus1.FirstStation.Latitude==Bus2.LastStation.Latitude&&
-                Bus1.FirstStation.Latitude == Bus2.LastStation.Latitude) { equal = false; }
+            if (Bus1.FirstStation.BusStationKey == Bus2.LastStation.BusStationKey & Bus1.FirstStation.Latitude==Bus2.LastStation.Latitude&&
+                Bus1.FirstStation.Longitude == Bus2.LastStation.Longitude) { equal = false; }
             return equal;
         }
+        
+        /*adds line to list*/
         public void AddLine(BLine line)
         {
             
