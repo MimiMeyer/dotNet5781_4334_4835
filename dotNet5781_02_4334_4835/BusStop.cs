@@ -55,6 +55,7 @@ namespace dotNet5781_02_4334_4835
         }
         public String Address
         { get; set; }
+        /*returns BusStop in string representation*/
         public override string ToString()
         {
             return String.Format("Bus Station Code: {0}, {1}°N {2}°E", BusStationKey, Latitude, Longitude);

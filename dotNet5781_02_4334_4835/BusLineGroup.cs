@@ -81,7 +81,7 @@ namespace dotNet5781_02_4334_4835
            
 
         }
-        /*Returns bys lines that go throughj requested bus stop*/
+        /*Returns the lines that go through requested bus stop*/
         public List<BLine> ListOfLines(int stop)
         {
             List<BLine> stationLines = new List<BLine>();// new list of lines that go through the same bus stop
@@ -134,7 +134,6 @@ namespace dotNet5781_02_4334_4835
 
             set
             {
-
 
                 lines[index] = value;
             }

@@ -4,13 +4,14 @@ using System.Linq;
 
 namespace dotNet5781_02_4334_4835
 {
+    /*class that represents a bus line*/
     public class BLine : IComparable<BLine>
     {
         private List<BusStopLine> stations = new List<BusStopLine>();//list of stations in bus
         public int BusLine { get; set; }//number of the line.
         public BusStopLine FirstStation { get; set; }//first station
         public BusStopLine LastStation { get; set; }//last station
-        public District Area { get; set; }//enum
+        public District Area { get; set; }//enum of line district
 
         /*constructors*/
         public List<BusStopLine> Stations// get and set for stations
@@ -27,16 +28,13 @@ namespace dotNet5781_02_4334_4835
 
         public List<int> PrintStationCodes(List<BusStopLine> S)//gets list of stations
         {
-            List<int> listOfStops = new List<int>();//
+            List<int> listOfStops = new List<int>();
 
-            foreach (BusStopLine station in S)// goes over the list
-
-
+            foreach (BusStopLine station in S)// iterates the list of stations
             {
                 listOfStops.Add(station.BusStationKey);// adding station code to list
-
             }
-            return listOfStops;// list of station codes of the bus stops of the line.
+            return listOfStops;// returns the station codes of the line
 
         }/*tostring*/
         public override string ToString()
@@ -72,16 +70,16 @@ namespace dotNet5781_02_4334_4835
             }
             else
             {
-                if (i > stations.Count)//if i is bigger then the number bus stations throw an exception
+                if (i > stations.Count)//if i is bigger then the number bus stations throws an exception
                 {
                     throw new ArgumentException("incorrect index input must be smaller or bigger then the number of bus stops");
                 }
-                if (i == stations.Count)//add to last
+                if (i == stations.Count)//adds to last
                 {
 
                     AddLast(busStation);
                 }
-                else if (i < stations.Count) //add in the middle
+                else if (i < stations.Count) //adds to the middle
                 {
                     stations.Insert(i, busStation);
 
@@ -207,7 +205,7 @@ namespace dotNet5781_02_4334_4835
             }
 
             return sum;
-        }/*helps user choose shortset trael time to destionanion*/
+        }/*helps user choose shortset travel time to destionanion by travel times*/
         public int CompareTo(BLine other)
         {
             double mySum = SumTime();

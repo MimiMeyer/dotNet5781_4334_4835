@@ -9,7 +9,7 @@ namespace dotNet5781_02_4334_4835
         static void Main(string[] args)
         {
             BusLineGroup BusCompany = new BusLineGroup();//new bus Company
-            List<BusStopLine> BusStops = new List<BusStopLine>();//list to help make sure station without the same cordinates don't have the same station code.
+            List<BusStopLine> BusStops = new List<BusStopLine>();//list to help making sure station without the same cordinates don't have the same station code.
             GenerateBusLines(BusCompany, BusStops);
             bool success;//helps to check if the user choice is valid
             CHOICE choice;//choices from enum

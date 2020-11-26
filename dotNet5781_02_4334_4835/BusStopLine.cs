@@ -8,14 +8,13 @@ namespace dotNet5781_02_4334_4835
     public class BusStopLine : BusStop
     {
 
-        private double distance;
-        private TimeSpan time;
+        private double distance;//distance from the last busStopStation
+        private TimeSpan time;//time of travel from the last busStopStation
 
+        /*constructors*/
         public BusStopLine()
-        {
-        }
-
-        /*constructor*/
+        { }
+        //??
         public BusStopLine(int stationcode, double latitude, double longitude)
         {
             BusStationKey = stationcode;
@@ -31,20 +30,21 @@ namespace dotNet5781_02_4334_4835
             set
             {
                 Random r = new Random();
-                distance = r.NextDouble() * (40 - 0.1) + 0.1;//random number from 0.1-40km
+                distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km from the last station
             }
 
         }
+        /*Travel time in minutes*/
         public TimeSpan TravelTime
         {
             get { return time; }
             set
             {
-                TimeSpan time1 = TimeSpan.FromMinutes(2 * distance);
+                TimeSpan time1 = TimeSpan.FromMinutes(2 * distance);//on assumption that 1 km takes 2 minutes
                 time.Add(time1);
             }
         }
-        /*checks if station code already exists and makes sure its the same station*/
+        /*checks if station code already exists and makes sure that its the same station*/
         public void CheckStation(List<BusStopLine> BusStops)
         {
             if (BusStops.Count == 0)
