@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace dotNet5781_02_4334_4835
 {
 
@@ -34,43 +35,44 @@ namespace dotNet5781_02_4334_4835
             }
 
         }
-        public TimeSpan TravelTime {
+        public TimeSpan TravelTime
+        {
             get { return time; }
-            set {
+            set
+            {
                 TimeSpan time1 = TimeSpan.FromMinutes(2 * distance);
                 time.Add(time1);
             }
-        } 
+        }
         /*checks if station code already exists and makes sure its the same station*/
         public void CheckStation(List<BusStopLine> BusStops)
         {
-            if (BusStops.Count != 0)
+            if (BusStops.Count == 0)
+            { BusStops.Add(this); }
+
+            foreach (BusStopLine stop in BusStops.ToList())
             {
-                foreach (BusStopLine stop in BusStops)
+                if (this.BusStationKey == stop.BusStationKey)
                 {
-                    if (this.BusStationKey == stop.BusStationKey)
-                    {
-                        if (this.Latitude != stop.Latitude)
-                        { throw new Exception("bus already exists must have same latitude look at the list of stations to find the correct one"); }
+                    if (this.Latitude != stop.Latitude)
+                    { throw new Exception("bus already exists must have same latitude look at the list of stations to find the correct one"); }
 
-                        if (this.Longitude != stop.Longitude)
-                        { throw new Exception("bus already exists must have same latitude look at the list of stations to find the correct one"); }
-                        //no need to add because alraedy in list.
-                    }
-                    else BusStops.Add(this);//doesn't exist and needs to be added to list.
+                    if (this.Longitude != stop.Longitude)
+                    { throw new Exception("bus already exists must have same latitude look at the list of stations to find the correct one"); }
+                    
                 }
+
             }
-            else BusStops.Add(this);
-
-
-        }
-    
-        /*allows user to add station*/
-        public void AddStationUser() 
-        {
-            bool input=false;
-
+            BusStops.Add(this);
             
+        }
+
+        /*allows user to add station*/
+        public void AddStationUser()
+        {
+            bool input = false;
+
+
             while (input == false)//incase of exception will ask user again for station code
             {
                 Console.WriteLine("Enter station code");
@@ -91,7 +93,9 @@ namespace dotNet5781_02_4334_4835
             {
                 Console.WriteLine("Enter Latitude");
 
-               try { this.Latitude = Convert.ToDouble(Console.ReadLine());//checks that the user input is correct
+                try
+                {
+                    this.Latitude = Convert.ToDouble(Console.ReadLine());//checks that the user input is correct
                     input = true;//if user input is good then it could leave loop
                 }
                 catch (Exception exception)// catches exception
@@ -114,12 +118,12 @@ namespace dotNet5781_02_4334_4835
                     Console.WriteLine(exception.Message);
 
                 }
-                
+
             }
 
-           
 
-            
+
+
 
 
         }

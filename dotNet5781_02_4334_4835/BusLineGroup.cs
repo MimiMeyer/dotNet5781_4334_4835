@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace dotNet5781_02_4334_4835
 {
@@ -61,22 +62,24 @@ namespace dotNet5781_02_4334_4835
 
         }
         /*removes line from list*/
-        public void RemoveLine(BLine line)
+        public void RemoveLine(BLine line,List<BusStopLine> BusStops)
         {
             int count = 0;
-            foreach (BLine bus in lines)
+            foreach (BLine bus in lines.ToList())
             {
                 if (bus.BusLine == line.BusLine)
                 {
-                    lines.Remove(bus);
                     count++;//Will delete the bus twice or once or not at all.
+                    foreach (BusStopLine b in bus.Stations) 
+                    {
+                        BusStops.Remove(b);
+                    }
+                    lines.Remove(bus);
+                    
                 }
-                else if (count == 0)
-                {
-                    throw new ArgumentException("bus does not exist"); //lets the user know that the bus doesn't exist.
-                }
+              }
+           
 
-            }
         }
         /*Returns bys lines that go throughj requested bus stop*/
         public List<BLine> ListOfLines(int stop)
@@ -117,20 +120,23 @@ namespace dotNet5781_02_4334_4835
         /*indexer*/
         public BLine this[int index]//allows to access lines as an array instaed of as a list(lines is a field of the class).
         {
+
             get
             {
-                return lines.Find(bus => bus.BusLine == index); //returns the number bus in the index
-            }
-            set
-            {
-                if (value != null)//line does exist
-                {
-                    lines[index] = value;
-                }
-                else
+                BLine b = lines.Find(bus => bus.BusLine == index);
+                if (b == null)//line does exist
                 {
                     throw new Exception("bus line does not exist");//line does not exist
                 }
+
+                return b;//returns the number bus in the index
+            }
+
+            set
+            {
+
+
+                lines[index] = value;
             }
         }
        

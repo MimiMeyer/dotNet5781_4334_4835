@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace dotNet5781_02_4334_4835
 {
@@ -96,7 +97,7 @@ namespace dotNet5781_02_4334_4835
         {
             if (Found(busStation))
             {
-                foreach (BusStopLine station in stations)
+                foreach (BusStopLine station in stations.ToList())
                 {
                     if (station == busStation)
                     {
@@ -110,7 +111,7 @@ namespace dotNet5781_02_4334_4835
         public bool Found(BusStopLine busStation)
         {
 
-            foreach (BusStopLine station in stations)
+            foreach (BusStopLine station in stations.ToList())
             {
                 if (station == busStation)
                 {
