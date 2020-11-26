@@ -55,10 +55,12 @@ namespace dotNet5781_02_4334_4835
                 if (this.BusStationKey == stop.BusStationKey)
                 {
                     if (this.Latitude != stop.Latitude)
-                    { throw new Exception("bus already exists must have same latitude look at the list of stations to find the correct one"); }
+                    { 
+                        throw new ArgumentException("bus already exists must have same latitude look at the list of stations to find the correct one"); }
 
                     if (this.Longitude != stop.Longitude)
-                    { throw new Exception("bus already exists must have same latitude look at the list of stations to find the correct one"); }
+                    { 
+                        throw new ArgumentException("bus already exists must have same latitude look at the list of stations to find the correct one"); }
                     
                 }
 
@@ -81,7 +83,7 @@ namespace dotNet5781_02_4334_4835
                     this.BusStationKey = Convert.ToInt32(Console.ReadLine());//checks if user input is under 7 digits
                     input = true;//if user input is good then it could leave loop
                 }
-                catch (Exception exception)// catches exception
+                catch (ArgumentOutOfRangeException exception)// catches exception
                 {
                     Console.WriteLine(exception.Message);
 
@@ -98,7 +100,7 @@ namespace dotNet5781_02_4334_4835
                     this.Latitude = Convert.ToDouble(Console.ReadLine());//checks that the user input is correct
                     input = true;//if user input is good then it could leave loop
                 }
-                catch (Exception exception)// catches exception
+                catch (ArgumentOutOfRangeException exception)// catches exception
                 {
                     Console.WriteLine(exception.Message);
 
@@ -113,7 +115,7 @@ namespace dotNet5781_02_4334_4835
                     this.Longitude = Convert.ToDouble(Console.ReadLine());//checks that the user input is correct
                     input = true;//if user input is good then it could leave loop
                 }
-                catch (Exception exception)
+                catch (ArgumentOutOfRangeException exception)
                 {
                     Console.WriteLine(exception.Message);
 

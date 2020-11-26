@@ -87,11 +87,13 @@ namespace dotNet5781_02_4334_4835
             List<BLine> stationLines = new List<BLine>();// new list of lines that go through the same bus stop
             foreach (BLine bus in lines)
             {
-                List<int> busCodes = bus.PrintStationCodes(bus.Stations);
-                foreach (int x in busCodes)
+                 foreach (BusStopLine station in bus.Stations)
                 {
-                    if (x == stop)
+                    if (station.BusStationKey == stop)
+                    {
                         stationLines.Add(bus);
+                       
+                    }
                 }
 
             }
@@ -126,7 +128,7 @@ namespace dotNet5781_02_4334_4835
                 BLine b = lines.Find(bus => bus.BusLine == index);
                 if (b == null)//line does exist
                 {
-                    throw new Exception("bus line does not exist");//line does not exist
+                    throw new ArgumentNullException("bus line does not exist");//line does not exist
                 }
 
                 return b;//returns the number bus in the index

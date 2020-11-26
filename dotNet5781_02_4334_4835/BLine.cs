@@ -24,19 +24,8 @@ namespace dotNet5781_02_4334_4835
             set { value = stations; }
 
         }
-        /**for the tostring prints out station codes***/
-
-        public List<int> PrintStationCodes(List<BusStopLine> S)//gets list of stations
-        {
-            List<int> listOfStops = new List<int>();
-
-            foreach (BusStopLine station in S)// iterates the list of stations
-            {
-                listOfStops.Add(station.BusStationKey);// adding station code to list
-            }
-            return listOfStops;// returns the station codes of the line
-
-        }/*tostring*/
+     
+        /*tostring*/
         public override string ToString()
         {
             string result = "Bus line number is: " + BusLine + "\n";
@@ -72,7 +61,7 @@ namespace dotNet5781_02_4334_4835
             {
                 if (i > stations.Count)//if i is bigger then the number bus stations throws an exception
                 {
-                    throw new ArgumentException("incorrect index input must be smaller or bigger then the number of bus stops");
+                    throw new ArgumentOutOfRangeException("index", "index should be less than or equal to" + stations.Count);
                 }
                 if (i == stations.Count)//adds to last
                 {
@@ -103,7 +92,7 @@ namespace dotNet5781_02_4334_4835
                     }
                 }
             }
-            else throw new Exception("station does not exist");
+            else throw new ArgumentException("station does not exist");
         }
         /*checks if station exists*/
         public bool Found(BusStopLine busStation)
@@ -122,8 +111,8 @@ namespace dotNet5781_02_4334_4835
         //needs looking into
         public double DistanceBetween(BusStopLine station1, BusStopLine station2)
         {
-            if (!Found(station1)) { throw new Exception("station does not exist"); }
-            if (!Found(station2)) { throw new Exception("station does not exist"); }
+            if (!Found(station1)) { throw new ArgumentException("station does not exist"); }
+            if (!Found(station2)) { throw new ArgumentException("station does not exist"); }
             return station1.Distance - station2.Distance;
 
 
@@ -133,11 +122,11 @@ namespace dotNet5781_02_4334_4835
         {
             if (!Found(station1))//throws exception if station 1 does not exist
             {
-                throw new Exception("first station does not exist");
+                throw new ArgumentException("first station does not exist");
             }
             if (!Found(station2))//throws exception if station 2 does not exist
             {
-                throw new Exception("second station does not exist");
+                throw new ArgumentException("second station does not exist");
 
             }
             return station1.TravelTime.Subtract(station2.TravelTime).TotalMinutes;//returns total minutes between bus stops.
@@ -148,11 +137,11 @@ namespace dotNet5781_02_4334_4835
             BLine stationPath = null;
             if (!Found(station1))//station 1 not found
             {
-                throw new Exception("first station does not exist");
+                throw new ArgumentException("first station does not exist");
             }
             if (!Found(station2))//station2 not found
             {
-                throw new Exception("second station does not exist");
+                throw new ArgumentException("second station does not exist");
 
             }
             else if (Found(station2) && Found(station2))//both bus stops are in the list.
@@ -173,11 +162,11 @@ namespace dotNet5781_02_4334_4835
                 }
                 if (index1 > index2)//user typed in bus stop in the wrong order.
                 {
-                    throw new Exception("Bus stops must be inorder of travel");
+                    throw new ArgumentException("Bus stops must be inorder of travel");
                 }
                 if (index1 == index2)//user typed in same bus stop twice.
                 {
-                    throw new Exception("Bus Stops must be differnt");
+                    throw new ArgumentException("Bus Stops must be differnt");
                 }
                 else if (index1 < index2)//user input correct
                 {
@@ -234,7 +223,7 @@ namespace dotNet5781_02_4334_4835
                     this.AddFirst(first);//if station is valid will add the station to firststation
                     success = true;//leave the loop
                 }
-                catch (Exception exception)
+                catch (ArgumentException exception)
                 {
                     Console.WriteLine(exception.Message);//cathes exception if user input not valid.
 
@@ -253,7 +242,7 @@ namespace dotNet5781_02_4334_4835
                     this.AddLast(last);//if station is valid will add the station to laststation
                     success = false;//leaves the loop
                 }
-                catch (Exception exception)
+                catch (ArgumentException exception)
                 {
                     Console.WriteLine(exception.Message);//cathes exception if user input not valid.
 
@@ -261,21 +250,21 @@ namespace dotNet5781_02_4334_4835
             }
 
 
-                /*adding area*/
-                while (success == false)//will stay in loop until user input is correct
+            /*adding area*/
+            while (success == false)//will stay in loop until user input is correct
             {
-                    Console.WriteLine("Enter area GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM");
-                    District area;
-                    success = Enum.TryParse(Console.ReadLine(), out area);//if user input is correct success will be true
-                    if (success == false) { Console.WriteLine("invalid input"); }//wrting user that his input is not valid
-                    this.Area = area; //new lines area
-                }
-
-
+                Console.WriteLine("Enter area GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM");
+                District area;
+                success = Enum.TryParse(Console.ReadLine(), out area);//if user input is correct success will be true
+                if (success == false) { Console.WriteLine("invalid input"); }//wrting user that his input is not valid
+                this.Area = area; //new lines area
             }
 
+
         }
+
     }
+}
 
 
 

@@ -18,7 +18,7 @@ namespace dotNet5781_02_4334_4835
               
                 if (value <0 || value >1000000)
                 {
-                    throw new Exception("input must be under 7 digits");
+                    throw new ArgumentOutOfRangeException("input must be under 7 digits");
                     
                 }
                 stationCode = value;
@@ -36,7 +36,7 @@ namespace dotNet5781_02_4334_4835
                     
                     latitude = value;
                 }
-                else throw new Exception("value must be between -90 to 90");
+                else throw new ArgumentOutOfRangeException("value must be between -90 to 90");
             }
         }
         public double Longitude
@@ -50,7 +50,7 @@ namespace dotNet5781_02_4334_4835
 
 
                 }
-                else throw new Exception("value must be between -180 to 180");
+                else throw new ArgumentOutOfRangeException("value must be between -180 to 180");
             }
         }
         public String Address
