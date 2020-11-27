@@ -1,4 +1,11 @@
 ﻿using System;
+
+
+
+
+
+
+
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,7 +27,7 @@ namespace dotNet5781_02_4334_4835
 
         private static void RM_Busses(BusLineGroup BusCompany, List<BusStopLine> BusStops, out CHOICE choice, out bool success)
         {
-            /*as long as the user choice is not EXIT keep inserting*/
+             /*as long as the user choice is not EXIT keep inserting*/
             do
             {
                 /*as long as the user choice is not valid keep inserting*/
@@ -151,10 +158,32 @@ namespace dotNet5781_02_4334_4835
                         {
                             Console.WriteLine(exception.Message);
                         }
-                        if (fInput == "FINDBUS")
-                        { }
+                        if (fInput == "FINDBUS")//gets stop and returns the busses that go through it
+                        {
+                            Console.WriteLine("Enter station code you want lines printed out for");
+                            int stop = Convert.ToInt32(Console.ReadLine());
+                            try//to make sue stop exists
+                            {
+                                List<BLine> lines = BusCompany.ListOfLines(stop);//list of lines that go through station
+                                Console.WriteLine("The busses are: ");
+                                foreach (BLine bus in lines) 
+                                { 
+                                    Console.WriteLine(bus.BusLine); //prints each line
+                                }
+                            }
+                            catch (ArgumentException exception)//if bus does not exist
+                            {
+                                Console.WriteLine(exception.Message);
+                            }
+                        }
                         else if (fInput != "FINDROUTE")
-                        { }
+                        {
+                            Console.WriteLine("Enter station code of first stop");
+                            int stop1 = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Enter station code of second stop");
+                            int stop2 = Convert.ToInt32(Console.ReadLine());
+                           
+                        }
                         break;
 
 
@@ -185,11 +214,13 @@ namespace dotNet5781_02_4334_4835
                             string result = "list of stations: " + "\n";
                             List<BusStopLine> noMult = BusStops.Distinct().ToList();//makes new list with no multiple bus stations
 
-                            foreach (BusStopLine s in noMult.ToList())//goes over list
+                            foreach (BusStopLine s in noMult)//goes over list
                             {
                                 result += "The Station is: " + s + "\n" + "The Lines that go through this station are: " + "\n";//prints station
+
                                 List<BLine> lines = BusCompany.ListOfLines(s.BusStationKey);//list of lines that go through station
-                                foreach (BLine bus in lines.ToList())
+
+                                foreach (BLine bus in lines)
                                 {
                                     result += bus.BusLine + "\n";//adding the line to print
                                 }
@@ -208,127 +239,127 @@ namespace dotNet5781_02_4334_4835
 
         }
 
-   
 
-    /*adds lines to bus company*/
-    private static void GenerateBusLines(BusLineGroup BusCompany, List<BusStopLine> busStops)
-    {
-        List<BusStopLine> tenStations = new List<BusStopLine>();//list to make sure 10 stops have more than one bus.
 
-        for (int i = 0; i < 10; i++)
+        /*adds lines to bus company*/
+        private static void GenerateBusLines(BusLineGroup BusCompany, List<BusStopLine> busStops)
         {
+            List<BusStopLine> tenStations = new List<BusStopLine>();//list to make sure 10 stops have more than one bus.
 
-            tenStations.Add(GenerateRandomStation(busStops));//adding random stations to list
+            for (int i = 0; i < 10; i++)
+            {
 
+                tenStations.Add(GenerateRandomStation(busStops));//adding random stations to list
+
+            }
+            for (int i = 0; i < 10; i++)//adding 10 bus lines with random stations
+            {
+                int x = 10;
+                BLine busLine = getRandomBusLine(x, tenStations, busStops);
+                try
+                {
+                    BusCompany.AddLine(busLine);
+
+                }
+                catch (ArgumentException exception)
+                {
+                    Console.WriteLine(exception.Message);
+
+                }
+
+            }
+
+
+            for (int i = 0; i < 2; i++)//adding 2 bus lines with the stations of tenStations to make sure 10 stops have more than one bus.
+            {
+                int x = 2;
+                BLine busLine = getRandomBusLine(x, tenStations, busStops);
+                try
+                {
+                    BusCompany.AddLine(busLine);
+                }
+                catch (ArgumentException exception)
+                {
+                    Console.WriteLine(exception.Message);
+
+                }
+            }
         }
-        for (int i = 0; i < 10; i++)//adding 10 bus lines with random stations
+        private static BLine getRandomBusLine(int x, List<BusStopLine> tenStations, List<BusStopLine> busStops)
         {
-            int x = 10;
-            BLine busLine = getRandomBusLine(x, tenStations, busStops);
+            BLine busLine = new BLine();//the new line
+
+            int busLineNumber = rand.Next(1, 999);//random bus number
+            District area = (District)rand.Next(Enum.GetNames(typeof(District)).Length);//random area
+
+            if (x == 10)
+            {
+                BusStopLine first = GenerateRandomStation(busStops);//random first station
+                BusStopLine last = GenerateRandomStation(busStops);//random last station
+
+                busLine.BusLine = busLineNumber;//new lines bus number
+                busLine.AddFirst(first);// new lines first station
+                busLine.AddLast(last);//new lines last station
+                busLine.Area = area;//new lines area
+                for (int i = 0; i < 2; i++)//adss two more stations to the begining
+
+                {
+                    busLine.AddStation(i, GenerateRandomStation(busStops));
+                }
+            }
+
+            else// if x==2
+            {
+                BusStopLine first = tenStations[0];//first station from list 
+                BusStopLine last = tenStations[9];//last station from list
+                try
+                {
+                    first.CheckStation(busStops);
+                    last.CheckStation(busStops);
+
+                }
+                catch (ArgumentException exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+                busLine.BusLine = busLineNumber;//new lines bus number
+                busLine.AddFirst(first);// new lines first station
+                busLine.AddLast(last);//new lines last station
+                busLine.Area = area;//new lines area
+                for (int i = 1; i < 9; i++)//adds anothe 8 stops from list
+
+                {
+                    busLine.AddStation(i, tenStations[i]);//adds stations from list in order.
+                }
+            }
+
+
+            return busLine;//new bus line
+        }
+        /*didn't add random stops to list*/
+        private static BusStopLine GenerateRandomStation(List<BusStopLine> BusStops)
+        {
+
+            int stationcode = rand.Next(1, 999999);// random number till 6 digits.
+            double latitude = rand.NextDouble() * (33.3 - 31) + 31;//random number between 31 to 33.3 in Israel.
+            double longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;//random number between 34.3 to 35.5 in Israel.
+            BusStopLine stop = new BusStopLine(stationcode, latitude, longitude);
+
             try
             {
-                BusCompany.AddLine(busLine);
+                stop.CheckStation(BusStops);
 
             }
             catch (ArgumentException exception)
             {
                 Console.WriteLine(exception.Message);
-
             }
 
+            return stop;
         }
 
 
-        for (int i = 0; i < 2; i++)//adding 2 bus lines with the stations of tenStations to make sure 10 stops have more than one bus.
-        {
-            int x = 2;
-            BLine busLine = getRandomBusLine(x, tenStations, busStops);
-            try
-            {
-                BusCompany.AddLine(busLine);
-            }
-            catch (ArgumentException exception)
-            {
-                Console.WriteLine(exception.Message);
-
-            }
-        }
     }
-    private static BLine getRandomBusLine(int x, List<BusStopLine> tenStations, List<BusStopLine> busStops)
-    {
-        BLine busLine = new BLine();//the new line
-
-        int busLineNumber = rand.Next(1, 999);//random bus number
-        District area = (District)rand.Next(Enum.GetNames(typeof(District)).Length);//random area
-
-        if (x == 10)
-        {
-            BusStopLine first = GenerateRandomStation(busStops);//random first station
-            BusStopLine last = GenerateRandomStation(busStops);//random last station
-
-            busLine.BusLine = busLineNumber;//new lines bus number
-            busLine.AddFirst(first);// new lines first station
-            busLine.AddLast(last);//new lines last station
-            busLine.Area = area;//new lines area
-            for (int i = 0; i < 2; i++)//adss two more stations to the begining
-
-            {
-                busLine.AddStation(i, GenerateRandomStation(busStops));
-            }
-        }
-
-        else// if x==2
-        {
-            BusStopLine first = tenStations[0];//first station from list 
-            BusStopLine last = tenStations[9];//last station from list
-            try
-            {
-                first.CheckStation(busStops);
-                last.CheckStation(busStops);
-
-            }
-            catch (ArgumentException exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-            busLine.BusLine = busLineNumber;//new lines bus number
-            busLine.AddFirst(first);// new lines first station
-            busLine.AddLast(last);//new lines last station
-            busLine.Area = area;//new lines area
-            for (int i = 1; i < 9; i++)//adds anothe 8 stops from list
-
-            {
-                busLine.AddStation(i, tenStations[i]);//adds stations from list in order.
-            }
-        }
-
-
-        return busLine;//new bus line
-    }
-    /*didn't add random stops to list*/
-    private static BusStopLine GenerateRandomStation(List<BusStopLine> BusStops)
-    {
-
-        int stationcode = rand.Next(1, 999999);// random number till 6 digits.
-        double latitude = rand.NextDouble() * (33.3 - 31) + 31;//random number between 31 to 33.3 in Israel.
-        double longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;//random number between 34.3 to 35.5 in Israel.
-        BusStopLine stop = new BusStopLine(stationcode, latitude, longitude);
-
-        try
-        {
-            stop.CheckStation(BusStops);
-
-        }
-        catch (ArgumentException exception)
-        {
-            Console.WriteLine(exception.Message);
-        }
-
-        return stop;
-    }
-
-
-}
 }
 
 

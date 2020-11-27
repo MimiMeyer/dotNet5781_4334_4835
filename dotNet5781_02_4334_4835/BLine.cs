@@ -100,7 +100,7 @@ namespace dotNet5781_02_4334_4835
 
             foreach (BusStopLine station in stations.ToList())
             {
-                if (station == busStation)
+                if (station.BusStationKey == busStation.BusStationKey&& station.Latitude== busStation.Latitude&& station.Longitude == busStation.Longitude)
                 {
                     return true;
                 }

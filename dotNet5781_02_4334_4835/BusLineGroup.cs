@@ -97,6 +97,10 @@ namespace dotNet5781_02_4334_4835
                 }
 
             }
+            if (stationLines.Count == 0)
+            { 
+                throw new ArgumentException("stop does not exist");
+            }
             return stationLines;
         }
         /*returns sorted list of bus lines according to sum of travel*/
