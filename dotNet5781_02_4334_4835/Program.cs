@@ -27,7 +27,7 @@ namespace dotNet5781_02_4334_4835
 
         private static void RM_Busses(BusLineGroup BusCompany, List<BusStopLine> BusStops, out CHOICE choice, out bool success)
         {
-             /*as long as the user choice is not EXIT keep inserting*/
+            /*as long as the user choice is not EXIT keep inserting*/
             do
             {
                 /*as long as the user choice is not valid keep inserting*/
@@ -133,8 +133,8 @@ namespace dotNet5781_02_4334_4835
                                 {
                                     if (B == s.BusStationKey)
                                     {
-                                        line.RemoveStation(s);
-                                        BusStops.Remove(s);
+                                        line.RemoveStation(s);//remove from line
+                                        BusStops.Remove(s);//remove from list of stations
                                     }
                                 }
                             }
@@ -161,13 +161,13 @@ namespace dotNet5781_02_4334_4835
                         if (fInput == "FINDBUS")//gets stop and returns the busses that go through it
                         {
                             Console.WriteLine("Enter station code you want lines printed out for");
-                            int stop = Convert.ToInt32(Console.ReadLine());
+                            int stop = Convert.ToInt32(Console.ReadLine());//input of user
                             try//to make sue stop exists
                             {
                                 List<BLine> lines = BusCompany.ListOfLines(stop);//list of lines that go through station
                                 Console.WriteLine("The busses are: ");
-                                foreach (BLine bus in lines) 
-                                { 
+                                foreach (BLine bus in lines)
+                                {
                                     Console.WriteLine(bus.BusLine); //prints each line
                                 }
                             }
@@ -176,18 +176,96 @@ namespace dotNet5781_02_4334_4835
                                 Console.WriteLine(exception.Message);
                             }
                         }
-                        else if (fInput != "FINDROUTE")
+                        else if (fInput == "FINDROUTE")//gets 2 stations from user and returns the  sorted list of buses that go through that route.
                         {
                             Console.WriteLine("Enter station code of first stop");
-                            int stop1 = Convert.ToInt32(Console.ReadLine());
+                            int c1 = Convert.ToInt32(Console.ReadLine());//Station code of first stop
                             Console.WriteLine("Enter station code of second stop");
-                            int stop2 = Convert.ToInt32(Console.ReadLine());
-                           
+                            int c2 = Convert.ToInt32(Console.ReadLine());//station code of second stop
+                            BusStopLine stop1 = new BusStopLine();
+                            BusStopLine stop2 = new BusStopLine();
+                            int count = 0;
+                            bool exists = false;
+                            foreach (BusStopLine s in BusStops)//finding stops;
+                            {
+                                if (c1 == s.BusStationKey)
+                                {
+                                    stop1 = s;
+                                    count++;
+                                }
+                                if (c2 == s.BusStationKey)
+                                {
+                                    stop2 = s;
+                                    count++;
+                                }
+                            }
+                            try
+                            {
+                                if (count < 2) { throw new ArgumentException("bus station code does not exist"); }
+                            }
+
+                            catch (ArgumentException exception)//if bus station code does not exist
+                            {
+                                Console.WriteLine(exception.Message);
+                            }
+
+                            BusLineGroup Sub = new BusLineGroup();//New bus line group             
+                            foreach (BLine b in BusCompany)//checking all the busses in BusCompany
+                            {
+                                bool found = true;
+                                int index1 = 0, index2 = 0, counter = 0;//help
+                                if (!b.Found(stop1) || !b.Found(stop2))// cheks if stops exist in line
+                                
+                                    found = false;
+                                    
+                                if(found)
+                                { 
+                                    foreach (BusStopLine station in b.Stations)
+                                    {
+                                        if (station.BusStationKey == stop1.BusStationKey)//finding index of first stop 
+                                        {
+                                            index1 = counter;
+                                        }
+                                        if (station.BusStationKey == stop2.BusStationKey)//finding index of second stop
+                                        {
+                                            index2 = counter;
+                                        }
+                                        counter++;//counter for the index
+
+                                    }
+                                    if (index1 > index2 || (index1 == index2))//bus stops in the wrong order in the line.
+                                    {
+                                        found = false;
+                                    }
+                                }
+                                 if (found)// stops exist and in the correct order
+                                {
+                                    BLine Bus = b.StationPath(stop1, stop2);//returns a the bus with the sub route.
+                                    Sub.AddLine(Bus);// adds line to new BusLineGroup Sub
+                                    exists = true;//checks if stops were ever found
+                                    
+                                }
+                            }
+                            try
+                            {
+                                if (!exists)
+                                    throw new ArgumentException("stations were not in the correct order or were not in the same bus");
+                            }
+                            catch (ArgumentException exception)
+                            {
+                                Console.WriteLine(exception.Message);
+                            }
+                            List<BLine> busses = Sub.ListOfSortedLines();//new list of the buses with the sub route sorted by sum of travel.
+                            Console.WriteLine("List of busses: ");
+                            foreach (BLine bus in busses)
+                            {
+                                Console.WriteLine(bus.BusLine);// prints te busses
+                            }
+
                         }
+
                         break;
-
-
-
+                
                     case CHOICE.PRINT:
                         Console.WriteLine("write PRINTBUS to print all the bus or PRINTSTOP to print all the stops and the lines that go through them");
                         string pInput = Console.ReadLine();
@@ -202,7 +280,7 @@ namespace dotNet5781_02_4334_4835
                         {
                             Console.WriteLine(exception.Message);
                         }
-                        if (pInput == "PRINTBUS")
+                        if (pInput == "PRINTBUS")//prints busses
                         {
                             foreach (BLine bus in BusCompany)
                             {
@@ -216,11 +294,11 @@ namespace dotNet5781_02_4334_4835
 
                             foreach (BusStopLine s in noMult)//goes over list
                             {
-                                result += "The Station is: " + s + "\n" + "The Lines that go through this station are: " + "\n";//prints station
+                                result += "The Station is: " + s + "\n" + "The lines that go through this station are: " + "\n";//prints station
 
                                 List<BLine> lines = BusCompany.ListOfLines(s.BusStationKey);//list of lines that go through station
 
-                                foreach (BLine bus in lines)
+                                foreach (BLine bus in lines)//goes over the list of lines
                                 {
                                     result += bus.BusLine + "\n";//adding the line to print
                                 }
@@ -341,8 +419,9 @@ namespace dotNet5781_02_4334_4835
         {
 
             int stationcode = rand.Next(1, 999999);// random number till 6 digits.
-            double latitude = rand.NextDouble() * (33.3 - 31) + 31;//random number between 31 to 33.3 in Israel.
-            double longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;//random number between 34.3 to 35.5 in Israel.
+            double latitude = Math.Round(rand.NextDouble() * (33.3 - 31) + 31, 5);//random number between 31 to 33.3 in Israel.
+            double longitude = Math.Round(rand.NextDouble() * (35.5 - 34.3) + 34.3,5);//random number between 34.3 to 35.5 in Israel.
+            
             BusStopLine stop = new BusStopLine(stationcode, latitude, longitude);
 
             try

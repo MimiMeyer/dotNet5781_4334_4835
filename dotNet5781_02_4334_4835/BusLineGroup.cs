@@ -132,7 +132,7 @@ namespace dotNet5781_02_4334_4835
                 BLine b = lines.Find(bus => bus.BusLine == index);
                 if (b == null)//line does exist
                 {
-                    throw new ArgumentNullException("bus line does not exist");//line does not exist
+                    throw new ArgumentException("bus line does not exist");//line does not exist
                 }
 
                 return b;//returns the number bus in the index

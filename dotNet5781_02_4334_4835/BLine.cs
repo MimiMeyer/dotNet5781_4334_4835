@@ -97,16 +97,18 @@ namespace dotNet5781_02_4334_4835
         /*checks if station exists*/
         public bool Found(BusStopLine busStation)
         {
-
+            bool success = false;
             foreach (BusStopLine station in stations.ToList())
             {
-                if (station.BusStationKey == busStation.BusStationKey&& station.Latitude== busStation.Latitude&& station.Longitude == busStation.Longitude)
+                if (station.BusStationKey == busStation.BusStationKey && 
+                    station.Latitude== busStation.Latitude&& 
+                    station.Longitude == busStation.Longitude)
                 {
-                    return true;
+                    success= true;
                 }
 
             }
-            return false;
+            return success;
         }
         //needs looking into
         public double DistanceBetween(BusStopLine station1, BusStopLine station2)
@@ -129,12 +131,13 @@ namespace dotNet5781_02_4334_4835
                 throw new ArgumentException("second station does not exist");
 
             }
-            return station1.TravelTime.Subtract(station2.TravelTime).TotalMinutes;//returns total minutes between bus stops.
+            double result = Math.Abs(station1.TravelTime-station2.TravelTime);
+            return result;//returns total minutes between bus stops.
         }
         /*sub route of the bus*/
         public BLine StationPath(BusStopLine station1, BusStopLine station2)
         {
-            BLine stationPath = null;
+            BLine stationPath=new BLine();
             if (!Found(station1))//station 1 not found
             {
                 throw new ArgumentException("first station does not exist");
@@ -144,16 +147,16 @@ namespace dotNet5781_02_4334_4835
                 throw new ArgumentException("second station does not exist");
 
             }
-            else if (Found(station2) && Found(station2))//both bus stops are in the list.
+            else if (Found(station1) && Found(station2))//both bus stops are in the list.
             {
                 int index1 = 0, index2 = 0, counter = 0, i;//help 
                 foreach (BusStopLine station in stations)
                 {
-                    if (station == station1)//finding index of first stop 
+                    if (station.BusStationKey == station1.BusStationKey)//finding index of first stop 
                     {
                         index1 = counter;
                     }
-                    if (station == station2)//finding index of second stop
+                    if (station .BusStationKey== station2.BusStationKey)//finding index of second stop
                     {
                         index2 = counter;
                     }
@@ -171,18 +174,20 @@ namespace dotNet5781_02_4334_4835
                 else if (index1 < index2)//user input correct
                 {
                     stationPath.BusLine = BusLine;//same bus number
-                    stationPath.FirstStation = stations[index1];//updates first station to be users first station.
-                    stationPath.LastStation = stations[index2];//updates second station to be users second station.
+                    stationPath.AddFirst(stations[index1]);//updates first station to be users first station.
+                    stationPath.AddLast(stations[index2]);//updates second station to be users second station.
                     stationPath.Area = Area;//same bus area
-                    for (i = index1; i == index2; i++)//the  sub-route of the bus.
+                    int j = 1;
+                    for (i = index1+1; i < index2; i++)//the  sub-route of the bus.
                     {
-                        stationPath.Stations.Add(stations[i]);//adding stops to the list of stations
+                        stationPath.AddStation(j,stations[i]);//adding stops to the list of stations
+                        j++;
                     }
 
 
                 }
             }
-            return stationPath;
+            return stationPath;//returns new BLine
         }
         /*route of the bus time */
         public double SumTime()
@@ -192,8 +197,7 @@ namespace dotNet5781_02_4334_4835
             {
                 sum += TimeBetween(stations[i], stations[i + 1]);
             }
-
-            return sum;
+             return sum;
         }/*helps user choose shortset travel time to destionanion by travel times*/
         public int CompareTo(BLine other)
         {
@@ -214,7 +218,7 @@ namespace dotNet5781_02_4334_4835
 
             while (success == false)//will stay in loop until user input is correct
             {
-                Console.WriteLine("enter first station");
+                Console.WriteLine("Enter first station");
                 first.AddStationUser();//calling on the function AddStationUser() to add station.
 
                 try
@@ -233,7 +237,7 @@ namespace dotNet5781_02_4334_4835
             {
                 /*adding last stop*/
                 BusStopLine last = new BusStopLine();//initialzing type
-                Console.WriteLine("enter last station");
+                Console.WriteLine("Enter last station");
                 last.AddStationUser();//calling on the function AddStationUser() to add station.
 
                 try
