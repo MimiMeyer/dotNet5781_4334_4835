@@ -1,11 +1,4 @@
 ﻿using System;
-
-
-
-
-
-
-
 using System.Collections.Generic;
 using System.Linq;
 
@@ -67,13 +60,15 @@ namespace dotNet5781_02_4334_4835
                         }
                         else if (aInput == "ADDSTOP")
                         {
+                            
                             Console.WriteLine("Enter which line you would like to add a station to");
                             int busLine = Convert.ToInt32(Console.ReadLine());//getting bus line number from user
                             try
                             {
                                 BLine line = BusCompany[busLine];//cheking if busline number exists if not will go to cath
                                 Console.WriteLine("Enter the index in which you would like to add the station");
-                                int index = Convert.ToInt32(Console.ReadLine());//getting the index of where to add the bus stop.
+                                 int index = Convert.ToInt32(Console.ReadLine());
+                                //getting the index of where to add the bus stop.
                                 Console.WriteLine("Enter station details:");
                                 BusStopLine stop = new BusStopLine();//initializing stop
                                 stop.AddStationUser();//getting station details from user
@@ -116,7 +111,6 @@ namespace dotNet5781_02_4334_4835
                             {
                                 Console.WriteLine(exception.Message);
                             }
-
                         }
 
                         else if (dInput == "DELSTOP")
