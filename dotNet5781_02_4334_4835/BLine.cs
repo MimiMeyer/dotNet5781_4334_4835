@@ -8,6 +8,8 @@ namespace dotNet5781_02_4334_4835
     public class BLine : IComparable<BLine>
     {
         private List<BusStopLine> stations = new List<BusStopLine>();//list of stations in bus
+        
+
         public int BusLine { get; set; }//number of the line.
         public BusStopLine FirstStation { get; set; }//first station
         public BusStopLine LastStation { get; set; }//last station

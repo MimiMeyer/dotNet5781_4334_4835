@@ -7,7 +7,7 @@ namespace dotNet5781_02_4334_4835
 {
     public class BusLineGroup : IEnumerable<BLine>
     {
-        private List<BLine> lines = new List<BLine>();
+        public List<BLine> lines = new List<BLine>();
 
 
      bool NotEqualBackandforth(BLine Bus1, BLine Bus2)/* use for addline to make sure a line is added if its the same line going the opposite way.*/
