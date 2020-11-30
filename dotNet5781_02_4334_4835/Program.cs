@@ -47,18 +47,18 @@ namespace dotNet5781_02_4334_4835
                             Console.WriteLine(exception.Message);
                         }
 
-                        if (aInput == "ADDBUS")
+                        if (aInput == "ADDBUS")// adds bus to the bus company
                         {
                             BLine busLine = new BLine();//new busline
-                            busLine.AddBus(BusStops);
-                            try { BusCompany.AddLine(busLine); }
+                            busLine.AddBus(BusStops);//busline gets values from user using Addbus
+                            try { BusCompany.AddLine(busLine); }//makes sure if line exists its the same bus just the way back.
                             catch (ArgumentException exception)
                             {
                                 Console.WriteLine(exception.Message);
                             }
 
                         }
-                        else if (aInput == "ADDSTOP")
+                        else if (aInput == "ADDSTOP")//adds stop to  requested bus line number.
                         {
                             
                             Console.WriteLine("Enter which line you would like to add a station to");
@@ -67,12 +67,11 @@ namespace dotNet5781_02_4334_4835
                             {
                                 BLine line = BusCompany[busLine];//cheking if busline number exists if not will go to cath
                                 Console.WriteLine("Enter the index in which you would like to add the station");
-                                 int index = Convert.ToInt32(Console.ReadLine());
-                                //getting the index of where to add the bus stop.
+                                int index = Convert.ToInt32(Console.ReadLine());//getting the index of where to add the bus stop.
                                 Console.WriteLine("Enter station details:");
                                 BusStopLine stop = new BusStopLine();//initializing stop
                                 stop.AddStationUser();//getting station details from user
-                                stop.CheckStation(BusStops);//making sure that if the station exists its the same station
+                                stop.CheckStation(BusStops);//making sure that if the station exists its the same station if not will go to ctach
                                 line.AddStation(index, stop);//adds station if index is correct
                             }
                             catch (ArgumentException exception)
@@ -95,7 +94,7 @@ namespace dotNet5781_02_4334_4835
                         {
                             Console.WriteLine(exception.Message);
                         }
-                        if (dInput == "DELBUS")
+                        if (dInput == "DELBUS")// deletes the bus line from the bus company.
                         {
 
                             Console.WriteLine("Enter which line you would like to delete");
@@ -103,8 +102,8 @@ namespace dotNet5781_02_4334_4835
                             try
                             {
 
-                                BLine line = BusCompany[busLine];
-                                BusCompany.RemoveLine(line, BusStops);
+                                BLine line = BusCompany[busLine];//using indexer to get value if bus doesnt exist will go to catch
+                                BusCompany.RemoveLine(line, BusStops);//removes line from bus comapny and the stations from busstops once
 
                             }
                             catch (ArgumentException exception)
@@ -113,15 +112,15 @@ namespace dotNet5781_02_4334_4835
                             }
                         }
 
-                        else if (dInput == "DELSTOP")
+                        else if (dInput == "DELSTOP")// deletes stop from requested bus line number
                         {
                             Console.WriteLine("Enter which line you would like to delete statiom from");
                             int busLine = Convert.ToInt32(Console.ReadLine());//getting bus line number from user
                             try
                             {
-                                BLine line = BusCompany[busLine];
+                                BLine line = BusCompany[busLine];// checking if bus exists if not will go to catch
                                 Console.WriteLine("Enter station you want to delete:");
-                                int B = Convert.ToInt32(Console.ReadLine());
+                                int B = Convert.ToInt32(Console.ReadLine());// gets station code from user
 
                                 foreach (BusStopLine s in line.Stations.ToList())
                                 {
@@ -132,7 +131,7 @@ namespace dotNet5781_02_4334_4835
                                     }
                                 }
                             }
-                            catch (ArgumentException exception)
+                            catch (ArgumentException exception)// throws exception
                             {
                                 Console.WriteLine(exception.Message);
                             }
@@ -195,10 +194,10 @@ namespace dotNet5781_02_4334_4835
                             }
                             try
                             {
-                                if (count < 2) { throw new ArgumentException("bus station code does not exist"); }
+                                if (count < 2) { throw new ArgumentException("bus station code does not exist"); }// if 1 of the bus stops does not exist
                             }
 
-                            catch (ArgumentException exception)//if bus station code does not exist
+                            catch (ArgumentException exception)//throws exception
                             {
                                 Console.WriteLine(exception.Message);
                             }
@@ -212,7 +211,7 @@ namespace dotNet5781_02_4334_4835
                                 
                                     found = false;
                                     
-                                if(found)
+                                if(found)// if both stops exist in line
                                 { 
                                     foreach (BusStopLine station in b.Stations)
                                     {
@@ -242,7 +241,7 @@ namespace dotNet5781_02_4334_4835
                             }
                             try
                             {
-                                if (!exists)
+                                if (!exists)// none of the buses had the stops in the correct order or had both stops
                                     throw new ArgumentException("stations were not in the correct order or were not in the same bus");
                             }
                             catch (ArgumentException exception)
@@ -281,7 +280,7 @@ namespace dotNet5781_02_4334_4835
                                 Console.WriteLine(bus);//prints out all the busses with there stops
                             }
                         }
-                        else if (pInput == "PRINTSTOP")
+                        else if (pInput == "PRINTSTOP")//prints the stations and the buses that go through them.
                         {
                             string result = "list of stations: " + "\n";
                             List<BusStopLine> noMult = BusStops.Distinct().ToList();//makes new list with no multiple bus stations
@@ -297,11 +296,11 @@ namespace dotNet5781_02_4334_4835
                                     result += bus.BusLine + "\n";//adding the line to print
                                 }
                             }
-                            Console.WriteLine(result);
+                            Console.WriteLine(result);// prints the whole string
                         }
 
                         break;
-                    case CHOICE.EXIT:
+                    case CHOICE.EXIT:// leave the loop
                         break;
                     default:
                         break;
@@ -330,7 +329,7 @@ namespace dotNet5781_02_4334_4835
                 BLine busLine = getRandomBusLine(x, tenStations, busStops);
                 try
                 {
-                    BusCompany.AddLine(busLine);
+                    BusCompany.AddLine(busLine);//adding line to bus company
 
                 }
                 catch (ArgumentException exception)
@@ -345,10 +344,10 @@ namespace dotNet5781_02_4334_4835
             for (int i = 0; i < 2; i++)//adding 2 bus lines with the stations of tenStations to make sure 10 stops have more than one bus.
             {
                 int x = 2;
-                BLine busLine = getRandomBusLine(x, tenStations, busStops);
+                BLine busLine = getRandomBusLine(x, tenStations, busStops);//gets random bus line
                 try
                 {
-                    BusCompany.AddLine(busLine);
+                    BusCompany.AddLine(busLine);// checks if bus line already exists and if it does has to be the way back route.
                 }
                 catch (ArgumentException exception)
                 {
@@ -357,6 +356,7 @@ namespace dotNet5781_02_4334_4835
                 }
             }
         }
+        /*returns random bus line*/
         private static BLine getRandomBusLine(int x, List<BusStopLine> tenStations, List<BusStopLine> busStops)
         {
             BLine busLine = new BLine();//the new line
@@ -376,7 +376,7 @@ namespace dotNet5781_02_4334_4835
                 for (int i = 0; i < 2; i++)//adss two more stations to the begining
 
                 {
-                    busLine.AddStation(i, GenerateRandomStation(busStops));
+                    busLine.AddStation(i, GenerateRandomStation(busStops));//adds 2 stops
                 }
             }
 
@@ -386,8 +386,8 @@ namespace dotNet5781_02_4334_4835
                 BusStopLine last = tenStations[9];//last station from list
                 try
                 {
-                    first.CheckStation(busStops);
-                    last.CheckStation(busStops);
+                    first.CheckStation(busStops);//throws exception if bus stop already exists with diffrent coordinates.
+                    last.CheckStation(busStops);//throws exception if bus stop already exists with diffrent coordinates.
 
                 }
                 catch (ArgumentException exception)
@@ -420,7 +420,7 @@ namespace dotNet5781_02_4334_4835
 
             try
             {
-                stop.CheckStation(BusStops);
+                stop.CheckStation(BusStops);//throws exception if bus stop already exists with diffrent coordinates.
 
             }
             catch (ArgumentException exception)

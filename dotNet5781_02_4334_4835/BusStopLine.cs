@@ -11,21 +11,22 @@ namespace dotNet5781_02_4334_4835
         private double distance;//distance from the last busStopStation
         private double time;//time of travel from the last busStopStation
 
-        /*constructors*/
+        /*constructor*/
         public BusStopLine()
         { }
-        
+        /*constructor*/
         public BusStopLine(int stationcode, double latitude, double longitude)
         {
             BusStationKey = stationcode;
             Latitude = latitude;
             Longitude = longitude;
             Random r = new Random();
-            Distance = r.NextDouble() * (40 - 0.1) + 0.1;
-           
-            TravelTime =distance*2;//minutes
+            Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km from the last station
+
+            TravelTime =distance*2;//on assumption that 1 km takes 2 minutes
 
         }
+        
         public double Distance
         {
             get { return distance; }
@@ -124,11 +125,6 @@ namespace dotNet5781_02_4334_4835
                 }
 
             }
-
-
-
-
-
 
         }
 

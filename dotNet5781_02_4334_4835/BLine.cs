@@ -260,7 +260,7 @@ namespace dotNet5781_02_4334_4835
                 Console.WriteLine("Enter area GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM");
                 District area;
                 success = Enum.TryParse(Console.ReadLine(), out area);//if user input is correct success will be true
-                if (success == false) { Console.WriteLine("invalid input"); }//wrting user that his input is not valid
+                if (success == false) { Console.WriteLine("Invalid input"); }//wrting user that his input is not valid
                 this.Area = area; //new lines area
             }
 

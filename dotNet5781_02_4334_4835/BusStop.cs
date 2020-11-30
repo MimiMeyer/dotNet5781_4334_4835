@@ -10,6 +10,7 @@ namespace dotNet5781_02_4334_4835
         private int stationCode;
         private double latitude;
         private double longitude;
+       /*get and set for station code of bus stop*/
         public int BusStationKey
         {
             get => stationCode; 
@@ -18,7 +19,7 @@ namespace dotNet5781_02_4334_4835
               
                 if (value <0 || value >1000000)
                 {
-                    throw new ArgumentOutOfRangeException("input must be under 7 digits");
+                    throw new ArgumentOutOfRangeException("Input must be under 7 digits");//makes sure bus stop code is under 7 digits
                     
                 }
                 stationCode = value;
@@ -26,6 +27,7 @@ namespace dotNet5781_02_4334_4835
             }
             
         }
+        /*get and set for latitude*/
         public double Latitude
         {
             get => latitude;
@@ -36,15 +38,16 @@ namespace dotNet5781_02_4334_4835
                     
                     latitude = value;
                 }
-                else throw new ArgumentOutOfRangeException("value must be between -90 to 90");
+                else throw new ArgumentOutOfRangeException("Value must be between -90 to 90");//makes sue value is between -90 to 90
             }
         }
+        /*get and set for longitude*/
         public double Longitude
         {
             get => longitude;
             set
             {
-                if (value >= -180 && value <= 180)
+                if (value >= -180 && value <= 180)//makes sue value is between -180 to 180
                 {
                     longitude = value;
 
@@ -53,6 +56,7 @@ namespace dotNet5781_02_4334_4835
                 else throw new ArgumentOutOfRangeException("value must be between -180 to 180");
             }
         }
+        /*get and set for address*/
         public String Address
         { get; set; }
         /*returns BusStop in string representation*/

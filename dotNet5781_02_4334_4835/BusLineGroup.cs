@@ -72,12 +72,17 @@ namespace dotNet5781_02_4334_4835
                     count++;//Will delete the bus twice or once or not at all.
                     foreach (BusStopLine b in bus.Stations) 
                     {
-                        BusStops.Remove(b);
+                        BusStops.Remove(b);//removes stations from list once
                     }
                     lines.Remove(bus);
+                    count++;
                     
                 }
               }
+            if (count == 0) //if bus doesn't exist throw exception
+            { 
+                throw new ArgumentException("Bus line does not exist"); 
+            }
            
 
         }
@@ -91,13 +96,13 @@ namespace dotNet5781_02_4334_4835
                 {
                     if (station.BusStationKey == stop)
                     {
-                        stationLines.Add(bus);
+                        stationLines.Add(bus);//adding bus to list
                        
                     }
                 }
 
             }
-            if (stationLines.Count == 0)
+            if (stationLines.Count == 0)//if list is empty
             { 
                 throw new ArgumentException("stop does not exist");
             }
@@ -140,11 +145,10 @@ namespace dotNet5781_02_4334_4835
 
             set
             {
-
                 lines[index] = value;
             }
         }
-       
+       /*Enumerator lets you go over BusLineGroup Like collection*/
         public IEnumerator<BLine> GetEnumerator()
         {
             return lines.GetEnumerator();
