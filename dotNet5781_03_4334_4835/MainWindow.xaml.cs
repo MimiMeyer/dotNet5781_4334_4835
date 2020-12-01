@@ -41,7 +41,7 @@ namespace dotNet5781_03_4334_4835
         private void setComboBox()
         {
             cbBusLines.ItemsSource = busCompany.lines;
-            cbBusLines.DisplayMemberPath = "BusLineNum ";
+            cbBusLines.DisplayMemberPath = "BusLine ";
             cbBusLines.SelectedIndex = 0;
             ShowBusLine(((BLine)cbBusLines.SelectedItem).BusLine);
         }
