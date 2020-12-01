@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Name="cbBusLines" Margin="10,22,44,0" VerticalAlignment="Top" Grid.Column="2" Height="34" SelectionChanged="cbBusLines_SelectionChanged" FontFamily="Bahnschrift SemiBold" FontSize="14"/>
+            <ComboBox Name="cbBusLines" ItemsSource="{Binding}" Margin="10,22,44,0" VerticalAlignment="Top" Grid.Column="2" Height="34" SelectionChanged="cbBusLines_SelectionChanged" FontFamily="Bahnschrift SemiBold" FontSize="14"/>
             <TextBox Name ="tbArea" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="109,43,0,0" Text="{Binding Path=Area}" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="120" TextChanged="tbArea_TextChanged"/>
         </Grid>
         <ListBox Name="lbBusLineStations" ItemsSource="{Binding}" Grid.Row="1" SelectionChanged="lbBusLineStations_SelectionChanged" Background="Black" Foreground="White"/>

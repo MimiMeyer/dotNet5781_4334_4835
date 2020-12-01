@@ -40,7 +40,7 @@ namespace dotNet5781_03_4334_4835
          setting the path for a selected object in the display, starting from the first in list.*/
         private void setComboBox()
         {
-            cbBusLines.ItemsSource = busCompany;
+            cbBusLines.ItemsSource = busCompany.lines;
             cbBusLines.DisplayMemberPath = "BusLineNum ";
             cbBusLines.SelectedIndex = 0;
             ShowBusLine(((BLine)cbBusLines.SelectedItem).BusLine);
@@ -56,7 +56,7 @@ namespace dotNet5781_03_4334_4835
         private void ShowBusLine(int index)
         {
             currentDisplayBusLine = busCompany[index];
-            UpGrid.DataContext = currentDisplayBusLine;
+            UpGrid.DataContext = currentDisplayBusLine.BusLine;
             lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
         }
 
