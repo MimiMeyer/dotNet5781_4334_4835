@@ -19,17 +19,20 @@ namespace dotNet5781_03_4334_4835
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
     public partial class MainWindow : Window
     {
         BusLineGroup busCompany;
         private BLine currentDisplayBusLine;//saves the current line
-
         private static Random r = new Random();
-        
+
         public MainWindow()
         {
             InitializeComponent();
             busCompany = new BusLineGroup();
+            List<BusStopLine> BusStops = new List<BusStopLine>();
+            Program.GenerateBusLines(busCompany, BusStops);
             setComboBox();
         }
         /* loading and linking to the busLineGroup
@@ -46,7 +49,8 @@ namespace dotNet5781_03_4334_4835
         /*sets the event for a selection of the sender*/
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ShowBusLine((cbBusLines.SelectedValue as BLine).BusLine);
+            ShowBusLine((cbBusLines.SelectedValue as dotNet5781_02_4334_4835.BLine).BusLine);
+
         }
         /*shows data for a sended bus line */
         private void ShowBusLine(int index)
@@ -55,5 +59,16 @@ namespace dotNet5781_03_4334_4835
             UpGrid.DataContext = currentDisplayBusLine;
             lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
         }
+
+        private void tbArea_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           
+        }
+
+        private void lbBusLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
+

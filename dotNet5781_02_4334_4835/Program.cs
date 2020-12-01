@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace dotNet5781_02_4334_4835
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -313,7 +313,7 @@ namespace dotNet5781_02_4334_4835
 
 
         /*adds lines to bus company*/
-        private static void GenerateBusLines(BusLineGroup BusCompany, List<BusStopLine> busStops)
+        public static void GenerateBusLines(BusLineGroup BusCompany, List<BusStopLine> busStops)
         {
             List<BusStopLine> tenStations = new List<BusStopLine>();//list to make sure 10 stops have more than one bus.
 
@@ -357,7 +357,7 @@ namespace dotNet5781_02_4334_4835
             }
         }
         /*returns random bus line*/
-        private static BLine getRandomBusLine(int x, List<BusStopLine> tenStations, List<BusStopLine> busStops)
+        public static BLine getRandomBusLine(int x, List<BusStopLine> tenStations, List<BusStopLine> busStops)
         {
             BLine busLine = new BLine();//the new line
 
@@ -409,7 +409,7 @@ namespace dotNet5781_02_4334_4835
             return busLine;//new bus line
         }
         /*didn't add random stops to list*/
-        private static BusStopLine GenerateRandomStation(List<BusStopLine> BusStops)
+        public static BusStopLine GenerateRandomStation(List<BusStopLine> BusStops)
         {
 
             int stationcode = rand.Next(1, 999999);// random number till 6 digits.
