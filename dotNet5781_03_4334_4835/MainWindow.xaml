@@ -5,24 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03_4334_4835"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
+        Title="RM_Busses" Height="640" Width="800" Icon ="https://airqualitynews.com/wp-content/uploads/2020/02/TfL-Image-Route-94-electric-bus.jpg">
     <Grid Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="793*"/>
+
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-         VerticalAlignment="Stretch" Width="auto">
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Background="#FF8E9DCF" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="800">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Name="cbBusLines" ItemsSource="{Binding}" Margin="10,22,44,0" VerticalAlignment="Top" Grid.Column="2" Height="34" SelectionChanged="cbBusLines_SelectionChanged" FontFamily="Bahnschrift SemiBold" FontSize="14"/>
-            <TextBox Name ="tbArea" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="109,43,0,0" Text="{Binding Path=Area}" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="120" TextChanged="tbArea_TextChanged"/>
+            <ComboBox  Name="cbBusLines" ItemsSource="{Binding}" Margin="24,24,118,0" VerticalAlignment="Top" Height="34"  FontFamily="Bahnschrift SemiBold" FontSize="14" Grid.Column="1"/>
+            <Label Content = "Bus Line Number : " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="22" Margin="31,0,0,0" Grid.ColumnSpan="2"/>
+            <TextBox Name ="tbArea" Grid.Column="2" Margin="190,28,90,15" Text="{Binding Path=Area}" TextWrapping="Wrap" Width="120"  Grid.ColumnSpan="2"/>
+            <Label Content = "Area : " Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="22" Margin="119,18,0,0"/>
         </Grid>
-        <ListBox Name="lbBusLineStations" ItemsSource="{Binding}" Grid.Row="1" SelectionChanged="lbBusLineStations_SelectionChanged" Background="Black" Foreground="White"/>
+        <ListBox Name="lbBusLineStations" ItemsSource="{Binding}"  Background="Black" Foreground="White" Margin="0,69,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
