@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace dotNet5781_01_4334_4835
+namespace dotNet5781_03b_4334_4835
 {
     public class Bus
     {
@@ -65,7 +65,7 @@ namespace dotNet5781_01_4334_4835
         }
 
         /**constructor**/
-        public Bus(List<Bus> busses)
+       /* public Bus(List<Bus> busses)
         {
             gas = 0;
             sumKm = 0;
@@ -88,6 +88,23 @@ namespace dotNet5781_01_4334_4835
             }
 
 
+        }*/
+        public Bus(List<Bus> busses,String license,DateTime start,int fuel, int sum)
+        {
+            foreach (Bus bus in busses)
+            {
+                if (license == License_Plate)
+                {
+                    throw new ArgumentException("Invalid license plate");
+                }
+            }
+            gas = fuel;
+            sumKm = sum;
+            start_Date = start;
+            checkupDate = start_Date;
+            License_Plate = license;
+            //checks if license already exists and if it does throws an ecexption
+            
         }
         //returns the fixed format of license plate and the km traveled.
         public override string ToString()
@@ -135,6 +152,7 @@ namespace dotNet5781_01_4334_4835
                 throw new ArgumentException("Needs to fill up gas");
             }
             /*updates the gas used and the km traveled*/
+            
             else
             {
                 this.sumKm = this.sumKm + km;
