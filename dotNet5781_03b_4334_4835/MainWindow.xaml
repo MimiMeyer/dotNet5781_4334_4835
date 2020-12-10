@@ -1,12 +1,40 @@
-﻿<Window x:Class="dotNet5781_03b_4334_4835.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:dotNet5781_03b_4334_4835"
+      
+        xmlns:local="clr-namespace:dotNet5781_03b_4334_4835" x:Class="dotNet5781_03b_4334_4835.MainWindow"
+      
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800" >
+
+    <Grid >
+
+        <DataGrid x:Name="busDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="142,7,178,105" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5"  >
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.228"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+            <DataGrid.Columns>
+
+                <DataGridTextColumn x:Name="license_PlateColumn" Width="100" IsReadOnly="True" Header="License Plate" Binding="{Binding License_Plate}"/>
+                <DataGridTemplateColumn x:Name="start_DateColumn" Width="100" Header="Start Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Start_Date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="statusColumn" Width="70" IsReadOnly="True" Header="Status" Binding="{Binding Status}"/>
+                <DataGridTextColumn x:Name="sumKmColumn" Width="100" Header="sum Km" Binding="{Binding sumKm}"/>
+                <DataGridTextColumn x:Name="gasColumn" Width="70" Header="gas" Binding="{Binding gas}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

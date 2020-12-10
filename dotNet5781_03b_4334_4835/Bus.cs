@@ -10,12 +10,12 @@ namespace dotNet5781_03b_4334_4835
         private DateTime start_Date;
         private DateTime checkupDate;
         private const int fullTank = 1200;//max
-        public int sumKm;//the total KM traveled
-        private int gas;
+        public int sumKm{get;set;}//the total KM traveled
+        public int gas { get; set; }
         private string status;
         private List<string> State = new List<string>()
         { "Ready","In the middle","In checkup","In refuel" };//list of diffrent typesof states for status
-
+       
         public string Status
         {
             get
@@ -42,7 +42,11 @@ namespace dotNet5781_03b_4334_4835
 
             }
         }
-        
+        public DateTime Start_Date { 
+            get { return start_Date; }
+            set { start_Date = value; }
+        }
+    
         //get and set licensePlate
         public string License_Plate
         {
@@ -98,11 +102,13 @@ namespace dotNet5781_03b_4334_4835
                     throw new ArgumentException("Invalid license plate");
                 }
             }
+
             gas = fuel;
             sumKm = sum;
-            start_Date = start;
-            checkupDate = start_Date;
+            Start_Date = start;
+            checkupDate = start;
             License_Plate = license;
+            Status = "Ready";
             //checks if license already exists and if it does throws an ecexption
             
         }
@@ -164,7 +170,7 @@ namespace dotNet5781_03b_4334_4835
         }
 
         /***fills tank***/
-        public void Gas()
+        public void Refuel()
         {
             this.gas = fullTank;
             Status = "In refuel";
@@ -174,7 +180,7 @@ namespace dotNet5781_03b_4334_4835
         public void Checkup()
         {
             if (gas < 500) //???????
-            { Gas(); }
+            { Refuel(); }
                 this.sumKm = 0;
             this.checkupDate = DateTime.Today;
             Status = "In checkup";
