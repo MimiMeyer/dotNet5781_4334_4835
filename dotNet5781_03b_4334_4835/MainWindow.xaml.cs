@@ -24,6 +24,7 @@ namespace dotNet5781_03b_4334_4835
         public MainWindow()
         {
             Buses(busses);
+            setComboBox();
             InitializeComponent();
         }
         private void Buses(List<Bus> busses)
@@ -47,5 +48,6 @@ namespace dotNet5781_03b_4334_4835
             }
         }
 
+        
     }
 }

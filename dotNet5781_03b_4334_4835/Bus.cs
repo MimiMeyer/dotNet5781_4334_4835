@@ -65,7 +65,7 @@ namespace dotNet5781_03b_4334_4835
         }
 
         /**constructor**/
-       /* public Bus(List<Bus> busses)
+        public Bus(List<Bus> busses)
         {
             gas = 0;
             sumKm = 0;
@@ -88,7 +88,7 @@ namespace dotNet5781_03b_4334_4835
             }
 
 
-        }*/
+        }
         public Bus(List<Bus> busses,String license,DateTime start,int fuel, int sum)
         {
             foreach (Bus bus in busses)
@@ -170,12 +170,15 @@ namespace dotNet5781_03b_4334_4835
             Status = "In refuel";
         }
 
-        /*after a checkup updates the km to 0 and the checkup date to today*/
+        /*after a checkup updates the km to 0 and the checkup date to today and also refills gas if needed*/
         public void Checkup()
         {
-            this.sumKm = 0;
+            if (gas < 500) //???????
+            { Gas(); }
+                this.sumKm = 0;
             this.checkupDate = DateTime.Today;
             Status = "In checkup";
+            
         }
         
 
