@@ -13,7 +13,7 @@ namespace dotNet5781_03b_4334_4835
         public int sumKm{get;set;}//the total KM traveled
         public int gas { get; set; }
         private string status;
-        private List<string> State = new List<string>()
+        public List<string> State = new List<string>()
         { "Ready","In the middle","In checkup","In refuel" };//list of diffrent typesof states for status
        
         public string Status
@@ -69,7 +69,7 @@ namespace dotNet5781_03b_4334_4835
         }
 
         /**constructor**/
-        public Bus(List<Bus> busses)
+      /*  public Bus(List<Bus> busses)
         {
             gas = 0;
             sumKm = 0;
@@ -92,7 +92,7 @@ namespace dotNet5781_03b_4334_4835
             }
 
 
-        }
+        }*/
         public Bus(List<Bus> busses,String license,DateTime start,int fuel, int sum)
         {
             foreach (Bus bus in busses)
@@ -112,6 +112,11 @@ namespace dotNet5781_03b_4334_4835
             //checks if license already exists and if it does throws an ecexption
             
         }
+
+        public Bus()
+        {
+        }
+
         //returns the fixed format of license plate and the km traveled.
         public override string ToString()
         {

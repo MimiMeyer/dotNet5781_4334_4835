@@ -27,8 +27,10 @@ namespace dotNet5781_03b_4334_4835
             InitializeComponent();
             Busses(busses);
             busDataGrid.DataContext = busses;
-            
-           
+            busDataGrid.IsReadOnly = true;
+
+
+
         }
         private void Busses(List<Bus> busses)
         { 
@@ -46,6 +48,12 @@ namespace dotNet5781_03b_4334_4835
            
         }
 
-        
+       
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddBus window = new AddBus();
+            window.Show();
+        }
     }
 }

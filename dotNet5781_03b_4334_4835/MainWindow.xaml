@@ -35,6 +35,7 @@
                 <DataGridTextColumn x:Name="gasColumn" Width="70" Header="gas" Binding="{Binding gas}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="ADD_BUS" Content="ADD" HorizontalAlignment="Left" Height="30" Margin="548,337,0,0" VerticalAlignment="Top" Width="68" Click="Button_Click"/>
 
     </Grid>
 </Window>
