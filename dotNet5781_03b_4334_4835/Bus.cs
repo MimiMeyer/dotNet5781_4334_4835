@@ -1,11 +1,12 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace dotNet5781_03b_4334_4835
 {
     public class Bus
-    {
+    {   
         private string licensePlate;
         private DateTime start_Date;
         private DateTime checkupDate;
@@ -20,9 +21,12 @@ namespace dotNet5781_03b_4334_4835
         {
             get
             {
-                return status;
+                
+                    return status;
+                
+                
             }
-            private set
+            set
             {
                 bool x = false;
                 foreach (string s in State)//making sure the status exists
@@ -37,7 +41,14 @@ namespace dotNet5781_03b_4334_4835
                 }
                 else
                 {
-                    throw new ArgumentException("Not one of the possible states");
+                    try
+                    {
+                        throw new ArgumentException("Not one of the possible states");
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                    }
                 }
 
             }
@@ -52,18 +63,34 @@ namespace dotNet5781_03b_4334_4835
         {
             get
             {
-                return licensePlate;
+                
+                    return licensePlate;
+                
             }
-            private set
+            set
             {
                 //checking if license plate is valid.
-                if ((start_Date.Year < 2018 && value.Length == 7) || (start_Date.Year >= 2018 && value.Length == 8))
-                {
-                    licensePlate = value;
-                }
+               
+
+                    if ((start_Date.Year < 2018 && value.Length == 7) || (start_Date.Year >= 2018 && value.Length == 8))
+                    {
+                        licensePlate = value;
+                        
+
+
+                    }
+                
+
                 else
                 {
-                    throw new ArgumentException("License plate not valid");
+                    try
+                    {
+                        throw new ArgumentException("License plate not valid");
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                    }
                 }
             }
         }
@@ -93,14 +120,16 @@ namespace dotNet5781_03b_4334_4835
 
 
         }*/
-        public Bus(List<Bus> busses,String license,DateTime start,int fuel, int sum)
+        public Bus(ObservableCollection<Bus> busses,String license,DateTime start,int fuel, int sum)
         {
-            foreach (Bus bus in busses)
+            foreach (Bus bus in busses)//checks if license already exists and if it does throws an ecexption
             {
                 if (license == License_Plate)
                 {
                     throw new ArgumentException("Invalid license plate");
                 }
+                
+               
             }
 
             gas = fuel;
@@ -109,7 +138,7 @@ namespace dotNet5781_03b_4334_4835
             checkupDate = start;
             License_Plate = license;
             Status = "Ready";
-            //checks if license already exists and if it does throws an ecexption
+            
             
         }
 

@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace dotNet5781_03b_4334_4835
 {
@@ -19,13 +9,17 @@ namespace dotNet5781_03b_4334_4835
     /// </summary>
     public partial class AddBus : Window
     {
-        private Bus NewBus = new Bus();
-        public AddBus()
+        private Bus Bus1 = new Bus();
+        public AddBus(ObservableCollection<Bus> busses)
         {
             InitializeComponent();
+           
+                this.DataContext = Bus1;
+                busses.Add(Bus1);
             
         }
 
-      
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace dotNet5781_03b_4334_4835
 {
     /// <summary>
@@ -20,8 +22,9 @@ namespace dotNet5781_03b_4334_4835
     /// </summary>
     public partial class MainWindow : Window
     {
-     
-        List<Bus> busses = new List<Bus>();
+
+        ObservableCollection<Bus> busses = new ObservableCollection<Bus>();
+       
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +35,7 @@ namespace dotNet5781_03b_4334_4835
 
 
         }
-        private void Busses(List<Bus> busses)
+        private void Busses(ObservableCollection<Bus> busses)
         { 
                 busses.Add(new Bus(busses, "12345078", new DateTime(2019, 05, 25), 1200, 19800));//Needs checkup for date and sum km
                 busses.Add(new Bus(busses, "12005678", new DateTime(2019, 12, 25), 200, 800));//almost needs checkup for date
@@ -52,8 +55,11 @@ namespace dotNet5781_03b_4334_4835
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AddBus window = new AddBus();
-            window.Show();
+            
+                AddBus window = new AddBus(busses);
+                window.ShowDialog();
+            
+            
         }
     }
 }
