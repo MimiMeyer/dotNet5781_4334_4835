@@ -11,7 +11,7 @@
 
     <Grid >
 
-        <DataGrid x:Name="busDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="142,7,178,105" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5"  >
+        <DataGrid x:Name="busDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="142,6,466,106" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5"  >
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -23,17 +23,13 @@
             <DataGrid.Columns>
 
                 <DataGridTextColumn x:Name="license_PlateColumn" Width="100" IsReadOnly="True" Header="License Plate" Binding="{Binding License_Plate}"/>
-                <DataGridTemplateColumn x:Name="start_DateColumn" Width="100" Header="Start Date">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Start_Date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn x:Name="statusColumn" Width="70" IsReadOnly="True" Header="Status" Binding="{Binding Status}"/>
-                <DataGridTextColumn x:Name="sumKmColumn" Width="100" Header="sum Km" Binding="{Binding sumKm}"/>
-                <DataGridTextColumn x:Name="gasColumn" Width="70" Header="gas" Binding="{Binding gas}"/>
+                
+                    
+                
+
+
             </DataGrid.Columns>
+            
         </DataGrid>
         <Button x:Name="ADD_BUS" Content="ADD" HorizontalAlignment="Left" Height="30" Margin="548,337,0,0" VerticalAlignment="Top" Width="68" Click="Button_Click"/>
 

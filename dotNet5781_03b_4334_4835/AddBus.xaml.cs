@@ -10,14 +10,15 @@ namespace dotNet5781_03b_4334_4835
     public partial class AddBus : Window
     {
         private Bus Bus1 = new Bus();
-        public AddBus(ObservableCollection<Bus> busses)
+        public AddBus()
         {
             InitializeComponent();
            
                 this.DataContext = Bus1;
-                busses.Add(Bus1);
+            
             
         }
+        public Bus NewBUS { get { return Bus1; } }
 
 
 
