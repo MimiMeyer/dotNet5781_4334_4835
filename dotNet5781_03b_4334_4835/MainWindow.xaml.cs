@@ -41,9 +41,9 @@ namespace dotNet5781_03b_4334_4835
 
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             AddBus window = new AddBus();
             window.ShowDialog();
             Bus b = window.NewBUS;
@@ -67,11 +67,8 @@ namespace dotNet5781_03b_4334_4835
 
 
 
-
-
-
-
-
         }
+        private void TravelButton_Click(object sender, RoutedEventArgs e) { }
+        private void RefuelButton_Click(object sender, RoutedEventArgs e) { }
     }
 }

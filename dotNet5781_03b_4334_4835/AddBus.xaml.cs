@@ -21,6 +21,6 @@ namespace dotNet5781_03b_4334_4835
         public Bus NewBUS { get { return Bus1; } }
 
 
-
+        
     }
 }
