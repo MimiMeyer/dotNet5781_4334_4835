@@ -14,6 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+
 namespace dotNet5781_03b_4334_4835
 {
     /// <summary>
@@ -30,14 +33,12 @@ namespace dotNet5781_03b_4334_4835
         }
         public static Bus bus { get; set; }
         public int Number { get; set; }
-
+       
         public Travel(Bus b)
         {
             InitializeComponent();
             bus = b;
-            //Thread thread = new Thread(TextBox_PreviewKeyDown);
-            //thread.Start();
-            //Thread.Sleep(1000);
+           
         }
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {

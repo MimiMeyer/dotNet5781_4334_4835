@@ -14,7 +14,7 @@ namespace dotNet5781_03b_4334_4835
     {
         public static Bus bus { get; set; }
         ObservableCollection<Bus> busses = new ObservableCollection<Bus>();
-        private static BackgroundWorker backgroundWorker = new BackgroundWorker();
+        private static BackgroundWorker backgroundWorker1 = new BackgroundWorker();
         private int _time;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -33,10 +33,11 @@ namespace dotNet5781_03b_4334_4835
         {
             InitializeComponent();
             Busses(busses);
+            
             busDataGrid.DataContext = busses;
             busDataGrid.IsReadOnly = true;
-            backgroundWorker.DoWork += RefuelButton_Click;
-            backgroundWorker.RunWorkerAsync();
+            backgroundWorker1.DoWork += RefuelButton_Click;
+            
 
 
         }
@@ -102,7 +103,7 @@ namespace dotNet5781_03b_4334_4835
         private void RefuelButton_Click(object sender, System.EventArgs e)
         {
             
-            bus = null;
+            
 
             for (int i = 0; i <= 12; i++)
             {
@@ -113,10 +114,12 @@ namespace dotNet5781_03b_4334_4835
             {
                 bus = (busDataGrid.SelectedItem as Bus);
             });
+             backgroundWorker1.RunWorkerAsync();
             bus.Refuel();
-            MessageBox.Show("Car has been refuled");
-
+            MessageBox.Show("Bus has been refuled");
             
+
+
         }
     }
 

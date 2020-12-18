@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" >
 
-   
+
 
     <Grid>
-      
+
         <DataGrid x:Name="busDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True"  >
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="licensePlateColumn" Header="License Plate" Width="10*"  >
@@ -35,28 +35,21 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="REFUEL_BUS" Content="Refuel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Click="RefuelButton_Click" />
-                            
+
                         </DataTemplate>
-                    
+
 
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Progress" 
-                                        Width="100">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ProgressBar 
-                                 x:Name="Progress_Bar" Maximum="100" Value="{Binding Time}"  />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
+
+
             </DataGrid.Columns>
 
         </DataGrid>
         <Button x:Name="ADD_BUS" Content="ADD" HorizontalAlignment="Left" Height="30" Margin="548,337,0,0" VerticalAlignment="Top" Width="68" Click="AddButton_Click"/>
-       
+        <ProgressBar  x:Name="Progress_Bar" Maximum="100" Value="{Binding Time}" HorizontalAlignment="Left" Height="24" Margin="134,10,0,0" VerticalAlignment="Top" Width="524"/>
+
 
     </Grid>
-    
+
 </Window>
