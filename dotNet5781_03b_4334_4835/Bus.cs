@@ -9,7 +9,7 @@ namespace dotNet5781_03b_4334_4835
     {   
         private string licensePlate;
         private DateTime start_Date;
-        private DateTime checkupDate;
+        public DateTime checkupDate;
         private const int fullTank = 1200;//max
         public int sumKm{get;set;}//the total KM traveled
         public int gas { get; set; }
@@ -170,50 +170,19 @@ namespace dotNet5781_03b_4334_4835
             }
             return String.Format("License is: {0,-10}, Total km: {1}", fixedLicense,sumKm );
         }
-        //checks if bus is able to travel
-        public void CheckIfOK(int km)
-        {
-            Status = "Ready";
-            TimeSpan s = DateTime.Today - this.checkupDate;//the difference between today and the last checkup date
-            double diffrence = s.TotalDays;//the difference in days
-            /*checks if there's enough gas and if it needs a checkup*/
-            if (( gas < km)&& (km + this.sumKm >= 20000 || diffrence > 365)) 
-            { 
-                throw new ArgumentException("Needs a checkup and to fill up gas"); 
-            }
-            /*checks if it only needs a checkup*/
-            if (km + this.sumKm >= 20000 || diffrence > 365)
-            {
-                throw new ArgumentException("Needs a checkup");
-            }
-            /*checks if it only needs gas*/
-            if ( gas < km)
-            {
-                throw new ArgumentException("Needs to fill up gas");
-            }
-            /*updates the gas used and the km traveled*/
-            
-            else
-            {
-                this.sumKm = this.sumKm + km;
-                this.gas = this.gas - km;
-                Status = "In the middle";
-
-            }
-
-        }
+        
 
         /***fills tank***/
         public void Refuel()
         {
             this.gas = fullTank;
-            Status = "In refuel";
+            Status = "In Refuel";
         }
 
         /*after a checkup updates the km to 0 and the checkup date to today and also refills gas if needed*/
         public void Checkup()
         {
-            if (gas < 500) //???????
+            if (gas < 200) //has low amount of gas
             { Refuel(); }
                 this.sumKm = 0;
             this.checkupDate = DateTime.Today;

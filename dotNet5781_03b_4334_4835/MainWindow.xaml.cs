@@ -1,25 +1,42 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
-
+using System.ComponentModel;
+using System.Threading;
 
 namespace dotNet5781_03b_4334_4835
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-
+        public static Bus bus { get; set; }
         ObservableCollection<Bus> busses = new ObservableCollection<Bus>();
+        private static BackgroundWorker backgroundWorker = new BackgroundWorker();
+        private int _time;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int Time 
+        { 
+            get { return _time; }
+            set 
+            {
+                _time = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
+            }
+            
+        }
         public MainWindow()
         {
             InitializeComponent();
             Busses(busses);
             busDataGrid.DataContext = busses;
             busDataGrid.IsReadOnly = true;
-
+            backgroundWorker.DoWork += RefuelButton_Click;
+            backgroundWorker.RunWorkerAsync();
 
 
         }
@@ -68,7 +85,46 @@ namespace dotNet5781_03b_4334_4835
 
 
         }
-        private void TravelButton_Click(object sender, RoutedEventArgs e) { }
-        private void RefuelButton_Click(object sender, RoutedEventArgs e) { }
+        public void ContentControl_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            Bus b = (busDataGrid.SelectedItem as Bus);
+
+            BusStatus window1 = new BusStatus(b);
+            window1.Show();
+
+        }
+        private void TravelButton_Click(object sender, RoutedEventArgs e)
+        { 
+            Travel win = new Travel(busDataGrid.SelectedItem as Bus);
+            win.ShowDialog();
+        }
+
+        private void RefuelButton_Click(object sender, System.EventArgs e)
+        {
+            
+            bus = null;
+
+            for (int i = 0; i <= 12; i++)
+            {
+                System.Threading.Thread.Sleep(1000);
+                Time = i;
+            }
+            this.Dispatcher.Invoke(() =>
+            {
+                bus = (busDataGrid.SelectedItem as Bus);
+            });
+            bus.Refuel();
+            MessageBox.Show("Car has been refuled");
+
+            
+        }
     }
-}
+
+
+
+
+
+
+        
+ }
+

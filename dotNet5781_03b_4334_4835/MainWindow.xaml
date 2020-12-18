@@ -16,23 +16,37 @@
                 <DataGridTemplateColumn x:Name="licensePlateColumn" Header="License Plate" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            
+                            <ContentControl 
+                            MouseDoubleClick="ContentControl_MouseDoubleClick">
+
                                 <TextBlock x:Name="LisenceTextBox" Text="{Binding License_Plate}" TextAlignment="Center"/>
-                          
+                            </ContentControl >
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="rideColumn" Width="10*">
+                <DataGridTemplateColumn x:Name="rideColumn" Header="Travel" Width="10*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="TRAVEL_BUS" Content="Travel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="TravelButton_Click" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="refullColumn"  Width="10*" >
+                <DataGridTemplateColumn x:Name="refullColumn" Header="Refuel" Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="REFUEL_BUS" Content="Refuel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Click="RefuelButton_Click"/>
+                            <Button x:Name="REFUEL_BUS" Content="Refuel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Click="RefuelButton_Click" />
+                            
+                        </DataTemplate>
+                    
+
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Progress" 
+                                        Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ProgressBar 
+                                 x:Name="Progress_Bar" Maximum="100" Value="{Binding Time}"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -41,7 +55,8 @@
 
         </DataGrid>
         <Button x:Name="ADD_BUS" Content="ADD" HorizontalAlignment="Left" Height="30" Margin="548,337,0,0" VerticalAlignment="Top" Width="68" Click="AddButton_Click"/>
-   
+       
+
     </Grid>
     
 </Window>
