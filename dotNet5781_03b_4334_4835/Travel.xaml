@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03b_4334_4835"
         mc:Ignorable="d"
-        Title="Travel" Height="450" Width="800">
+        Title="Travel" Height="264" Width="548" Background="#FF19EE19">
     <Grid Margin="0,0,110,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="132*"/>
             <RowDefinition Height="287*"/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="km_textbox" PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"  Height="22" Margin="210,91,352,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" AllowDrop="False"/>
-        <Label Content = "Enter km for travel: " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="40,79,0,0"/>
-       
+        <TextBox x:Name="km_textbox" PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"  Height="73" Margin="62,74,182,0" TextWrapping="Wrap"  VerticalAlignment="Top" AllowDrop="False" Background="Yellow" Grid.RowSpan="2"/>
+        <Label Content = "Enter km for travel: " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="62,40,0,0" FontStyle="Oblique" FontWeight="ExtraBlack"/>
+
 
     </Grid>
 </Window>

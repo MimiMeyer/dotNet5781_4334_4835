@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
-using System.ComponentModel;
+
 using System.Threading;
 
 namespace dotNet5781_03b_4334_4835
@@ -15,14 +15,15 @@ namespace dotNet5781_03b_4334_4835
         public static Bus bus { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         private static BackgroundWorker backgroundWorker = new BackgroundWorker();
+        private static BackgroundWorker backgroundWorker1 = new BackgroundWorker();
         private int _time;
-        public int Time
+        public int Time1
         {
             get { return _time; }
             set
             {
                 _time = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Time"));
             }
 
         }
@@ -35,7 +36,8 @@ namespace dotNet5781_03b_4334_4835
             busStatusDataGrid.DataContext = b;
             bus = b;
             backgroundWorker.DoWork += Button_Refuel;
-            backgroundWorker.DoWork += Button_CHECK;
+            backgroundWorker1.DoWork += Button_CHECK;
+            
         }
         
 
@@ -45,7 +47,7 @@ namespace dotNet5781_03b_4334_4835
             for (int i = 0; i <= 12; i++)
             {
                 System.Threading.Thread.Sleep(1000);
-                Time = i;
+                Time1 = i;
             }
             backgroundWorker.RunWorkerAsync();
             bus.Refuel();
@@ -55,12 +57,12 @@ namespace dotNet5781_03b_4334_4835
 
         private void Button_CHECK(object sender, System.EventArgs e )
         {
-            for (int i = 0; i <= 10; i++)
+            for (int i = 0; i <= 144; i++)
             {
-                System.Threading.Thread.Sleep(14400);
-                Time = i;
+                System.Threading.Thread.Sleep(1000);
+                Time1 = i;
             }
-            backgroundWorker.RunWorkerAsync();
+            backgroundWorker1.RunWorkerAsync();
             bus.Checkup();
             MessageBox.Show("Bus has been Checked");
 

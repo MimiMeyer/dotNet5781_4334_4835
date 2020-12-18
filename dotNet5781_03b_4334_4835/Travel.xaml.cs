@@ -25,7 +25,23 @@ namespace dotNet5781_03b_4334_4835
     public partial class Travel : Window
     {
 
-       
+        private static Random r = new Random();
+        private static BackgroundWorker backgroundWorker = new BackgroundWorker();
+        private int _time;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int Time
+        {
+            get { return _time; }
+            set
+            {
+                _time = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
+
+            }
+
+        }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]$");
@@ -38,7 +54,8 @@ namespace dotNet5781_03b_4334_4835
         {
             InitializeComponent();
             bus = b;
-           
+           // backgroundWorker.DoWork += TextBox_PreviewKeyDown;
+
         }
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -72,9 +89,15 @@ namespace dotNet5781_03b_4334_4835
                 }
                 else
                 {
+                    //for (int i = 0; i <= (r.Next(20,50)*Number); i++)
+                    //{
+                    //    System.Threading.Thread.Sleep(1000);
+                    //    Time = i;
+                    //}
                     bus.sumKm = bus.sumKm + Number;
                     bus.gas = bus.gas - Number;
                     bus.Status = "In the middle";
+                    MessageBox.Show("Bus has travled");
 
                 }
 
