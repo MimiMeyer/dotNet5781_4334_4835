@@ -39,8 +39,7 @@ namespace dotNet5781_03b_4334_4835
            bus = b;
            backgroundWorker3.DoWork += Backroundworker_DoWork;
            backgroundWorker3.RunWorkerCompleted += Backroundworker_WorkerCompleted;
-           backgroundWorker3.ProgressChanged += Backroundworker_ProgressChanged;
-           backgroundWorker3.WorkerReportsProgress = true;
+          
             
 
         }
@@ -58,14 +57,14 @@ namespace dotNet5781_03b_4334_4835
                 TimeSpan s = DateTime.Today - bus.checkupDate;//the difference between today and the last checkup date
                 double diffrence = s.TotalDays;//the difference in days
                 /*checks if there's enough gas and if it needs a checkup*/
-                if ((bus.gas < Km) || (Km + bus.sumKm >= 20000 || diffrence > 365))
+                if ((bus.gas < Km) || (Km + bus.sumKm > 20000 || diffrence > 365))
                 {
-                    if ((bus.gas < Km) && (Km + bus.sumKm >= 20000 || diffrence > 365))
+                    if ((bus.gas < Km) && (Km + bus.sumKm > 20000 || diffrence > 365))
                     {
                         MessageBox.Show("Needs a checkup and to fill up gas");
                     }
                     /*checks if it only needs a checkup*/
-                    if (Km + bus.sumKm >= 20000 || diffrence > 365)
+                    if (Km + bus.sumKm > 20000 || diffrence > 365)
                     {
                         MessageBox.Show("Needs a checkup");
                     }
@@ -93,14 +92,11 @@ namespace dotNet5781_03b_4334_4835
         private void Backroundworker_DoWork(object sender, DoWorkEventArgs e)
         {
             int count = (Km / r.Next(20, 50)) * 6;//time=distance/speed times 6 because each hour is 6 seconds
-            this.Dispatcher.Invoke(() =>
-            {
-                Progress_Bar.Maximum = count;//sets the maximum of the progress bar to the same random number
-            });
+           
             for (int i = 0; i <= count; i++) 
             {
                 System.Threading.Thread.Sleep(1000);//sleeps for 1 second
-                backgroundWorker3.ReportProgress(i);
+                
             }
             /*updating feilds*/
             bus.sumKm = bus.sumKm + Km;
@@ -109,11 +105,6 @@ namespace dotNet5781_03b_4334_4835
             
         }
       
-
-        private void Backroundworker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            this.Progress_Bar.Value = e.ProgressPercentage;//updating the prgoress bar
-        }
 
         private void Backroundworker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {

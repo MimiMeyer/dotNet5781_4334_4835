@@ -15,6 +15,7 @@ namespace dotNet5781_03b_4334_4835
         public static Bus bus { get; set; }
         ObservableCollection<Bus> busses = new ObservableCollection<Bus>();
         private static BackgroundWorker backgroundWorker = new BackgroundWorker();
+
     
         
         public MainWindow()
@@ -33,7 +34,7 @@ namespace dotNet5781_03b_4334_4835
         {
             busses.Add(new Bus(busses, "12345078", new DateTime(2019, 05, 25), 1200, 19800));//Needs checkup for date and sum km
             busses.Add(new Bus(busses, "12005678", new DateTime(2019, 12, 25), 200, 800));//almost needs checkup for date
-            busses.Add(new Bus(busses, "22345678", new DateTime(2020, 05, 30), 400, 19000));//good to go for another 1000 km
+            busses.Add(new Bus(busses, "22345678", new DateTime(2020, 05, 30), 1200, 19000));//good to go for another 1000 km
             busses.Add(new Bus(busses, "12945678", new DateTime(2020, 10, 12), 1000, 0));//good to go
             busses.Add(new Bus(busses, "12365678", new DateTime(2020, 07, 05), 10, 500));//low gas
             busses.Add(new Bus(busses, "18345678", new DateTime(2018, 08, 01), 1100, 600));//needs checkup
@@ -87,7 +88,7 @@ namespace dotNet5781_03b_4334_4835
         private void TravelButton_Click(object sender, RoutedEventArgs e)
         { 
             Travel win = new Travel(busDataGrid.SelectedItem as Bus);
-            win.ShowDialog();
+            win.Show();
         }
 
         private void RefuelButton_Click(object sender, RoutedEventArgs e)

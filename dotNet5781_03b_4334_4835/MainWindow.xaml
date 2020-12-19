@@ -45,7 +45,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <ItemContainerTemplate >
                             <Grid>
-                            <ProgressBar  x:Name="Progress_Bar" Maximum="100"   HorizontalAlignment="Left" Background="#FFA3E2A3" />
+                            <ProgressBar  x:Name="Progress_Bar" Maximum="12"  HorizontalAlignment="Left" Value="" Background="#FFA3E2A3"  />
                             </Grid>
                         </ItemContainerTemplate >
                     </DataGridTemplateColumn.CellTemplate>
