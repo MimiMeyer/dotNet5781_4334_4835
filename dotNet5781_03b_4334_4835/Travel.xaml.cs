@@ -117,7 +117,7 @@ namespace dotNet5781_03b_4334_4835
 
         private void Backroundworker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Bus has travled");//will show when Backroundworker3 ia finished
+            MessageBox.Show("Bus has traveled");//will show when Backroundworker3 ia finished
         }
 
     }
