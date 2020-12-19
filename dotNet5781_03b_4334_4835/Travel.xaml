@@ -12,8 +12,18 @@
             <RowDefinition Height="287*"/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="km_textbox" PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"  Height="73" Margin="62,74,182,0" TextWrapping="Wrap"  VerticalAlignment="Top" AllowDrop="False" Background="Yellow" Grid.RowSpan="2"/>
-        <Label Content = "Enter km for travel: " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="62,40,0,0" FontStyle="Oblique" FontWeight="ExtraBlack"/>
+        <TextBox x:Name="km_textbox" PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"  Height="73" Margin="62,74,182,0" TextWrapping="Wrap"  VerticalAlignment="Top" AllowDrop="False" Background="#FFA3E2A3" Grid.RowSpan="2"/>
+        <Label Content = "Enter km for travel: " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="62,40,0,0"  FontWeight="ExtraBold" />
+        <ProgressBar x:Name="Progress_Bar" HorizontalAlignment="Left" Height="66" Margin="4,94,-108,0" Grid.Row="1" VerticalAlignment="Top" Width="534" RenderTransformOrigin="0.5,0.5" Background="#FFA3E2A3">
+            <ProgressBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.28"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ProgressBar.RenderTransform>
+        </ProgressBar>
 
 
     </Grid>

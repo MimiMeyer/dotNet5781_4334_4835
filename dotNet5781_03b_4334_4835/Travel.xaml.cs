@@ -6,15 +6,10 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-using System.Collections.ObjectModel;
+using System.Windows.Input;
+
+
 using System.ComponentModel;
 
 namespace dotNet5781_03b_4334_4835
@@ -26,86 +21,104 @@ namespace dotNet5781_03b_4334_4835
     {
 
         private static Random r = new Random();
-        private static BackgroundWorker backgroundWorker = new BackgroundWorker();
-        private int _time;
+        private static BackgroundWorker backgroundWorker3 = new BackgroundWorker();
+       
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public int Time
-        {
-            get { return _time; }
-            set
-            {
-                _time = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
-
-            }
-
-        }
+      /*makes sure user input is int*/
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]$");
             e.Handled = regex.IsMatch(e.Text);
         }
         public static Bus bus { get; set; }
-        public int Number { get; set; }
+        public int Km { get; set; }
        
         public Travel(Bus b)
         {
-            InitializeComponent();
-            bus = b;
-           // backgroundWorker.DoWork += TextBox_PreviewKeyDown;
+           InitializeComponent();
+           bus = b;
+           backgroundWorker3.DoWork += Backroundworker_DoWork;
+           backgroundWorker3.RunWorkerCompleted += Backroundworker_WorkerCompleted;
+           backgroundWorker3.ProgressChanged += Backroundworker_ProgressChanged;
+           backgroundWorker3.WorkerReportsProgress = true;
+            
 
         }
+
+
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e==null) { return; }
+            if (e == null) { return; }
             if (km_textbox == null) { return; }
-            if (e.Key==Key.Return||e.Key==Key.Enter) 
+            if (e.Key == Key.Return || e.Key == Key.Enter)
             {
-                Number = int.Parse(km_textbox.Text);
-                
-                    bus.Status = "Ready";
-                    TimeSpan s = DateTime.Today - bus.checkupDate;//the difference between today and the last checkup date
-                    double diffrence = s.TotalDays;//the difference in days
+                Km = int.Parse(km_textbox.Text);
+
+                bus.Status = "Ready";
+                TimeSpan s = DateTime.Today - bus.checkupDate;//the difference between today and the last checkup date
+                double diffrence = s.TotalDays;//the difference in days
                 /*checks if there's enough gas and if it needs a checkup*/
-                if ((bus.gas < Number) || (Number + bus.sumKm >= 20000 || diffrence > 365))
+                if ((bus.gas < Km) || (Km + bus.sumKm >= 20000 || diffrence > 365))
                 {
-                    if ((bus.gas < Number) && (Number + bus.sumKm >= 20000 || diffrence > 365))
+                    if ((bus.gas < Km) && (Km + bus.sumKm >= 20000 || diffrence > 365))
                     {
                         MessageBox.Show("Needs a checkup and to fill up gas");
                     }
                     /*checks if it only needs a checkup*/
-                    if (Number + bus.sumKm >= 20000 || diffrence > 365)
+                    if (Km + bus.sumKm >= 20000 || diffrence > 365)
                     {
                         MessageBox.Show("Needs a checkup");
                     }
                     /*checks if it only needs gas*/
-                    if (bus.gas < Number)
+                    if (bus.gas < Km)
                     {
                         MessageBox.Show("Needs to fill up gas");
                     }
                     /*updates the gas used and the km traveled*/
                 }
-                else
+                else//is good to travel
                 {
-                    //for (int i = 0; i <= (r.Next(20,50)*Number); i++)
-                    //{
-                    //    System.Threading.Thread.Sleep(1000);
-                    //    Time = i;
-                    //}
-                    bus.sumKm = bus.sumKm + Number;
-                    bus.gas = bus.gas - Number;
                     bus.Status = "In the middle";
-                    MessageBox.Show("Bus has travled");
+                    if (!backgroundWorker3.IsBusy)
+                    {
+                        backgroundWorker3.RunWorkerAsync();//call on Backroundworker_DoWork
+                    }
 
-                }
 
                 }
 
             }
-        
+
+        }
+        private void Backroundworker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int count = (Km / r.Next(20, 50)) * 6;//time=distance/speed times 6 because each hour is 6 seconds
+            this.Dispatcher.Invoke(() =>
+            {
+                Progress_Bar.Maximum = count;//sets the maximum of the progress bar to the same random number
+            });
+            for (int i = 0; i <= count; i++) 
+            {
+                System.Threading.Thread.Sleep(1000);//sleeps for 1 second
+                backgroundWorker3.ReportProgress(i);
+            }
+            /*updating feilds*/
+            bus.sumKm = bus.sumKm + Km;
+            bus.gas = bus.gas - Km;
+            bus.Status = "Ready";
+            
+        }
       
+
+        private void Backroundworker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.Progress_Bar.Value = e.ProgressPercentage;//updating the prgoress bar
+        }
+
+        private void Backroundworker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Bus has travled");//will show when Backroundworker3 ia finished
+        }
 
     }
 

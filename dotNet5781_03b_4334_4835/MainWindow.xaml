@@ -11,7 +11,7 @@
 
     <Grid>
 
-        <DataGrid x:Name="busDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True"  Background="#FF19EE19"  >
+        <DataGrid x:Name="busDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True"  Background="#FF19EE19"   >
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="licensePlateColumn" Header="License Plate" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>
@@ -24,14 +24,14 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="rideColumn" Header="Travel" Width="10*">
+                <DataGridTemplateColumn x:Name="rideColumn" Header="Travel" Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="TRAVEL_BUS" Content="Travel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="TravelButton_Click" Background="#FFA3E2A3" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="refullColumn" Header="Refuel" Width="10*" >
+                <DataGridTemplateColumn x:Name="refullColumn"  Header="Refuel" Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="REFUEL_BUS" Content="Refuel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Click="RefuelButton_Click" Background="#FFA3E2A3"/>
@@ -41,13 +41,22 @@
 
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
+                <!--<DataGridTemplateColumn x:Name="Progress" Header="Progress" Width="10*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <ItemContainerTemplate >
+                            <Grid>
+                            <ProgressBar  x:Name="Progress_Bar" Maximum="100"   HorizontalAlignment="Left" Background="#FFA3E2A3" />
+                            </Grid>
+                        </ItemContainerTemplate >
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
 
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button x:Name="ADD_BUS" Content="ADD" HorizontalAlignment="Left" Height="30" Margin="548,337,0,0" VerticalAlignment="Top" Width="68" Click="AddButton_Click" Background="#FFA3E2A3"/>
-        <ProgressBar  x:Name="Progress_Bar" Maximum="100" Value="{Binding Time}" HorizontalAlignment="Left" Height="24" Margin="134,10,0,0" VerticalAlignment="Top" Width="524"/>
+        <Button x:Name="ADD_BUS" Content="ADD" HorizontalAlignment="Left" Height="30" Margin="548,337,0,0" VerticalAlignment="Top" Width="68" Click="AddButton_Click" Background="#FFA3E2A3" FontWeight="ExtraBold"/>
+        
+       
 
 
     </Grid>

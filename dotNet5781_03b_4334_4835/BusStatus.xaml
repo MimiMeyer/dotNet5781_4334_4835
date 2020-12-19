@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03b_4334_4835"
         mc:Ignorable="d"
-        Title="BusStatus" Height="450" Width="513.979"    >
-    
+        Title="BusStatus" Height="450" Width="513.979"  Background="#FF19EE19" >
+
 
 
 
     <Grid  >
-        <Grid x:Name="busStatusDataGrid"  HorizontalAlignment="Left" Margin="92,62,0,0" VerticalAlignment="Top" >
+        <Grid x:Name="busStatusDataGrid"  HorizontalAlignment="Left" Margin="92,62,0,0" VerticalAlignment="Top" Background="#FF19EE19" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -23,18 +23,20 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="gas:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="gasTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding gas,Mode=OneWay}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="License Plate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBlock x:Name="license_PlateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding License_Plate,Mode=OneWay}" VerticalAlignment="Center"/>
-            <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <DatePicker x:Name="start_DateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" SelectedDate="{Binding Start_Date,Mode=OneWay}" VerticalAlignment="Center"/>
-            <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBlock x:Name="statusTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" Text="{Binding Status,Mode=OneWay}" VerticalAlignment="Center"/>
-            <Label Content="sum Km:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="sumKmTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding sumKm,Mode=OneWay}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="gas:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontWeight="ExtraBold"/>
+            <TextBox x:Name="gasTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding gas,Mode=OneWay}" VerticalAlignment="Center" Width="120" Background="#FFA3E2A3"/>
+            <Label Content="License Plate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontWeight="ExtraBold"/>
+            <TextBlock x:Name="license_PlateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding License_Plate,Mode=OneWay}" VerticalAlignment="Center" Background="#FFA3E2A3"/>
+            <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontWeight="ExtraBold"/>
+            <DatePicker x:Name="start_DateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" SelectedDate="{Binding Start_Date,Mode=OneWay}" VerticalAlignment="Center" Background="#FFA3E2A3"/>
+            <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontWeight="ExtraBold"/>
+            <TextBlock x:Name="statusTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding Status,Mode=OneWay}" VerticalAlignment="Center" Background="#FFA3E2A3"/>
+            <Label Content="sum Km:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontWeight="ExtraBold"/>
+            <TextBox x:Name="sumKmTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding sumKm,Mode=OneWay}" VerticalAlignment="Center" Width="120" Background="#FFA3E2A3"/>
         </Grid>
-        <Button Content="Refuel" HorizontalAlignment="Left" Margin="264,256,0,0" VerticalAlignment="Top" Width="75" Click="Button_Refuel"/>
-        <Button Content="Checkup" HorizontalAlignment="Left" Margin="365,256,0,0" VerticalAlignment="Top" Width="75" Click="Button_CHECK"/>
+        <Button Content="Refuel" HorizontalAlignment="Left" Margin="264,256,0,0" VerticalAlignment="Top" Width="75" Click="Button_Refuel" FontWeight="ExtraBold" Background="#FFA3E2A3"/>
+        <Button Content="Checkup" HorizontalAlignment="Left" Margin="365,256,0,0" VerticalAlignment="Top" Width="75" Click="Button_CHECK"  FontWeight="ExtraBold" Background="#FFA3E2A3"/>
+        <ProgressBar x:Name="pb_gas" HorizontalAlignment="Left" Height="20" Minimum="0" Maximum="12" Margin="264,297,0,0" VerticalAlignment="Top" Width="75" Background="#FFA3E2A3"/>
+        <ProgressBar x:Name="pb_Check" HorizontalAlignment="Left" Height="20"  Minimum="0" Maximum="144" Margin="365,297,0,0" VerticalAlignment="Top" Width="75" Background="#FFA3E2A3"/>
     </Grid>
 </Window>
