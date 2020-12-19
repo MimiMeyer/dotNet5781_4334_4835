@@ -26,10 +26,7 @@ namespace dotNet5781_03b_4334_4835
             backgroundWorker2.DoWork += Background_DoWorkCheck;
             backgroundWorker1.RunWorkerCompleted += Backroundworker_WorkerCompletedGas;
             backgroundWorker2.RunWorkerCompleted += Backroundworker_WorkerCompletedCheck;
-            backgroundWorker1.ProgressChanged += Backroundworker_ProgressChangedGas;
-            backgroundWorker1.WorkerReportsProgress = true;
-            backgroundWorker2.ProgressChanged += Backroundworker_ProgressChangedCheck;
-            backgroundWorker2.WorkerReportsProgress = true;
+            
         }
         private void Button_Refuel(object sender, System.EventArgs e )
         {
@@ -46,15 +43,12 @@ namespace dotNet5781_03b_4334_4835
             for (int i = 0; i <= 12; i++)//12 seconds is 2 hours
             {
                 System.Threading.Thread.Sleep(1000);
-                backgroundWorker1.ReportProgress(i);
+                
             }
             bus.Refuel();
             bus.Status = "Ready";
         }
-        private void Backroundworker_ProgressChangedGas(object sender, ProgressChangedEventArgs e)
-        {
-            this.pb_gas.Value = e.ProgressPercentage;//for the progress bar
-        }
+     
         private void Backroundworker_WorkerCompletedGas(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Bus has been refuled"); //will show when backgroundWorker1 is finshed(end of refuel)
@@ -75,15 +69,12 @@ namespace dotNet5781_03b_4334_4835
             for (int i = 0; i <= 144; i++)// 144 seconds is 24 hours
             {
                 System.Threading.Thread.Sleep(1000);
-                backgroundWorker2.ReportProgress(i);
+                
             }
             bus.Checkup();
             bus.Status = "Ready";
         }
-        private void Backroundworker_ProgressChangedCheck(object sender, ProgressChangedEventArgs e)
-        {
-            this.pb_Check.Value = e.ProgressPercentage;//for the progress bar
-        }
+       
 
         private void Backroundworker_WorkerCompletedCheck(object sender, RunWorkerCompletedEventArgs e)
         {

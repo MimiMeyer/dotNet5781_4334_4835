@@ -182,7 +182,7 @@ namespace dotNet5781_03b_4334_4835
         /*after a checkup updates the km to 0 and the checkup date to today and also refills gas if needed*/
         public void Checkup()
         {
-            if (gas < 200) //has low amount of gas
+            if (gas < 100) //if gas is low too... refuel
             { Refuel(); }
                 this.sumKm = 0;
             this.checkupDate = DateTime.Today;

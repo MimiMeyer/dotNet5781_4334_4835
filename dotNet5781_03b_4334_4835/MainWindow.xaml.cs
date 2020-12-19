@@ -64,6 +64,7 @@ namespace dotNet5781_03b_4334_4835
                 }
 
                 busses.Add(b);
+                b.checkupDate = b.Start_Date;
             }
             catch (ArgumentException exception)
             {
