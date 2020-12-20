@@ -23,13 +23,13 @@ namespace dotNet5781_03b_4334_4835
             InitializeComponent();
             Busses(busses);
             
-            busDataGrid.DataContext = busses;
-            busDataGrid.IsReadOnly = true;
-            backgroundWorker.DoWork += Backroundworker_DoWork;
-            backgroundWorker.RunWorkerCompleted += Backroundworker_WorkerCompleted;
-            backgroundWorker.WorkerReportsProgress = true;
+            busDataGrid.DataContext = busses;//copying the list of busses to the data grid
+            busDataGrid.IsReadOnly = true;//makes sure you can't change the values
+            backgroundWorker.DoWork += Backroundworker_DoWork;//calling on new thread
+            backgroundWorker.RunWorkerCompleted += Backroundworker_WorkerCompleted; //once thread is complete
+            
         }
-        /*adding busses*/
+        /*adding busses to initialiize list*/
          private void Busses(ObservableCollection<Bus> busses)
         {
             busses.Add(new Bus(busses, "12345078", new DateTime(2019, 05, 25), 1200, 19800));//Needs checkup for date and sum km
@@ -38,8 +38,8 @@ namespace dotNet5781_03b_4334_4835
             busses.Add(new Bus(busses, "12945678", new DateTime(2020, 10, 12), 1000, 0));//good to go
             busses.Add(new Bus(busses, "12365678", new DateTime(2020, 07, 05), 10, 500));//low gas
             busses.Add(new Bus(busses, "18345678", new DateTime(2018, 08, 01), 1100, 600));//needs checkup
-            busses.Add(new Bus(busses, "15345678", new DateTime(2020, 10, 02), 1150, 70));//ggod to go
-            busses.Add(new Bus(busses, "12340678", new DateTime(2020, 05, 15), 300, 100));//ggod to go
+            busses.Add(new Bus(busses, "15345678", new DateTime(2020, 10, 02), 1150, 70));//good to go
+            busses.Add(new Bus(busses, "12340678", new DateTime(2020, 05, 15), 300, 100));//good to go
             busses.Add(new Bus(busses, "12347878", new DateTime(2020, 09, 20), 250, 10000));//good to go
             busses.Add(new Bus(busses, "1234566", new DateTime(2017, 06, 30), 15, 4000));//needs checkup and low on gas*/
 
@@ -47,16 +47,16 @@ namespace dotNet5781_03b_4334_4835
         }
 
 
-        /*addbus*/
+        /*Adding  a bus by clicking the add button*/
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 
-            AddBus window = new AddBus();
-            window.ShowDialog();
-            Bus b = window.NewBUS;
+            AddBus window = new AddBus();//new window
+            window.ShowDialog();//openeing the addbus window
+            Bus b = window.NewBUS;//getting the bus that that user entered in the window
             try
             {
-                foreach (Bus bus in busses)
+                foreach (Bus bus in busses)//cecking that the license doesn't already exist
                 {
                     if (bus.License_Plate == b.License_Plate)
                     {
@@ -64,12 +64,12 @@ namespace dotNet5781_03b_4334_4835
                     }
                 }
 
-                busses.Add(b);
-                b.checkupDate = b.Start_Date;
+                busses.Add(b);//adds bus to list
+                b.checkupDate = b.Start_Date;//inializing  checkup date;
             }
             catch (ArgumentException exception)
             {
-                Console.WriteLine(exception.Message);
+                Console.WriteLine(exception.Message);//will throw exception 
             }
 
 
@@ -79,44 +79,45 @@ namespace dotNet5781_03b_4334_4835
         /*double cliking to show bus detailes*/
         public void ContentControl_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            Bus b = (busDataGrid.SelectedItem as Bus);
-
-            BusStatus window1 = new BusStatus(b);
-            window1.Show();
+           BusStatus window1 = new BusStatus(busDataGrid.SelectedItem as Bus);//sending bus  that was chosen to busstatus
+            window1.Show();//show window
 
         }
+        /*click to travel*/
         private void TravelButton_Click(object sender, RoutedEventArgs e)
         { 
-            Travel win = new Travel(busDataGrid.SelectedItem as Bus);
-            win.Show();
+            Travel win = new Travel(busDataGrid.SelectedItem as Bus);//sending the bus that is linked to the travel button that was clicked
+            win.Show();//show window
         }
-
+        /*refuel button*/
         private void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
            
-            if (!backgroundWorker.IsBusy)
+            if (!backgroundWorker.IsBusy)//makes sure backround workeris not busy
             {
                 backgroundWorker.RunWorkerAsync();//calling Backroundworker_DoWork
             }
  
         }
+        /*when thread is called*/
         private void Backroundworker_DoWork(object sender, DoWorkEventArgs e)
         {
             this.Dispatcher.Invoke(() =>
             {
-                bus = (busDataGrid.SelectedItem as Bus);
-            });
+                bus = (busDataGrid.SelectedItem as Bus);//chosen bus 
+            });//( busdatagrid uses diffrent thread )
             
-            for (int i = 0; i <= 12; i++)//2 hours
+            for (int i = 0; i <= 12; i++)//2 hours (12 seconds)
             {
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(1000);//slepps for 1 second
                 
 
             }
-            bus.Refuel();
-            bus.Status = "Ready";
+            bus.Refuel();//refuel bus
+            bus.Status = "Ready";//updating status
             
         }
+        /*when thread ends*/
         private void Backroundworker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Bus has been refuled");//will show when bakroundworker ends

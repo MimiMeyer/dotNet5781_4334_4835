@@ -97,31 +97,8 @@ namespace dotNet5781_03b_4334_4835
             }
         }
 
-        /**constructor**/
-      /*  public Bus(List<Bus> busses)
-        {
-            gas = 0;
-            sumKm = 0;
-            checkupDate = start_Date;
-            Console.WriteLine("Enter starting date: ");
-            bool success = DateTime.TryParse(Console.ReadLine(), out start_Date);
-            if (!success)
-            {
-                throw new ArgumentException("Invalid date!");
-            }
-            Console.WriteLine("Enter license plate number:");
-            License_Plate = Console.ReadLine();
-            //checks if license already exists and if it does throws an ecexption
-            foreach (Bus bus in busses)
-            {
-                if (this.licensePlate == License_Plate)
-                {
-                    throw new ArgumentException("Invalid license plate");
-                }
-            }
+      
 
-
-        }*/
       //constructor
         public Bus(ObservableCollection<Bus> busses,String license,DateTime start,int fuel, int sum)
         {
