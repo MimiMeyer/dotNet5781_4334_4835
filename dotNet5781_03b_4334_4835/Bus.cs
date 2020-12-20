@@ -12,11 +12,11 @@ namespace dotNet5781_03b_4334_4835
         public DateTime checkupDate;
         private const int fullTank = 1200;//max
         public int sumKm{get;set;}//the total KM traveled
-        public int gas { get; set; }
+        public int gas { get; set; }//avilable gas
         
-        private string status;
-        public List<string> State = new List<string>()
-        { "Ready","In the middle","In checkup","In refuel" };//list of diffrent typesof states for status
+        private string status;//bus status
+        public List<string> State = new List<string>()//list of possible states
+        { "Ready","In the middle","In checkup","In refuel" };
        
         public string Status
         {
@@ -30,17 +30,17 @@ namespace dotNet5781_03b_4334_4835
             set
             {
                 bool x = false;
-                foreach (string s in State)//making sure the status exists
+                foreach (string s in State)//making sure the state exists in list
                 { if (value == s)
                     {
                         x = true; 
                     }
 
                 } 
-                if(x)
+                if(x)//if state exists in list
                 { status = value; 
                 }
-                else
+                else//does not exist
                 {
                     try
                     {
@@ -54,6 +54,7 @@ namespace dotNet5781_03b_4334_4835
 
             }
         }
+        //get and set Start_Date
         public DateTime Start_Date { 
             get { return start_Date; }
             set { start_Date = value; }
@@ -121,6 +122,7 @@ namespace dotNet5781_03b_4334_4835
 
 
         }*/
+      //constructor
         public Bus(ObservableCollection<Bus> busses,String license,DateTime start,int fuel, int sum)
         {
             foreach (Bus bus in busses)//checks if license already exists and if it does throws an ecexption
@@ -142,7 +144,7 @@ namespace dotNet5781_03b_4334_4835
             
             
         }
-
+        //default
         public Bus()
         {
         }
