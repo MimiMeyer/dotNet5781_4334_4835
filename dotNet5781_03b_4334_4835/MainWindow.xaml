@@ -9,9 +9,9 @@
 
 
 
-    <Grid>
+    <Grid Background="#FFA3E2A3">
 
-        <DataGrid x:Name="busDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True"  Background="#FF19EE19"   >
+        <DataGrid x:Name="busDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39,112,39" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True"  Background="#FF19EE19"   >
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="licensePlateColumn" Header="License Plate" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>
@@ -43,11 +43,9 @@
                 </DataGridTemplateColumn>
                 <!--<DataGridTemplateColumn x:Name="Progress" Header="Progress" Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
-                        <ItemContainerTemplate >
-                            <Grid>
-                            <ProgressBar  x:Name="Progress_Bar" Maximum="12"  HorizontalAlignment="Left" Value="" Background="#FFA3E2A3"  />
-                            </Grid>
-                        </ItemContainerTemplate >
+                        <DataTemplate>
+                            <ProgressBar  x:Name="Progress_Bar" Maximum="12"  Value="{Binding Time,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Background="#FFA3E2A3"/>
+                        </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>-->
 

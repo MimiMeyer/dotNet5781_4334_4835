@@ -12,6 +12,7 @@ namespace dotNet5781_01_4334_4835
         private const int fullTank = 1200;//max
         public int sumKm;//the total KM traveled
         private int gas;
+        
 
         //get and set licensePlate
         public string License_Plate

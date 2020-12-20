@@ -13,6 +13,7 @@ namespace dotNet5781_03b_4334_4835
         private const int fullTank = 1200;//max
         public int sumKm{get;set;}//the total KM traveled
         public int gas { get; set; }
+        
         private string status;
         public List<string> State = new List<string>()
         { "Ready","In the middle","In checkup","In refuel" };//list of diffrent typesof states for status

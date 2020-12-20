@@ -106,11 +106,11 @@ namespace dotNet5781_03b_4334_4835
             {
                 bus = (busDataGrid.SelectedItem as Bus);
             });
-
+            
             for (int i = 0; i <= 12; i++)//2 hours
             {
                 System.Threading.Thread.Sleep(1000);
-  
+                
 
             }
             bus.Refuel();

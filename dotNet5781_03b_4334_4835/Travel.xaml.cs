@@ -21,7 +21,7 @@ namespace dotNet5781_03b_4334_4835
     {
 
         private static Random r = new Random();
-        private static BackgroundWorker backgroundWorker3 = new BackgroundWorker();
+        private static BackgroundWorker backgroundWorker = new BackgroundWorker();
        
 
       /*makes sure user input is int*/
@@ -37,8 +37,8 @@ namespace dotNet5781_03b_4334_4835
         {
            InitializeComponent();
            bus = b;
-           backgroundWorker3.DoWork += Backroundworker_DoWork;
-           backgroundWorker3.RunWorkerCompleted += Backroundworker_WorkerCompleted;
+           backgroundWorker.DoWork += Backroundworker_DoWork;
+           backgroundWorker.RunWorkerCompleted += Backroundworker_WorkerCompleted;
           
             
 
@@ -78,9 +78,9 @@ namespace dotNet5781_03b_4334_4835
                 else//is good to travel
                 {
                     bus.Status = "In the middle";
-                    if (!backgroundWorker3.IsBusy)
+                    if (!backgroundWorker.IsBusy)
                     {
-                        backgroundWorker3.RunWorkerAsync();//call on Backroundworker_DoWork
+                        backgroundWorker.RunWorkerAsync();//call on Backroundworker_DoWork
                     }
 
 
@@ -96,6 +96,7 @@ namespace dotNet5781_03b_4334_4835
             for (int i = 0; i <= count; i++) 
             {
                 System.Threading.Thread.Sleep(1000);//sleeps for 1 second
+                
                 
             }
             /*updating feilds*/
