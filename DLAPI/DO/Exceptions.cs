@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DLAPI
+namespace DO
 {
-   public static class DLFactory 
+   public class Exceptions
     {
-        public static IDL GetDL 
-        { 
-        }
     }
 }

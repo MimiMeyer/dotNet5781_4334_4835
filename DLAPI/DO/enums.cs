@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DLAPI
+namespace DO
 {
-   public static class DLFactory 
+    public class Enums
     {
-        public static IDL GetDL 
-        { 
+        public enum Areas
+        {
+            GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM
         }
     }
 }
