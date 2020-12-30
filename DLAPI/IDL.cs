@@ -7,44 +7,60 @@ using DO;
 
 namespace DLAPI
 {
-    public interface IDL//will use to make sure the code isn't empty
+    public interface IDL
     {
         #region Line
-        IEnumerable<DO.Line> getAllLines();
-       
-        IEnumerable<DO.Line> GetAllLinessBy(Predicate<DO.Line> predicate);
-        DO.Line GetLine(int id);
+        
         void AddLine(DO.Line line);
+        DO.Line RequestLine(int Id);
+        IEnumerable<DO.Line> RequestAllLinesBy(Predicate<DO.Line> predicate);
+        IEnumerable<DO.Line> RequestAllLines();
         void UpdateLine(DO.Line line);
         void DeleteLine(int id);
 
         #endregion 
         #region LineStation
-
-       
-        void AddLineStation();
-        void UpdateLineStation();
-        void DeleteLineStation();
+        void AddLineStation(DO.LineStation Line);
+        DO.LineStation RequestLineStation(int Station ,int lineId);
+        IEnumerable<DO.LineStation> RequestAllLineStationsBy(Predicate<DO.Line> predicate);
+        IEnumerable<DO.LineStation> RequestAllLinesStation();
+        void UpdateLineStation(int Station, int lineId);
+        void DeleteLineStation(int Station, int lineId);
         #endregion 
         #region LineTrip
-        void AddLineTrip();
-        void UpdateLineTrip();
-        void DeleteLineTrip();
-        #endregion 
+        void AddLineTrip(DO.LineTrip lineTrip);
+        DO.LineTrip RequestLineTrip( int lineId, TimeSpan StartAt);
+        IEnumerable<DO.LineTrip> RequestAllLineTripsBy(Predicate<DO.Line> predicate);
+        IEnumerable<DO.LineTrip> RequestAllLineTrips();
+        void UpdateLineTrip(int lineId, TimeSpan StartAt);
+        void DeleteLineTrip(int lineId, TimeSpan StartAt);
+        #endregion
         #region Station
-        void AddStation();
-        void UpdateStation();
-        void DeleteStation();
-        #endregion 
+        IEnumerable<DO.Station> getAllStations();
+        void AddStation( DO.Station station);
+        DO.Station RequestStation(int code);
+        IEnumerable<DO.Station> RequestAllStationsBy(Predicate<DO.Line> predicate);
+        IEnumerable<DO.Station> RequestAllStations();//need to change type
+        void UpdateStation(int code);
+        void DeleteStation(int code);
+        #endregion
         #region Trip
-        void AddTrip();
-        void UpdateTrip();
-        void DeleteTrip();
+        
+        void AddTrip(DO.Trip trip);
+        DO.Trip RequestTrip(int id);
+        IEnumerable<DO.Trip> RequestAllTripsBy(Predicate<DO.Line> predicate);
+        IEnumerable<DO.Trip> RequestAllTrips();
+        void UpdateTrip(int id);
+        void DeleteTrip(int id);
         #endregion 
         #region User
-        void AddUser();
-        void UpdateUser();
-        void DeleteUser();
+
+        void AddUser(DO.User user);
+        DO.User RequestUser(string userName);
+        IEnumerable<DO.User> RequestAllUsersBy(Predicate<DO.Line> predicate);
+        IEnumerable<DO.User> RequestAllUsers();
+        void UpdateUser(string userName);
+        void DeleteUser(string userName);
         #endregion 
 
     }

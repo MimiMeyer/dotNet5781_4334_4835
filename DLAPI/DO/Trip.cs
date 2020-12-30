@@ -8,7 +8,7 @@ namespace DO
 {
    public class Trip
     {
-        public int Id { get; set; }
+        public int Id { get; set; }//id for trip
         public int UserName { get; set; }
         public int LineId { get; set; }
         public int InStation { get; set; }

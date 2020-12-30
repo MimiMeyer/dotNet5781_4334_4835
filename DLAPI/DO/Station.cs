@@ -8,11 +8,11 @@ namespace DO
 {
     public class Station
     {
-        public int Code { get; set; }
-        public string Name { get; set; }
+        public int Code { get; set; }//code of station
+        public string Name { get; set; }//name of station
         public double Longitude{ get; set; }
         public double Lattitude { get; set; }
 
-        public double Address{ get; set; }
+        public string Address{ get; set; }//כתובת
     }
 }

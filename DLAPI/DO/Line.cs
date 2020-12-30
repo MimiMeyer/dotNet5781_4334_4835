@@ -9,9 +9,9 @@ namespace DO
 {
     public class Line
     {
-        public int Id { get; set; }
-        public int Code { get; set; }
-        public Enums.Areas Area { get; set; }
+        public int Id { get; set; }//bus id
+        public int Code { get; set; }//bus number
+        public Areas Area { get; set; }
         public int FirstStation { get; set; }
         public int LastStation { get; set; }
 
