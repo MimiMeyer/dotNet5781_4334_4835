@@ -16,9 +16,10 @@ namespace DO
 
             public override string ToString() => base.ToString() + $", bad line id: {ID}";
         }
-        #endregion
-        #region LineStationID
-        public class LineStationIDException : Exception
+    #endregion
+
+    #region LineStationID
+    public class LineStationIDException : Exception
         {
             public int lineID;
             public int stationID;
@@ -30,25 +31,25 @@ namespace DO
                 base(message, innerException)
             { lineID = liID; stationID = staID; }
 
-            public override string ToString() => base.ToString() + $", bad Line id: {lineID} and station id: {stationID}";
+            public override string ToString() => base.ToString() + $", bad Line id: {lineID} ;
         }
         #endregion
-        #region StationId
-        public class StationIdException : Exception
+        #region StationCode
+        public class StationCodeException : Exception
         {
             public int Code;
-            public StationIdException(int code) : base() => Code = code;
-            public StationIdException(int code, string message) :
+            public StationCodeException(int code) : base() => Code = code;
+            public StationCodeException(int code, string message) :
                 base(message) => Code = code;
-            public StationIdException(int code, string message, Exception innerException) :
+            public StationCodeException(int code, string message, Exception innerException) :
                 base(message, innerException) => Code = code;
 
             public override string ToString() => base.ToString() + $", bad Station code: {Code}";
         }
-        #endregion
-       
-        #region TripId
-        public class TripIdException : Exception
+    #endregion
+   
+    #region TripId
+    public class TripIdException : Exception
         {
             public int ID;
             public TripIdException(int id) : base() => ID = id;

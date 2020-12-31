@@ -13,7 +13,6 @@ namespace DLAPI
 
         void AddLine(DO.Line line);
         DO.Line RequestLine(int Id);
-        IEnumerable<DO.Line> RequestAllLinesBy(Predicate<DO.Line> predicate);
         IEnumerable<DO.Line> RequestAllLines();
         void UpdateLine(DO.Line line);
         void DeleteLine(int id);
@@ -21,8 +20,7 @@ namespace DLAPI
         #endregion 
         #region LineStation
         void AddLineStation(DO.LineStation Line);
-        DO.LineStation RequestLineStation(int Station ,int lineId);
-        IEnumerable<DO.LineStation> RequestAllLineStationsBy(Predicate<DO.Line> predicate);
+        DO.LineStation RequestLineStation(int lineId);
         IEnumerable<DO.LineStation> RequestAllLinesStation();
         void UpdateLineStation(int Station, int lineId);
         void DeleteLineStation(int Station, int lineId);
@@ -30,7 +28,6 @@ namespace DLAPI
         #region LineTrip
         void AddLineTrip(DO.LineTrip lineTrip);
         DO.LineTrip RequestLineTrip( int lineId, TimeSpan StartAt);
-        IEnumerable<DO.LineTrip> RequestAllLineTripsBy(Predicate<DO.Line> predicate);
         IEnumerable<DO.LineTrip> RequestAllLineTrips();
         void UpdateLineTrip(int lineId, TimeSpan StartAt);
         void DeleteLineTrip(int lineId, TimeSpan StartAt);
@@ -39,7 +36,6 @@ namespace DLAPI
         
         void AddStation( DO.Station station);
         DO.Station RequestStation(int code);
-        IEnumerable<DO.Station> RequestAllStationsBy(Predicate<DO.Line> predicate);
         IEnumerable<DO.Station> RequestAllStations();
         void UpdateStation(int code);
         void DeleteStation(int code);
@@ -48,7 +44,6 @@ namespace DLAPI
         
         void AddTrip(DO.Trip trip);
         DO.Trip RequestTrip(int id);
-        IEnumerable<DO.Trip> RequestAllTripsBy(Predicate<DO.Line> predicate);
         IEnumerable<DO.Trip> RequestAllTrips();
         void UpdateTrip(int id);
         void DeleteTrip(int id);
@@ -57,7 +52,6 @@ namespace DLAPI
 
         void AddUser(DO.User user);
         DO.User RequestUser(string userName);
-        IEnumerable<DO.User> RequestAllUsersBy(Predicate<DO.Line> predicate);
         IEnumerable<DO.User> RequestAllUsers();
         void UpdateUser(string userName);
         void DeleteUser(string userName);

@@ -7,7 +7,7 @@ using DLAPI;
 using DS;
 using DO;
 namespace DL
-{
+{//look at addline
     sealed class DLObject: IDL
 
     {
@@ -21,7 +21,11 @@ namespace DL
         #region Line
 
         void AddLine(DO.Line line) 
-        { //need to add exeception of lines to make sure there isn't duplicates and that code is 3 digits or under
+        {
+            if (DataSource.listLines.FirstOrDefault(l=> l.Id == line.Id) != null)//makes sure there are no duplicates
+                throw new DO.LineIdException(line.Id, $"line code must be under 3 digits: {line.Id}");
+            //might need to add station
+            
             DataSource.listLines.Add(line.Clone());
         }
         DO.Line RequestLine(int Id) 
@@ -33,10 +37,7 @@ namespace DL
             else
                 throw new DO.LineIdException(Id, $"line Id does not exist: {Id}");
         }
-        IEnumerable<DO.Line> RequestAllLinesBy(Predicate<DO.Line> predicate) 
-        { 
-            throw new NotImplementedException(); 
-        }
+       
         IEnumerable<DO.Line> RequestAllLines()//returns a copy of list of lines
         {
             return from Line in DataSource.listLines
@@ -70,22 +71,32 @@ namespace DL
         #endregion 
         #region LineStation
         void AddLineStation(DO.LineStation line) //adds station to bus
-        {//need to check if bus exists and index and if station is good!
+        {
+            //need to handle exceptions of index and check if bus exists
+
             DataSource.listLineStation.Add(line.Clone()); 
         }
-        DO.LineStation RequestLineStation(int Station, int lineId) 
-        { }
-        IEnumerable<DO.LineStation> RequestAllLineStationsBy(Predicate<DO.Line> predicate) 
-        { }
+        DO.LineStation RequestLineStation(int lineId) 
+        {
+            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId);//checks line station. if exists li will get the value of the chosen line.
+
+            if (li != null)//if li = null that means line station does not exist
+                return li.Clone();//returns the chosen line
+            else
+                throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
+        }
+        
         IEnumerable<DO.LineStation> RequestAllLinesStation() //returns a copy of list of  Line stations
         {
             return from LineStation in DataSource.listLineStation
                    select LineStation.Clone();
         }
         void UpdateLineStation(int Station, int lineId) 
-        { }
+        { 
+        }
         void DeleteLineStation(int Station, int lineId) 
-        { }
+        { 
+        }
         #endregion 
         #region LineTrip
         void AddLineTrip(DO.LineTrip lineTrip) 
@@ -95,9 +106,7 @@ namespace DL
         DO.LineTrip RequestLineTrip(int lineId, TimeSpan StartAt) 
         { 
         }
-        IEnumerable<DO.LineTrip> RequestAllLineTripsBy(Predicate<DO.Line> predicate) 
-        { 
-        }
+        
         IEnumerable<DO.LineTrip> RequestAllLineTrips()//returns a copy of list of line trips
         {
             return from LineTrip in DataSource.listLineTrip
@@ -118,8 +127,7 @@ namespace DL
         }
         DO.Station RequestStation(int code) 
         { }
-        IEnumerable<DO.Station> RequestAllStationsBy(Predicate<DO.Line> predicate)
-        { }
+        
         IEnumerable<DO.Station> RequestAllStations()// returns a copy of list of stations
         {
             return from Station in DataSource.listStations
@@ -138,8 +146,7 @@ namespace DL
         }
         DO.Trip RequestTrip(int id) 
         { }
-        IEnumerable<DO.Trip> RequestAllTripsBy(Predicate<DO.Line> predicate) 
-        { }
+       
         IEnumerable<DO.Trip> RequestAllTrips()//returns a copy of list of trips
         {
             return from Trip in DataSource.listTrip
@@ -158,8 +165,7 @@ namespace DL
         }
         DO.User RequestUser(string userName)
         { }
-        IEnumerable<DO.User> RequestAllUsersBy(Predicate<DO.Line> predicate)
-        { }
+        
         IEnumerable<DO.User> RequestAllUsers() //returns a copy of list of users
         {
             return from User in DataSource.listUser
