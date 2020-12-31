@@ -3,8 +3,7 @@
 namespace DO
 {
 
-    public class Exceptions
-    {
+   
         #region LineId
         public class LineIdException : Exception
         {
@@ -76,4 +75,4 @@ namespace DO
         #endregion
     }
 
-}
+

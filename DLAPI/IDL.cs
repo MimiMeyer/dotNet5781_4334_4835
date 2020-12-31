@@ -10,7 +10,7 @@ namespace DLAPI
     public interface IDL
     {
         #region Line
-        
+
         void AddLine(DO.Line line);
         DO.Line RequestLine(int Id);
         IEnumerable<DO.Line> RequestAllLinesBy(Predicate<DO.Line> predicate);
@@ -36,11 +36,11 @@ namespace DLAPI
         void DeleteLineTrip(int lineId, TimeSpan StartAt);
         #endregion
         #region Station
-        IEnumerable<DO.Station> getAllStations();
+        
         void AddStation( DO.Station station);
         DO.Station RequestStation(int code);
         IEnumerable<DO.Station> RequestAllStationsBy(Predicate<DO.Line> predicate);
-        IEnumerable<DO.Station> RequestAllStations();//need to change type
+        IEnumerable<DO.Station> RequestAllStations();
         void UpdateStation(int code);
         void DeleteStation(int code);
         #endregion

@@ -1,9 +1,5 @@
-﻿using System;
+﻿using DO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DO;
 
 
 namespace DS
@@ -11,20 +7,110 @@ namespace DS
     public static class DataSource
 
     {
-        public static List<Station> listStations;
-        public static List<LineStation> listLines;
+        public static List<Station> listStations;//list of stations
+        public static List<LineStation> listLineStation;//list of line stations
+        public static List<Line> listLines;//list of lines
+        public static List<User> listUser;//list of users
+        public static List<LineTrip> listLineTrip;//
+        public static List<Trip> listTrip;//
         static DataSource()
         {
-            InitAllLists();
+            InitAllLists();//inialize all lists
         }
 
 
         static void InitAllLists()
         {
-            listStations = new List<Station>();
-            listLines = new List<LineStation>();
+            #region Boot Lines
+            listLines = new List<Line>
+            {new Line
             {
-                #region Boot stations//איתחול תחנות
+                Id =1,
+                Code =1,
+                Area = Areas.JERUSALEM,
+                FirstStation = 73,
+                LastStation =76
+            },
+            new Line
+            {
+                Id =2,
+                Code =2,
+                Area = Areas.JERUSALEM,
+                FirstStation = 73,
+                LastStation =117
+            },
+
+            new Line
+            {
+                Id =3,
+                Code =3,
+                Area = Areas.JERUSALEM,
+                FirstStation = 117,
+                LastStation =119
+            },
+            new Line
+            {
+                 Id =4,
+                Code =4,
+                Area = Areas.JERUSALEM,
+                FirstStation = 91,
+                LastStation =117
+            },
+            new Line
+            {
+                 Id =5,
+                Code =5,
+                Area = Areas.JERUSALEM,
+                FirstStation = 93,
+                LastStation =119
+            },
+            new Line
+            {
+                 Id =6,
+                Code =6,
+                Area = Areas.JERUSALEM,
+                FirstStation = 91,
+                LastStation =93
+            },
+            new Line
+            {
+                 Id =7,
+                Code =7,
+                Area = Areas.JERUSALEM,
+                FirstStation =91 ,
+                LastStation =89
+            },
+            new Line
+            {
+                 Id =8,
+                Code =8,
+                Area = Areas.JERUSALEM,
+                FirstStation = 93,
+                LastStation =85
+            },
+            new Line
+            {
+                Id =9,
+                Code =9,
+                Area = Areas.JERUSALEM,
+                FirstStation = 77,
+                LastStation =89
+            },
+             new Line
+            { Id =10,
+                Code =10,
+                Area = Areas.JERUSALEM,
+                FirstStation = 77,
+                LastStation =85
+            }
+            
+
+            };
+            #endregion
+            #region Boot stations//איתחול תחנות
+            listStations = new List<Station>
+
+            {
                 new Station
                 {
                     Code = 73,
@@ -436,9 +522,98 @@ namespace DS
                     Longitude = 35.206158
                 }
 
-                
-                #endregion
+
+
+
+
             };
+            #endregion
+            #region Boot Station Lines
+            listLineStation = new List<LineStation>
+            {
+                new LineStation
+                {
+                LineId = 1,
+
+                Station =77,
+      
+                LineStationIndex =1
+    
+                },
+                new LineStation
+                {
+                    LineId =2,
+
+                    Station =76,
+
+                    LineStationIndex = 1
+                },
+                new LineStation
+                {
+                    LineId =3,
+
+                    Station =1524,
+
+                    LineStationIndex = 1
+                },
+                new LineStation
+                {
+                    LineId =4,
+
+                    Station =89,
+
+                    LineStationIndex = 1
+                },
+                new LineStation
+                {
+                    LineId =5,
+
+                    Station =95,
+
+                    LineStationIndex = 1
+                },
+                new LineStation
+                {
+                    LineId =6,
+
+                    Station =93,
+
+                    LineStationIndex = 1
+                },
+                new LineStation
+                {
+                    LineId =7,
+
+                    Station =89,
+
+                    LineStationIndex = 1
+                },
+                new LineStation
+                {
+                    LineId =8,
+
+                    Station =89,
+
+                    LineStationIndex = 1
+                },
+                new LineStation
+                {
+                    LineId =9,
+
+                    Station =89,
+
+                    LineStationIndex = 1
+                },
+                new LineStation
+                {
+                    LineId =10,
+
+                    Station =89,
+
+                    LineStationIndex = 1
+                },
+            };
+            #endregion
         }
     }
 }

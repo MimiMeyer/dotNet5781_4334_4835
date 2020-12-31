@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class Enums
-    {
-        public enum Areas
-        {
-            GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM
-        }
-    }
+   
+        public enum Areas{ GENERAL, SOUTHERN, NORTHERN, CENTERAL, JERUSALEM }
+    
 }
