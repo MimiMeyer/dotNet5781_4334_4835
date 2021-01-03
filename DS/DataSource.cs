@@ -13,6 +13,7 @@ namespace DS
         public static List<User> listUser;//list of users
         public static List<LineTrip> listLineTrip;//
         public static List<Trip> listTrip;//
+        public static List<AdjacentStations> listAdjacentStations;
         static DataSource()
         {
             InitAllLists();//inialize all lists

@@ -73,7 +73,6 @@ namespace DL
         void AddLineStation(DO.LineStation lineStation) //adds station to bus
         {
 
-            
             if (!RequestStationsByLine(lineStation.LineId). Contains(lineStation.Station)) //if the station does not exist then you can add
             { 
             DataSource.listLineStation.Add(lineStation.Clone()); //add line station to list
@@ -88,13 +87,21 @@ namespace DL
 
         }
         DO.LineStation RequestLineStation(int Station, int lineId) 
-        {//need to find if station exists in line
+        {
             DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId);//checks line station. if exists li will get the value of the chosen line.
-
-            if (li != null)//if li = null that means line station does not exist
-                return li.Clone();//returns the chosen line
-            else
+             
+            if (li == null )//if li = null that means line station does not exist
+                
                 throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
+               
+                
+            if (!RequestStationsByLine(li.LineId).Contains(Station)) //checks if station exists in line
+            
+                throw new DO.StationCodeException(Station, $"Station does't exist : {Station}");
+            
+          
+                return li.Clone();//returns the chosen line
+            
         }
 
        
@@ -105,16 +112,36 @@ namespace DL
             return from LineStation in DataSource.listLineStation
                    select LineStation.Clone();
         }
-        void UpdateLineStation(int Station, int lineId) 
-        { 
-        }
-        void DeleteLineStation(int Station, int lineId) 
-        { 
+        void UpdateLineStation(DO.LineStation lineStation)
+        {
+            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineStation.LineId);//checks line station. if exists li will get the value of the chosen line.
+
+            if (li != null)//if li = null that means line station does not exist
+            {
+                DataSource.listLineStation.Remove(li);//first removes
+                DataSource.listLineStation.Add(lineStation);//updating
+            }
+            else
+              throw new DO.LineIdException(lineStation.LineId, $"line Id does not exist: {lineStation.LineId}");
+
+ }
+        void DeleteLineStation(int lineId)
+        {
+            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId);//checks line station. if exists li will get the value of the chosen line.
+
+            if (li != null)//if li = null that means line station does not exist
+            {
+                DataSource.listLineStation.Remove(li);//removes
+               
+            }
+            else
+                throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
         }
         #endregion 
         #region LineTrip
         void AddLineTrip(DO.LineTrip lineTrip) 
-        { //check if id exists
+        {
+            
             DataSource.listLineTrip.Add(lineTrip.Clone());
         }
         DO.LineTrip RequestLineTrip(int lineId, TimeSpan StartAt) 
@@ -188,7 +215,8 @@ namespace DL
             DataSource.listTrip.Add(trip.Clone()); 
         }
         DO.Trip RequestTrip(int id) 
-        { }
+        {
+        }
        
         IEnumerable<DO.Trip> RequestAllTrips()//returns a copy of list of trips
         {
@@ -220,19 +248,32 @@ namespace DL
             return from User in DataSource.listUser
                    select User.Clone();
         }
-        void UpdateUser(string userName) { }
-        void DeleteUser(string userName) { }
+        void UpdateUser(string userName) 
+        {
+        }
+        void DeleteUser(string userName) 
+        { 
+        }
         #endregion
         #region AdjacentStations
-        void AddAdjacentStations(DO.AdjacentStations Stations) { }
+        void AddAdjacentStations(DO.AdjacentStations stations) 
+        {
+            DataSource.listAdjacentStations.Add(stations.Clone());
+        }
         DO.AdjacentStations RequestAdjacentStations(int station1, int station2)
-        { }
+        {
+        }
         IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()
-        { }
+        {
+            return from AdjacentStations in DataSource.listAdjacentStations
+                   select AdjacentStations.Clone();
+        }
         void UpdateAdjacentStations(DO.AdjacentStations Stations) 
-        { }
+        {
+        }
         void DeleteAdjacentStations(int station1, int station2) 
-        { }
+        { 
+        }
         #endregion
 
     }
