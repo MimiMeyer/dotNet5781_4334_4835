@@ -20,16 +20,17 @@ namespace DLAPI
         #endregion 
         #region LineStation
         void AddLineStation(DO.LineStation Line);
-        DO.LineStation RequestLineStation(int lineId);
+        DO.LineStation RequestLineStation(int Station, int lineId);
         IEnumerable<DO.LineStation> RequestAllLinesStation();
-        void UpdateLineStation(int Station, int lineId);
+        void UpdateLineStation(DO.LineStation Line);
         void DeleteLineStation(int Station, int lineId);
         #endregion 
         #region LineTrip
         void AddLineTrip(DO.LineTrip lineTrip);
         DO.LineTrip RequestLineTrip( int lineId, TimeSpan StartAt);
         IEnumerable<DO.LineTrip> RequestAllLineTrips();
-        void UpdateLineTrip(int lineId, TimeSpan StartAt);
+        IEnumerable<int> RequestStationsByLine(int lineID);
+        void UpdateLineTrip(DO.LineTrip lineTrip);
         void DeleteLineTrip(int lineId, TimeSpan StartAt);
         #endregion
         #region Station
@@ -37,7 +38,7 @@ namespace DLAPI
         void AddStation( DO.Station station);
         DO.Station RequestStation(int code);
         IEnumerable<DO.Station> RequestAllStations();
-        void UpdateStation(int code);
+        void UpdateStation(DO.Station station);
         void DeleteStation(int code);
         #endregion
         #region Trip
@@ -45,7 +46,7 @@ namespace DLAPI
         void AddTrip(DO.Trip trip);
         DO.Trip RequestTrip(int id);
         IEnumerable<DO.Trip> RequestAllTrips();
-        void UpdateTrip(int id);
+        void UpdateTrip(DO.Trip trip);
         void DeleteTrip(int id);
         #endregion 
         #region User
@@ -53,9 +54,12 @@ namespace DLAPI
         void AddUser(DO.User user);
         DO.User RequestUser(string userName);
         IEnumerable<DO.User> RequestAllUsers();
-        void UpdateUser(string userName);
+        void UpdateUser(DO.User user);
         void DeleteUser(string userName);
-        #endregion 
+        #endregion
+        #region AdjacentStations
+        
+        #endregion
 
     }
 }

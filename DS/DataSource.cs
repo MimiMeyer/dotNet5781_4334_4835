@@ -29,15 +29,15 @@ namespace DS
                 Code =1,
                 Area = Areas.JERUSALEM,
                 FirstStation = 73,
-                LastStation =76
+                LastStation =83
             },
             new Line
             {
                 Id =2,
                 Code =2,
                 Area = Areas.JERUSALEM,
-                FirstStation = 73,
-                LastStation =117
+                FirstStation = 84,
+                LastStation =89
             },
 
             new Line
@@ -45,65 +45,65 @@ namespace DS
                 Id =3,
                 Code =3,
                 Area = Areas.JERUSALEM,
-                FirstStation = 117,
-                LastStation =119
+                FirstStation = 90,
+                LastStation =95
             },
             new Line
             {
                  Id =4,
                 Code =4,
                 Area = Areas.JERUSALEM,
-                FirstStation = 91,
-                LastStation =117
+                FirstStation = 97,
+                LastStation =112
             },
             new Line
             {
                  Id =5,
                 Code =5,
                 Area = Areas.JERUSALEM,
-                FirstStation = 93,
-                LastStation =119
+                FirstStation = 110,
+                LastStation =115
             },
             new Line
             {
                  Id =6,
                 Code =6,
                 Area = Areas.JERUSALEM,
-                FirstStation = 91,
-                LastStation =93
+                FirstStation = 116,
+                LastStation =1486
             },
             new Line
             {
                  Id =7,
                 Code =7,
                 Area = Areas.JERUSALEM,
-                FirstStation =91 ,
-                LastStation =89
+                FirstStation =1487 ,
+                LastStation =1492
             },
             new Line
             {
                  Id =8,
                 Code =8,
                 Area = Areas.JERUSALEM,
-                FirstStation = 93,
-                LastStation =85
+                FirstStation = 1493,
+                LastStation =1512
             },
             new Line
             {
                 Id =9,
                 Code =9,
                 Area = Areas.JERUSALEM,
-                FirstStation = 77,
-                LastStation =89
+                FirstStation = 1514,
+                LastStation =1524
             },
              new Line
             { Id =10,
                 Code =10,
                 Area = Areas.JERUSALEM,
-                FirstStation = 77,
-                LastStation =85
+                FirstStation = 1523,
+                LastStation =122
             }
-            
+
 
             };
             #endregion
@@ -535,24 +535,82 @@ namespace DS
                 {
                 LineId = 1,
 
-                Station =77,
-      
+                Station =76,
+
                 LineStationIndex =1
-    
+
                 },
+                 new LineStation
+                {
+                LineId = 1,
+
+                Station =77,
+
+                LineStationIndex =2
+
+                },
+                  new LineStation
+                {
+                LineId = 1,
+
+                Station =78,
+
+                LineStationIndex =3
+
+                },
+
                 new LineStation
                 {
                     LineId =2,
 
-                    Station =76,
+                    Station =85,
 
                     LineStationIndex = 1
+                },
+                  new LineStation
+                {
+                    LineId =2,
+
+                    Station =86,
+
+                    LineStationIndex = 2
+                },
+                    new LineStation
+                {
+                    LineId =2,
+
+                    Station =88,
+
+                    LineStationIndex = 3
                 },
                 new LineStation
                 {
                     LineId =3,
 
-                    Station =1524,
+                    Station =91,
+
+                    LineStationIndex = 1
+                },
+                 new LineStation
+                {
+                    LineId =3,
+
+                    Station =93,
+
+                    LineStationIndex = 2
+                }, new LineStation
+                {
+                    LineId =3,
+
+                    Station =94,
+
+                    LineStationIndex = 3
+                },
+                new LineStation
+                {
+                    LineId =4,
+
+                    Station =102,
 
                     LineStationIndex = 1
                 },
@@ -560,31 +618,135 @@ namespace DS
                 {
                     LineId =4,
 
-                    Station =89,
+                    Station =103,
 
-                    LineStationIndex = 1
+                    LineStationIndex = 2
+                },
+                new LineStation
+                {
+                    LineId =4,
+
+                    Station =105,
+
+                    LineStationIndex = 3
+                },
+                new LineStation
+                {
+                    LineId =4,
+
+                    Station =106,
+
+                    LineStationIndex = 4
+                },
+                new LineStation
+                {
+                    LineId =4,
+
+                    Station =108,
+
+                    LineStationIndex = 5
+                },
+                new LineStation
+                {
+                    LineId =4,
+
+                    Station =109,
+
+                    LineStationIndex = 6
+                },
+                new LineStation
+                {
+                    LineId =4,
+
+                    Station =110,
+
+                    LineStationIndex = 7
+                },
+                new LineStation
+                {
+                    LineId =4,
+
+                    Station =111,
+
+                    LineStationIndex = 8
                 },
                 new LineStation
                 {
                     LineId =5,
 
-                    Station =95,
+                    Station =111,
 
                     LineStationIndex = 1
+                },
+                 new LineStation
+                {
+                    LineId =5,
+
+                    Station =112,
+
+                    LineStationIndex = 2
+                },
+                  new LineStation
+                {
+                    LineId =5,
+
+                    Station =113,
+
+                    LineStationIndex = 3
                 },
                 new LineStation
                 {
                     LineId =6,
 
-                    Station =93,
+                    Station =117,
 
                     LineStationIndex = 1
                 },
+                 new LineStation
+                {
+                    LineId =6,
+
+                    Station =119,
+
+                    LineStationIndex = 2
+                },
+                 new LineStation
+                {
+                    LineId =6,
+
+                    Station =1485,
+
+                    LineStationIndex = 3
+                },
+
                 new LineStation
                 {
                     LineId =7,
 
-                    Station =89,
+                    Station =1488,
+
+                    LineStationIndex = 1
+                },
+                  new LineStation
+                {
+                    LineId =7,
+
+                    Station =1490,
+
+                    LineStationIndex = 2
+                },  new LineStation
+                {
+                    LineId =7,
+
+                    Station =1491,
+
+                    LineStationIndex = 3
+                },
+                new LineStation
+                {
+                    LineId =8,
+
+                    Station =1494,
 
                     LineStationIndex = 1
                 },
@@ -592,7 +754,23 @@ namespace DS
                 {
                     LineId =8,
 
-                    Station =89,
+                    Station =1510,
+
+                    LineStationIndex = 2
+                },
+                new LineStation
+                {
+                    LineId =8,
+
+                    Station =1511,
+
+                    LineStationIndex = 3
+                },
+                new LineStation
+                {
+                    LineId =9,
+
+                    Station =1518,
 
                     LineStationIndex = 1
                 },
@@ -600,7 +778,22 @@ namespace DS
                 {
                     LineId =9,
 
-                    Station =89,
+                    Station =1522,
+
+                    LineStationIndex = 2
+                },new LineStation
+                {
+                    LineId =9,
+
+                    Station =1523,
+
+                    LineStationIndex = 3
+                },
+                new LineStation
+                {
+                    LineId =10,
+
+                    Station =1524,
 
                     LineStationIndex = 1
                 },
@@ -608,9 +801,16 @@ namespace DS
                 {
                     LineId =10,
 
-                    Station =89,
+                    Station =121,
 
-                    LineStationIndex = 1
+                    LineStationIndex = 2
+                },new LineStation
+                {
+                    LineId =10,
+
+                    Station =123,
+
+                    LineStationIndex = 3
                 },
             };
             #endregion

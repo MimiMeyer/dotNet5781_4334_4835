@@ -23,8 +23,8 @@ namespace DL
         void AddLine(DO.Line line) 
         {
             if (DataSource.listLines.FirstOrDefault(l=> l.Id == line.Id) != null)//makes sure there are no duplicates
-                throw new DO.LineIdException(line.Id, $"line code must be under 3 digits: {line.Id}");
-            //might need to add station
+                throw new DO.LineIdException(line.Id, $"Duplicate lineId: {line.Id}");
+            
             
             DataSource.listLines.Add(line.Clone());
         }
@@ -70,14 +70,25 @@ namespace DL
 
         #endregion 
         #region LineStation
-        void AddLineStation(DO.LineStation line) //adds station to bus
+        void AddLineStation(DO.LineStation lineStation) //adds station to bus
         {
-            //need to handle exceptions of index and check if bus exists
 
-            DataSource.listLineStation.Add(line.Clone()); 
+            
+            if (!RequestStationsByLine(lineStation.LineId). Contains(lineStation.Station)) //if the station does not exist then you can add
+            { 
+            DataSource.listLineStation.Add(lineStation.Clone()); //add line station to list
+            }
+            throw new DO.LineIdException(lineStation.Station, $"station already exists in line: {lineStation.Station}");
+
         }
-        DO.LineStation RequestLineStation(int lineId) 
+        IEnumerable<int> RequestStationsByLine(int lineID)//returns list of stations for lines
         {
+            return DataSource.listLineStation.FindAll(lineStation => lineStation.LineId == lineID).
+                                              Select(lineStation => lineStation.Station);
+
+        }
+        DO.LineStation RequestLineStation(int Station, int lineId) 
+        {//need to find if station exists in line
             DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId);//checks line station. if exists li will get the value of the chosen line.
 
             if (li != null)//if li = null that means line station does not exist
@@ -85,7 +96,10 @@ namespace DL
             else
                 throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
         }
-        
+
+       
+
+
         IEnumerable<DO.LineStation> RequestAllLinesStation() //returns a copy of list of  Line stations
         {
             return from LineStation in DataSource.listLineStation
@@ -122,21 +136,50 @@ namespace DL
         #region Station
       
         void AddStation(DO.Station station)//Add station to station list
-        { //check that there isn't duplicats
+        {
+            if (DataSource.listStations.FirstOrDefault(s => s.Code == station.Code) != null)//makes sure there are no duplicates
+                throw new DO.StationCodeException(station.Code, $"Duplicate station code: {station.Code}");
             DataSource.listStations.Add(station.Clone());
         }
         DO.Station RequestStation(int code) 
-        { }
+        {
+            DO.Station st = DataSource.listStations.Find(s => s.Code == code);//checks station. if exists st will get the value of the chosen station.
+
+            if (st != null)//if st = null that means station does not exist
+                return st.Clone();//returns the chosen station
+            else
+                throw new DO.StationCodeException(code, $"Station does't exist : {code}");
+        }
         
         IEnumerable<DO.Station> RequestAllStations()// returns a copy of list of stations
         {
             return from Station in DataSource.listStations
                    select Station.Clone();
         }
-        void UpdateStation(int code) 
-        { }
+        void UpdateStation(DO.Station station) 
+        {
+            DO.Station st = DataSource.listStations.Find(s => s.Code==station.Code );//checks station. if exists st will get the value of the chosen station.
+
+            if (st != null)////if st = null that means station does not exist
+            {
+                DataSource.listStations.Remove(st);//remove 
+                DataSource.listStations.Add(station.Clone());//add new updated station
+            }
+            else
+                throw new DO.StationCodeException(station.Code, $"Station does't exist : {station.Code}");
+        }
         void DeleteStation(int code) 
-        { }
+        {
+            DO.Station st = DataSource.listStations.Find(s => s.Code == code);//checks station. if exists st will get the value of the chosen station.
+
+            if (st != null)////if st = null that means station does not exist
+            {
+                DataSource.listStations.Remove(st);//remove 
+                
+            }
+            else
+                throw new DO.StationCodeException(code, $"Station does't exist : {code}");
+        }
         #endregion
         #region Trip
 
@@ -153,18 +196,24 @@ namespace DL
                    select Trip.Clone();
         }
         void UpdateTrip(int id) 
-        { }
+        {
+        }
         void DeleteTrip(int id)
-        { }
+        {
+        }
         #endregion 
         #region User
 
-        void AddUser(DO.User user) 
-        { //need to make sure there are no duplicates of username
+        void AddUser(DO.User user)
+        {
+            if (DataSource.listUser.FirstOrDefault(u => u.UserName == user.UserName) != null)//makes sure there are no duplicates
+               throw new DO.UserIdException(user.UserName, $"Duplicate UserName: {user.UserName}");
             DataSource.listUser.Add(user.Clone());
         }
         DO.User RequestUser(string userName)
-        { }
+        {
+            
+        }
         
         IEnumerable<DO.User> RequestAllUsers() //returns a copy of list of users
         {

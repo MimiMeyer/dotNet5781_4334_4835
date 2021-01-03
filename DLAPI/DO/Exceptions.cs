@@ -31,7 +31,7 @@ namespace DO
                 base(message, innerException)
             { lineID = liID; stationID = staID; }
 
-            public override string ToString() => base.ToString() + $", bad Line id: {lineID} ;
+            public override string ToString() => base.ToString() + $", bad Line id: {lineID}" ;
         }
         #endregion
         #region StationCode
