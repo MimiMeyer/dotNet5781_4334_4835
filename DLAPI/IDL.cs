@@ -58,7 +58,11 @@ namespace DLAPI
         void DeleteUser(string userName);
         #endregion
         #region AdjacentStations
-        
+        void AddAdjacentStations(DO.AdjacentStations Stations);
+        DO.AdjacentStations RequestAdjacentStations(int station1, int station2);
+        IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations();
+        void UpdateAdjacentStations(DO.AdjacentStations Stations);
+        void DeleteAdjacentStations(int station1,int station2);
         #endregion
 
     }
