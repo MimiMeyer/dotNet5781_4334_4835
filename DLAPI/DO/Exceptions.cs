@@ -73,7 +73,23 @@ namespace DO
 
             public override string ToString() => base.ToString() + $", Bad UserName: {ID}";
         }
-        #endregion
+    #endregion
+    #region AdjacentStations
+    public class AdjacentStationseException : Exception
+    {
+        public int Station1;
+        public int Station2;
+        public AdjacentStationseException(int st1, int st2) : base() { Station1 = st1; Station2 = st2; }
+        public AdjacentStationseException(int st1, int st2, string message) :
+            base(message)
+        { Station1 = st1; Station2 = st2; }
+        public AdjacentStationseException(int st1, int st2, string message, Exception innerException) :
+            base(message, innerException)
+        { Station1 = st1; Station2 = st2; }
+
+        public override string ToString() => base.ToString() + $", bad station1: {Station1} and station2: {Station2}";
     }
+    #endregion
+}
 
 

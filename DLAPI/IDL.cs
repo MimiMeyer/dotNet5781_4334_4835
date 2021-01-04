@@ -20,7 +20,7 @@ namespace DLAPI
         #endregion 
         #region LineStation
         void AddLineStation(DO.LineStation Line);
-        DO.LineStation RequestLineStation(int Station, int lineId);
+        DO.LineStation RequestLineStation(int Station,int lineId);
         IEnumerable<DO.LineStation> RequestAllLinesStation();
         void UpdateLineStation(DO.LineStation Line);
         void DeleteLineStation(int Station, int lineId);
