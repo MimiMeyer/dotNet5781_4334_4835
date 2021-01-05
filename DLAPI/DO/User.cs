@@ -11,6 +11,6 @@ namespace DO
         public String UserName { get; set; }
         public String Password { get; set; }
         public bool Admin { get; set; }
-        public bool Deleted { get; set; }
+       
     }
 }

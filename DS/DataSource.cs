@@ -11,9 +11,9 @@ namespace DS
         public static List<LineStation> listLineStation;//list of line stations
         public static List<Line> listLines;//list of lines
         public static List<User> listUser;//list of users
-        public static List<LineTrip> listLineTrip;//
-        public static List<Trip> listTrip;//
-        public static List<AdjacentStations> listAdjacentStations;
+        public static List<LineTrip> listLineTrip;//list of line trip
+        public static List<Trip> listTrip;//list of trips
+        public static List<AdjacentStations> listAdjacentStations;//list of AdjacentStations
         static DataSource()
         {
             InitAllLists();//inialize all lists

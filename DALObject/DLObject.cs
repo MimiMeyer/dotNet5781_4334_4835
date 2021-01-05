@@ -77,13 +77,19 @@ namespace DL
             throw new DO.LineIdException(lineStation.Station, $"station already exists in line: {lineStation.Station}");
 
         }
-        public IEnumerable<int> RequestStationsByLine(int lineID)//returns list of stations for lines
+        public IEnumerable<int> RequestStationsByLine(int lineID)//returns list of stations for requested line.
         {
             return DataSource.listLineStation.FindAll(lineStation => lineStation.LineId == lineID).
                                               Select(lineStation => lineStation.Station);
 
         }
-        public DO.LineStation RequestLineStation(int Station, int lineId)
+        public IEnumerable<int> RequestLineByStation(int Station)//returns list of lines for requested station.
+        {
+            return DataSource.listLineStation.FindAll(lineStation => lineStation.Station == Station).
+                                              Select(lineStation => lineStation.LineId);
+
+        }
+        public DO.LineStation RequestLineStation(int Station, int lineId)//returns line station if it exists
         {
             DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId);//checks line station. if exists li will get the value of the chosen line.
 
@@ -127,7 +133,7 @@ namespace DL
 
             if (li != null)//if li = null that means line station does not exist
             {
-                throw new DO.StationCodeException(Station, $"line Id does not exist: {Station}");
+                throw new DO.StationCodeException(Station, $"linestation does not exist: {Station}");
 
             }
             else
@@ -136,7 +142,7 @@ namespace DL
         #endregion
         #region LineTrip
         public void AddLineTrip(DO.LineTrip lineTrip)
-        {//dont need to check for duplicates there can be busses starting at the same time
+        {//dont need to check for duplicates there can be busses starting at the same time because it's a line and not a physical bus
             DataSource.listLineTrip.Add(lineTrip.Clone());//adding new lineTrip
         }
         public DO.LineTrip RequestLineTrip(int lineId, TimeSpan StartAt)
@@ -252,7 +258,7 @@ namespace DL
         }
         public void UpdateTrip(DO.Trip trip)
         {
-            DO.Trip tr = DataSource.listTrip.Find(t => t.Id == id);//checks trip. if exists tr will get the value of the chosen station.
+            DO.Trip tr = DataSource.listTrip.Find(t => t.Id == trip.Id);//checks trip. if exists tr will get the value of the chosen station.
 
             if (tr != null)//if tr= null that means trip does not exist
             {
@@ -324,7 +330,7 @@ namespace DL
         }
         #endregion
         #region AdjacentStations
-        public void AddAdjacentStations(DO.AdjacentStations stations)
+        public void AddAdjacentStations(DO.AdjacentStations stations)//add AdjacentStations
         {
             DataSource.listAdjacentStations.Add(stations.Clone());
         }
@@ -337,7 +343,7 @@ namespace DL
             else
                 throw new DO.AdjacentStationseException(station1, station2, "AdjacentStations does't exist:");
         }
-        public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()
+        public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()//returns all AdjacentStations
         {
             return from AdjacentStations in DataSource.listAdjacentStations
                    select AdjacentStations.Clone();
