@@ -18,12 +18,12 @@ namespace DL
         //Implement IDL methods, CRUD
         #region Line
 
-        public void AddLine(DO.Line line)
+        public int AddLine(DO.Line line)
         {
-            if (DataSource.listLines.FirstOrDefault(l => l.Id == line.Id) != null)//makes sure there are no duplicates
-                throw new DO.LineIdException(line.Id, $"Duplicate lineId: {line.Id}");
-
+            line.Id = RunningNumber.RunningNumberID;
             DataSource.listLines.Add(line.Clone());
+            RunningNumber.RunningNumberID++;
+            return line.Id;
         }
         public DO.Line RequestLine(int Id)
         {
@@ -235,11 +235,14 @@ namespace DL
         #endregion
         #region Trip
 
-        public void AddTrip(DO.Trip trip)
+        public int AddTrip(DO.Trip trip)
         {
-            if (DataSource.listTrip.FirstOrDefault(t => t.Id == trip.Id) != null)//makes sure there are no duplicates
-                throw new DO.TripIdException(trip.Id, $"Duplicate Trip Id: {trip.Id}");
+            
+            
+            trip.Id= RunningNumber.RunningTripID;
             DataSource.listTrip.Add(trip.Clone());
+            RunningNumber.RunningTripID++;
+            return trip.Id;
         }
         public DO.Trip RequestTrip(int id)
         {

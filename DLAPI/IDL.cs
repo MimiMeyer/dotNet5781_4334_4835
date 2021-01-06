@@ -11,7 +11,7 @@ namespace DLAPI
     {
         #region Line
 
-        void AddLine(DO.Line line);
+        int AddLine(DO.Line line);
         DO.Line RequestLine(int Id);
         IEnumerable<DO.Line> RequestAllLines();
         void UpdateLine(DO.Line line);
@@ -43,7 +43,7 @@ namespace DLAPI
         #endregion
         #region Trip
         
-        void AddTrip(DO.Trip trip);
+        int AddTrip(DO.Trip trip);
         DO.Trip RequestTrip(int id);
         IEnumerable<DO.Trip> RequestAllTrips();
         void UpdateTrip(DO.Trip trip);

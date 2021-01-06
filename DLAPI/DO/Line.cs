@@ -10,7 +10,7 @@ namespace DO
     public class Line
     {
         public int Id { get; set; }//bus id
-        public int Code { get; set; }
+        public int Code { get; set; }//bus line number
         public Areas Area { get; set; }
         public int FirstStation { get; set; }
         public int LastStation { get; set; }

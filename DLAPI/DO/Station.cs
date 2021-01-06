@@ -14,5 +14,10 @@ namespace DO
         public double Lattitude { get; set; }
 
         public string Address{ get; set; }//כתובת
+
+        public void CopyPropertiesTo(global::BO.Station stationBO)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
