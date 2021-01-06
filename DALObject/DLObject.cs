@@ -127,17 +127,31 @@ namespace DL
                 throw new DO.LineIdException(lineStation.LineId, $"line Id does not exist: {lineStation.LineId}");
 
         }
+        public void DeleteLineStationbyLine(int lineId)//deletes all line stations with same line
+        {
+            if (RequestStationsByLine(lineId) != null)//if it equels null it means line does not exist and will send exception
+            {
+                DataSource.listLineStation.RemoveAll(lineStation => lineStation.LineId == lineId);//removes all line stations that have the wanted line.
+            }
+            else
+                throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
+
+
+
+        }
         public void DeleteLineStation(int Station, int lineId)
         {
             DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId && l.Station == Station);//checks line station. if exists li will get the value of the chosen lineStation.
 
-            if (li != null)//if li = null that means line station does not exist
+            if (li == null)//if li = null that means line station does not exist
             {
                 throw new DO.StationCodeException(Station, $"linestation does not exist: {Station}");
 
             }
             else
-                throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
+                DataSource.listLineStation.Remove(li);
+
+                
         }
         #endregion
         #region LineTrip

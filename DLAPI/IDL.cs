@@ -23,6 +23,7 @@ namespace DLAPI
         DO.LineStation RequestLineStation(int Station,int lineId);
         IEnumerable<DO.LineStation> RequestAllLinesStation();
         void UpdateLineStation(DO.LineStation Line);
+        void DeleteLineStationbyLine(int lineId);
         void DeleteLineStation(int Station, int lineId);
         #endregion 
         #region LineTrip

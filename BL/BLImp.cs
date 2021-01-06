@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BLAPI;
 using DLAPI;
 using BO;
+using System.Collections;
 
 namespace BL
 {
@@ -16,30 +17,86 @@ namespace BL
         BO.Line LineDoBoAdapter(DO.Line LineDO) //convert  do to bo
         {
             BO.Line LineBO = new BO.Line();
-            
+            int Id = LineDO.Id;
+            LineBO.Stations = dl.RequestStationsByLine(Id);
+            LineDO.CopyPropertiesTo(LineBO);//copys the properties from do to bo for the Line
+
+            return LineBO;
         }
-        public BO.Station GetLine(int id)//returns requested line
+        public BO.Line GetLine(int id)//returns requested line
         {
+            DO.Line lineDO;
+            try 
+            {
+                lineDO = dl.RequestLine(id); 
+            }
+            catch (DO.LineIdException ex)
+            {
+                throw new BO.LineIdException("line Id does not exist", ex);
+            }
+            return LineDoBoAdapter(lineDO);
         }
         public IEnumerable<BO.Line> GetAlllines()//returns all lines
         {
+           
+            return from lineDO in dl.RequestAllLines()//gets all lines from the function RequestAllLines
+                   orderby lineDO.Id//orders by id number
+                  select LineDoBoAdapter(lineDO);//each lne goes to functionand changes to bo
         }
-        public IEnumerable<BO.Line> GetIDLineList()//returns only lines ids.
+       public void AddLine(BO.Line line)//adds line
         {
+           int count= GetAlllines().Count( l=>l.Id==line.Id);
+            if (count >= 2)// throws exception if line already appears twice in list.
+            {
+                throw new BO.LineIdException(line.Id,"line Id already has back and forth buses");
+            }
+            if (count == 1)
+
+            {
+
+             
+
+
+            }
+            if (count == 0)
+            {
+                dl.AddLine(line);
+            }
 
         }
-
-        public IEnumerable<BO.Line> GetLinesBy(Predicate<BO.Line> predicate)//returns lines that satisfies the predicate.
+        public int GetEnumerableCount(IEnumerable Enumerable)
         {
+            return (from object Item in Enumerable
+                    select Item).Count();
         }
-
-        public void UpdateLinePersonalDetails(BO.Line line)//updates a line
+        public void UpdateLine(BO.Line line)//updates a line
         {
-
+            DO.Line LineDO = new DO.Line();
+            line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
+            try
+            {
+                dl.UpdateLine(LineDO);//updates
+            }
+            catch (DO.LineIdException ex)
+            {
+                throw new BO.LineIdException("line Id does not exist", ex);
+            }
         }
+
+
+        
 
         public void DeleteLine(int Id)//deletes a line
         {
+            try {
+                dl.DeleteLine(Id);
+                dl.DeleteLineStationbyLine(Id);
+                
+                 }
+            catch (DO.LineIdException ex)
+            {
+                throw new BO.LineIdException("line Id does not exist", ex);
+            }
         }
         #endregion
         #region Station
@@ -58,20 +115,13 @@ namespace BL
         {
 
         }
-        public IEnumerable<BO.Station> GetCodeStationList() //returns station codes
-        {
+        public void AddStation(BO.Station station)//adds station
+        { }
 
-        }
-
-        public IEnumerable<BO.Station> GetStationBy(Predicate<BO.Station> predicate)//returns stations that satisfies the predicate.
-        {
-
-        }
-
-        public void UpdateStation(BO.Station station) //updates station
-        {
-
-        }
+    public void UpdateStation(BO.Station station) //updates station
+    {
+       
+    }
 
         public void DeleteStation(int code) //deletes station
         {
@@ -79,6 +129,14 @@ namespace BL
 
         #endregion
         #region LineStation
+        BO.LineStation LineStationDoBoAdapter(DO.LineStation LineStationDO) //convert  do to bo
+        {
+            BO.LineStation LineStationBO = new BO.LineStation();
+            int LineId = LineStationDO.LineId;
+            LineStationDO.CopyPropertiesTo(LineStationBO);//copys the properties from do to bo for the LineStation
+
+            return LineStationBO;
+        }
         public void AddStationToLine(BO.LineStation lineStation)//add station to line
         {
 
