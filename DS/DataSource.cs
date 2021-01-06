@@ -533,6 +533,16 @@ namespace DS
             #region Boot Station Lines
             listLineStation = new List<LineStation>
             {
+               #region line1
+               new LineStation
+                {
+                LineId = 1,
+
+                Station =73,
+
+                LineStationIndex =0
+
+                },
                 new LineStation
                 {
                 LineId = 1,
@@ -560,7 +570,25 @@ namespace DS
                 LineStationIndex =3
 
                 },
+                    new LineStation
+                {
+                LineId = 1,
 
+                Station =83,
+
+                LineStationIndex =4
+
+                },
+            #endregion 
+               #region line2
+                     new LineStation
+                {
+                    LineId =2,
+
+                    Station =84,
+
+                    LineStationIndex = 0
+                },
                 new LineStation
                 {
                     LineId =2,
@@ -585,6 +613,25 @@ namespace DS
 
                     LineStationIndex = 3
                 },
+                     new LineStation
+                {
+                    LineId =2,
+
+                    Station =89,
+
+                    LineStationIndex = 4
+                },
+                     #endregion 
+               #region line3
+
+                      new LineStation
+                {
+                    LineId =3,
+
+                    Station =90,
+
+                    LineStationIndex = 0
+                },
                 new LineStation
                 {
                     LineId =3,
@@ -600,13 +647,32 @@ namespace DS
                     Station =93,
 
                     LineStationIndex = 2
-                }, new LineStation
+                },
+                new LineStation
                 {
                     LineId =3,
 
                     Station =94,
 
                     LineStationIndex = 3
+                },
+                 new LineStation
+                {
+                    LineId =3,
+
+                    Station =95,
+
+                    LineStationIndex = 4
+                },
+                 #endregion 
+               #region line4
+                  new LineStation
+                {
+                    LineId =4,
+
+                    Station =97,
+
+                    LineStationIndex = 0
                 },
                 new LineStation
                 {
@@ -672,6 +738,24 @@ namespace DS
 
                     LineStationIndex = 8
                 },
+                 new LineStation
+                {
+                    LineId =4,
+
+                    Station =112,
+
+                    LineStationIndex = 9
+                },
+                 #endregion 
+               #region line5
+                new LineStation
+                {
+                    LineId =5,
+
+                    Station =110,
+
+                    LineStationIndex = 0
+                },
                 new LineStation
                 {
                     LineId =5,
@@ -696,6 +780,25 @@ namespace DS
 
                     LineStationIndex = 3
                 },
+                    new LineStation
+                {
+                    LineId =5,
+
+                    Station =115,
+
+                    LineStationIndex = 4
+                },
+                    #endregion 
+               #region line6
+                     new LineStation
+                {
+                    LineId =6,
+
+                    Station =116,
+
+                    LineStationIndex = 0
+                },
+
                 new LineStation
                 {
                     LineId =6,
@@ -720,7 +823,24 @@ namespace DS
 
                     LineStationIndex = 3
                 },
+                  new LineStation
+                {
+                    LineId =6,
 
+                    Station =1486,
+
+                    LineStationIndex = 4
+                },
+                  #endregion 
+               #region line7
+                   new LineStation
+                {
+                    LineId =7,
+
+                    Station =1487,
+
+                    LineStationIndex = 0
+                },
                 new LineStation
                 {
                     LineId =7,
@@ -743,6 +863,24 @@ namespace DS
                     Station =1491,
 
                     LineStationIndex = 3
+                },
+                   new LineStation
+                {
+                    LineId =7,
+
+                    Station =1492,
+
+                    LineStationIndex = 4
+                },
+                  #endregion 
+               #region line8
+                   new LineStation
+                {
+                    LineId =8,
+
+                    Station =1493,
+
+                    LineStationIndex = 0
                 },
                 new LineStation
                 {
@@ -770,6 +908,24 @@ namespace DS
                 },
                 new LineStation
                 {
+                    LineId =8,
+
+                    Station =1512,
+
+                    LineStationIndex = 4
+                },
+                #endregion 
+               #region line9
+                new LineStation
+                {
+                    LineId =9,
+
+                    Station =1514,
+
+                    LineStationIndex = 0
+                },
+                new LineStation
+                {
                     LineId =9,
 
                     Station =1518,
@@ -790,6 +946,24 @@ namespace DS
                     Station =1523,
 
                     LineStationIndex = 3
+                },
+                new LineStation
+                {
+                    LineId =9,
+
+                    Station =1524,
+
+                    LineStationIndex = 4
+                },
+                #endregion 
+               #region line 10
+                 new LineStation
+                {
+                    LineId =10,
+
+                    Station =1523,
+
+                    LineStationIndex = 0
                 },
                 new LineStation
                 {
@@ -814,11 +988,350 @@ namespace DS
 
                     LineStationIndex = 3
                 },
+                 new LineStation
+                {
+                    LineId =10,
+
+                    Station =122,
+
+                    LineStationIndex = 4
+                },
+                 #endregion 
+                    
             };
             #endregion
             #region AdjacentStations
+            listAdjacentStations = new List<AdjacentStations>
+            {
 
+            new AdjacentStations
+            {
+                Station1 = 73,
+                Station2 = 76,
+                Distance = 5.0,
+                Time = 10.0
+            },
+            new AdjacentStations
+            {
+                Station1 = 76,
+                Station2 = 77,
+                Distance = 3.0,
+                Time = 6.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 77,
+                Station2 = 78,
+                Distance = 2.0,
+                Time = 4.0
+
+            },
+
+            new AdjacentStations
+            {
+                Station1 = 78,
+                Station2 = 83,
+                Distance = 5.0,
+                Time = 10.0
+
+            },
+
+
+            new AdjacentStations
+            {
+                Station1 = 84,
+                Station2 = 85,
+                Distance = 1.0,
+                Time = 2.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 85,
+                Station2 = 86,
+                Distance = 2.0,
+                Time = 4.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 86,
+                Station2 = 88,
+                Distance = 4.0,
+                Time = 8.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 88,
+                Station2 = 89,
+                Distance = 2.0,
+                Time = 4.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 90,
+                Station2 = 91,
+                Distance = 3.0,
+                Time = 6.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 91,
+                Station2 = 93,
+                Distance = 3.5,
+                Time = 7.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 93,
+                Station2 = 94,
+                Distance = 2.2,
+                Time = 4.4
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 94,
+                Station2 = 95,
+                Distance = 0.8,
+                Time = 1.6
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 97,
+                Station2 = 102,
+                Distance = 6.0,
+                Time = 12.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 102,
+                Station2 = 103,
+                Distance = 0.5,
+                Time = 1.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 103,
+                Station2 = 105,
+                Distance = 2.6,
+                Time = 5.2
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 105,
+                Station2 = 106,
+                Distance = 1.0,
+                Time = 2.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 106,
+                Station2 = 108,
+                Distance = 3.7,
+                Time = 7.4
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 109,
+                Station2 = 110,
+                Distance = 1.2,
+                Time = 2.4
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 110,
+                Station2 = 111,
+                Distance = 0.4,
+                Time = 0.8
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 111,
+                Station2 = 112,
+                Distance = 0.9,
+                Time = 1.8
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 112,
+                Station2 = 113,
+                Distance = 1.2,
+                Time = 2.4
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 113,
+                Station2 = 115,
+                Distance = 1.9,
+                Time = 3.8
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 116,
+                Station2 = 117,
+                Distance = 0.3,
+                Time = 0.6
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 117,
+                Station2 = 119,
+                Distance = 1.5,
+                Time = 3.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 119,
+                Station2 = 1485,
+                Distance = 5.2,
+                Time = 10.4
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1485,
+                Station2 = 1486,
+                Distance = 1.1,
+                Time = 2.2
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1487,
+                Station2 = 1488,
+                Distance = 0.7,
+                Time = 1.4
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1488,
+                Station2 = 1490,
+                Distance = 1.5,
+                Time = 3.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1490,
+                Station2 = 1491,
+                Distance = 1.0,
+                Time = 2.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1491,
+                Station2 = 1492,
+                Distance = 1.2,
+                Time = 2.4
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1493,
+                Station2 = 1494,
+                Distance = 1.5,
+                Time = 3.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1494,
+                Station2 = 1510,
+                Distance = 4.8,
+                Time = 9.6
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1510,
+                Station2 = 1511,
+                Distance = 1.0,
+                Time = 2.0
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1511,
+                Station2 = 1512,
+                Distance = 0.2,
+                Time = 0.4
+
+            },
+            new AdjacentStations
+            {
+                Station1 = 1514,
+                Station2 = 1518,
+                Distance = 1.7,
+                Time = 3.4
+            },
+            new AdjacentStations
+            {
+                Station1 = 1518,
+                Station2 = 1522,
+                Distance = 3.2,
+                Time = 6.4
+            },
+            new AdjacentStations
+            {
+                Station1 = 1522,
+                Station2 = 1523,
+                Distance = 0.6,
+                Time = 1.2
+            },
+            new AdjacentStations
+            {
+                Station1 = 1523,
+                Station2 = 1524,
+                Distance = 1.4,
+                Time = 2.8
+            },
+            new AdjacentStations
+            {
+                Station1 = 1524,
+                Station2 = 121,
+                Distance = 5.5,
+                Time = 11.0
+            },
+             new AdjacentStations
+            {
+                Station1 = 121,
+                Station2 = 123,
+                Distance = 1.25,
+                Time = 2.5
+            },
+              new AdjacentStations
+            {
+                Station1 = 123,
+                Station2 = 122,
+                Distance = 0.5,
+                Time = 1.0
+            },
+
+
+            };
             #endregion
         }
+
     }
 }
