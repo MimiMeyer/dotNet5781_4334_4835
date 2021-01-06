@@ -24,7 +24,8 @@ namespace DS
         {
             #region Boot Lines
             listLines = new List<Line>
-            {new Line
+            {
+                new Line
             {
                 Id =1,
                 Code =1,

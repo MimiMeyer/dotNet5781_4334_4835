@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
+namespace BL.BO
 {
-   public class AdjacentStations
+  public  class LineStation
     {
-        public int Station1 { get; set; }
-        public int Station2 { get; set; }
+        public int LineId { get; set; }//bus ID
+        public int Station { get; set; }//code station
+        public int LineStationIndex { get; set; }
         public double Distance { get; set; }
         public double Time { get; set; }
     }
-    
-
 }
