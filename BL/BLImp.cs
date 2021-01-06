@@ -45,22 +45,25 @@ namespace BL
         }
        public void AddLine(BO.Line line)//adds line
         {
-           int count= GetAlllines().Count( l=>l.Id==line.Id);
+            DO.Line LineDO = new DO.Line();
+            line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
+            int count= GetAlllines().Count( l=>l.Id==line.Id);
             if (count >= 2)// throws exception if line already appears twice in list.
             {
-                throw new BO.LineIdException(line.Id,"line Id already has back and forth buses");
+                throw new BO.LineIdException(line.Id,"Line Id already has back and forth buses");
             }
             if (count == 1)
 
             {
-
-             
-
+                DO.Line Line1 = dl.RequestLine(line.Id);
+                if(Line1.FirstStation!=LineDO.LastStation|| LineDO.FirstStation != Line1.LastStation)
+                    throw new BO.LineIdException(line.Id, "The line is not traveling in the opposite direction so can't be added");
+                dl.AddLine(LineDO);
 
             }
             if (count == 0)
             {
-                dl.AddLine(line);
+                dl.AddLine(LineDO);
             }
 
         }
