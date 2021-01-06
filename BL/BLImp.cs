@@ -41,23 +41,23 @@ namespace BL
            
             return from lineDO in dl.RequestAllLines()//gets all lines from the function RequestAllLines
                    orderby lineDO.Id//orders by id number
-                  select LineDoBoAdapter(lineDO);//each lne goes to functionand changes to bo
+                  select LineDoBoAdapter(lineDO);//each line goes to functionand changes to bo
         }
        public void AddLine(BO.Line line)//adds line
         {
             DO.Line LineDO = new DO.Line();
             line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
-            int count= GetAlllines().Count( l=>l.Id==line.Id);
+            int count= GetAlllines().Count( l=>l.Code==line.Code);
             if (count >= 2)// throws exception if line already appears twice in list.
             {
-                throw new BO.LineIdException(line.Id,"Line Id already has back and forth buses");
+                throw new BO.LineIdException(line.Code,"Line Number already has back and forth buses");
             }
             if (count == 1)
 
             {
                 DO.Line Line1 = dl.RequestLine(line.Id);
                 if(Line1.FirstStation!=LineDO.LastStation|| LineDO.FirstStation != Line1.LastStation)
-                    throw new BO.LineIdException(line.Id, "The line is not traveling in the opposite direction so can't be added");
+                    throw new BO.LineIdException(line.Code, "The line is not traveling in the opposite direction so can't be added");
                 dl.AddLine(LineDO);
 
             }
@@ -67,11 +67,7 @@ namespace BL
             }
 
         }
-        public int GetEnumerableCount(IEnumerable Enumerable)
-        {
-            return (from object Item in Enumerable
-                    select Item).Count();
-        }
+        
         public void UpdateLine(BO.Line line)//updates a line
         {
             DO.Line LineDO = new DO.Line();
@@ -86,8 +82,6 @@ namespace BL
             }
         }
 
-
-        
 
         public void DeleteLine(int Id)//deletes a line
         {
@@ -110,21 +104,44 @@ namespace BL
             StationDO.CopyPropertiesTo(stationBO);//copys the properties from do to bo for the station
             return stationBO;
         }
-            public BO.Station GetStation(int code)//returns requested station
+        public BO.Station GetStation(int code)//returns requested station
         {
-
+            DO.Station StationDO;
+            try
+            {
+                StationDO = dl.RequestStation(code);
+            }
+            catch (DO.LineIdException ex)
+            {
+                throw new BO.StationCodeException("Station Id does not exist", ex);
+            }
+            return StationDoBoAdapter(StationDO);
         }
         public IEnumerable<BO.Station> GetAllStations()//returns all stations
         {
-
+            return from stationDO in dl.RequestAllStations()//gets all stations from the function RequestAllStations
+                   orderby stationDO.Code//orders by station code
+                   select StationDoBoAdapter(stationDO);//each bus 
         }
         public void AddStation(BO.Station station)//adds station
         { }
 
-    public void UpdateStation(BO.Station station) //updates station
-    {
-       
-    }
+   
+        public void UpdateStation(BO.Station station) //updates station
+   
+        {
+            DO.Station StationDO = new DO.Station();
+            station.CopyPropertiesTo(StationDO);//copys station properties into StationDO
+            try
+            {
+                dl.UpdateStation(StationDO);//updates
+            }
+            catch (DO.StationCodeException ex)
+            {
+                throw new BO.StationCodeException("Station does not exist", ex);
+            }
+
+        }
 
         public void DeleteStation(int code) //deletes station
         {

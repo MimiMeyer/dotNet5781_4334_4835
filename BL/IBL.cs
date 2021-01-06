@@ -9,7 +9,7 @@ namespace BLAPI
     public interface IBL
     {
         #region Line
-        BO.Station GetLine(int id);//returns requested line
+        BO.Line GetLine(int id);//returns requested line
         IEnumerable<BO.Line> GetAlllines();//returns all lines
         void AddLine(BO.Line line);//adds line
         void UpdateLine(BO.Line line);//updates a line
