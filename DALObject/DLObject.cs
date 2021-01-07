@@ -34,7 +34,15 @@ namespace DL
             else
                 throw new DO.LineIdException(Id, $"line Id does not exist: {Id}");
         }
+        public DO.Line RequestLineByCode(int code)
+        {
+            DO.Line li = DataSource.listLines.Find(l => l.Code == code);//checks line. if exists li will get the value of the chosen line.
 
+            if (li != null)//if li = null that means line does not exist
+                return li.Clone();//returns the chosen line
+            else
+                throw new DO.LineIdException(code, $"line number does not exist: {code}");
+        }
         public IEnumerable<DO.Line> RequestAllLines()//returns a copy of list of lines
         {
             return from Line in DataSource.listLines
@@ -135,9 +143,15 @@ namespace DL
             }
             else
                 throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
-
-
-
+        }
+        void DeleteLineStationbyStation(int code) ////deletes all line stations with same Station
+        {
+            if (RequestLineByStation(code) != null)//if it equels null it means Station does not exist and will send exception
+            {
+                DataSource.listLineStation.RemoveAll(lineStation => lineStation.Station == code);//removes all line stations that have the wanted station.
+            }
+            else
+                throw new DO.StationCodeException(code, $"Station code does not exist: {code}");
         }
         public void DeleteLineStation(int Station, int lineId)
         {

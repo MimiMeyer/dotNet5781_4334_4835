@@ -13,12 +13,13 @@ namespace BLAPI
         IEnumerable<BO.Line> GetAlllines();//returns all lines
         void AddLine(BO.Line line);//adds line
         void UpdateLine(BO.Line line);//updates a line
-
+        
         void DeleteLine(int Id);//deletes a line
         #endregion
         #region Station
         BO.Station GetStation(int code);//returns requested station
         IEnumerable<BO.Station> GetAllStations();//returns all station
+        
         void AddStation(BO.Station station);//adds station
         void UpdateStation(BO.Station station); //updates station
 

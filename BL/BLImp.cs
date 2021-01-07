@@ -12,6 +12,7 @@ namespace BL
 {
     class BLImp : IBL
     {
+        Random r = new Random();
         IDL dl = DLFactory.GetDL();
         #region Line
         BO.Line LineDoBoAdapter(DO.Line LineDO) //convert  do to bo
@@ -43,7 +44,8 @@ namespace BL
                    orderby lineDO.Id//orders by id number
                   select LineDoBoAdapter(lineDO);//each line goes to functionand changes to bo
         }
-       public void AddLine(BO.Line line)//adds line
+        
+        public void AddLine(BO.Line line)//adds line
         {
             DO.Line LineDO = new DO.Line();
             line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
@@ -58,11 +60,23 @@ namespace BL
                 DO.Line Line1 = dl.RequestLine(line.Id);
                 if(Line1.FirstStation!=LineDO.LastStation|| LineDO.FirstStation != Line1.LastStation)
                     throw new BO.LineIdException(line.Code, "The line is not traveling in the opposite direction so can't be added");
+                DO.Station st = dl.RequestStation(LineDO.FirstStation);
+                if (st==null)
+                    throw new BO.StationCodeException(LineDO.FirstStation, "First Station does not exist");
+                st= dl.RequestStation(LineDO.LastStation);
+                if (st == null)
+                    throw new BO.StationCodeException(LineDO.LastStation, "Last Station does not exist");
                 dl.AddLine(LineDO);
 
             }
             if (count == 0)
             {
+                DO.Station st = dl.RequestStation(LineDO.FirstStation);
+                if (st == null)
+                    throw new BO.StationCodeException(LineDO.FirstStation, "First Station does not exist");
+                st = dl.RequestStation(LineDO.LastStation);
+                if (st == null)
+                    throw new BO.StationCodeException(LineDO.LastStation, "Last Station does not exist");
                 dl.AddLine(LineDO);
             }
 
@@ -74,7 +88,7 @@ namespace BL
             line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
             try
             {
-                dl.UpdateLine(LineDO);//updates
+              dl.UpdateLine(LineDO);//updates
             }
             catch (DO.LineIdException ex)
             {
@@ -85,11 +99,12 @@ namespace BL
 
         public void DeleteLine(int Id)//deletes a line
         {
-            try {
+            try 
+            {
                 dl.DeleteLine(Id);
                 dl.DeleteLineStationbyLine(Id);
                 
-                 }
+            }
             catch (DO.LineIdException ex)
             {
                 throw new BO.LineIdException("line Id does not exist", ex);
@@ -124,7 +139,23 @@ namespace BL
                    select StationDoBoAdapter(stationDO);//each bus 
         }
         public void AddStation(BO.Station station)//adds station
-        { }
+        {
+            DO.Station StationDO = new DO.Station();
+            station.CopyPropertiesTo(StationDO);//copys line properties into LineDO
+            if (station.Code < 0 || station.Code > 1000000)
+            {
+                throw new BO.StationCodeException (station.Code,"Station code must be under 7 digits");//makes sure the Station code is under 7 digits
+            }
+            if(station.Lattitude < -90 || station.Lattitude > 90) 
+            {
+                throw new BO.StationCoordinatesException(station.Lattitude, "Lattitude must be between -90 to 90");
+            }
+            if (station.Longitude < -180 || station.Longitude > 180)
+            {
+                throw new BO.StationCoordinatesException(station.Longitude, "Longitude must be between -180 to 180");
+            }
+            dl.AddStation(StationDO);
+        }
 
    
         public void UpdateStation(BO.Station station) //updates station
@@ -145,6 +176,16 @@ namespace BL
 
         public void DeleteStation(int code) //deletes station
         {
+            try
+            {//neeed to first check that there isnt a line with 2 stations
+                dl.DeleteStation(code);
+                dl.DeleteLineStationbyStation(code);
+
+            }
+            catch (DO.StationCodeException ex)
+            {
+                throw new BO.StationCodeException("station Code does not exist", ex);
+            }
         }
 
         #endregion

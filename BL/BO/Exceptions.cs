@@ -22,16 +22,25 @@ namespace BO
 
  
    
-    #region StationCode
+    #region Station
     public class StationCodeException : Exception
     {
         public int Code;
         public StationCodeException(string message, Exception innerException) :
             base(message, innerException) => Code = ((DO.StationCodeException)innerException).Code;
-        public override string ToString() => base.ToString() + $", bad sStation Code: {Code}";
+        public StationCodeException(int code, string message) :
+           base(message) => Code= code;
+        public override string ToString() => base.ToString() + $", bad Station Code: {Code}";
+    }
+    public class StationCoordinatesException : Exception
+    {
+        public  double Coordinates;
+        public StationCoordinatesException(double coord, string message) :
+           base(message) => Coordinates = coord;
+        public override string ToString() => base.ToString() + $", bad Station Coordinates: {Coordinates}";
     }
     #endregion
 
-  
-    
+
+
 }
