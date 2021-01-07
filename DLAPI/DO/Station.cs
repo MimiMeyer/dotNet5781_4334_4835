@@ -15,9 +15,6 @@ namespace DO
 
         public string Address{ get; set; }//כתובת
 
-        public void CopyPropertiesTo(global::BO.Station stationBO)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

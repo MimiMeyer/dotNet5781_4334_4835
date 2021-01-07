@@ -11,29 +11,30 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BLAPI;
+
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Management.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Management : Window
     {
-        public MainWindow()
+        public Management()
         {
             InitializeComponent();
         }
+        private void StationDisplay_Click(object sender, RoutedEventArgs e)
+        {
+            StationDisplay window = new StationDisplay();
+            window.ShowDialog();
 
-        private void Manegement_Click(object sender, RoutedEventArgs e)
-        {
-            Management window = new Management();
-            window.ShowDialog();
-        }
-        private void User_Click(object sender, RoutedEventArgs e)
-        {
-            User window = new User();
-            window.ShowDialog();
         }
 
+        private void LineDisplay_Click(object sender, RoutedEventArgs e)
+        {
+            lineDisplay window = new lineDisplay();
+            window.ShowDialog();
+
+        }
     }
 }

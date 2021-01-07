@@ -17,7 +17,18 @@ namespace BL
             int Id = LineDO.Id;
             LineBO.Stations = dl.RequestStationsByLine(Id);
             LineDO.CopyPropertiesTo(LineBO);//copys the properties from do to bo for the Line
-
+            for (int i = 0; i < LineBO.Stations.Count(); i++)//list will go over 
+            {
+                DO.AdjacentStations st=dl.RequestAdjacentStations(LineBO.Stations.ElementAt(i), LineBO.Stations.ElementAt(i + 1));//gets the requested AdjacentStation for the time and distance
+                BO.LineStation lineStation= new BO.LineStation();//new line station
+                lineStation.Distance = st.Distance;//gets the AdjacentStation distance
+                lineStation.Time = st.Time;//gets the AdjacentStation time
+                lineStation.LineId = LineBO.Id;//gets the line
+                lineStation.Station = LineBO.Stations.ElementAt(i);//gets the station
+                lineStation.LineStationIndex = i;//gets the index
+                AddStationToLine(lineStation);//adds the line station
+                    
+            }
             return LineBO;
         }
         public BO.Line GetLine(int id)//returns requested line
@@ -60,7 +71,19 @@ namespace BL
                 {
                     DO.Station st = dl.RequestStation(LineDO.FirstStation);//if station does not exist will throw exception
                     st = dl.RequestStation(LineDO.LastStation);//if station does not exist will throw exception
-                    dl.AddLine(LineDO);//if exception was not thrown will addline
+                    line.Id = dl.AddLine(LineDO);//if exception was not thrown will addline
+                    line.Stations.ToList().Add(line.FirstStation);//adding first station to the list of stations
+                    line.Stations.ToList().Add(line.LastStation);//adding last station to the list of stations
+                    BO.LineStation first = new BO.LineStation();
+                    BO.LineStation last = new BO.LineStation();
+                    first.Station = line.FirstStation;//inializing first station
+                    first.LineStationIndex = 0;
+                    first.LineId = line.Id;
+                    last.Station = line.LastStation;//inializing last station
+                    last.LineStationIndex = 1;
+                    last.LineId = line.Id;
+                    AddStationToLine(first);//adding to list
+                    AddStationToLine(last);//adding to list
                 }
                 catch (DO.StationCodeException ex)
                 {
@@ -236,8 +259,14 @@ namespace BL
                 {
                     line.Stations.ToList().Insert(0, lineStation.Station);//adds station to beginging of list
                     line.FirstStation = lineStation.Station;//updates First Station
-                    lineStation.Distance= r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km 
-                    lineStation.Time = 2 * lineStation.Distance;//assuming that each km takes 2 minutes
+                    if (lineStation.Distance == 0.0d)//if it doesnt have a value
+                    {
+                        lineStation.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km 
+                    }
+                    if (lineStation.Time == 0.0d)//if it doesnt have a value
+                    {
+                        lineStation.Time = 2 * lineStation.Distance;//assuming that each km takes 2 minutes
+                    }
                     dl.AddLineStation(lineStationDO);//adds to list of linestation
 
                 }
@@ -252,15 +281,28 @@ namespace BL
 
                         line.Stations.ToList().Add(lineStation.Station);//adds to end of list
                         line.LastStation = lineStation.Station;//new last station
-                        lineStation.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km 
-                        lineStation.Time = 2 * lineStation.Distance;//assuming that each km takes 2 minutes
+                        if (lineStation.Distance == 0.0d)//if it doesnt have a value
+                        {
+                            lineStation.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km 
+                        }
+                        if (lineStation.Time == 0.0d)//if it doesnt have a value
+                        {
+                            lineStation.Time = 2 * lineStation.Distance;//assuming that each km takes 2 minutes
+                        }
                         dl.AddLineStation(lineStationDO);//adds to list of linestation
                     }
                     else if (lineStation.LineStationIndex < line.Stations.Count()) //adds to the middle
                     {
                         line.Stations.ToList().Insert(lineStation.LineStationIndex, lineStation.Station);
+                        if(lineStation.Distance==0.0d)//if it doesnt have a value
+                        {
                         lineStation.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km 
-                        lineStation.Time = 2 * lineStation.Distance;//assuming that each km takes 2 minutes
+                        }
+                        if (lineStation.Time == 0.0d)//if it doesnt have a value
+                        {
+                            lineStation.Time = 2 * lineStation.Distance;//assuming that each km takes 2 minutes
+                        }
+                        
                         dl.AddLineStation(lineStationDO);//adds to list of linestation
 
 
