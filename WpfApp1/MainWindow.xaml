@@ -5,7 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" WindowState="Maximized">
+    <Window.Background>
+        <ImageBrush ImageSource="https://airqualitynews.com/wp-content/uploads/2020/02/TfL-Image-Route-94-electric-bus.jpg" Stretch="Fill" />
+    </Window.Background>
+
+
+
+
     <Grid>
         <Button Content="חלון נוסע" HorizontalAlignment="Left" Height="110" Margin="24,274,0,0" VerticalAlignment="Top" Width="198" Click="User_Click" />
         <Button Content="חלון ניהול" HorizontalAlignment="Left" Height="110" Margin="252,274,0,0" VerticalAlignment="Top" Width="198" Click="Manegement_Click"/>
