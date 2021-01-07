@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for lineDisplay.xaml
+    /// Interaction logic for LineDisplay.xaml
     /// </summary>
-    public partial class lineDisplay : Window
+    public partial class LineDisplay : Window
     {
-        public lineDisplay()
+        public LineDisplay()
         {
             InitializeComponent();
         }

@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLAPI", "DLAPI\DLAPI.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS", "DS\DS.csproj", "{D6381F2D-7BD7-4EBF-87A4-710C6E356BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "WpfApp1\PL.csproj", "{C8BC72F4-B4B0-49D0-87FE-6220457E1739}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{AB9B33F7-7C39-406D-B397-DB94CC3F51E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +59,10 @@ Global
 		{D6381F2D-7BD7-4EBF-87A4-710C6E356BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6381F2D-7BD7-4EBF-87A4-710C6E356BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6381F2D-7BD7-4EBF-87A4-710C6E356BFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8BC72F4-B4B0-49D0-87FE-6220457E1739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8BC72F4-B4B0-49D0-87FE-6220457E1739}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8BC72F4-B4B0-49D0-87FE-6220457E1739}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8BC72F4-B4B0-49D0-87FE-6220457E1739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB9B33F7-7C39-406D-B397-DB94CC3F51E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB9B33F7-7C39-406D-B397-DB94CC3F51E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB9B33F7-7C39-406D-B397-DB94CC3F51E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB9B33F7-7C39-406D-B397-DB94CC3F51E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

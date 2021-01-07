@@ -10,29 +10,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Management.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Management : Window
     {
-        public MainWindow()
+        public Management()
         {
             InitializeComponent();
         }
-        private void Manegement_Click(object sender, RoutedEventArgs e)
+        private void StationDisplay_Click(object sender, RoutedEventArgs e)
         {
-            Management window = new Management();
+            StationDisplay window = new StationDisplay();
             window.ShowDialog();
+
         }
-        private void User_Click(object sender, RoutedEventArgs e)
+
+        private void LineDisplay_Click(object sender, RoutedEventArgs e)
         {
-            User window = new User();
+            LineDisplay window = new LineDisplay();
             window.ShowDialog();
+
         }
     }
 }

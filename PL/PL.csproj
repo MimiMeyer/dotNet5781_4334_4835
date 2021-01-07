@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C8BC72F4-B4B0-49D0-87FE-6220457E1739}</ProjectGuid>
+    <ProjectGuid>{AB9B33F7-7C39-406D-B397-DB94CC3F51E5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>PL</RootNamespace>
     <AssemblyName>PL</AssemblyName>
@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,8 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="lineDisplay.xaml.cs">
-      <DependentUpon>lineDisplay.xaml</DependentUpon>
+    <Compile Include="LineDisplay.xaml.cs">
+      <DependentUpon>LineDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationDisplay.xaml.cs">
       <DependentUpon>StationDisplay.xaml</DependentUpon>
@@ -64,7 +64,7 @@
     <Compile Include="User.xaml.cs">
       <DependentUpon>User.xaml</DependentUpon>
     </Compile>
-    <Page Include="lineDisplay.xaml">
+    <Page Include="LineDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,12 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj">
-      <Project>{f69ca4aa-14f8-4762-8a0a-2f46f9f461ec}</Project>
-      <Name>BL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
