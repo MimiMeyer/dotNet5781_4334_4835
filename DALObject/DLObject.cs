@@ -39,7 +39,7 @@ namespace DL
             DO.Line li = DataSource.listLines.Find(l => l.Code == code);//checks line. if exists li will get the value of the chosen line.
 
             if (li != null)//if li = null that means line does not exist
-                return li.Clone();//returns the chosen line
+                return li.Clone();//returns a copy of the chosen line
             else
                 throw new DO.LineIdException(code, $"line number does not exist: {code}");
         }
@@ -91,7 +91,7 @@ namespace DL
                                               Select(lineStation => lineStation.Station);
 
         }
-        public IEnumerable<int> RequestLineByStation(int Station)//returns list of lines for requested station.
+        public IEnumerable<int> RequestLinesByStation(int Station)//returns list of lines for requested station.
         {
             return DataSource.listLineStation.FindAll(lineStation => lineStation.Station == Station).
                                               Select(lineStation => lineStation.LineId);
@@ -144,14 +144,14 @@ namespace DL
             else
                 throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
         }
-        void DeleteLineStationbyStation(int code) ////deletes all line stations with same Station
+       public void DeleteLineStationbyStation(int station) ////deletes all line stations with same Station
         {
-            if (RequestLineByStation(code) != null)//if it equels null it means Station does not exist and will send exception
+            if (RequestLinesByStation(station) != null)//if it equels null it means no lines does not go through requested station
             {
-                DataSource.listLineStation.RemoveAll(lineStation => lineStation.Station == code);//removes all line stations that have the wanted station.
+                DataSource.listLineStation.RemoveAll(lineStation => lineStation.Station == station);//removes all line stations that have the wanted station.
             }
             else
-                throw new DO.StationCodeException(code, $"Station code does not exist: {code}");
+                throw new DO.StationCodeException(station, $"Station code does not exist: {station}");
         }
         public void DeleteLineStation(int Station, int lineId)
         {

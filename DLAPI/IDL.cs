@@ -21,6 +21,7 @@ namespace DLAPI
         #endregion 
         #region LineStation
         void AddLineStation(DO.LineStation Line);
+    
         DO.LineStation RequestLineStation(int Station,int lineId);
         IEnumerable<DO.LineStation> RequestAllLinesStation();
         void UpdateLineStation(DO.LineStation Line);
@@ -32,7 +33,8 @@ namespace DLAPI
         void AddLineTrip(DO.LineTrip lineTrip);
         DO.LineTrip RequestLineTrip( int lineId, TimeSpan StartAt);
         IEnumerable<DO.LineTrip> RequestAllLineTrips();
-        IEnumerable<int> RequestStationsByLine(int lineID);
+        IEnumerable<int> RequestStationsByLine(int lineID);//returns list of stations for requested line.
+        IEnumerable<int> RequestLinesByStation(int Station);//returns list of lines for requested station.
         void UpdateLineTrip(DO.LineTrip lineTrip);
         void DeleteLineTrip(int lineId, TimeSpan StartAt);
         #endregion

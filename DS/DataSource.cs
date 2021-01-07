@@ -534,7 +534,7 @@ namespace DS
             listLineStation = new List<LineStation>
             {
                #region line1
-               new LineStation
+            new LineStation
                 {
                 LineId = 1,
 
