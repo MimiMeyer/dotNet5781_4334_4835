@@ -40,6 +40,15 @@ namespace BO
         public override string ToString() => base.ToString() + $", bad Station Coordinates: {Coordinates}";
     }
     #endregion
+    #region LineStation
+    public class LineStationIndexException : Exception
+    {
+        public int Index;
+        public LineStationIndexException(int index, string message) :
+           base(message) => Index= index;
+        public override string ToString() => base.ToString() + $", bad LineStation index: {Index}";
+    }
+    #endregion
 
 
 
