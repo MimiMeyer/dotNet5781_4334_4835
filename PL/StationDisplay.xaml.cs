@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLAPI;
 
 namespace PL
 {
@@ -19,9 +20,13 @@ namespace PL
     /// </summary>
     public partial class StationDisplay : Window
     {
+        IBL bl = BLFactory.GetBL("1");
         public StationDisplay()
         {
             InitializeComponent();
+            stationDataGrid.DataContext = bl.GetAllStations();
         }
+
+        
     }
 }

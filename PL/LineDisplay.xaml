@@ -1,12 +1,22 @@
-﻿<Window x:Class="PL.LineDisplay"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.LineDisplay"
         mc:Ignorable="d"
-        Title="LineDisplay" Height="450" Width="800">
-    <Grid>
-        
+        Title="LineDisplay" Height="450" Width="800" 
+    >
+   
+    <Grid  >
+        <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="90,81,593,75" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="מספר קו" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="ת.ז קו" Width="SizeToHeader"/>
+                
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

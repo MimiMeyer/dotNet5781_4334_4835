@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLAPI;
 
 namespace PL
 {
@@ -19,9 +20,14 @@ namespace PL
     /// </summary>
     public partial class LineDisplay : Window
     {
+        IBL bl = BLFactory.GetBL("1");
         public LineDisplay()
         {
             InitializeComponent();
+            lineDataGrid.DataContext = bl.GetAlllines();
+
         }
+
+      
     }
 }
