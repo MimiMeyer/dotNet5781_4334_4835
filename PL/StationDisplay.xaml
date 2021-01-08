@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.StationDisplay"
         mc:Ignorable="d"
-        Title="StationDisplay" Height="450" Width="800" >
+        Title="StationDisplay" WindowState="Maximized" >
     
     <Grid Margin="0,0,-248,0" >
 
-        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="90,107,858,112" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
+        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="520,10,414,10" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="codeColumn" Width="SizeToHeader" Header="מספר תחנה" Binding="{Binding Code}"/>
               

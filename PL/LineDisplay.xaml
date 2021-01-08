@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.LineDisplay"
         mc:Ignorable="d"
-        Title="LineDisplay" Height="450" Width="800" 
+        Title="LineDisplay" WindowState="Maximized"
     >
    
     <Grid  >
