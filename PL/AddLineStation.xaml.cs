@@ -12,23 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
+
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for AddLine.xaml
+    /// Interaction logic for AddLineStation.xaml
     /// </summary>
-    public partial class AddLine : Window
-    {private BO.Line line=new BO.Line();
-        public AddLine()
+    public partial class AddLineStation : Window
+    {
+        private BO.LineStation station = new BO.LineStation();
+        public AddLineStation()
         {
             InitializeComponent();
-            LineGrid.DataContext = line;
+            LineStationGrid.DataContext = station;
+    
 
 
         }
-        public BO.Line NewLine { get { return line; } }//returns user input 
 
-
-
+        public BO.LineStation NewStation { get { return station; } }//returns user input 
     }
 }

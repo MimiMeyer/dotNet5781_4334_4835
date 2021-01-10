@@ -29,17 +29,24 @@
 
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn x:Name="DeleteColumn" Header="מחיקת התחנה " Width="10*" >
+                <DataGridTemplateColumn x:Name="DeleteColumn" Header="מחיקת הקו  " Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="DeleteStation" Content="מחק"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Delete_Click"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="UpdateColumn" Header="עדכון התחנה " Width="10*" >
+                <DataGridTemplateColumn x:Name="UpdateColumn" Header=" מחיקה ועדכון תחנות" Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="UpdateStation" Content="עדכון"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Update_Click"  />
+                            <Button x:Name="UpdateStations" Content="מחיקה ועדכון תחנות"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Update_Click"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="AddColumn" Header="הוספת תחנה " Width="10*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="AddStations" Content="הוספת תחנה"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="AddStation_Click"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

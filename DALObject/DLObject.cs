@@ -131,7 +131,7 @@ namespace DL
         }
         public void UpdateLineStation(DO.LineStation lineStation)
         {
-            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineStation.LineId);//checks line station. if exists li will get the value of the chosen line.
+            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineStation.LineId&& l.Station == lineStation.Station);//checks line station. if exists li will get the value of the chosen line.
 
             if (li != null)//if li = null that means line station does not exist
             {

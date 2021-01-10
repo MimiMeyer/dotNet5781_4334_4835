@@ -96,7 +96,7 @@ namespace BL
             }
             catch (DO.LineIdException ex)
             {
-                throw new BO.StationCodeException("Line Id already exists", ex);
+                throw new BO.LineIdException("Line Id already exists", ex);
             }
             catch (DO.StationCodeException ex)
             {
@@ -197,7 +197,16 @@ namespace BL
             station.CopyPropertiesTo(StationDO);//copys station properties into StationDO
             try
             {
+                if (station.Lattitude < 31 || station.Lattitude > 33.3)
+                {
+                    throw new BO.StationCoordinatesException(station.Lattitude, "Lattitude must be between -31 to 33.3");
+                }
+                if (station.Longitude < 34.3 || station.Longitude > 35.5)
+                {
+                    throw new BO.StationCoordinatesException(station.Longitude, "Longitude must be between -34.3 to 35.5");
+                }
                 dl.UpdateStation(StationDO);//updates
+               
             }
             catch (DO.StationCodeException ex)
             {
@@ -280,8 +289,7 @@ namespace BL
                 {
                     line.Stations.ToList().Insert(0, lineStation.Station);//adds station to beginging of list
                     line.FirstStation = lineStation.Station;//updates First Station
-                    lineStation.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km 
-                    lineStation.Time = 2 * lineStation.Distance;//assuming that each km takes 2 minutes
+                    
                     dl.AddLineStation(lineStationDO);//adds to list of linestation
 
                 }
@@ -301,12 +309,7 @@ namespace BL
                     else if (lineStation.LineStationIndex < line.Stations.Count()) //adds to the middle
                     {
                         line.Stations.ToList().Insert(lineStation.LineStationIndex, lineStation.Station);
-                        lineStation.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km 
-                        lineStation.Time = 2 * lineStation.Distance;//assuming that each km takes 2 minutes
-
-
                         dl.AddLineStation(lineStationDO);//adds to list of linestation
-
 
                     }
 

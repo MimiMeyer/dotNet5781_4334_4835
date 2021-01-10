@@ -15,13 +15,17 @@ using BLAPI;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for UpdateLine.xaml
+    /// Interaction logic for UpdateLineStation.xaml
     /// </summary>
-    public partial class UpdateLine : Window
+    public partial class UpdateLineStation : Window
     {
-        public UpdateLine()
+        IBL bl = BLFactory.GetBL("1");
+        public UpdateLineStation(BO.LineStation lineStation)
         {
             InitializeComponent();
+            lineStationDataGrid.DataContext = lineStation;
+
+
         }
 
       

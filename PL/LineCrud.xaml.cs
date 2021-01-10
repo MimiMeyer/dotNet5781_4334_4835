@@ -27,11 +27,14 @@ namespace PL
             lineDataGrid.DataContext = bl.GetAlllines();
             lineDataGrid.IsReadOnly = true;
         }
-        private void Update_Click(object sender, RoutedEventArgs e)
+        private void Update_Click(object sender, RoutedEventArgs e)// delete or update linestation
         {
+            BO.Line line = lineDataGrid.SelectedItem as BO.Line;
+            LineStation window = new LineStation(line);
+            window.ShowDialog();
 
         }
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)//deletes line
         {
             BO.Line line = lineDataGrid.SelectedItem as BO.Line;
             try
@@ -45,8 +48,49 @@ namespace PL
             }
 
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+        private void AddStation_Click(object sender, RoutedEventArgs e)//add line station to line
         {
+            BO.Line line = lineDataGrid.SelectedItem as BO.Line;
+            AddLineStation window = new AddLineStation();
+            window.ShowDialog();
+           BO.LineStation station= window.NewStation;//get user input
+            station.LineId = line.Id;
+            try 
+            {
+                bl.AddStationToLine(station);
+            }
+            catch (BO.LineStationIndexException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.StationCodeException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.LineIdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)//add bus
+        {
+            
+            AddLine window = new AddLine();
+            window.ShowDialog();
+           BO.Line line= window.NewLine;
+            try
+            {
+                bl.AddLine(line);
+            }
+            catch (BO.LineIdException ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.StationCodeException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
     }

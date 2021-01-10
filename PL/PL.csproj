@@ -58,6 +58,9 @@
     <Compile Include="AddLine.xaml.cs">
       <DependentUpon>AddLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddLineStation.xaml.cs">
+      <DependentUpon>AddLineStation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
@@ -70,6 +73,9 @@
     <Compile Include="LineDisplay.xaml.cs">
       <DependentUpon>LineDisplay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LineStation.xaml.cs">
+      <DependentUpon>LineStation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StationCrud.xaml.cs">
       <DependentUpon>StationCrud.xaml</DependentUpon>
     </Compile>
@@ -79,8 +85,8 @@
     <Compile Include="StationDisplay.xaml.cs">
       <DependentUpon>StationDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdateLine.xaml.cs">
-      <DependentUpon>UpdateLine.xaml</DependentUpon>
+    <Compile Include="UpdateLineStation.xaml.cs">
+      <DependentUpon>UpdateLineStation.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateStation.xaml.cs">
       <DependentUpon>UpdateStation.xaml</DependentUpon>
@@ -89,6 +95,10 @@
       <DependentUpon>User.xaml</DependentUpon>
     </Compile>
     <Page Include="AddLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddLineStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LineDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,7 +150,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpdateLine.xaml">
+    <Page Include="UpdateLineStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

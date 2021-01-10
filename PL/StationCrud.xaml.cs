@@ -29,8 +29,23 @@ namespace PL
         }
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            UpdateStation window = new UpdateStation(stationDataGrid.SelectedItem as BO.Station);
+            BO.Station st = stationDataGrid.SelectedItem as BO.Station;
+            UpdateStation window = new UpdateStation(st);
             window.ShowDialog();
+            try
+            {
+                bl.UpdateStation(st);
+                    
+            }
+            catch (BO.StationCodeException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+ 
+            catch (BO.StationCoordinatesException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
         }
