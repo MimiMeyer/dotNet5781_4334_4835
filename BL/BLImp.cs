@@ -245,10 +245,9 @@ namespace BL
                             
                             IEnumerable<int> ListOfStations = dl.RequestStationsByLine(listOfLines.Current);//gets back list of stations
                             DO.Line line = dl.RequestLine(listOfLines.Current);
-                            int num = ListOfStations.Count();
                             
                             line.FirstStation = ListOfStations.ElementAt(0);//updating first station
-                            line.LastStation = ListOfStations.ElementAt(num-1);//updating last station
+                            line.LastStation = ListOfStations.ElementAt(ListOfStations.Count()-1);//updating last station
                             dl.UpdateLine(line);//updating line
                             using (var stations = ListOfStations.GetEnumerator())
                             {
@@ -399,6 +398,7 @@ namespace BL
                     }
                     
                     dl.DeleteLineStation(lineStation.Station, lineStation.LineId);//deletes the line station
+                    ListOfStations = dl.RequestStationsByLine(line.Id);//gets back the list of stations withouth the one that was deleted
                     using (var stations = ListOfStations.GetEnumerator())
                     {
                         while (stations.MoveNext()) 
