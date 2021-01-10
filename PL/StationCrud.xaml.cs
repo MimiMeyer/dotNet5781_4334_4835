@@ -29,7 +29,10 @@ namespace PL
         }
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-           
+            UpdateStation window = new UpdateStation(stationDataGrid.SelectedItem as BO.Station);
+            window.ShowDialog();
+
+
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {

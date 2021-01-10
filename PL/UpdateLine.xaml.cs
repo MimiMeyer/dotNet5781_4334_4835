@@ -15,18 +15,15 @@ using BLAPI;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for AddStation.xaml
+    /// Interaction logic for UpdateLine.xaml
     /// </summary>
-    public partial class AddStation : Window
+    public partial class UpdateLine : Window
     {
-        private BO.Station station = new BO.Station();
-        public AddStation()
+        public UpdateLine()
         {
-            
             InitializeComponent();
-            StationGrid.DataContext = station;  
         }
-        public BO.Station NewStation { get { return station; } }//returns user input 
 
+      
     }
 }
