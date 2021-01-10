@@ -30,9 +30,10 @@ namespace PL
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             BO.LineStation st = lineStationDataGrid.SelectedItem as BO.LineStation;
+
             try
             {
-                bl.DeleteLineStation(st.LineId, st.Station);
+                bl.DeleteLineStation(st);
             }
             catch (BO.LineIdException ex)
             {

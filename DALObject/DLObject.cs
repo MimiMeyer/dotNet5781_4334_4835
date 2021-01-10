@@ -82,7 +82,10 @@ namespace DL
             {
                 DataSource.listLineStation.Add(lineStation.Clone()); //add line station to list
             }
-            throw new DO.LineIdException(lineStation.Station, $"station already exists in line: {lineStation.Station}");
+            else
+            {
+                throw new DO.LineIdException(lineStation.Station, $"station already exists in line: {lineStation.Station}");
+            }
 
         }
         public IEnumerable<int> RequestStationsByLine(int lineID)//returns list of stations for requested line.
@@ -152,7 +155,7 @@ namespace DL
             else
                 throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
         }
-       public void DeleteLineStationbyStation(int station) ////deletes all line stations with same Station
+        public void DeleteLineStationbyStation(int station) ////deletes all line stations with same Station
         {
             if (RequestLinesByStation(station) != null)//if it equels null it means no lines does not go through requested station
             {

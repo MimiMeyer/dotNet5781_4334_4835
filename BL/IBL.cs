@@ -31,7 +31,7 @@ namespace BLAPI
         IEnumerable<BO.Line> GetAlllinesByStation(int code);//returns all lines that go through requested station
         void AddStationToLine(BO.LineStation lineStation);//add station to line
         void UpdateLineStation(BO.LineStation lineStation); //updating line station
-        void DeleteLineStation(int lineId, int code);//deletes line station
+        void DeleteLineStation(BO.LineStation lineStation);//deletes line station
         #endregion
         #region LineTrip
         void AddLineTrip(BO.LineTrip lineTrip);//add LineTrip
