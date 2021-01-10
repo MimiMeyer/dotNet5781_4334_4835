@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BO
 {
 
-    #region LineId
+    #region Line
     public class LineIdException : Exception
     {
         public int ID;
@@ -18,10 +18,19 @@ namespace BO
 
         public override string ToString() => base.ToString() + $", bad line id: {ID}";
     }
+    public class LineAreaException : Exception
+    {
+        public string Area;
+       
+        public LineAreaException(string area, string message) :
+            base(message) => Area = area;
+
+        public override string ToString() => base.ToString() + $", bad line Area: {Area}";
+    }
     #endregion
 
- 
-   
+
+
     #region Station
     public class StationCodeException : Exception
     {
