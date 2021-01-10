@@ -12,7 +12,7 @@ namespace BO
         public string Name { get; set; }//name of station
         public double Longitude { get; set; }
         public double Lattitude { get; set; }
-
         public string Address { get; set; }//כתובת
+        
     }
 }

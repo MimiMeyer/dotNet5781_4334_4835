@@ -17,24 +17,29 @@ namespace DLAPI
         IEnumerable<DO.Line> RequestAllLines();
         void UpdateLine(DO.Line line);
         void DeleteLine(int id);
+        
 
         #endregion 
         #region LineStation
         void AddLineStation(DO.LineStation Line);
     
         DO.LineStation RequestLineStation(int Station,int lineId);
-        IEnumerable<DO.LineStation> RequestAllLinesStation();
+        IEnumerable<DO.LineStation> RequestAllLinesStation(int id);
         void UpdateLineStation(DO.LineStation Line);
         void DeleteLineStationbyLine(int lineId);
         void DeleteLineStationbyStation(int code);
         void DeleteLineStation(int Station, int lineId);
-        #endregion 
+        IEnumerable<int> RequestStationsByLine(int lineID);//returns list of stations for requested line.
+
+        IEnumerable<int> RequestLinesByStation(int Station);//returns list of lines for requested station.
+        IEnumerable<DO.Line> GetLinesByStation(int Station);//returns list of lines for requested station.
+        #endregion
         #region LineTrip
         void AddLineTrip(DO.LineTrip lineTrip);
         DO.LineTrip RequestLineTrip( int lineId, TimeSpan StartAt);
         IEnumerable<DO.LineTrip> RequestAllLineTrips();
-        IEnumerable<int> RequestStationsByLine(int lineID);//returns list of stations for requested line.
-        IEnumerable<int> RequestLinesByStation(int Station);//returns list of lines for requested station.
+      
+       
         void UpdateLineTrip(DO.LineTrip lineTrip);
         void DeleteLineTrip(int lineId, TimeSpan StartAt);
         #endregion
@@ -65,6 +70,7 @@ namespace DLAPI
         #region AdjacentStations
         void AddAdjacentStations(DO.AdjacentStations Stations);
         DO.AdjacentStations RequestAdjacentStations(int station1, int station2);
+         DO.AdjacentStations RequestOneAdjacentStation(int station1);//for bl to get time and distance
         IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations();
         void UpdateAdjacentStations(DO.AdjacentStations Stations);
         void DeleteAdjacentStations(int station1,int station2);

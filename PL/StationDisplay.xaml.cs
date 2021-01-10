@@ -25,8 +25,18 @@ namespace PL
         {
             InitializeComponent();
             stationDataGrid.DataContext = bl.GetAllStations();
+            stationDataGrid.IsReadOnly = true;
+        }
+        private void Details_Click(object sender, RoutedEventArgs e)
+        {
+            StationDetails window = new StationDetails(stationDataGrid.SelectedItem as BO.Station);//sending line that was chosen to LineDetails
+            window.Show();
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StationCrud window= new StationCrud();
+            window.Show();
+        }
     }
 }

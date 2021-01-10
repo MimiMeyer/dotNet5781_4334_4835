@@ -1,47 +1,51 @@
-﻿<Window
+﻿<Window x:Class="PL.LineCrud"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
-        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.LineDisplay"
         mc:Ignorable="d"
-        Title="LineDisplay" WindowState="Maximized"
-    >
-   
-    <Grid  >
+        Title="LineCrud" Height="450" Width="800">
+    <Grid>
         <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="122,105,124,199" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="codeColumn" Header="מספר קו" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                       
+                        <DataTemplate>
+
                             <TextBlock x:Name="CodeTextBox" Text="{Binding Code}" TextAlignment="Center" />
-                           
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn x:Name="IdColumn" Header="ת.ז קו" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                           
-                          <TextBlock x:Name="IdTextBox" Text="{Binding Id}" TextAlignment="Center" />
+
+                            <TextBlock x:Name="IdTextBox" Text="{Binding Id}" TextAlignment="Center" />
 
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                    
+
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn x:Name="DetailColumn" Header="פרטי הקו" Width="10*" >
+                <DataGridTemplateColumn x:Name="DeleteColumn" Header="מחיקת התחנה " Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="LineDetails" Content="פרטים"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Details_Click"  />
+                            <Button x:Name="DeleteStation" Content="מחק"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Delete_Click"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="UpdateColumn" Header="עדכון התחנה " Width="10*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="UpdateStation" Content="עדכון"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Update_Click"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="פעולות נוספות" HorizontalAlignment="Left" Height="34" Margin="122,336,0,0" VerticalAlignment="Top" Width="92" Click="Button_Click"/>
+        <Button Content="הוספת קו" HorizontalAlignment="Left" Height="52" Margin="122,263,0,0" VerticalAlignment="Top" Width="102" Click="Button_Click"/>
     </Grid>
 </Window>

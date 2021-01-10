@@ -15,54 +15,11 @@ namespace BL
         {
             BO.Line LineBO = new BO.Line();
             int Id = LineDO.Id;
-            IEnumerable<int> stations = dl.RequestStationsByLine(Id);//gets stations that kine go through
+            LineBO.Stations = dl.RequestStationsByLine(Id);//gets stations that kine go through
             LineDO.CopyPropertiesTo(LineBO);//copys the properties from do to bo for the Line
-            for (int i = 0; i < stations.Count(); i++)//list will go over 
-            {
-                DO.AdjacentStations st = dl.RequestAdjacentStations(stations.ElementAt(i), stations.ElementAt((i + 1)));//gets the requested AdjacentStation for the time and distance
-                BO.LineStation lineStation = new BO.LineStation();//new line station
-                lineStation.Distance = st.Distance;//gets the AdjacentStation distance
-                lineStation.Time = st.Time;//gets the AdjacentStation time
-                lineStation.LineId = LineBO.Id;//gets the line
-                lineStation.Station = stations.ElementAt(i);//gets the station
-                lineStation.LineStationIndex = i;//gets the index
-                AddDataStationsToLine(lineStation);//adds the line station
-
-            }
             return LineBO;
         }
-        public void AddDataStationsToLine(BO.LineStation lineStation)//adds the stations from the DataSource;
-        {
-            BO.Line line = GetLine(lineStation.LineId);//gets the line for the line id
-            DO.Station st = dl.RequestStation(lineStation.Station);//if station does not exist in list we will throw an exception
-            DO.Line l = dl.RequestLine(lineStation.LineId);//if line does not exist in list we will throw an exception
-            if (lineStation.LineStationIndex == 0)//add to first
-            {
-                line.Stations.ToList().Insert(0, lineStation.Station);//adds station to beginging of list
-                line.FirstStation = lineStation.Station;//updates First Station
 
-            }
-            else//if was not added as the first will continue checking
-            {
-                if (lineStation.LineStationIndex > line.Stations.Count())//if indexer is bigger then the number bus stations throws an exception
-
-                    throw new BO.LineStationIndexException(lineStation.LineStationIndex, "index should be less than or equal to number of stations in line");
-
-                if (lineStation.LineStationIndex == line.Stations.Count())//adds to last
-                {
-
-                    line.Stations.ToList().Add(lineStation.Station);//adds to end of list
-                    line.LastStation = lineStation.Station;//new last station
-                }
-                else if (lineStation.LineStationIndex < line.Stations.Count()) //adds to the middle
-                {
-                    line.Stations.ToList().Insert(lineStation.LineStationIndex, lineStation.Station);
-
-                }
-
-            }
-
-        }
         public BO.Line GetLine(int id)//returns requested line
         {
             DO.Line lineDO;
@@ -86,21 +43,21 @@ namespace BL
 
         public void AddLine(BO.Line line)//adds line
         {
-            DO.Line LineDO = new DO.Line();
-            line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
-            int count = GetAlllines().Count(l => l.Code == line.Code);
-            if (count >= 2)// throws exception if line already appears twice in list.
+            try
             {
-                throw new BO.LineIdException(line.Code, "Line Number already has back and forth buses");
-            }
-            if (count == 1)
-
-            {
-                DO.Line Line1 = dl.RequestLineByCode(line.Code);//returns the requested line that has the same bus line number.
-                if (Line1.FirstStation != LineDO.LastStation || LineDO.FirstStation != Line1.LastStation)//makes sure added line is the opposite route if has the same bus line number.
-                    throw new BO.LineIdException(line.Code, "The line is not traveling in the opposite direction so can't be added");
-                try
+                DO.Line LineDO = new DO.Line();
+                line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
+                int count = GetAlllines().Count(l => l.Code == line.Code);
+                if (count >= 2)// throws exception if line already appears twice in list.
                 {
+                    throw new BO.LineIdException(line.Code, "Line Number already has back and forth buses");
+                }
+                if (count == 1)
+
+                {
+                    DO.Line Line1 = dl.RequestLineByCode(line.Code);//returns the requested line that has the same bus line number.
+                    if (Line1.FirstStation != LineDO.LastStation || LineDO.FirstStation != Line1.LastStation)//makes sure added line is the opposite route if has the same bus line number.
+                        throw new BO.LineIdException(line.Code, "The line is not traveling in the opposite direction so can't be added");
                     DO.Station st = dl.RequestStation(LineDO.FirstStation);//if station does not exist will throw exception
                     st = dl.RequestStation(LineDO.LastStation);//if station does not exist will throw exception
                     line.Id = dl.AddLine(LineDO);//if exception was not thrown will addline and get back running id
@@ -114,17 +71,12 @@ namespace BL
                     last.LineId = line.Id;
                     AddStationToLine(first);//adding to list
                     AddStationToLine(last);//adding to list
-                }
-                catch (DO.StationCodeException ex)
-                {
-                    throw new BO.StationCodeException("station Code does not exist", ex);
-                }
 
-            }
-            if (count == 0)
-            {
-                try
+
+                }
+                if (count == 0)
                 {
+
                     DO.Station st = dl.RequestStation(LineDO.FirstStation);//if station does not exist will throw exception
                     st = dl.RequestStation(LineDO.LastStation);//if station does not exist will throw exception
                     line.Id = dl.AddLine(LineDO);//if exception was not thrown will addline and get back running id
@@ -138,12 +90,17 @@ namespace BL
                     last.LineId = line.Id;
                     AddStationToLine(first);//adding to list
                     AddStationToLine(last);//adding to list
-                }
-                catch (DO.StationCodeException ex)
-                {
-                    throw new BO.StationCodeException("station Code does not exist", ex);
-                }
 
+
+                }
+            }
+            catch (DO.LineIdException ex)
+            {
+                throw new BO.StationCodeException("Line Id already exists", ex);
+            }
+            catch (DO.StationCodeException ex)
+            {
+                throw new BO.StationCodeException("station Code does not exist", ex);
             }
 
         }
@@ -183,8 +140,10 @@ namespace BL
             BO.Station stationBO = new BO.Station();
             int code = StationDO.Code;
             StationDO.CopyPropertiesTo(stationBO);//copys the properties from do to bo for the station
+
             return stationBO;
         }
+
         public BO.Station GetStation(int code)//returns requested station
         {
             DO.Station StationDO;
@@ -206,21 +165,28 @@ namespace BL
         }
         public void AddStation(BO.Station station)//adds station
         {
-            DO.Station StationDO = new DO.Station();
-            station.CopyPropertiesTo(StationDO);//copys station properties into StationDO
-            if (station.Code < 0 || station.Code >= 1000000)//checks if station code is under 7 didgits
+            try
             {
-                throw new BO.StationCodeException(station.Code, "Station code must be under 7 digits");
+                DO.Station StationDO = new DO.Station();
+                station.CopyPropertiesTo(StationDO);//copys station properties into StationDO
+                if (station.Code < 0 || station.Code >= 1000000)//checks if station code is under 7 didgits
+                {
+                    throw new BO.StationCodeException(station.Code, "Station code must be under 7 digits");
+                }
+                if (station.Lattitude < 31 || station.Lattitude > 33.3)
+                {
+                    throw new BO.StationCoordinatesException(station.Lattitude, "Lattitude must be between -31 to 33.3");
+                }
+                if (station.Longitude < 34.3 || station.Longitude > 35.5)
+                {
+                    throw new BO.StationCoordinatesException(station.Longitude, "Longitude must be between -34.3 to 35.5");
+                }
+                dl.AddStation(StationDO);
             }
-            if (station.Lattitude < 31 || station.Lattitude > 33.3)
+            catch (DO.StationCodeException ex)
             {
-                throw new BO.StationCoordinatesException(station.Lattitude, "Lattitude must be between -31 to 33.3");
+                throw new BO.StationCodeException("Station code already exists", ex);
             }
-            if (station.Longitude < 34.3 || station.Longitude > 35.5)
-            {
-                throw new BO.StationCoordinatesException(station.Longitude, "Longitude must be between -34.3 to 35.5");
-            }
-            dl.AddStation(StationDO);
         }
 
 
@@ -277,14 +243,28 @@ namespace BL
         BO.LineStation LineStationDoBoAdapter(DO.LineStation LineStationDO) //convert  do to bo
         {
             BO.LineStation LineStationBO = new BO.LineStation();
-            int LineId = LineStationDO.LineId;
-            LineStationDO.CopyPropertiesTo(LineStationBO);//copys the properties from do to bo for the LineStation
 
+            LineStationDO.CopyPropertiesTo(LineStationBO);//copys the properties from do to bo for the LineStation
+            DO.AdjacentStations st = dl.RequestOneAdjacentStation(LineStationDO.Station);//gets the required AdjacentStation  with one station from datasource
+            if (st != null) //if st does not equal null then we want the ditance and time
+            {
+                LineStationBO.Distance = st.Distance;//gets distance
+                LineStationBO.Time = st.Time;//gets time
+            }
             return LineStationBO;
         }
-        public IEnumerable<int> GetAlllinesByStation(int code)//returns all lines that go through requested station
+        public IEnumerable<BO.LineStation> GetStationsForLine(int Id)//returns all stations that go through line
         {
-            return dl.RequestLinesByStation(code);
+            return from lineStationDO in dl.RequestAllLinesStation(Id)//gets all line stations for line from the function RequestAllLines
+                   orderby lineStationDO.Station//orders by id number
+                   select LineStationDoBoAdapter(lineStationDO);//each line goes to functionand changes to bo
+        }
+        public IEnumerable<BO.Line> GetAlllinesByStation(int code)//returns all lines that go through requested station
+        {
+
+            return from lineDO in dl.GetLinesByStation(code)//gets all lines that go through station from the function RequestAllLines
+                   orderby lineDO.Id//orders by id number
+                   select LineDoBoAdapter(lineDO);//each line goes to function and changes to bo
         }
 
         public void AddStationToLine(BO.LineStation lineStation)//add station to line

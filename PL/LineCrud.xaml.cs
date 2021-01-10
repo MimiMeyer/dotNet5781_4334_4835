@@ -12,33 +12,42 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
-
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for LineDisplay.xaml
+    /// Interaction logic for LineCrud.xaml
     /// </summary>
-    public partial class LineDisplay : Window
+    public partial class LineCrud : Window
     {
         IBL bl = BLFactory.GetBL("1");
-        public LineDisplay()
+        public LineCrud()
         {
+            
             InitializeComponent();
             lineDataGrid.DataContext = bl.GetAlllines();
             lineDataGrid.IsReadOnly = true;
-            
-
         }
-        private void Details_Click(object sender, RoutedEventArgs e)
+        private void Update_Click(object sender, RoutedEventArgs e)
         {
-            LineDetails window = new LineDetails(lineDataGrid.SelectedItem as BO.Line);//sending line that was chosen to LineDetails
-            window.Show();
-        }
 
+        }
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            BO.Line line = lineDataGrid.SelectedItem as BO.Line;
+            try
+            {
+                bl.DeleteLine(line.Id);//deletes line
+            }
+            
+            catch (BO.LineIdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LineCrud window = new LineCrud();
-            window.Show();
+
         }
     }
 }

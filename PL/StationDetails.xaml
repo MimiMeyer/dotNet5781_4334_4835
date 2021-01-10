@@ -1,0 +1,75 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.StationDetails"
+        mc:Ignorable="d"
+        Title="StationDetails" Height="450" Width="800"  >
+
+    <Grid >
+        <Grid x:Name="StationGrid"  HorizontalAlignment="Left" Margin="92,115,0,0" VerticalAlignment="Top" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="כתובת:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox  x:Name="addressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding Address, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center"/>
+        <Label Content="מספר תחנה:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+        <TextBox x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center" Width="120"/>
+        <Label Content="קו רוחב:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+        <TextBox x:Name="lattitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Lattitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True"  VerticalAlignment="Center" Width="120"/>
+        <Label Content="קו אורך:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Longitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True"  VerticalAlignment="Center" Width="120"/>
+        <Label Content="שם:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox  x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center"/>
+       </Grid>
+        <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="384,115,46,232" RowDetailsVisibilityMode="VisibleWhenSelected"    >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="lastStationColumn" Header="תחנת סיום" Width="5*"   >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <TextBlock x:Name="LastationTextBox" Text="{Binding LastStation}" TextAlignment="Center" />
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn x:Name="codeColumn" Header="קוד הקו" Width="5*"   >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <TextBlock x:Name="CodeTextBox" Text="{Binding Code}" TextAlignment="Center" />
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn x:Name="IdColumn" Header="ת.ז קו" Width="5*"  >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <TextBlock x:Name="IdTextBox" Text="{Binding Id}" TextAlignment="Center" />
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content=":פרטי התחנה" HorizontalAlignment="Left" Height="37" Margin="201,58,0,0" VerticalAlignment="Top" Width="99"/>
+        <Label Content=":פרטי הקווים העוברים בתחנה" HorizontalAlignment="Left" Height="37" Margin="575,58,0,0" VerticalAlignment="Top" Width="171"/>
+    </Grid>
+</Window>
+    

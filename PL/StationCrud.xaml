@@ -1,12 +1,11 @@
-﻿<Window
+﻿<Window x:Class="PL.StationCrud"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
-        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.StationDisplay"
         mc:Ignorable="d"
-        Title="StationDisplay" WindowState="Maximized" >
+        Title="StationCrud" Height="450" Width="800">
 
     <Grid  >
         <Grid.ColumnDefinitions>
@@ -25,16 +24,26 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="DetailColumn" Header="פרטי התחנה " Width="10*" >
+                <DataGridTemplateColumn x:Name="DeleteColumn" Header="מחיקת התחנה " Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="StationDetails" Content="פרטים"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Details_Click"  />
+                            <Button x:Name="DeleteStation" Content="מחק"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Delete_Click"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="UpdateColumn" Header="עדכון התחנה " Width="10*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="UpdateStation" Content="עדכון"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Update_Click"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="פעולות נוספות" HorizontalAlignment="Left" Height="46" Margin="10,429,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
+        <Button Content="הוספת תחנה" Height="44" Margin="134,341,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+
 
     </Grid>
+
+
 </Window>

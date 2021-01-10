@@ -72,7 +72,7 @@ namespace DL
             else
                 throw new DO.LineIdException(id, $"line Id does not exist: {id}");
         }
-
+      
         #endregion
         #region LineStation
         public void AddLineStation(DO.LineStation lineStation) //adds station to bus
@@ -97,6 +97,13 @@ namespace DL
                                               Select(lineStation => lineStation.LineId);
 
         }
+       public IEnumerable<DO.Line> GetLinesByStation(int Station)//returns list of lines for requested station.
+        {
+            IEnumerable<int> lines = RequestLinesByStation(Station);//gets line ids
+            IEnumerable < DO.Line > DOlines= DataSource.listLines.FindAll(line => lines.Contains(line.Id));//only adds line if it exists in line
+            return DOlines;
+        }
+       
         public DO.LineStation RequestLineStation(int Station, int lineId)//returns line station if it exists
         {
             DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId);//checks line station. if exists li will get the value of the chosen line.
@@ -116,9 +123,10 @@ namespace DL
         }
 
 
-        public IEnumerable<DO.LineStation> RequestAllLinesStation() //returns a copy of list of  Line stations
+        public IEnumerable<DO.LineStation> RequestAllLinesStation(int lineID) //returns a copy of list of  Line stations by line
         {
-            return from LineStation in DataSource.listLineStation
+            return from LineStation in DataSource.listLineStation.
+                   FindAll(lineStation => lineStation.LineId == lineID)
                    select LineStation.Clone();
         }
         public void UpdateLineStation(DO.LineStation lineStation)
@@ -373,6 +381,15 @@ namespace DL
                 return st.Clone();//returns the chosen AdjacentStations
             else
                 throw new DO.AdjacentStationseException(station1, station2, "AdjacentStations does't exist:");
+        }
+        public DO.AdjacentStations RequestOneAdjacentStation(int station1)//for bl to get time and distance
+        {
+            DO.AdjacentStations st = DataSource.listAdjacentStations.Find(s => s.Station1 == station1 );//checks AdjacentStations. if exists st will get the values of the chosen AdjacentStations.
+
+            if (st != null)//if st = null that means AdjacentStations does not exist
+                return st.Clone();//returns the chosen AdjacentStations
+            else
+                return null;
         }
         public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()//returns all AdjacentStations
         {
