@@ -27,7 +27,7 @@ namespace PL
             stationDataGrid.IsReadOnly = true;
 
         }
-        private void Update_Click(object sender, RoutedEventArgs e)
+        private void Update_Click(object sender, RoutedEventArgs e)//updating the distance an time for station
         {
             BO.Station st = stationDataGrid.SelectedItem as BO.Station;
             UpdateStation window = new UpdateStation(st);
@@ -66,22 +66,22 @@ namespace PL
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)//adding a Station
         {
-            AddStation window = new AddStation();
+            AddStation window = new AddStation();//opens up window addstation
             window.ShowDialog();
-            BO.Station station = window.NewStation;
+            BO.Station station = window.NewStation;//gets new station 
             try
             {
-                bl.AddStation(station);
+                bl.AddStation(station);//adds station
             }
             catch (BO.StationCodeException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);//if station already exists will show message
             }
             catch (BO.StationCoordinatesException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);//if the coordinates aren't good will show message
             }
         }
     }

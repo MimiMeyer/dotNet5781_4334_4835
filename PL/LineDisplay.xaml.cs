@@ -24,18 +24,18 @@ namespace PL
         public LineDisplay()
         {
             InitializeComponent();
-            lineDataGrid.DataContext = bl.GetAlllines();
+            lineDataGrid.DataContext = bl.GetAlllines();//all lines
             lineDataGrid.IsReadOnly = true;
             
 
         }
-        private void Details_Click(object sender, RoutedEventArgs e)
+        private void Details_Click(object sender, RoutedEventArgs e)//will open LineDetails window
         {
             LineDetails window = new LineDetails(lineDataGrid.SelectedItem as BO.Line);//sending line that was chosen to LineDetails
             window.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)//will  open LineCrud window
         {
             LineCrud window = new LineCrud();
             window.Show();

@@ -22,8 +22,8 @@ namespace PL
         public AddLine()
         {
             InitializeComponent();
-            LineGrid.DataContext = line;
-
+            LineGrid.DataContext = line;//new line
+            areaComboBox.ItemsSource = Enum.GetValues(typeof (BO.Areas));//combo box for areas
 
         }
         public BO.Line NewLine { get { return line; } }//returns user input 

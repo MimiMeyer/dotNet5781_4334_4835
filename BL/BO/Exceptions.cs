@@ -20,9 +20,9 @@ namespace BO
     }
     public class LineAreaException : Exception
     {
-        public string Area;
+        public BO.Areas Area;
        
-        public LineAreaException(string area, string message) :
+        public LineAreaException(BO.Areas area, string message) :
             base(message) => Area = area;
 
         public override string ToString() => base.ToString() + $", bad line Area: {Area}";

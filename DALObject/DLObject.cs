@@ -91,6 +91,7 @@ namespace DL
         public IEnumerable<int> RequestStationsByLine(int lineID)//returns list of stations for requested line.
         {
             return DataSource.listLineStation.FindAll(lineStation => lineStation.LineId == lineID).
+                                              OrderBy(lineStation=>lineStation.LineStationIndex).
                                               Select(lineStation => lineStation.Station);
 
         }
@@ -120,8 +121,8 @@ namespace DL
 
                 throw new DO.StationCodeException(Station, $"Station does't exist : {Station}");
 
-
-            return li.Clone();//returns the chosen line
+            DO.LineStation lineStation = DataSource.listLineStation.Find(l => l.LineId == lineId && l.Station==Station);
+            return lineStation.Clone();//returns the chosen line
 
         }
 
@@ -383,17 +384,9 @@ namespace DL
             if (st != null)//if st = null that means AdjacentStations does not exist
                 return st.Clone();//returns the chosen AdjacentStations
             else
-                throw new DO.AdjacentStationseException(station1, station2, "AdjacentStations does't exist:");
-        }
-        public DO.AdjacentStations RequestOneAdjacentStation(int station1)//for bl to get time and distance
-        {
-            DO.AdjacentStations st = DataSource.listAdjacentStations.Find(s => s.Station1 == station1 );//checks AdjacentStations. if exists st will get the values of the chosen AdjacentStations.
-
-            if (st != null)//if st = null that means AdjacentStations does not exist
-                return st.Clone();//returns the chosen AdjacentStations
-            else
                 return null;
         }
+       
         public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()//returns all AdjacentStations
         {
             return from AdjacentStations in DataSource.listAdjacentStations

@@ -14,30 +14,34 @@ namespace PL
             lineStationDataGrid.DataContext = bl.GetStationsForLine(line.Id);//gets all the stations for line
             lineStationDataGrid.IsReadOnly = true;
         }
-        private void Update_Click(object sender, RoutedEventArgs e)
+
+        private void Update_Click(object sender, RoutedEventArgs e)//updates distance and time for lineStation
         {
             BO.LineStation st = lineStationDataGrid.SelectedItem as BO.LineStation;
             UpdateLineStation window = new UpdateLineStation(st);
-            window.ShowDialog();
-            try { bl.UpdateLineStation(st); }
+            window.ShowDialog();//opens window to update
+            try 
+            { 
+                bl.UpdateLineStation(st);//updates 
+            }
             catch (BO.LineIdException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);//if exception was thrown will show message
             }
 
 
         }
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)//deletes line station
         {
             BO.LineStation st = lineStationDataGrid.SelectedItem as BO.LineStation;
 
             try
             {
-                bl.DeleteLineStation(st);
+                bl.DeleteLineStation(st);//deletes
             }
             catch (BO.LineIdException ex)
             {
-                MessageBox.Show(ex.Message); 
+                MessageBox.Show(ex.Message); //if exception was thrown will show message
             }
             catch (BO.StationCodeException ex)
             {

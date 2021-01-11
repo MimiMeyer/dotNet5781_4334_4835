@@ -25,12 +25,12 @@ namespace PL
         {
             InitializeComponent();
         }
-        private void Manegement_Click(object sender, RoutedEventArgs e)
+        private void Manegement_Click(object sender, RoutedEventArgs e)//opens Management window
         {
             Management window = new Management();
             window.ShowDialog();
         }
-        private void User_Click(object sender, RoutedEventArgs e)
+        private void User_Click(object sender, RoutedEventArgs e)//opens user window
         {
             User window = new User();
             window.ShowDialog();

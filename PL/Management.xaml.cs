@@ -24,14 +24,14 @@ namespace PL
         {
             InitializeComponent();
         }
-        private void StationDisplay_Click(object sender, RoutedEventArgs e)
+        private void StationDisplay_Click(object sender, RoutedEventArgs e)//opens Station Display
         {
             StationDisplay window = new StationDisplay();
             window.ShowDialog();
 
         }
 
-        private void LineDisplay_Click(object sender, RoutedEventArgs e)
+        private void LineDisplay_Click(object sender, RoutedEventArgs e)//opens Line Display
         {
             LineDisplay window = new LineDisplay();
             window.ShowDialog();

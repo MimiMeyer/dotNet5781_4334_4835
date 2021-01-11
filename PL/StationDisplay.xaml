@@ -14,7 +14,7 @@
             <ColumnDefinition Width="273*"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="stationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39,112,113" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2">
+        <DataGrid x:Name="stationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39,112,179" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="codeColumn" Header="מספר תחנה" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>
@@ -34,7 +34,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="פעולות נוספות" HorizontalAlignment="Left" Height="46" Margin="10,429,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
+        <Button Content="פעולות נוספות" HorizontalAlignment="Left" Height="46" Margin="10,364,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
 
     </Grid>
 </Window>

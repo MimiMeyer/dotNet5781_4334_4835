@@ -24,7 +24,7 @@ namespace PL
         public AddLineStation()
         {
             InitializeComponent();
-            LineStationGrid.DataContext = station;
+            LineStationGrid.DataContext = station;//new line station
     
 
 

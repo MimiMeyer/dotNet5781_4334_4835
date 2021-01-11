@@ -23,15 +23,15 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Area:"/>
-            <TextBox x:Name="areaTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Area, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Code:"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="אזור:"/>
+            <TextBox x:Name="areaTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Area, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="מספר:"/>
             <TextBox x:Name="codeTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="First Station:"/>
-            <TextBox x:Name="firstStationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding FirstStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Id:"/>
-            <TextBox x:Name="idTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Id, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Last Station:"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="תחנה ראשונה:"/>
+            <TextBox x:Name="firstStationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding FirstStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ת.ז:"/>
+            <TextBox x:Name="idTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Id, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="תחנה אחרונה:"/>
             <TextBox x:Name="lastStationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LastStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
         <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="340,92,72,178" RowDetailsVisibilityMode="VisibleWhenSelected">
@@ -39,7 +39,7 @@
                 
                
                
-                <DataGridTemplateColumn x:Name="distanceColumn" Header="מרחק לתחנה הבאה" Width="5*"  >
+                <DataGridTemplateColumn x:Name="distanceColumn" Header="מרחק לתחנה הבאה" Width="7*"  >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
@@ -51,7 +51,7 @@
                 </DataGridTemplateColumn>
 
 
-                <DataGridTemplateColumn x:Name="timeColumn" Header="זמן בדקות לתחנה הבאה" Width="5*"  >
+                <DataGridTemplateColumn x:Name="timeColumn" Header="זמן בדקות לתחנה הבאה" Width="7*"  >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 

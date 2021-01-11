@@ -27,7 +27,7 @@ namespace PL
             lineDataGrid.DataContext = bl.GetAlllines();
             lineDataGrid.IsReadOnly = true;
         }
-        private void Update_Click(object sender, RoutedEventArgs e)// delete or update linestation
+        private void Update_Click(object sender, RoutedEventArgs e)//shows LineStation where we can delete and update linestations
         {
             BO.Line line = lineDataGrid.SelectedItem as BO.Line;
             LineStation window = new LineStation(line);
@@ -44,12 +44,12 @@ namespace PL
             
             catch (BO.LineIdException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);//if line doesnt exist
             }
 
         }
         
-        private void AddStation_Click(object sender, RoutedEventArgs e)//add line station to line
+        private void AddStation_Click(object sender, RoutedEventArgs e)//add line station to line and opens AddLineStation
         {
             BO.Line line = lineDataGrid.SelectedItem as BO.Line;
             AddLineStation window = new AddLineStation();
@@ -58,7 +58,7 @@ namespace PL
             station.LineId = line.Id;
             try 
             {
-                bl.AddStationToLine(station);
+                bl.AddStationToLine(station);//add station to line
             }
             catch (BO.LineStationIndexException ex)
             {
@@ -73,7 +73,7 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)//add bus
+        private void Button_Click(object sender, RoutedEventArgs e)//add bus and opens AddLine window 
         {
             
             AddLine window = new AddLine();
@@ -81,7 +81,7 @@ namespace PL
            BO.Line line= window.NewLine;
             try
             {
-                bl.AddLine(line);
+                bl.AddLine(line);//add bus
             }
             catch (BO.LineIdException ex) 
             {
@@ -89,8 +89,10 @@ namespace PL
             }
             catch (BO.StationCodeException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);// if first and last station dont exist
             }
+            
+            
 
         }
     }

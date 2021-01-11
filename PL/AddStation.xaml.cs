@@ -24,7 +24,7 @@ namespace PL
         {
             
             InitializeComponent();
-            StationGrid.DataContext = station;  
+            StationGrid.DataContext = station;//new station
         }
         public BO.Station NewStation { get { return station; } }//returns user input 
 

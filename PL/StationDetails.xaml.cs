@@ -23,9 +23,9 @@ namespace PL
         public StationDetails(BO.Station station)
         {
             InitializeComponent();
-            StationGrid.DataContext = station;
+            StationGrid.DataContext = station;//station details
 
-            lineDataGrid.DataContext = bl.GetAlllinesByStation(station.Code);
+            lineDataGrid.DataContext = bl.GetAlllinesByStation(station.Code);//details of lines that go through station
             lineDataGrid.IsReadOnly = true;
            
 
