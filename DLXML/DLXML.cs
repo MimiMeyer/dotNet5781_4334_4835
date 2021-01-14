@@ -31,7 +31,7 @@ namespace DL
         #endregion
         #region Line
 
-        public int AddLine(DO.Line line) 
+        public int AddLine(DO.Line line) //adds line and returns running number
         {
             
         }
@@ -92,24 +92,64 @@ namespace DL
                     }
                    );
         }
-        public void UpdateLine(DO.Line line)
+        public void UpdateLine(DO.Line line)//updates line
         {
+            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets wanted xml
+
+            XElement lin = (from l in linesRootElem.Elements()
+                            where int.Parse(l.Element("ID").Value) == line.Id//finds the line with same id
+                            select l).FirstOrDefault();
+
+            if (lin != null)//the line exists
+            {
+
+                lin.Element("Id").Value = line.Id.ToString();//updating id
+                lin.Element("Code").Value = line.Code.ToString();//updating code
+                lin.Element("Area").Value = line.Area.ToString();//updating area
+                lin.Element("FirstStation").Value = line.FirstStation.ToString();//updating first station
+                lin.Element("LastStation").Value = line.LastStation.ToString();//updating last station
+ 
+                XMLTools.SaveListToXMLElement(linesRootElem, linesPath);//updating xml
+            }
+            else//the line doesnt exist
+                throw new DO.LineIdException(line.Id, $"Line Doesn't exist: {line.Id}");
         }
         public void DeleteLine(int id)
-        { 
+        {
+            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets wanted xml
+
+            XElement lin = (from l in linesRootElem.Elements()
+                            where int.Parse(l.Element("Id").Value) == id//finds the line with the wante id
+                            select l).FirstOrDefault();
+
+            if (lin != null)//the line exists
+            {
+                lin.Remove();//deletes line
+                XMLTools.SaveListToXMLElement(linesRootElem, linesPath);//updating xml
+            }
+            else//the line doesnt exist
+                throw new DO.LineIdException(id, $"Line Doesn't exist: {id}");
+
         }
 
 
         #endregion
         #region LineStation
-        public void AddLineStation(DO.LineStation Line) { }
+        public void AddLineStation(DO.LineStation Line)
+        {
+           
+        }
         public DO.LineStation RequestLineStation(int Station, int lineId) { }
         public IEnumerable<DO.LineStation> RequestAllLinesStation(int id) { }
         public void UpdateLineStation(DO.LineStation Line) { }
         public void DeleteLineStationbyLine(int lineId) { }
         public void DeleteLineStationbyStation(int code) { }
         public void DeleteLineStation(int Station, int lineId) { }
-        public IEnumerable<int> RequestStationsByLine(int lineID) { }
+        public IEnumerable<int> RequestStationsByLine(int lineID)
+        {
+           
+
+        }
         public IEnumerable<int> RequestLinesByStation(int Station) { }
         public IEnumerable<DO.Line> GetLinesByStation(int Station) { }
         #endregion
@@ -138,18 +178,34 @@ namespace DL
         #endregion
         #region User
 
-        public void AddUser(DO.User user) { }
-        public DO.User RequestUser(string userName) { }
-        public IEnumerable<DO.User> RequestAllUsers() { }
+        public void AddUser(DO.User user) 
+        { 
+        }
+        public DO.User RequestUser(string userName) 
+        {
+        }
+        public IEnumerable<DO.User> RequestAllUsers()
+        { 
+        }
         public void UpdateUser(DO.User user) { }
         public void DeleteUser(string userName) { }
         #endregion
         #region AdjacentStations
-        public void AddAdjacentStations(DO.AdjacentStations Stations) { }
-        public DO.AdjacentStations RequestAdjacentStations(int station1, int station2) { }
-        public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations() { }
-        public void UpdateAdjacentStations(DO.AdjacentStations Stations) { }
-        public void DeleteAdjacentStations(int station1, int station2) { }
+        public void AddAdjacentStations(DO.AdjacentStations Stations) 
+        { 
+        }
+        public DO.AdjacentStations RequestAdjacentStations(int station1, int station2)
+        { 
+        }
+        public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations() 
+        { 
+        }
+        public void UpdateAdjacentStations(DO.AdjacentStations Stations) 
+        {
+        }
+        public void DeleteAdjacentStations(int station1, int station2) 
+        {
+        }
         #endregion
 
 
