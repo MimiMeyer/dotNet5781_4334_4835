@@ -19,7 +19,7 @@ namespace PL
     /// </summary>
     public partial class AddStation : Window
     {
-        private BO.Station station = new BO.Station();
+        private BO.Station station = new BO.Station();//new station
         public AddStation()
         {
             

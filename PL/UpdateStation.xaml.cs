@@ -22,7 +22,7 @@ namespace PL
         public UpdateStation(BO.Station st)
         {
             InitializeComponent();
-            StationGrid.DataContext = st;
+            StationGrid.DataContext = st;//the required station
             
 
         }

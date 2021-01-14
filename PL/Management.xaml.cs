@@ -27,7 +27,7 @@ namespace PL
         private void StationDisplay_Click(object sender, RoutedEventArgs e)//opens Station Display
         {
             StationDisplay window = new StationDisplay();
-            window.ShowDialog();
+            window.ShowDialog();//cant do anything in other windows till you close it
 
         }
 

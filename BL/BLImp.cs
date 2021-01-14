@@ -47,7 +47,7 @@ namespace BL
                 DO.Line LineDO = new DO.Line();
                 line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
            
-                int count = GetAlllines().Count(l => l.Code == line.Code);
+                int count = GetAlllines().Count(l => l.Code == line.Code);//count how many times the same bus number exists in the list of lines
             
                 if (count >= 2)// throws exception if line already appears twice in list.
                 {
@@ -63,55 +63,54 @@ namespace BL
 
 
                 }
-                if (count == 0)
+                if (count == 0)//line number doesnt exist
                 {
 
-                    HelpAddLine(line, LineDO);//adds the line
+                    HelpAddLine(line, LineDO);//adds the line 
 
                 }
             }
             catch (DO.LineIdException ex)
             {
-                throw new BO.LineIdException("Line Id already exists", ex);
+                throw new BO.LineIdException("Line Id already exists", ex);//if line id already exists
             }
-            catch (DO.StationCodeException ex)
+          
+
+        }
+        public void HelpAddLine(BO.Line line, DO.Line LineDO)//adds line
+        {
+            try { 
+                DO.Station st = dl.RequestStation(LineDO.FirstStation);//if station does not exist will throw exception
+                st = dl.RequestStation(LineDO.LastStation);//if station does not exist will throw exception
+                line.Id = dl.AddLine(LineDO);//if exception was not thrown will addline and get back running id
+                DO.LineStation firstLineStation = new DO.LineStation();//new line station
+                DO.LineStation lastLineStation = new DO.LineStation();//new line station
+                firstLineStation.Station = line.FirstStation;//inializing first station
+                firstLineStation.LineStationIndex = 0;
+                firstLineStation.LineId = line.Id;//gets line id
+                lastLineStation.Station = line.LastStation;//inializing last station
+                lastLineStation.LineStationIndex = 1;
+                lastLineStation.LineId = line.Id;//gets line id
+                dl.AddLineStation(firstLineStation);//adding to list
+                dl.AddLineStation(lastLineStation);//adding to list
+                DO.AdjacentStations adj = dl.RequestAdjacentStations(firstLineStation.Station, lastLineStation.Station);
+                if (adj == null)//only if doesn't exist add
+                {
+                    DO.AdjacentStations adjacentStations = new DO.AdjacentStations();
+                    adjacentStations.Station1 = firstLineStation.Station;//station1 is first station
+                    adjacentStations.Station2 = lastLineStation.Station;//station2 is last station
+                    adjacentStations.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km ;
+                    adjacentStations.Time = adjacentStations.Distance * 2;//assuming eack km takes 2 minutes
+                    dl.AddAdjacentStations(adjacentStations);//adding new adj stations
+                }
+            }
+            catch (DO.StationCodeException ex)//if station code doesnt exist
             {
                 throw new BO.StationCodeException("station Code does not exist", ex);
             }
-
-        }
-        public  void HelpAddLine(BO.Line line, DO.Line LineDO)//adds line
-        {
-            DO.Station st = dl.RequestStation(LineDO.FirstStation);//if station does not exist will throw exception
-            st = dl.RequestStation(LineDO.LastStation);//if station does not exist will throw exception
-            line.Id = dl.AddLine(LineDO);//if exception was not thrown will addline and get back running id
-            BO.LineStation first = new BO.LineStation();
-            BO.LineStation last = new BO.LineStation();
-            first.Station = line.FirstStation;//inializing first station
-            first.LineStationIndex = 0;
-            first.LineId = line.Id;
-            last.Station = line.LastStation;//inializing last station
-            last.LineStationIndex = 1;
-            last.LineId = line.Id;
-            DO.LineStation firstDO = new DO.LineStation();
-            first.CopyPropertiesTo(firstDO);//changing from bo to do
-            dl.AddLineStation(firstDO);//adding to list
-            DO.LineStation lastDO = new DO.LineStation();
-            last.CopyPropertiesTo(lastDO);//changing from bo to do
-            dl.AddLineStation(lastDO);//adding to list
-            DO.AdjacentStations adj = dl.RequestAdjacentStations(first.Station, last.Station);
-            if (adj == null)//only if doesn't exist add
-            {
-                DO.AdjacentStations adjacentStations = new DO.AdjacentStations();
-                adjacentStations.Station1 = first.Station;
-                adjacentStations.Station2 = last.Station;
-                adjacentStations.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km ;
-                adjacentStations.Time = adjacentStations.Distance * 2;
-                dl.AddAdjacentStations(adjacentStations);//adding new adj stations
-            }
-        }
-
-        public void UpdateLine(BO.Line line)//updates a line
+        } 
+       
+    public void UpdateLine(BO.Line line)//updates a line
         {
             DO.Line LineDO = new DO.Line();
             line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
@@ -131,7 +130,7 @@ namespace BL
             try
             {
                 dl.DeleteLine(Id);//deletes the line
-                dl.DeleteLineStationbyLine(Id);//deletes all the stations for that line
+                dl.DeleteLineStationbyLine(Id);//deletes all the linestations for that line
 
             }
             catch (DO.LineIdException ex)//if line id does not exist will throw exception
@@ -244,28 +243,23 @@ namespace BL
                 {
                     dl.DeleteStation(code);
                     
-                    using (var listOfLines = lines.GetEnumerator())//going over the lines to update their LineStation
+                    using (var listOfLines = lines.GetEnumerator())//going over the lines to update their Stations
                     {
                         while (listOfLines.MoveNext())
                         {
-                            int count = 0;
 
-                            IEnumerable<int> ListOfStations = dl.RequestStationsByLine(listOfLines.Current);//gets back list of stations
-                            DO.Line line = dl.RequestLine(listOfLines.Current);
+                            IEnumerable<int> ListOfStations = dl.RequestStationsByLine(listOfLines.Current);//gets back list of stations for line
 
-                            line.FirstStation = ListOfStations.ElementAt(0);//updating first station
-                            line.LastStation = ListOfStations.ElementAt(ListOfStations.Count() - 1);//updating last station
-                            dl.UpdateLine(line);//updating line
                             using (var stations = ListOfStations.GetEnumerator())
                             {
 
                                 while (stations.MoveNext())
                                 {
                                     if (stations.Current == code) 
-                                    { BO.LineStation ls = new BO.LineStation();
-                                        ls.LineId = listOfLines.Current;
+                                    { BO.LineStation ls = new BO.LineStation();//new linestation
+                                        ls.LineId = listOfLines.Current;//current lineid
                                         ls.Station = code;
-                                        DeleteLineStation(ls);
+                                        DeleteLineStation(ls);//deletes lineStation
                                            
                                     }
 
@@ -283,7 +277,7 @@ namespace BL
 
 
             }
-            catch (DO.StationCodeException ex)
+            catch (DO.StationCodeException ex)//if station code does not exist
             {
                 throw new BO.StationCodeException("station Code does not exist", ex);
             }
@@ -312,7 +306,7 @@ namespace BL
         {
             return from lineStationDO in dl.RequestAllLinesStation(Id)//gets all line stations for line from the function RequestAllLines
                    orderby lineStationDO.LineStationIndex//orders by index
-                   select LineStationDoBoAdapter(lineStationDO);//each line goes to functionand changes to bo
+                   select LineStationDoBoAdapter(lineStationDO);//each line goes to functio and changes to bo
         }
         public IEnumerable<BO.Line> GetAlllinesByStation(int code)//returns all lines that go through requested station
         {
@@ -478,7 +472,7 @@ namespace BL
                             lineStationDO.LineId = line.Id;//same line id
                             lineStationDO.Station = stations.Current;//same station
                             dl.UpdateLineStation(lineStationDO);//updating linestation
-                            count++;//fpr index
+                            count++;//for index
 
 
                         }

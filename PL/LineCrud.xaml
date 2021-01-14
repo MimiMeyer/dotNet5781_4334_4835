@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LineCrud" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="122,105,124,199" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="122,105,55,199" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="codeColumn" Header="מספר קו" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>

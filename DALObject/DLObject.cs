@@ -91,7 +91,7 @@ namespace DL
         public IEnumerable<int> RequestStationsByLine(int lineID)//returns list of stations for requested line.
         {
             return DataSource.listLineStation.FindAll(lineStation => lineStation.LineId == lineID).
-                                              OrderBy(lineStation=>lineStation.LineStationIndex).
+                                              OrderBy(lineStation=>lineStation.LineStationIndex).//orders by index to make sure we get the list in the right order
                                               Select(lineStation => lineStation.Station);
 
         }

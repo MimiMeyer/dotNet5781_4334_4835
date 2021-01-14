@@ -33,7 +33,7 @@ namespace PL
         }
         private void Delete_Click(object sender, RoutedEventArgs e)//deletes line station
         {
-            BO.LineStation st = lineStationDataGrid.SelectedItem as BO.LineStation;
+            BO.LineStation st = lineStationDataGrid.SelectedItem as BO.LineStation;//the wanted line station
 
             try
             {
@@ -41,11 +41,11 @@ namespace PL
             }
             catch (BO.LineIdException ex)
             {
-                MessageBox.Show(ex.Message); //if exception was thrown will show message
+                MessageBox.Show(ex.Message); //if line doesnt exist or has 2 stations
             }
             catch (BO.StationCodeException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);//if station code doesnt exist
             }
 
         }

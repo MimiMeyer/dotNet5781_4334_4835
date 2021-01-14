@@ -25,7 +25,7 @@ namespace PL
         {
             InitializeComponent();
             LineDataGrid.DataContext = line;//gets line
-            lineStationDataGrid.IsReadOnly = true;
+            lineStationDataGrid.IsReadOnly = true;//cant change
             lineStationDataGrid.DataContext = bl.GetStationsForLine(line.Id);//gets all the stations for line
             lineStationDataGrid.IsReadOnly = true;
 

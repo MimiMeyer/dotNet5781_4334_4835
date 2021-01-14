@@ -24,16 +24,16 @@ namespace PL
         public StationDisplay()
         {
             InitializeComponent();
-            stationDataGrid.DataContext = bl.GetAllStations();//all stations
+            stationDataGrid.DataContext = bl.GetAllStations();//gets all stations from bl
             stationDataGrid.IsReadOnly = true;
         }
-        private void Details_Click(object sender, RoutedEventArgs e)//opens StationDetails window 
+        private void Details_Click(object sender, RoutedEventArgs e)//opens StationDetails window pratim
         {
             StationDetails window = new StationDetails(stationDataGrid.SelectedItem as BO.Station);//sending line that was chosen to LineDetails
             window.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)//opens StationCrud window
+        private void Button_Click(object sender, RoutedEventArgs e)//opens StationCrud window peulut nosafot
         {
             StationCrud window= new StationCrud();
             window.Show();

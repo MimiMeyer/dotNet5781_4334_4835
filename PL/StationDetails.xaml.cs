@@ -23,10 +23,10 @@ namespace PL
         public StationDetails(BO.Station station)
         {
             InitializeComponent();
-            StationGrid.DataContext = station;//station details
+            StationGrid.DataContext = station;//station details (selected item)
 
             lineDataGrid.DataContext = bl.GetAlllinesByStation(station.Code);//details of lines that go through station
-            lineDataGrid.IsReadOnly = true;
+            lineDataGrid.IsReadOnly = true;//can't change it
            
 
 

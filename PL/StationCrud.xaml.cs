@@ -23,18 +23,18 @@ namespace PL
         public StationCrud()
         {
             InitializeComponent();
-            stationDataGrid.DataContext = bl.GetAllStations();
-            stationDataGrid.IsReadOnly = true;
+            stationDataGrid.DataContext = bl.GetAllStations();//shows all stations
+            stationDataGrid.IsReadOnly = true;//can't change
 
         }
-        private void Update_Click(object sender, RoutedEventArgs e)//updating the distance an time for station
+        private void Update_Click(object sender, RoutedEventArgs e)//updating coordinets the name and the address.
         {
-            BO.Station st = stationDataGrid.SelectedItem as BO.Station;
+            BO.Station st = stationDataGrid.SelectedItem as BO.Station;//the selected station
             UpdateStation window = new UpdateStation(st);
-            window.ShowDialog();
+            window.ShowDialog();//opens up updateStation window inorder to update station
             try
             {
-                bl.UpdateStation(st);
+                bl.UpdateStation(st);//updating station
                     
             }
             catch (BO.StationCodeException ex)
@@ -42,16 +42,16 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
  
-            catch (BO.StationCoordinatesException ex)
+            catch (BO.StationCoordinatesException ex)//if coordiantes isnt good
             {
                 MessageBox.Show(ex.Message);
             }
 
 
         }
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)//deletes station
         {
-            BO.Station st = stationDataGrid.SelectedItem as BO.Station;
+            BO.Station st = stationDataGrid.SelectedItem as BO.Station;//the requested station
             try
             {
                 bl.DeleteStation(st.Code);//deletes station
