@@ -35,60 +35,60 @@ namespace DL
         {
             
         }
-        public DO.Line RequestLine(int Id)
+        public DO.Line RequestLine(int Id)//returns requested line by id
         {
-            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);
+            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets the wanted xml
 
             Line line = (from per in linesRootElem.Elements()
-                        where int.Parse(per.Element("Id").Value) == Id
-                        select new Line()
+                        where int.Parse(per.Element("Id").Value) == Id//only where the line has the sam id
+                         select new Line()
                         {
-                            Id = Int32.Parse(per.Element("Id").Value),
-                            Code = Int32.Parse(per.Element("Code").Value),
-                            Area = (Areas)Enum.Parse(typeof(Areas), per.Element("Area").Value),
-                            FirstStation = Int32.Parse(per.Element("FirstStation").Value),
-                            LastStation = Int32.Parse(per.Element("LastStation").Value)
+                            Id = Int32.Parse(per.Element("Id").Value),//gets id
+                            Code = Int32.Parse(per.Element("Code").Value),//gest bus number
+                            Area = (Areas)Enum.Parse(typeof(Areas), per.Element("Area").Value),//gets area
+                            FirstStation = Int32.Parse(per.Element("FirstStation").Value),//gets first station
+                            LastStation = Int32.Parse(per.Element("LastStation").Value)//gets last station
                         } 
-                        ).FirstOrDefault();
+                        ).FirstOrDefault();//line equals the first line that has the same id
 
-            if (line == null)
+            if (line == null)//means that line doesnt exist and exeption is thrown
                 throw new DO.LineIdException(Id, $"Line Doesn't exist: {Id}");
 
             return line;
         }
         public DO.Line RequestLineByCode(int code)//returns  requested line by code
         {
-            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);
+            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets the wanted xml
 
-            Line line = (from per in linesRootElem.Elements()
-                      where int.Parse(per.Element("Code").Value) == code
+            Line line = (from l in linesRootElem.Elements()
+                      where int.Parse(l.Element("Code").Value) == code//only where the line has the sam code
                       select new Line()
                       {
-                          Id = Int32.Parse(per.Element("Id").Value),
-                          Code = Int32.Parse(per.Element("Code").Value),
-                          Area = (Areas)Enum.Parse(typeof(Areas), per.Element("Area").Value),
-                          FirstStation = Int32.Parse(per.Element("FirstStation").Value),
-                          LastStation = Int32.Parse(per.Element("LastStation").Value)
+                          Id = Int32.Parse(l.Element("Id").Value),//gets id
+                          Code = Int32.Parse(l.Element("Code").Value),//gest bus number
+                          Area = (Areas)Enum.Parse(typeof(Areas), l.Element("Area").Value),//gets area
+                          FirstStation = Int32.Parse(l.Element("FirstStation").Value),//gets first station
+                          LastStation = Int32.Parse(l.Element("LastStation").Value)//gets last station
                       }
-                        ).FirstOrDefault();
+                        ).FirstOrDefault();//line equals the first line that has the same bus Number
 
-            if (line == null)
-                throw new DO.LineIdException(code, $"Line Does Not exist: {code}");
+            if (line == null)//means that line doesnt exist and exeption is thrown
+                throw new DO.LineIdException(code, $"Line Doesn't exist: {code}");
 
             return line;
         }
-        public IEnumerable<DO.Line> RequestAllLines()
+        public IEnumerable<DO.Line> RequestAllLines()//returns all lines
         {
-            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);
+            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets the wanted xml
 
-            return (from l in linesRootElem.Elements()
+            return (from line in linesRootElem.Elements()//goes over all the items in lines
                     select new Line()
                     {
-                        Id = Int32.Parse(l.Element("Id").Value),
-                        Code = Int32.Parse(l.Element("Code").Value),
-                        Area = (Areas)Enum.Parse(typeof(Areas), l.Element("Area").Value),
-                        FirstStation = Int32.Parse(l.Element("FirstStation").Value),
-                        LastStation = Int32.Parse(l.Element("LastStation").Value)
+                        Id = Int32.Parse(line.Element("Id").Value),//gets id
+                        Code = Int32.Parse(line.Element("Code").Value),//gets bus num
+                        Area = (Areas)Enum.Parse(typeof(Areas), line.Element("Area").Value),//gets area
+                        FirstStation = Int32.Parse(line.Element("FirstStation").Value),//gets first station
+                        LastStation = Int32.Parse(line.Element("LastStation").Value)//gets last station
                     }
                    );
         }
