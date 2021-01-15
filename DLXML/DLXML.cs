@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using DLAPI;
+﻿using DLAPI;
 using DO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace DL
 {
@@ -18,9 +15,9 @@ namespace DL
         DLXML() { } // default => private
         public static DLXML Instance { get => instance; }// The public Instance property to use
         #endregion
-       
+
         #region DS XML Files
-       
+
         string linesPath = @"LinesXml.xml";//XElement
         string stationsPath = @"StationsXml.xml";  //XMLSerializer
         string lineStationsPath = @"LineStationsXml.xml"; //XMLSerializer
@@ -33,22 +30,22 @@ namespace DL
 
         public int AddLine(DO.Line line) //adds line and returns running number
         {
-            
+
         }
         public DO.Line RequestLine(int Id)//returns requested line by id
         {
             XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets the wanted xml
 
             Line line = (from per in linesRootElem.Elements()
-                        where int.Parse(per.Element("Id").Value) == Id//only where the line has the sam id
+                         where int.Parse(per.Element("Id").Value) == Id//only where the line has the sam id
                          select new Line()
-                        {
-                            Id = Int32.Parse(per.Element("Id").Value),//gets id
-                            Code = Int32.Parse(per.Element("Code").Value),//gest bus number
-                            Area = (Areas)Enum.Parse(typeof(Areas), per.Element("Area").Value),//gets area
-                            FirstStation = Int32.Parse(per.Element("FirstStation").Value),//gets first station
-                            LastStation = Int32.Parse(per.Element("LastStation").Value)//gets last station
-                        } 
+                         {
+                             Id = Int32.Parse(per.Element("Id").Value),//gets id
+                             Code = Int32.Parse(per.Element("Code").Value),//gest bus number
+                             Area = (Areas)Enum.Parse(typeof(Areas), per.Element("Area").Value),//gets area
+                             FirstStation = Int32.Parse(per.Element("FirstStation").Value),//gets first station
+                             LastStation = Int32.Parse(per.Element("LastStation").Value)//gets last station
+                         }
                         ).FirstOrDefault();//line equals the first line that has the same id
 
             if (line == null)//means that line doesnt exist and exeption is thrown
@@ -61,15 +58,15 @@ namespace DL
             XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets the wanted xml
 
             Line line = (from l in linesRootElem.Elements()
-                      where int.Parse(l.Element("Code").Value) == code//only where the line has the sam code
-                      select new Line()
-                      {
-                          Id = Int32.Parse(l.Element("Id").Value),//gets id
-                          Code = Int32.Parse(l.Element("Code").Value),//gest bus number
-                          Area = (Areas)Enum.Parse(typeof(Areas), l.Element("Area").Value),//gets area
-                          FirstStation = Int32.Parse(l.Element("FirstStation").Value),//gets first station
-                          LastStation = Int32.Parse(l.Element("LastStation").Value)//gets last station
-                      }
+                         where int.Parse(l.Element("Code").Value) == code//only where the line has the sam code
+                         select new Line()
+                         {
+                             Id = Int32.Parse(l.Element("Id").Value),//gets id
+                             Code = Int32.Parse(l.Element("Code").Value),//gest bus number
+                             Area = (Areas)Enum.Parse(typeof(Areas), l.Element("Area").Value),//gets area
+                             FirstStation = Int32.Parse(l.Element("FirstStation").Value),//gets first station
+                             LastStation = Int32.Parse(l.Element("LastStation").Value)//gets last station
+                         }
                         ).FirstOrDefault();//line equals the first line that has the same bus Number
 
             if (line == null)//means that line doesnt exist and exeption is thrown
@@ -108,7 +105,7 @@ namespace DL
                 lin.Element("Area").Value = line.Area.ToString();//updating area
                 lin.Element("FirstStation").Value = line.FirstStation.ToString();//updating first station
                 lin.Element("LastStation").Value = line.LastStation.ToString();//updating last station
- 
+
                 XMLTools.SaveListToXMLElement(linesRootElem, linesPath);//updating xml
             }
             else//the line doesnt exist
@@ -137,9 +134,14 @@ namespace DL
         #region LineStation
         public void AddLineStation(DO.LineStation Line)
         {
-           
+
         }
-        public DO.LineStation RequestLineStation(int Station, int lineId) { }
+        public DO.LineStation RequestLineStation(int Station, int lineId)
+        {
+          
+
+            
+        }
         public IEnumerable<DO.LineStation> RequestAllLinesStation(int id) { }
         public void UpdateLineStation(DO.LineStation Line) { }
         public void DeleteLineStationbyLine(int lineId) { }
@@ -147,7 +149,7 @@ namespace DL
         public void DeleteLineStation(int Station, int lineId) { }
         public IEnumerable<int> RequestStationsByLine(int lineID)
         {
-           
+
 
         }
         public IEnumerable<int> RequestLinesByStation(int Station) { }
@@ -170,40 +172,65 @@ namespace DL
         #endregion
         #region Trip
 
-        public int AddTrip(DO.Trip trip) { }
-        public DO.Trip RequestTrip(int id) { }
-        public IEnumerable<DO.Trip> RequestAllTrips() { }
-        public void UpdateTrip(DO.Trip trip) { }
-        public void DeleteTrip(int id) { }
+        public int AddTrip(DO.Trip trip)
+        {
+            throw new NotImplementedException();
+        }
+        public DO.Trip RequestTrip(int id)
+        { 
+            throw new NotImplementedException();
+        }
+        public IEnumerable<DO.Trip> RequestAllTrips()
+        {
+            throw new NotImplementedException(); 
+        }
+        public void UpdateTrip(DO.Trip trip) { 
+            throw new NotImplementedException();
+        }
+        public void DeleteTrip(int id)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
         #region User
 
-        public void AddUser(DO.User user) 
-        { 
-        }
-        public DO.User RequestUser(string userName) 
+        public void AddUser(DO.User user)
         {
+            throw new NotImplementedException();
         }
+        
+        public DO.User RequestUser(string userName)
+        {
+        throw new NotImplementedException();
+        }
+
         public IEnumerable<DO.User> RequestAllUsers()
-        { 
+        {
+            throw new NotImplementedException();
         }
-        public void UpdateUser(DO.User user) { }
-        public void DeleteUser(string userName) { }
+        public void UpdateUser(DO.User user) 
+        {
+            throw new NotImplementedException();
+        }
+        public void DeleteUser(string userName) 
+        {
+            throw new NotImplementedException();
+        }
         #endregion
         #region AdjacentStations
-        public void AddAdjacentStations(DO.AdjacentStations Stations) 
-        { 
-        }
-        public DO.AdjacentStations RequestAdjacentStations(int station1, int station2)
-        { 
-        }
-        public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations() 
-        { 
-        }
-        public void UpdateAdjacentStations(DO.AdjacentStations Stations) 
+        public void AddAdjacentStations(DO.AdjacentStations Stations)
         {
         }
-        public void DeleteAdjacentStations(int station1, int station2) 
+        public DO.AdjacentStations RequestAdjacentStations(int station1, int station2)
+        {
+        }
+        public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()
+        {
+        }
+        public void UpdateAdjacentStations(DO.AdjacentStations Stations)
+        {
+        }
+        public void DeleteAdjacentStations(int station1, int station2)
         {
         }
         #endregion
