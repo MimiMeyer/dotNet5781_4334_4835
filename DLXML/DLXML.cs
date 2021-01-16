@@ -271,6 +271,15 @@ namespace DL
 
          
         }
+        public IEnumerable<DO.LineTrip> RequestAllLineTripsByLine(int lineId)//returns all LineTrips for requested line
+        {
+            List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripsPath);
+            return from LineTrip in ListLineTrips.
+                   FindAll(lineTrip => lineTrip.LineId == lineId).
+                   OrderBy(lineTrip => lineTrip.StartAt)//orders by Starting Time
+                   select LineTrip; //no need to Clone()
+
+        }
         public IEnumerable<DO.LineTrip> RequestAllLineTrips() //returns all line trips
         {
             List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripsPath);

@@ -46,9 +46,9 @@ namespace BL
             {
                 DO.Line LineDO = new DO.Line();
                 line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
-           
+
                 int count = GetAlllines().Count(l => l.Code == line.Code);//count how many times the same bus number exists in the list of lines
-            
+
                 if (count >= 2)// throws exception if line already appears twice in list.
                 {
                     throw new BO.LineIdException(line.Code, "Line Number already has back and forth buses");
@@ -74,12 +74,13 @@ namespace BL
             {
                 throw new BO.LineIdException("Line Id already exists", ex);//if line id already exists
             }
-          
+
 
         }
         public void HelpAddLine(BO.Line line, DO.Line LineDO)//adds line
         {
-            try { 
+            try
+            {
                 DO.Station st = dl.RequestStation(LineDO.FirstStation);//if station does not exist will throw exception
                 st = dl.RequestStation(LineDO.LastStation);//if station does not exist will throw exception
                 line.Id = dl.AddLine(LineDO);//if exception was not thrown will addline and get back running id
@@ -108,9 +109,9 @@ namespace BL
             {
                 throw new BO.StationCodeException("station Code does not exist", ex);
             }
-        } 
-       
-    public void UpdateLine(BO.Line line)//updates a line
+        }
+
+        public void UpdateLine(BO.Line line)//updates a line
         {
             DO.Line LineDO = new DO.Line();
             line.CopyPropertiesTo(LineDO);//copys line properties into LineDO
@@ -242,7 +243,7 @@ namespace BL
                 if (allow) //if it does not = true it means we can't delete the requested station
                 {
                     dl.DeleteStation(code);
-                    
+
                     using (var listOfLines = lines.GetEnumerator())//going over the lines to update their Stations
                     {
                         while (listOfLines.MoveNext())
@@ -255,20 +256,21 @@ namespace BL
 
                                 while (stations.MoveNext())
                                 {
-                                    if (stations.Current == code) 
-                                    { BO.LineStation ls = new BO.LineStation();//new linestation
+                                    if (stations.Current == code)
+                                    {
+                                        BO.LineStation ls = new BO.LineStation();//new linestation
                                         ls.LineId = listOfLines.Current;//current lineid
                                         ls.Station = code;
                                         DeleteLineStation(ls);//deletes lineStation
-                                           
+
                                     }
 
                                 }
                             }
-                            
+
 
                         }
-                       
+
                     }
 
 
@@ -291,7 +293,7 @@ namespace BL
 
             LineStationDO.CopyPropertiesTo(LineStationBO);//copys the properties from do to bo for the LineStation
             IEnumerable<int> stations = dl.RequestStationsByLine(LineStationDO.LineId);//returns list of stations
-            if (LineStationDO.LineStationIndex != stations.Count()-1 ) //as long as we are not in the last station
+            if (LineStationDO.LineStationIndex != stations.Count() - 1) //as long as we are not in the last station
             {
                 DO.AdjacentStations st = dl.RequestAdjacentStations(stations.ElementAt(LineStationDO.LineStationIndex), stations.ElementAt((LineStationDO.LineStationIndex + 1)));
                 if (st != null)
@@ -330,7 +332,7 @@ namespace BL
                 {
 
                     lineDO.FirstStation = lineStation.Station;//updates First Station
-                   
+
                     dl.UpdateLine(lineDO);//updates first station
 
                 }
@@ -378,17 +380,18 @@ namespace BL
 
                     }
                 }
-               
-                    dl.AddLineStation(lineStationDO);//adds to list of linestation
+
+                dl.AddLineStation(lineStationDO);//adds to list of linestation
                 stations = dl.RequestStationsByLine(lineStation.LineId);//with new Station
                 DO.AdjacentStations adj = new DO.AdjacentStations();
                 if (lineStation.LineStationIndex != 0)//updating the time and distance from the station before so need to make sure its not first station
-                {   adj.Station1 = stations.ElementAt(lineStation.LineStationIndex - 1);
+                {
+                    adj.Station1 = stations.ElementAt(lineStation.LineStationIndex - 1);
                     adj.Station2 = stations.ElementAt(lineStation.LineStationIndex);
                     adj.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km 
                     adj.Time = adj.Distance * 2;
                 }
-              
+
                 dl.AddAdjacentStations(adj);//adding the new adj stations
                 if (lineStation.LineStationIndex != stations.Count() - 1)//if its the last stop it doesnt have a station after
                 {
@@ -420,8 +423,8 @@ namespace BL
             {
                 if (stations.Count() - 1 != LineStationDO.LineStationIndex) //as long as we are not in the last station
                 {
-                   DO.AdjacentStations st = dl.RequestAdjacentStations(stations.ElementAt(LineStationDO.LineStationIndex), stations.ElementAt((LineStationDO.LineStationIndex + 1)));
-                   
+                    DO.AdjacentStations st = dl.RequestAdjacentStations(stations.ElementAt(LineStationDO.LineStationIndex), stations.ElementAt((LineStationDO.LineStationIndex + 1)));
+
                     if (st != null) //if AdjacentStations exist
                     {
                         st.Station1 = stations.ElementAt(LineStationDO.LineStationIndex);
@@ -442,7 +445,7 @@ namespace BL
         public void DeleteLineStation(BO.LineStation lineStation)//deletes line station
         {
             int count = 0;//to update LineStation Index
-            DO.LineStation lineStationDO1 = dl.RequestLineStation(lineStation.Station,lineStation.LineId);
+            DO.LineStation lineStationDO1 = dl.RequestLineStation(lineStation.Station, lineStation.LineId);
             DO.Line line = dl.RequestLine(lineStation.LineId);//gets back line
             IEnumerable<int> ListOfStations = dl.RequestStationsByLine(line.Id);//gets back list of stations
             try
@@ -477,11 +480,11 @@ namespace BL
 
                         }
                     }
-                    
-                    
-                    if (lineStationDO1.LineStationIndex != ListOfStations.Count()&& lineStationDO1.LineStationIndex!=0)//if its not the last station or first
+
+
+                    if (lineStationDO1.LineStationIndex != ListOfStations.Count() && lineStationDO1.LineStationIndex != 0)//if its not the last station or first
                     {
-                            DO.AdjacentStations adj = new DO.AdjacentStations();
+                        DO.AdjacentStations adj = new DO.AdjacentStations();
                         adj.Station1 = ListOfStations.ElementAt(lineStationDO1.LineStationIndex - 1);//the one before the station that was deleted
                         adj.Station2 = ListOfStations.ElementAt(lineStationDO1.LineStationIndex);//the one after the station that was deleted
                         adj.Distance = r.NextDouble() * (40 - 0.1) + 0.1;//sets a random number from 0.1-40km ;
@@ -501,15 +504,49 @@ namespace BL
         }
         #endregion
         #region LineTrip
+        BO.LineTrip LineTripDoBoAdapter(DO.LineTrip LineTripDO) //convert  do to bo
+        {
+            BO.LineTrip LineTripBO = new BO.LineTrip();
+            LineTripDO.CopyPropertiesTo(LineTripBO);//copys the properties from do to bo for the Line
+            return LineTripBO;
+        }
+        public IEnumerable<BO.LineTrip> GetLineTripsForLine(int Id)//returns all LineTrips for requested line
+        {
+            return from lineTripDO in dl.RequestAllLineTripsByLine(Id)//gets all the line tripswith same line 
+                   orderby lineTripDO.StartAt//orders by start at
+                   select LineTripDoBoAdapter(lineTripDO);//each line goes to functio and changes to bo
+        }
         public void AddLineTrip(BO.LineTrip lineTrip)//add LineTrip
         {
+            DO.LineTrip lineTripDO = new DO.LineTrip();
+            lineTrip.CopyPropertiesTo(lineTripDO);//copys lineTrip properties into lineTripDO
+            dl.AddLineTrip(lineTripDO);
 
         }
         public void UpdateLineTrip(BO.LineTrip lineTrip) //updating lineTrip
         {
+            DO.LineTrip lineTripDO = new DO.LineTrip();
+            lineTrip.CopyPropertiesTo(lineTripDO);//copys lineTrip properties into lineTripDO
+            try
+            {
+                dl.UpdateLineTrip(lineTripDO);//updates and if does not exist will throw exception
+            }
+            catch (DO.LineIdException ex)
+            {
+                throw new BO.LineIdException("lineTrip does not exist ", ex);
+            }
         }
-        public void DeleteLineTrip(int Id)//deletes lineTrip
+        public void DeleteLineTrip(int lineId, TimeSpan StartAt)//deletes lineTrip
         {
+            try
+            {
+                dl.DeleteLineTrip( lineId, StartAt);//deletes the lineTrip
+       
+            }
+            catch (DO.LineIdException ex)//if line id does not exist will throw exception
+            {
+                throw new BO.LineIdException("linetrip does not exist ", ex);
+            }
         }
         #endregion
     }

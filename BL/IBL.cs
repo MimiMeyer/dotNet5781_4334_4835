@@ -34,9 +34,10 @@ namespace BLAPI
         void DeleteLineStation(BO.LineStation lineStation);//deletes line station
         #endregion
         #region LineTrip
+        IEnumerable<BO.LineTrip> GetLineTripsForLine(int Id);//returns all LineTrips for requested line
         void AddLineTrip(BO.LineTrip lineTrip);//add LineTrip
         void UpdateLineTrip(BO.LineTrip lineTrip); //updating lineTrip
-        void DeleteLineTrip(int Id);//deletes lineTrip
+        void DeleteLineTrip(int lineId, TimeSpan StartAt);//deletes lineTrip
         #endregion
 
 

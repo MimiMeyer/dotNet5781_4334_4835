@@ -194,7 +194,14 @@ namespace DL
             else
                 throw new DO.LineIdException(lineId, $"linetrip does not exist for  this start time and linetrip : {lineId}");
         }
-
+       public IEnumerable<DO.LineTrip> RequestAllLineTripsByLine(int lineId)//returns all LineTrips for requested line
+        {
+            return from LineTrip in DataSource.listLineTrip.
+                   FindAll(lineTrip => lineTrip.LineId == lineId).
+                   OrderBy(lineTrip => lineTrip.StartAt)//orders by Starting Time
+                   select LineTrip.Clone();
+                                            
+        }
         public IEnumerable<DO.LineTrip> RequestAllLineTrips()//returns a copy of list of line trips
         {
             return from LineTrip in DataSource.listLineTrip
