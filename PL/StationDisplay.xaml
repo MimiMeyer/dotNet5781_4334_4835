@@ -37,7 +37,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="פעולות נוספות" HorizontalAlignment="Left" Height="61" Margin="122,0,0,58" VerticalAlignment="Bottom" Width="128" Click="Button_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="White" BorderThickness="5" Background="Yellow"/>
+        <Button Content="פעולות נוספות" HorizontalAlignment="Left" Height="61" Margin="150,0,0,58" VerticalAlignment="Bottom" Width="128" Click="Button_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="White" BorderThickness="5" Background="Yellow" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="StationCrud" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="https://png.pngtree.com/thumb_back/fh260/background/20190223/ourmid/pngtree-dazzling-red-streamers-ad-background-backgroundwarmreddazzlingribbonbeautifulsimplelight-image_68870.jpg" Stretch="Fill" />
+    </Window.Background>
 
     <Grid  >
         <Grid.ColumnDefinitions>
@@ -13,7 +16,7 @@
             <ColumnDefinition Width="273*"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="stationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39,112,113" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2">
+        <DataGrid x:Name="stationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39,112,113" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" FontSize="14" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="codeColumn" Header="מספר תחנה" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>
@@ -27,20 +30,20 @@
                 <DataGridTemplateColumn x:Name="DeleteColumn" Header="מחיקת התחנה " Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="DeleteStation" Content="מחק"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Delete_Click"  />
+                            <Button x:Name="DeleteStation" Content="מחק"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Delete_Click" Background="Yellow" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn x:Name="UpdateColumn" Header="עדכון התחנה " Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="UpdateStation" Content="עדכון"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Update_Click"  />
+                            <Button x:Name="UpdateStation" Content="עדכון"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Update_Click" Background="Yellow"   />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="הוספת תחנה" Height="44" Margin="134,341,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="הוספת תחנה" HorizontalAlignment="Left" Height="61" Margin="134,0,0,47" VerticalAlignment="Bottom" Width="128" Click="Button_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="White" BorderThickness="5" Background="Yellow" Grid.ColumnSpan="2"/>
 
 
     </Grid>
