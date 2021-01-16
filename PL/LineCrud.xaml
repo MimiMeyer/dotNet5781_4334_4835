@@ -11,6 +11,7 @@
     </Window.Background>
     <Grid>
         <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="30,32,30,185" RowDetailsVisibilityMode="VisibleWhenSelected" FontSize="14" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5">
+
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="codeColumn" Header="מספר קו" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>
@@ -57,5 +58,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="הוספת קו" HorizontalAlignment="Left" Height="62" Margin="30,0,0,71" VerticalAlignment="Bottom" Width="128" Click="Button_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="White" BorderThickness="5" Background="Yellow"/>
+
     </Grid>
 </Window>
