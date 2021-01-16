@@ -10,8 +10,8 @@
         <ImageBrush ImageSource="https://airqualitynews.com/wp-content/uploads/2020/02/TfL-Image-Route-94-electric-bus.jpg" Stretch="Fill" />
     </Window.Background>
     <Grid>
-        <Button Content="חלון נוסע" HorizontalAlignment="Left" Height="110" Margin="24,274,0,0" VerticalAlignment="Top" Width="198" Click="User_Click" />
-        <Button Content="חלון ניהול" HorizontalAlignment="Left" Height="110" Margin="252,274,0,0" VerticalAlignment="Top" Width="198" Click="Manegement_Click"/>
+        <Button Content="חלון נוסע" HorizontalAlignment="Left" Height="102" Margin="198,384,0,18" Width="206" Click="User_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5"/>
+        <Button Content="חלון ניהול" HorizontalAlignment="Left" Height="102" Margin="457,384,0,18"  Width="206" Click="Manegement_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" />
 
     </Grid>
 </Window>

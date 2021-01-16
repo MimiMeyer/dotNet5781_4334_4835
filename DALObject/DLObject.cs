@@ -104,13 +104,13 @@ namespace DL
        public IEnumerable<DO.Line> GetLinesByStation(int Station)//returns list of lines for requested station.
         {
             IEnumerable<int> lines = RequestLinesByStation(Station);//gets line ids
-            IEnumerable < DO.Line > DOlines= DataSource.listLines.FindAll(line => lines.Contains(line.Id));//only adds line if it exists in line
+            IEnumerable<DO.Line> DOlines = DataSource.listLines.FindAll(line => lines.Contains(line.Id));//only adds line if it exists in line
             return DOlines;
         }
        
         public DO.LineStation RequestLineStation(int Station, int lineId)//returns line station if it exists
         {
-            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId);//checks line station. if exists li will get the value of the chosen line.
+            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId&&l.Station==Station);//checks line station. if exists li will get the value of the chosen line.
 
             if (li == null)//if li = null that means line station does not exist
 
@@ -202,7 +202,7 @@ namespace DL
         }
         public void UpdateLineTrip(DO.LineTrip lineTrip)
         {
-            DO.LineTrip li = DataSource.listLineTrip.Find(l => l.LineId == lineTrip.LineId);//checks lineTrip. if exists li will get the value of the chosen lineTrip.
+            DO.LineTrip li = DataSource.listLineTrip.Find(l => l.LineId == lineTrip.LineId && l.StartAt == lineTrip.StartAt);//checks lineTrip. if exists li will get the value of the chosen lineTrip.
 
             if (li != null)////if li = null that means lineTrip does not exist
             {
@@ -219,10 +219,12 @@ namespace DL
             if (li != null)//if li = null that means linetrip does not exist
                 DataSource.listLineTrip.Remove(li);//remove 
             else
+            {
                 if (Id != null)//if Id = null it means that the linetrip doesnt exist at all
-                throw new DO.LineIdException(lineId, $"linetrip does not exist for this start time : {lineId}");
-            else
-                throw new DO.LineIdException(lineId, $"linetrip does not exist : {lineId}");
+                    throw new DO.LineIdException(lineId, $"linetrip does not exist for this start time : {lineId}");
+                else
+                    throw new DO.LineIdException(lineId, $"linetrip does not exist : {lineId}");
+            }
         }
         #endregion
         #region Station

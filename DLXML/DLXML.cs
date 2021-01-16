@@ -30,21 +30,21 @@ namespace DL
 
         public int AddLine(DO.Line line) //adds line and returns running number
         {
-
+            throw new NotImplementedException();
         }
         public DO.Line RequestLine(int Id)//returns requested line by id
         {
             XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets the wanted xml
 
-            Line line = (from per in linesRootElem.Elements()
-                         where int.Parse(per.Element("Id").Value) == Id//only where the line has the sam id
+            Line line = (from li in linesRootElem.Elements()
+                         where int.Parse(li.Element("Id").Value) == Id//only where the line has the sam id
                          select new Line()
                          {
-                             Id = Int32.Parse(per.Element("Id").Value),//gets id
-                             Code = Int32.Parse(per.Element("Code").Value),//gest bus number
-                             Area = (Areas)Enum.Parse(typeof(Areas), per.Element("Area").Value),//gets area
-                             FirstStation = Int32.Parse(per.Element("FirstStation").Value),//gets first station
-                             LastStation = Int32.Parse(per.Element("LastStation").Value)//gets last station
+                             Id = Int32.Parse(li.Element("Id").Value),//gets id
+                             Code = Int32.Parse(li.Element("Code").Value),//gest bus number
+                             Area = (Areas)Enum.Parse(typeof(Areas), li.Element("Area").Value),//gets area
+                             FirstStation = Int32.Parse(li.Element("FirstStation").Value),//gets first station
+                             LastStation = Int32.Parse(li.Element("LastStation").Value)//gets last station
                          }
                         ).FirstOrDefault();//line equals the first line that has the same id
 
@@ -132,43 +132,310 @@ namespace DL
 
         #endregion
         #region LineStation
-        public void AddLineStation(DO.LineStation Line)
+        public void AddLineStation(DO.LineStation lineStation)//adds station to line
         {
+            List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
+
+            if (!RequestStationsByLine(lineStation.LineId).Contains(lineStation.Station)) //if the station does not exist then you can add
+            {
+
+                ListLineStations.Add(lineStation); //no need to Clone()
+
+                XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationsPath);
+            }
+            else
+            {
+                throw new DO.LineIdException(lineStation.Station, $"station already exists in line: {lineStation.Station}");
+            }
 
         }
         public DO.LineStation RequestLineStation(int Station, int lineId)
         {
-          
+            List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
 
-            
+            DO.LineStation sta = ListLineStations.Find(l => l.LineId == lineId && l.Station == Station);
+            if (sta != null)
+                return sta; //no need to Clone()
+            else
+                throw new DO.LineIdException(lineId, $"linetrip does not exist for  this start time and linetrip : {lineId}");
+
+            throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
         }
-        public IEnumerable<DO.LineStation> RequestAllLinesStation(int id) { }
-        public void UpdateLineStation(DO.LineStation Line) { }
-        public void DeleteLineStationbyLine(int lineId) { }
-        public void DeleteLineStationbyStation(int code) { }
-        public void DeleteLineStation(int Station, int lineId) { }
-        public IEnumerable<int> RequestStationsByLine(int lineID)
+        public IEnumerable<DO.LineStation> RequestAllLinesStation(int id) //returns a  list of  Line stations by line
         {
+            List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
+
+            return from LineStation in ListLineStations.
+                   FindAll(lineStation => lineStation.LineId == id)
+            select LineStation; //no need to Clone()
+        }
+        public void UpdateLineStation(DO.LineStation lineStation) 
+        {
+            List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
+
+            DO.LineStation sta = ListLineStations.Find(l => l.LineId == lineStation.LineId && l.Station == lineStation.Station);//checks line station. if exists li will get the value of the chosen line.
+            if (sta != null)
+            {
+                ListLineStations.Remove(sta);
+                ListLineStations.Add(lineStation); //no nee to Clone()
+            }
+            else
+                throw new DO.LineIdException(lineStation.LineId, $"line Id does not exist: {lineStation.LineId}");
+
+            XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationsPath);
+        }
+        public void DeleteLineStationbyLine(int lineId) 
+        {
+            List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
+            if (RequestStationsByLine(lineId) != null)//if it equels null it means line does not exist and will send exception
+            {
+                ListLineStations.RemoveAll(lineStation => lineStation.LineId == lineId);//removes all line stations that have the wanted line.
+            }
+            else
+                throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
+            XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationsPath);
+        }
+        public void DeleteLineStationbyStation(int code) 
+        {
+            List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
+            if (RequestLinesByStation(code) != null)//if it equels null it means no lines does not go through requested station
+            {
+                ListLineStations.RemoveAll(lineStation => lineStation.Station == code);//removes all line stations that have the wanted station.
+            }
+            else
+                throw new DO.StationCodeException(code, $"Station code does not exist: {code}");
+            XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationsPath);
 
 
         }
-        public IEnumerable<int> RequestLinesByStation(int Station) { }
-        public IEnumerable<DO.Line> GetLinesByStation(int Station) { }
+        public void DeleteLineStation(int Station, int lineId)
+        {
+            List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
+
+            DO.LineStation li = ListLineStations.Find(l => l.LineId == lineId && l.Station == Station);//checks line station. if exists li will get the value of the chosen lineStation.
+
+            if (li != null)
+            {
+                ListLineStations.Remove(li);
+            }
+            else
+                throw new DO.StationCodeException(Station, $"linestation does not exist: {Station}");
+
+            XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationsPath);
+        }
+        public IEnumerable<int> RequestStationsByLine(int lineID)//returns list of stations for requested line.
+        {
+            List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
+
+            return ListLineStations.FindAll(lineStation => lineStation.LineId == lineID).
+                                             OrderBy(lineStation => lineStation.LineStationIndex).//orders by index to make sure we get the list in the right order
+                                             Select(lineStation => lineStation.Station);
+
+        }
+        public IEnumerable<int> RequestLinesByStation(int Station)//returns list of lines for requested station. 
+        {
+            List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
+
+            return ListLineStations.FindAll(lineStation => lineStation.Station == Station).
+                                              Select(lineStation => lineStation.LineId);
+        }
+        public IEnumerable<DO.Line> GetLinesByStation(int Station)//returns list of lines for requested station.
+        {
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
+            IEnumerable<int> lines = RequestLinesByStation(Station);//gets line ids
+            IEnumerable<DO.Line> DOlines = ListLines.FindAll(line => lines.Contains(line.Id));//only adds line if it exists in line
+            return DOlines;
+
+           
+        }
         #endregion
         #region LineTrip
-        public void AddLineTrip(DO.LineTrip lineTrip) { }
-        public DO.LineTrip RequestLineTrip(int lineId, TimeSpan StartAt) { }
-        public IEnumerable<DO.LineTrip> RequestAllLineTrips() { }
-        public void UpdateLineTrip(DO.LineTrip lineTrip) { }
-        public void DeleteLineTrip(int lineId, TimeSpan StartAt) { }
+        public void AddLineTrip(DO.LineTrip lineTrip) //adds linetrip
+        {
+            List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripsPath);
+            //dont need to check for duplicates there can be busses starting at the same time because it's a line and not a physical bus
+
+            ListLineTrips.Add(lineTrip); //no need to Clone()
+
+            XMLTools.SaveListToXMLSerializer(ListLineTrips, lineTripsPath);
+        }
+        public DO.LineTrip RequestLineTrip(int lineId, TimeSpan StartAt) //returns require line trip
+        {
+            List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripsPath);
+
+            DO.LineTrip trip = ListLineTrips.Find(t => t.LineId== lineId && t.StartAt==StartAt);
+            if (trip != null)
+                return trip; //no need to Clone()
+            else
+                throw new DO.LineIdException(lineId, $"linetrip does not exist for  this start time and linetrip : {lineId}");
+
+         
+        }
+        public IEnumerable<DO.LineTrip> RequestAllLineTrips() //returns all line trips
+        {
+            List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripsPath);
+
+            return from LineTrip in ListLineTrips
+                   select LineTrip; //no need to Clone()
+        }
+        public void UpdateLineTrip(DO.LineTrip lineTrip) //updates line trips
+        {
+            List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripsPath);
+
+            DO.LineTrip li = ListLineTrips.Find(l => l.LineId == lineTrip.LineId && l.StartAt == lineTrip.StartAt);//checks lineTrip. if exists li will get the value of the chosen lineTrip.
+            if (li != null)
+            {
+                ListLineTrips.Remove(li);
+                ListLineTrips.Add(lineTrip); //no nee to Clone()
+            }
+            else
+                throw new DO.LineIdException(lineTrip.LineId, $"lineTrip does not exist : {lineTrip.LineId}");
+
+            XMLTools.SaveListToXMLSerializer(ListLineTrips, lineTripsPath);
+        }
+        public void DeleteLineTrip(int lineId, TimeSpan StartAt) //delets linetrips
+        {
+            List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripsPath);
+
+            DO.LineTrip li = ListLineTrips.Find(l => l.LineId == lineId && l.StartAt == StartAt);//checks linetrip. if exists li will get the value of the chosen linetrip.
+            DO.LineTrip Id = ListLineTrips.Find(l => l.LineId == lineId);
+            if (li != null)
+            {
+                ListLineTrips.Remove(li);
+            }
+            else
+            {
+                if (Id != null)//if Id = null it means that the linetrip doesnt exist at all
+                    throw new DO.LineIdException(lineId, $"linetrip does not exist for this start time : {lineId}");
+                else
+                    throw new DO.LineIdException(lineId, $"linetrip does not exist : {lineId}");
+            }
+
+            XMLTools.SaveListToXMLSerializer(ListLineTrips, lineTripsPath);
+        }
         #endregion
         #region Station
 
-        public void AddStation(DO.Station station) { }
-        public DO.Station RequestStation(int code) { }
-        public IEnumerable<DO.Station> RequestAllStations() { }
-        public void UpdateStation(DO.Station station) { }
-        public void DeleteStation(int code) { }
+        public void AddStation(DO.Station station) //adds station
+        {
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
+
+            if (ListStations.FirstOrDefault(s => s.Code == station.Code) != null)
+                throw new DO.StationCodeException(station.Code, $"Duplicate station code: {station.Code}");
+
+            ListStations.Add(station); //no need to Clone()
+
+            XMLTools.SaveListToXMLSerializer(ListStations, stationsPath);
+        }
+        public DO.Station RequestStation(int code) 
+        {
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
+
+            DO.Station sta = ListStations.Find(s => s.Code == code);
+            if (sta != null)
+                return sta; //no need to Clone()
+            else
+                throw new DO.StationCodeException(code, $"Station does't exist : {code}");
+
+           
+        }
+        public IEnumerable<DO.Station> RequestAllStations() 
+        {
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
+
+            return from Station in ListStations
+                   select Station; //no need to Clone()
+        }
+
+        public void UpdateStation(DO.Station station)
+        {
+            List<Station> ListStationss = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
+
+            DO.Station sta= ListStationss.Find(s => s.Code == station.Code);//checks station. if exists sta will get the value of the chosen station.
+            if (sta!= null)
+            {
+                ListStationss.Remove(sta);
+                ListStationss.Add(station); //no nee to Clone()
+            }
+            else
+                throw new DO.StationCodeException(station.Code, $"Station does't exist : {station.Code}");
+
+            XMLTools.SaveListToXMLSerializer(ListStationss, stationsPath);
+        }
+            public void DeleteStation(int code) 
+        {
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
+
+            DO.Station st = ListStations.Find(s => s.Code == code);//checks station. if exists st will get the value of the chosen station.
+
+            if (st != null)
+            {
+                ListStations.Remove(st);
+            }
+            else
+                throw new DO.StationCodeException(code, $"Station does't exist : {code}");
+
+            XMLTools.SaveListToXMLSerializer(ListStations, stationsPath);
+        }
+        #endregion
+        #region AdjacentStations
+        public void AddAdjacentStations(DO.AdjacentStations Stations)
+        {
+            List<AdjacentStations> ListAdjacentStationss = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(adjacentStationsPath);
+
+            ListAdjacentStationss.Add(Stations); //no need to Clone()
+
+            XMLTools.SaveListToXMLSerializer(ListAdjacentStationss, adjacentStationsPath);
+
+        }
+        public DO.AdjacentStations RequestAdjacentStations(int station1, int station2)
+        {
+            List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(adjacentStationsPath);
+
+            DO.AdjacentStations sta = ListAdjacentStations.Find(s => s.Station1 == station1&&s.Station2==station2);
+            if (sta != null)
+                return sta; //no need to Clone()
+            else
+                return null;
+        }
+        public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()
+        {
+            List<AdjacentStations> ListAdjacentStationss = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(adjacentStationsPath);
+
+            return from AdjacentStations in ListAdjacentStationss
+                   select AdjacentStations; //no need to Clone()
+        }
+        public void UpdateAdjacentStations(DO.AdjacentStations Stations)
+        {
+            List<AdjacentStations> ListAdjacentStationss = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(adjacentStationsPath);
+
+            DO.AdjacentStations sta = ListAdjacentStationss.Find(s => s.Station1 == Stations.Station1 && s.Station2 == Stations.Station2);//checks AdjacentStations. if exists st will get the values of the chosen AdjacentStations.;
+            if (sta != null)
+            {
+                ListAdjacentStationss.Remove(sta);
+                ListAdjacentStationss.Add(Stations); //no nee to Clone()
+            }
+            else
+                throw new DO.AdjacentStationseException(Stations.Station1, Stations.Station2, "AdjacentStations does't exist:");
+
+            XMLTools.SaveListToXMLSerializer(ListAdjacentStationss, adjacentStationsPath);
+        }
+        public void DeleteAdjacentStations(int station1, int station2)
+        {
+
+            List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(adjacentStationsPath);
+
+            DO.AdjacentStations st = ListAdjacentStations.Find(s => s.Station1 == station1 && s.Station2 == station2);//checks AdjacentStations. if exists st will get the values of the chosen AdjacentStations.
+
+            if (st != null)
+            {
+                ListAdjacentStations.Remove(st);
+            }
+            else
+                throw new DO.AdjacentStationseException(station1, station2, "AdjacentStations does't exist:");
+
+            XMLTools.SaveListToXMLSerializer(ListAdjacentStations, adjacentStationsPath);
+        }
         #endregion
         #region Trip
 
@@ -217,23 +484,7 @@ namespace DL
             throw new NotImplementedException();
         }
         #endregion
-        #region AdjacentStations
-        public void AddAdjacentStations(DO.AdjacentStations Stations)
-        {
-        }
-        public DO.AdjacentStations RequestAdjacentStations(int station1, int station2)
-        {
-        }
-        public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()
-        {
-        }
-        public void UpdateAdjacentStations(DO.AdjacentStations Stations)
-        {
-        }
-        public void DeleteAdjacentStations(int station1, int station2)
-        {
-        }
-        #endregion
+    
 
 
 

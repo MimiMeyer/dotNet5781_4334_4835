@@ -10,7 +10,7 @@ namespace BO
     {
         public int LineId { get; set; }//bus id
         public TimeSpan StartAt { get; set; }
-        public TimeSpan Frequency { get; set; }
-        public TimeSpan FinishAt { get; set; }
+       // public TimeSpan Frequency { get; set; }
+        //public TimeSpan FinishAt { get; set; }
     }
 }
