@@ -61,6 +61,9 @@
     <Compile Include="AddLineStation.xaml.cs">
       <DependentUpon>AddLineStation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddLineTrip.xaml.cs">
+      <DependentUpon>AddLineTrip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,9 @@
     </Compile>
     <Compile Include="LineStation.xaml.cs">
       <DependentUpon>LineStation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LineTrip.xaml.cs">
+      <DependentUpon>LineTrip.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationCrud.xaml.cs">
       <DependentUpon>StationCrud.xaml</DependentUpon>
@@ -102,6 +108,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddLineTrip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LineStation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineTrip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,6 +200,7 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\BO.Line.datasource" />
     <None Include="Properties\DataSources\BO.LineStation.datasource" />
+    <None Include="Properties\DataSources\BO.LineTrip.datasource" />
     <None Include="Properties\DataSources\BO.Station.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

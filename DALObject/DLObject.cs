@@ -182,8 +182,14 @@ namespace DL
         #endregion
         #region LineTrip
         public void AddLineTrip(DO.LineTrip lineTrip)
-        {//dont need to check for duplicates there can be busses starting at the same time because it's a line and not a physical bus
-            DataSource.listLineTrip.Add(lineTrip.Clone());//adding new lineTrip
+        {DO.Line li= DataSource.listLines.Find(l => l.Id == lineTrip.LineId );//checking that line exists
+            if (li != null) //line exists
+            {
+                DataSource.listLineTrip.Add(lineTrip.Clone());//adding new lineTrip
+
+            }
+            else
+                throw new LineIdException(lineTrip.LineId, $"Line does not exist: {lineTrip.LineId}");
         }
         public DO.LineTrip RequestLineTrip(int lineId, TimeSpan StartAt)
         {

@@ -40,7 +40,26 @@ namespace PL
             LineCrud window = new LineCrud();
             window.Show();
         }
+        private void LineTrip_Click(object sender, RoutedEventArgs e)//will  open LineCrud window peulut nosfot
+        {
+            LineTrip window = new LineTrip(lineDataGrid.SelectedItem as BO.Line);
+            window.Show();
+        }
+        private void ADDLineTrip_Click(object sender, RoutedEventArgs e)//add start at
+        {
+            AddLineTrip window = new AddLineTrip();
+            window.ShowDialog();
+            try
+            {
+                BO.LineTrip lineTrip = window.NewLineTrip;
+                bl.AddLineTrip(lineTrip);
+            }
+            catch(BO.LineIdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-       
+
     }
 }

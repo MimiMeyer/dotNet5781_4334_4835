@@ -1,6 +1,8 @@
 ﻿using DO;
+using System;
 using System.Collections.Generic;
-
+using System.IO;
+using System.Xml.Serialization;
 
 namespace DS
 {
@@ -17,15 +19,17 @@ namespace DS
         static DataSource()
         {
             InitAllLists();//inialize all lists
-        }
+  
 
+        }
+        
 
         static void InitAllLists()
         {
             #region Boot Lines
             listLines = new List<Line>
             {
-                new Line
+            new Line
             {
                 Id =1,
                 Code =1,
@@ -1331,7 +1335,1153 @@ namespace DS
 
             };
             #endregion
+            #region TripLine
+            listLineTrip = new List<LineTrip>
+            {
+            #region Line 1
+            new LineTrip
+            {
+                LineId=1,
+               StartAt= new TimeSpan(7,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(8,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(9,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(10,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(11,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(12,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(13,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(14,0,0)
+            },
+              new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(15,0,0)
+            },
+                new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(16,0,0)
+            },
+                  new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(17,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(18,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(19,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(20,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(21,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(22,0,0)
+            },
+            new LineTrip
+            {
+                LineId=1,
+                StartAt= new TimeSpan(23,0,0)
+            },
+            #endregion
+            #region Line 2
+            new LineTrip
+            {
+                LineId=2,
+               StartAt= new TimeSpan(7,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+               StartAt= new TimeSpan(7,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(8,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+               StartAt= new TimeSpan(8,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(9,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+               StartAt= new TimeSpan(9,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+               StartAt= new TimeSpan(10,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+               StartAt= new TimeSpan(10,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(11,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+               StartAt= new TimeSpan(11,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(12,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+               StartAt= new TimeSpan(12,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(13,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+               StartAt= new TimeSpan(13,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(14,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(14,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(15,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(15,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(16,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(16,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(17,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(17,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(18,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(18,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(19,15,0)
+            },  
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(19,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(20,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(20,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(21,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(21,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(22,15,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(22,45,0)
+            },
+            new LineTrip
+            {
+                LineId=2,
+                StartAt= new TimeSpan(23,15,0)
+            },
+            #endregion
+            #region Line 3
+            new LineTrip
+            {
+               LineId=3,
+               StartAt= new TimeSpan(7,10,0)
+            },
+            new LineTrip
+            {
+               LineId=3,
+               StartAt= new TimeSpan(9,10,0)
+            },
+            new LineTrip
+            {
+               LineId=3,
+               StartAt= new TimeSpan(11,10,0)
+            },
+            new LineTrip
+            {
+               LineId=3,
+               StartAt= new TimeSpan(13,10,0)
+            },
+            new LineTrip
+            {
+               LineId=3,
+               StartAt= new TimeSpan(15,10,0)
+            },
+            new LineTrip
+            {
+               LineId=3,
+               StartAt= new TimeSpan(17,10,0)
+            },
+            new LineTrip
+            {
+               LineId=3,
+               StartAt= new TimeSpan(19,10,0)
+            },
+            new LineTrip
+            {
+               LineId=3,
+               StartAt= new TimeSpan(21,10,0)
+            },
+            new LineTrip
+            {
+               LineId=3,
+               StartAt= new TimeSpan(23,10,0)
+            },
+            #endregion
+            #region Line 4
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(7,20,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(8,0,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(8,40,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(9,20,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(10,0,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(10,40,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(11,20,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(12,0,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(12,40,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(13,20,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(14,0,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(14,40,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(15,20,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(16,0,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(16,40,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(17,20,0)
+            },
+            new LineTrip
+            {
+               LineId=4,
+               StartAt= new TimeSpan(18,0,0)
+            },
+
+            #endregion
+            #region Line 5
+            new LineTrip
+            {
+               LineId=5,
+               StartAt= new TimeSpan(5,20,0)
+            },
+            new LineTrip
+            {
+               LineId=5,
+               StartAt= new TimeSpan(8,20,0)
+            },
+            new LineTrip
+            {
+               LineId=5,
+               StartAt= new TimeSpan(11,20,0)
+            },
+            new LineTrip
+            {
+               LineId=5,
+               StartAt= new TimeSpan(14,20,0)
+            },
+            new LineTrip
+            {
+               LineId=5,
+               StartAt= new TimeSpan(17,20,0)
+            },
+            new LineTrip
+            {
+               LineId=5,
+               StartAt= new TimeSpan(20,20,0)
+            },
+            new LineTrip
+            {
+               LineId=5,
+               StartAt= new TimeSpan(23,0,0)
+            },
+            new LineTrip
+            {
+               LineId=5,
+               StartAt= new TimeSpan(23,20,0)
+            },
+            #endregion
+            #region Line 6
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(5,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(6,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(7,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(8,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(9,0,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(9,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(10,0,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(10,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(11,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(12,0,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(13,0,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(13,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(14,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(15,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(16,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(17,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(18,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(19,30,0)
+            },
+            new LineTrip
+            {
+               LineId=6,
+               StartAt= new TimeSpan(20,0,0)
+            },
+            
+            #endregion
+            #region Line 7
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(10,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(11,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(12,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(13,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(14,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(15,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(16,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(17,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(18,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(19,45,0)
+            },
+            new LineTrip
+            {
+               LineId=7,
+               StartAt= new TimeSpan(20,45,0)
+            },
+            #endregion
+            #region Line 8
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(8,5,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(8,55,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(9,45,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(10,35,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(11,25,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(12,15,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(13,5,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(13,55,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(14,45,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(15,35,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(16,25,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(17,15,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(18,05,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(18,55,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(19,45,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(20,35,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(21,25,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(22,15,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(23,5,0)
+            },
+            new LineTrip
+            {
+               LineId=8,
+               StartAt= new TimeSpan(23,55,0)
+            },
+
+            #endregion
+            #region Line 9
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(6,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(7,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(8,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(9,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(10,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(12,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(13,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(14,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(15,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(16,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(17,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(18,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(19,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(20,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(21,12,0)
+            },
+            new LineTrip
+            {
+               LineId=9,
+               StartAt= new TimeSpan(22,12,0)
+            },
+            #endregion
+            #region Line 10
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(6,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(6,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(6,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(6,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(7,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(7,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(7,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(7,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(8,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(8,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(8,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(8,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(9,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(9,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(9,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(9,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(10,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(10,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(10,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(10,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(11,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(11,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(11,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(11,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(12,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(12,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(12,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(12,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(13,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(13,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(13,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(13,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(14,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(14,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(14,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(14,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(15,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(15,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(15,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(15,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(16,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(16,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(16,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(16,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(17,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(17,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(17,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(17,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(18,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(18,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(18,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(18,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(19,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(19,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(19,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(19,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(20,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(20,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(20,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(20,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(21,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(21,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(21,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(21,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(22,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(22,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(22,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(22,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(23,0,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(23,15,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(23,30,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(23,45,0)
+            },
+            new LineTrip
+            {
+               LineId=10,
+               StartAt= new TimeSpan(0,0,0)
+            },
+           
+            #endregion
+            };
+            #endregion
+
         }
+
 
     }
 }

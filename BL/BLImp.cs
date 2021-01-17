@@ -518,9 +518,16 @@ namespace BL
         }
         public void AddLineTrip(BO.LineTrip lineTrip)//add LineTrip
         {
-            DO.LineTrip lineTripDO = new DO.LineTrip();
-            lineTrip.CopyPropertiesTo(lineTripDO);//copys lineTrip properties into lineTripDO
-            dl.AddLineTrip(lineTripDO);
+            try
+            {
+                DO.LineTrip lineTripDO = new DO.LineTrip();
+                lineTrip.CopyPropertiesTo(lineTripDO);//copys lineTrip properties into lineTripDO
+                dl.AddLineTrip(lineTripDO);
+             }
+            catch(DO.LineIdException ex)
+            {
+                throw new BO.LineIdException("line Id does not exist ", ex);
+            }
 
         }
         public void UpdateLineTrip(BO.LineTrip lineTrip) //updating lineTrip
@@ -540,8 +547,8 @@ namespace BL
         {
             try
             {
-                dl.DeleteLineTrip( lineId, StartAt);//deletes the lineTrip
-       
+                dl.DeleteLineTrip(lineId, StartAt);//deletes the lineTrip
+
             }
             catch (DO.LineIdException ex)//if line id does not exist will throw exception
             {

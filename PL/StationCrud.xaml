@@ -41,6 +41,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="הוספת תחנה" HorizontalAlignment="Left" Height="61" Margin="134,0,0,47" VerticalAlignment="Bottom" Width="128" Click="Button_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="White" BorderThickness="5" Background="Yellow" Grid.ColumnSpan="2"/>

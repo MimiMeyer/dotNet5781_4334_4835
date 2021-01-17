@@ -41,9 +41,17 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="LineTripColumn" Header="יציאות הקו" Width="10*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="LineTrip" Content="יציאות הקו"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="LineTrip_Click" Background="Yellow" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="פעולות נוספות" HorizontalAlignment="Left" Height="61" Margin="122,0,0,58" VerticalAlignment="Bottom" Width="128" Click="Button_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="White" BorderThickness="5" Background="Yellow"/>
+        <Button Content="הוספת יציאת קו" HorizontalAlignment="Left" Height="61" Margin="282,0,0,58" VerticalAlignment="Bottom" Width="128" Click="ADDLineTrip_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="White" BorderThickness="5" Background="Yellow"/>
     </Grid>
 </Window>
