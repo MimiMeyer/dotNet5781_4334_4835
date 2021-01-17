@@ -19,11 +19,19 @@ namespace DS
         static DataSource()
         {
             InitAllLists();//inialize all lists
-  
+            string path = "xmlBySerilalizer2.xml";
+
+            SaveListToXMLSerializer(listLines, path);
 
         }
-        
 
+        public static void SaveListToXMLSerializer(List<Line> list, string path)
+        {
+            XmlSerializer x = new XmlSerializer(list.GetType());
+            FileStream fs = new FileStream(path, FileMode.Create);
+            x.Serialize(fs, list);
+            fs.Close();
+        }
         static void InitAllLists()
         {
             #region Boot Lines

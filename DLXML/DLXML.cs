@@ -21,9 +21,9 @@ namespace DL
         string linesPath = @"LinesXml.xml";//XElement
         string stationsPath = @"StationsXml.xml";  //XMLSerializer
         string lineStationsPath = @"LineStationsXml.xml"; //XMLSerializer
-        string usersPath = @"UsersXml.xml"; //XMLSerializer
+        //string usersPath = @"UsersXml.xml"; //XMLSerializer
         string lineTripsPath = @"LineTripsXml.xml"; //XElement
-        string tripsPath = @"TripsXml.xml"; //XMLSerializer
+        //string tripsPath = @"TripsXml.xml"; //XMLSerializer
         string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XMLSerializer
         #endregion
         #region Line

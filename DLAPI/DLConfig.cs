@@ -51,6 +51,5 @@ namespace DLAPI
     {
         public DLConfigException(string message) : base(message) { }
         public DLConfigException(string message, Exception inner) : base(message, inner) { }
-    } 
+    }
 }
-
