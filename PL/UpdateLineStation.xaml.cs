@@ -19,7 +19,7 @@ namespace PL
     /// </summary>
     public partial class UpdateLineStation : Window
     {
-        IBL bl = BLFactory.GetBL("1");
+        
         public UpdateLineStation(BO.LineStation lineStation)
         {
             InitializeComponent();

@@ -20,9 +20,23 @@ namespace PL
     /// </summary>
     public partial class User : Window
     {
+        IBL bl = BLFactory.GetBL("1");
         public User()
         {
             InitializeComponent();
+            stationDataGrid.DataContext = bl.GetAllStations();
+            stationDataGrid.IsReadOnly = true;
+
         }
+        private void Show_Lines(object sender, RoutedEventArgs e)//adding a Station
+        {
+            BO.Station st = stationDataGrid.SelectedItem as BO.Station;
+            lineDataGrid.DataContext = bl.GetAlllinesByStation(st.Code);
+            lineDataGrid.IsReadOnly = true;
+
+        }
+
+       
     }
+    
 }
