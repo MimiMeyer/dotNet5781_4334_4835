@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DLAPI
 {
-    /// <summary>
-    /// Static Factory class for creating Dal tier implementation object according to
-    /// configuration in file config.xml
-    /// </summary>
     public static class DLFactory
     {
         /// <summary>
@@ -91,3 +90,4 @@ namespace DLAPI
         }
     }
 }
+
