@@ -72,7 +72,7 @@ namespace DL
             else
                 throw new DO.LineIdException(id, $"line Id does not exist: {id}");
         }
-      
+
         #endregion
         #region LineStation
         public void AddLineStation(DO.LineStation lineStation) //adds station to bus
@@ -91,7 +91,7 @@ namespace DL
         public IEnumerable<int> RequestStationsByLine(int lineID)//returns list of stations for requested line.
         {
             return DataSource.listLineStation.FindAll(lineStation => lineStation.LineId == lineID).
-                                              OrderBy(lineStation=>lineStation.LineStationIndex).//orders by index to make sure we get the list in the right order
+                                              OrderBy(lineStation => lineStation.LineStationIndex).//orders by index to make sure we get the list in the right order
                                               Select(lineStation => lineStation.Station);
 
         }
@@ -101,16 +101,16 @@ namespace DL
                                               Select(lineStation => lineStation.LineId);
 
         }
-       public IEnumerable<DO.Line> GetLinesByStation(int Station)//returns list of lines for requested station.
+        public IEnumerable<DO.Line> GetLinesByStation(int Station)//returns list of lines for requested station.
         {
             IEnumerable<int> lines = RequestLinesByStation(Station);//gets line ids
             IEnumerable<DO.Line> DOlines = DataSource.listLines.FindAll(line => lines.Contains(line.Id));//only adds line if it exists in line
             return DOlines;
         }
-       
+
         public DO.LineStation RequestLineStation(int Station, int lineId)//returns line station if it exists
         {
-            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId&&l.Station==Station);//checks line station. if exists li will get the value of the chosen line.
+            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId && l.Station == Station);//checks line station. if exists li will get the value of the chosen line.
 
             if (li == null)//if li = null that means line station does not exist
 
@@ -121,7 +121,7 @@ namespace DL
 
                 throw new DO.StationCodeException(Station, $"Station does't exist : {Station}");
 
-            DO.LineStation lineStation = DataSource.listLineStation.Find(l => l.LineId == lineId && l.Station==Station);
+            DO.LineStation lineStation = DataSource.listLineStation.Find(l => l.LineId == lineId && l.Station == Station);
             return lineStation.Clone();//returns the chosen line
 
         }
@@ -135,7 +135,7 @@ namespace DL
         }
         public void UpdateLineStation(DO.LineStation lineStation)
         {
-            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineStation.LineId&& l.Station == lineStation.Station);//checks line station. if exists li will get the value of the chosen line.
+            DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineStation.LineId && l.Station == lineStation.Station);//checks line station. if exists li will get the value of the chosen line.
 
             if (li != null)//if li = null that means line station does not exist
             {
@@ -177,12 +177,13 @@ namespace DL
             else
                 DataSource.listLineStation.Remove(li);
 
-                
+
         }
         #endregion
         #region LineTrip
         public void AddLineTrip(DO.LineTrip lineTrip)
-        {DO.Line li= DataSource.listLines.Find(l => l.Id == lineTrip.LineId );//checking that line exists
+        {
+            DO.Line li = DataSource.listLines.Find(l => l.Id == lineTrip.LineId);//checking that line exists
             if (li != null) //line exists
             {
                 DataSource.listLineTrip.Add(lineTrip.Clone());//adding new lineTrip
@@ -200,13 +201,13 @@ namespace DL
             else
                 throw new DO.LineIdException(lineId, $"linetrip does not exist for  this start time and linetrip : {lineId}");
         }
-       public IEnumerable<DO.LineTrip> RequestAllLineTripsByLine(int lineId)//returns all LineTrips for requested line
+        public IEnumerable<DO.LineTrip> RequestAllLineTripsByLine(int lineId)//returns all LineTrips for requested line
         {
             return from LineTrip in DataSource.listLineTrip.
                    FindAll(lineTrip => lineTrip.LineId == lineId).
                    OrderBy(lineTrip => lineTrip.StartAt)//orders by Starting Time
                    select LineTrip.Clone();
-                                            
+
         }
         public IEnumerable<DO.LineTrip> RequestAllLineTrips()//returns a copy of list of line trips
         {
@@ -292,9 +293,9 @@ namespace DL
 
         public int AddTrip(DO.Trip trip)
         {
-            
-            
-            trip.Id= RunningNumber.RunningTripID;
+
+
+            trip.Id = RunningNumber.RunningTripID;
             DataSource.listTrip.Add(trip.Clone());
             RunningNumber.RunningTripID++;
             return trip.Id;
@@ -401,7 +402,7 @@ namespace DL
             else
                 return null;
         }
-       
+
         public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()//returns all AdjacentStations
         {
             return from AdjacentStations in DataSource.listAdjacentStations

@@ -60,10 +60,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DALObject\DLObject.csproj">
-      <Project>{f3dbaf25-d0d3-4aca-8934-7b107eaa9c58}</Project>
-      <Name>DLObject</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DLAPI\DLAPI.csproj">
       <Project>{fb5ea2f3-4143-4145-b9a3-dece49ae2c99}</Project>
       <Name>DLAPI</Name>
