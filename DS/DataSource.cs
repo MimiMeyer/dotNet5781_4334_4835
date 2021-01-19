@@ -19,9 +19,18 @@ namespace DS
         static DataSource()
         {
             InitAllLists();//inialize all lists
-  
+            saveListToXML(listStations, "..\\xml\\Stations.xml");
+
+
+
         }
-        
+        public static void saveListToXML(List<Station> list, string path)
+        {
+            XmlSerializer x = new XmlSerializer(list.GetType());
+            FileStream fs = new FileStream(path, FileMode.Create);
+            x.Serialize(fs, list);
+            fs.Close();
+        }
 
         static void InitAllLists()
         {
@@ -2478,7 +2487,7 @@ namespace DS
             #endregion
             };
             #endregion
-
+            
         }
 
 
