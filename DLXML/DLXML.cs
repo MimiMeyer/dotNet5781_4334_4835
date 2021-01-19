@@ -9,6 +9,7 @@ namespace DL
 {
     sealed class DLXML : IDL    //internal
     {
+
         #region singelton
         static readonly DLXML instance = new DLXML();
         static DLXML() { }// static ctor to ensure instance init is done just before first usage
@@ -21,9 +22,9 @@ namespace DL
         string linesPath = @"LinesXml.xml";//XElement
         string stationsPath = @"StationsXml.xml";  //XMLSerializer
         string lineStationsPath = @"LineStationsXml.xml"; //XMLSerializer
-        string usersPath = @"UsersXml.xml"; //XMLSerializer
+        //string usersPath = @"UsersXml.xml"; //XMLSerializer
         string lineTripsPath = @"LineTripsXml.xml"; //XElement
-        string tripsPath = @"TripsXml.xml"; //XMLSerializer
+        //string tripsPath = @"TripsXml.xml"; //XMLSerializer
         string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XMLSerializer
         #endregion
         #region Line
@@ -259,10 +260,10 @@ namespace DL
                              select l).FirstOrDefault();
 
             if (trip == null)
-                throw new DO.LineIdException(lineTrip.LineId, "LineTrip ID doesn't exist" );
-            XElement lineTripElem = new XElement("LineTrip", 
+                throw new DO.LineIdException(lineTrip.LineId, "LineTrip ID doesn't exist");
+            XElement lineTripElem = new XElement("LineTrip",
                                  new XElement("LineId", lineTrip.LineId.ToString()),
-                                 new XElement("StartAt", lineTrip.StartAt.ToString()) );
+                                 new XElement("StartAt", lineTrip.StartAt.ToString()));
 
             lineTripsRootElem.Add(lineTripElem);
 
@@ -272,13 +273,13 @@ namespace DL
         {
             XElement lineTripssRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);//gets the wanted xml
 
-            LineTrip trip= (from li in lineTripssRootElem.Elements()
-                              where int.Parse(li.Element("LineId").Value) == lineId && TimeSpan.Parse(li.Element("StartAt").Value) == StartAt //only where the linetrip has the same id and start time
-                              select new LineTrip()
-                              {
-                                  LineId = Int32.Parse(li.Element("LineId").Value),//gets id
-                                  StartAt = TimeSpan.Parse(li.Element("StartAt").Value)//gets start time
-                              }
+            LineTrip trip = (from li in lineTripssRootElem.Elements()
+                             where int.Parse(li.Element("LineId").Value) == lineId && TimeSpan.Parse(li.Element("StartAt").Value) == StartAt //only where the linetrip has the same id and start time
+                             select new LineTrip()
+                             {
+                                 LineId = Int32.Parse(li.Element("LineId").Value),//gets id
+                                 StartAt = TimeSpan.Parse(li.Element("StartAt").Value)//gets start time
+                             }
                         ).FirstOrDefault();//line equals the first line that has the same id
 
             if (trip == null)//means that line doesnt exist and exeption is thrown
@@ -323,7 +324,7 @@ namespace DL
             XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);//gets wanted xml
 
             XElement lin = (from l in lineTripsRootElem.Elements()
-                            where int.Parse(l.Element("LineId").Value) == lineId && TimeSpan.Parse(l.Element("StartAt").Value)==StartAt //finds the line with the wante id
+                            where int.Parse(l.Element("LineId").Value) == lineId && TimeSpan.Parse(l.Element("StartAt").Value) == StartAt //finds the line with the wante id
                             select l).FirstOrDefault();
 
             if (lin != null)//the line exists

@@ -39,6 +39,9 @@ namespace BLAPI
         void UpdateLineTrip(BO.LineTrip lineTrip); //updating lineTrip
         void DeleteLineTrip(int lineId, TimeSpan StartAt);//deletes lineTrip
         #endregion
+        #region simulation
+        void StartSimulator();
+        #endregion
 
 
     }

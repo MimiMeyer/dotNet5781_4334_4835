@@ -10,6 +10,7 @@ namespace BL
     {
         Random r = new Random();
         IDL dl = DLFactory.GetDL();
+        
         #region Line
         BO.Line LineDoBoAdapter(DO.Line LineDO) //convert  do to bo
         {
@@ -554,6 +555,11 @@ namespace BL
             {
                 throw new BO.LineIdException("linetrip does not exist ", ex);
             }
+        }
+        #endregion
+        #region simulation
+       public void StartSimulator() 
+        {
         }
         #endregion
     }
