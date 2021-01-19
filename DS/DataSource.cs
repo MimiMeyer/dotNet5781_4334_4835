@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace DS
@@ -9,6 +10,10 @@ namespace DS
     public static class DataSource
 
     {
+       // static XElement linesRootElem;
+
+
+       //static string lineTripsPath = @"LineTripsXml.xml"; //XElement
         public static List<Station> listStations;//list of stations
         public static List<LineStation> listLineStation;//list of line stations
         public static List<Line> listLines;//list of lines
@@ -16,24 +21,60 @@ namespace DS
         public static List<LineTrip> listLineTrip;//list of line trip
         public static List<Trip> listTrip;//list of trips
         public static List<AdjacentStations> listAdjacentStations;//list of AdjacentStations
+        public static List<int> RunningNumber= new List<int>{11};//lis with running number
         static DataSource()
         {
             InitAllLists();//inialize all lists
-            saveListToXML(listStations, "..\\xml\\Stations.xml");
+            SaveListToXML(listStations, "..\\xml\\StationsXml.xml");
+            SaveListToXML(listLineStation, "..\\xml\\LineStationsXml.xml");
+            SaveListToXML(listLines, "..\\xml\\LinesXml.xml");
+            SaveListToXML(listLineTrip, "..\\xml\\LineTripsXml.xml");
+            SaveListToXML(RunningNumber, "..\\xml\\RunningNumberXml.xml");
 
 
 
         }
-        public static void saveListToXML(List<Station> list, string path)
+        public static void SaveListToXML(List <int> num, string path)
+        {
+            XmlSerializer x = new XmlSerializer(num.GetType());
+            FileStream fs = new FileStream(path, FileMode.Create);
+            x.Serialize(fs, num);
+            fs.Close();
+        }
+
+
+        public static void SaveListToXML(List<Station> list, string path)
         {
             XmlSerializer x = new XmlSerializer(list.GetType());
             FileStream fs = new FileStream(path, FileMode.Create);
             x.Serialize(fs, list);
             fs.Close();
         }
-
+        public static void SaveListToXML(List<LineTrip> list, string path)
+        {
+            XmlSerializer x = new XmlSerializer(list.GetType());
+            FileStream fs = new FileStream(path, FileMode.Create);
+            x.Serialize(fs, list);
+            fs.Close();
+        }
+        public static void SaveListToXML(List<LineStation> list, string path)
+        {
+            XmlSerializer x = new XmlSerializer(list.GetType());
+            FileStream fs = new FileStream(path, FileMode.Create);
+            x.Serialize(fs, list);
+            fs.Close();
+        }
+        public static void SaveListToXML(List<Line> list, string path)
+        {
+            XmlSerializer x = new XmlSerializer(list.GetType());
+            FileStream fs = new FileStream(path, FileMode.Create);
+            x.Serialize(fs, list);
+            fs.Close();
+        }
+        
         static void InitAllLists()
         {
+        
             #region Boot Lines
             listLines = new List<Line>
             {

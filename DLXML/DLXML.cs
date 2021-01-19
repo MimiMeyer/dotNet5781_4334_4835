@@ -19,19 +19,29 @@ namespace DL
 
         #region DS XML Files
 
-        string linesPath = @"LinesXml.xml";//XElement
+        string linesPath = @"LinesXml.xml";//XElement and XMLSerializer
         string stationsPath = @"StationsXml.xml";  //XMLSerializer
         string lineStationsPath = @"LineStationsXml.xml"; //XMLSerializer
         //string usersPath = @"UsersXml.xml"; //XMLSerializer
         string lineTripsPath = @"LineTripsXml.xml"; //XElement
         //string tripsPath = @"TripsXml.xml"; //XMLSerializer
         string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XMLSerializer
+        string runningNuberPath = @"RunningNumberXml.xml";//XMLSerializer
         #endregion
         #region Line
 
         public int AddLine(DO.Line line) //adds line and returns running number
         {
-            throw new NotImplementedException();
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
+            List<int> num = XMLTools.LoadListFromXMLSerializer<int>(runningNuberPath);
+            line.Id = num.ElementAt(0);
+           
+            ListLines.Add(line); //no need to Clone()
+            XMLTools.SaveListToXMLSerializer(ListLines, linesPath);
+            XMLTools.SaveListToXMLSerializer(num,runningNuberPath );
+
+            return line.Id;
+
         }
         public DO.Line RequestLine(int Id)//returns requested line by id
         {
@@ -263,7 +273,7 @@ namespace DL
                 throw new DO.LineIdException(lineTrip.LineId, "LineTrip ID doesn't exist");
             XElement lineTripElem = new XElement("LineTrip",
                                  new XElement("LineId", lineTrip.LineId.ToString()),
-                                 new XElement("StartAt", lineTrip.StartAt.ToString()));
+                                 new XElement("StartAt", lineTrip.StartAt));
 
             lineTripsRootElem.Add(lineTripElem);
 
@@ -278,7 +288,7 @@ namespace DL
                              select new LineTrip()
                              {
                                  LineId = Int32.Parse(li.Element("LineId").Value),//gets id
-                                 StartAt = TimeSpan.Parse(li.Element("StartAt").Value)//gets start time
+                                 StartAt= TimeSpan.Parse(li.Element("StartAt").Value)//gets start time
                              }
                         ).FirstOrDefault();//line equals the first line that has the same id
 

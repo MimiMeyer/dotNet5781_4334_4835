@@ -275,4 +275,14 @@
     <Station>122</Station>
     <LineStationIndex>4</LineStationIndex>
   </LineStation>
+  <LineStation>
+    <LineId>11</LineId>
+    <Station>73</Station>
+    <LineStationIndex>0</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>11</LineId>
+    <Station>76</Station>
+    <LineStationIndex>1</LineStationIndex>
+  </LineStation>
 </ArrayOfLineStation>

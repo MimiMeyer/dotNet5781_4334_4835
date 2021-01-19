@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ArrayOfAdjacentStations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AdjacentStations>
+    <Station1>73</Station1>
+    <Station2>76</Station2>
+    <Distance>29.81002722857987</Distance>
+    <Time>59.620054457159739</Time>
+  </AdjacentStations>
+</ArrayOfAdjacentStations>

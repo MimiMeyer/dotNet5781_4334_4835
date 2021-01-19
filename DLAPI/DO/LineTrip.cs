@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace DO
 {
@@ -10,8 +11,23 @@ namespace DO
     {
       
         public int LineId { get; set; }//bus id
+        [XmlIgnore]
         public TimeSpan StartAt { get; set; }
-      // public TimeSpan Frequency { get; set; }
-      //  public TimeSpan FinishAt { get; set; }
+        [XmlElement(ElementName = "StartAt")]
+        public double StartAtTotalSeconds
+        {
+            get 
+            { 
+               return StartAt.TotalSeconds; 
+            }
+            set 
+            {
+                StartAt = new TimeSpan(0,0,(int)value);
+            }
+        }
+
+
+        // public TimeSpan Frequency { get; set; }
+        //  public TimeSpan FinishAt { get; set; }
     }
 }
