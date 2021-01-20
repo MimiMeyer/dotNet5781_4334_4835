@@ -13,9 +13,9 @@
 
     <Grid  >
 
-        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,112,310,131" ItemsSource="{Binding}" HorizontalAlignment="Right" EnableRowVirtualization="True" AutoGenerateColumns="False"  FontSize="14" FontFamily="Yu Gothic Medium" BorderBrush="Black" BorderThickness="5" Width="113">
+        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,112,149,131" ItemsSource="{Binding}" HorizontalAlignment="Right" EnableRowVirtualization="True" AutoGenerateColumns="False"  FontSize="14" FontFamily="Yu Gothic Medium" BorderBrush="Black" BorderThickness="5" Width="274">
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="codeColumn" Header=":בחר תחנה" Width="*"   >
+                <DataGridTemplateColumn x:Name="codeColumn" Header=":בחר תחנה" Width="10*"   >
 
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -25,6 +25,17 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="NameColumn" Header=":שם" Width="10*"   >
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <Button x:Name="NameTextBox1" Content="{Binding Name}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Click="Show_Lines" Background="#FFAE4949" />
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
 
 
             </DataGrid.Columns>

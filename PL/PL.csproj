@@ -68,6 +68,7 @@
     <Compile Include="AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BackRoundWorker.cs" />
     <Compile Include="LineCrud.xaml.cs">
       <DependentUpon>LineCrud.xaml</DependentUpon>
     </Compile>
@@ -82,6 +83,9 @@
     </Compile>
     <Compile Include="LineTrip.xaml.cs">
       <DependentUpon>LineTrip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Simulation.xaml.cs">
+      <DependentUpon>Simulation.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationCrud.xaml.cs">
       <DependentUpon>StationCrud.xaml</DependentUpon>
@@ -149,6 +153,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Simulation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StationCrud.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

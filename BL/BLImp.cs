@@ -577,7 +577,7 @@ namespace BL
         }
         #endregion
         #region simulation
-        public void StartSimulator()
+        public void StartSimulator(TimeSpan startTime, int Rate, Action<TimeSpan> updateTime)
         {
         }
         #endregion

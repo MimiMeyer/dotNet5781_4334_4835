@@ -15,13 +15,6 @@
     <Address>רחוב:אל מדינה אל מונאוורה  עיר: ירושלים </Address>
   </Station>
   <Station>
-    <Code>78</Code>
-    <Name>שרי ישראל/יפו</Name>
-    <Longitude>35.206146</Longitude>
-    <Lattitude>31.789128</Lattitude>
-    <Address>רחוב:שדרות שרי ישראל 15 עיר: ירושלים</Address>
-  </Station>
-  <Station>
     <Code>84</Code>
     <Name>מלכי ישראל/הטורים</Name>
     <Longitude>35.209791</Longitude>

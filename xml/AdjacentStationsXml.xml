@@ -264,4 +264,10 @@
     <Distance>8.8113956381154228</Distance>
     <Time>17.622791276230846</Time>
   </AdjacentStations>
+  <AdjacentStations>
+    <Station1>112</Station1>
+    <Station2>123</Station2>
+    <Distance>1.8200764395855724</Distance>
+    <Time>3.6401528791711448</Time>
+  </AdjacentStations>
 </ArrayOfAdjacentStations>

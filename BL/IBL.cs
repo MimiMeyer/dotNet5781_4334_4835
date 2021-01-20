@@ -40,7 +40,7 @@ namespace BLAPI
         void DeleteLineTrip(int lineId, TimeSpan StartAt);//deletes lineTrip
         #endregion
         #region simulation
-        void StartSimulator();
+        void StartSimulator(TimeSpan startTime, int Rate, Action<TimeSpan> updateTime);
         #endregion
 
 
