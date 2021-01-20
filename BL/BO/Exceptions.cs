@@ -29,7 +29,15 @@ namespace BO
     }
     #endregion
 
-
+    #region general
+    public class CantBeMinusException : Exception
+    {
+        public double X;
+        public CantBeMinusException(double x, string message) :
+           base(message) => X = x;
+        public override string ToString() => base.ToString() + $", Can't be minus: {X}";
+    }
+    #endregion 
 
     #region Station
     public class StationCodeException : Exception

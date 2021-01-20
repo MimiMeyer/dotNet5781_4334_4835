@@ -25,11 +25,20 @@ namespace PL
         {
             InitializeComponent();
             lineTripDataGrid.DataContext = bl.GetLineTripsForLine(line.Id);
+           
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            BO.LineTrip lineTrip = lineTripDataGrid.SelectedItem as BO.LineTrip;//wanted lineTrip
-            bl.DeleteLineTrip(lineTrip.LineId, lineTrip.StartAt);
+            try
+            {
+                BO.LineTrip lineTrip = lineTripDataGrid.SelectedItem as BO.LineTrip;//wanted lineTrip
+                bl.DeleteLineTrip(lineTrip.LineId, lineTrip.StartAt);
+            }
+            catch (BO.LineIdException ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
        
        

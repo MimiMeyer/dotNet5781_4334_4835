@@ -25,10 +25,18 @@ namespace PL
         {
             InitializeComponent();
         }
-        private void Manegement_Click(object sender, RoutedEventArgs e)//opens Management window
+        private void StationDisplay_Click(object sender, RoutedEventArgs e)//opens Station Display
         {
-            Management window = new Management();
+            StationDisplay window = new StationDisplay();
+            window.ShowDialog();//cant do anything in other windows till you close it
+
+        }
+
+        private void LineDisplay_Click(object sender, RoutedEventArgs e)//opens Line Display
+        {
+            LineDisplay window = new LineDisplay();
             window.ShowDialog();
+
         }
         private void User_Click(object sender, RoutedEventArgs e)//opens user window
         {

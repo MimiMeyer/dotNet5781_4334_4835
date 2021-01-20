@@ -8,10 +8,12 @@
       
         mc:Ignorable="d"
         Title="UpdateLineStation" Height="450" Width="800" >
-
+    <Window.Background>
+        <ImageBrush ImageSource="https://png.pngtree.com/thumb_back/fh260/background/20191009/pngtree-red-brush-watercolor-background-image_318910.jpg" Stretch="Fill" />
+    </Window.Background>
     <Grid >
 
-        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="26,92,64,178" RowDetailsVisibilityMode="VisibleWhenSelected" RenderTransformOrigin="0.5,0.5">
+        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="26,92,64,178" RowDetailsVisibilityMode="VisibleWhenSelected" RenderTransformOrigin="0.5,0.5" FontSize="14" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

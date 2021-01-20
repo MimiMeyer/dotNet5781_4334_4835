@@ -6,11 +6,17 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.AddLineStation"
         mc:Ignorable="d"
-        Title="AddLineStation" Height="322.5" Width="435.5" >
-    
-    <Grid>
+        Title="AddLineStation" Height="350" Width="350" >
+    <Window.Background>
+        <ImageBrush ImageSource="https://img.freepik.com/free-vector/orange-smoke-yellow-background_1182-688.jpg" Stretch="Fill" />
+    </Window.Background>
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
 
-        <Grid x:Name="LineStationGrid" VerticalAlignment="Top" Margin="179,88,0,0" HorizontalAlignment="Left" >
+        <Grid x:Name="LineStationGrid" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -22,16 +28,16 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="מרחק:"/>
-            <TextBox x:Name="distanceTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Distance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            
-            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Index:"/>
-            <TextBox x:Name="lineStationIndexTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LineStationIndex, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="מספר תחנה:"/>
-            <TextBox x:Name="stationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Station, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="דקות:"/>
-            <TextBox x:Name="timeTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Time, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-        </Grid>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content=":מרחק" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="distanceTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Distance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Right" Grid.Column="0"/>
 
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content=":אינדקס" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="lineStationIndexTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LineStationIndex, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Right" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content=":מספר תחנה" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="stationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Station, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Right" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content=":דקות" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="timeTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Time, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Right" Grid.Column="0"/>
+        </Grid>
+        <Label Content=":הוסף תחנה לקו" HorizontalAlignment="Right"  VerticalAlignment="Top" FontSize="16" FontFamily="Yu Gothic Medium" Margin="0,-41,0,0" Grid.Column="1"  />
     </Grid>
 </Window>

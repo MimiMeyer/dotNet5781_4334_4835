@@ -23,16 +23,16 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="כתובת:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <TextBox  x:Name="addressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding Address, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center"  Width="200" FontSize="10" FontFamily="Yu Gothic Medium"/>
-            <Label Content="מספר תחנה:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <TextBox x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center" Width="200" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <Label Content="קו רוחב:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <TextBox x:Name="lattitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Lattitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True"  VerticalAlignment="Center" Width="200" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <Label Content="קו אורך:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Longitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True"  VerticalAlignment="Center" Width="200" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <Label Content="שם:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <TextBox  x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center"  Width="200" FontSize="10" FontFamily="Yu Gothic Medium"/>
+            <Label Content=":כתובת" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium" />
+            <TextBox x:Name="addressTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="3" Grid.Row="0" Text="{Binding Address, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":מספר תחנה" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="codeTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="3" Grid.Row="1" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":קו רוחב" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="lattitudeTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="3" Grid.Row="2" Text="{Binding Lattitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":קו אורך" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="longitudeTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="3" Grid.Row="3" Text="{Binding Longitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":שם" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" VerticalAlignment="Center" Width="120"/>
         </Grid>
         <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="392,115,38,114" RowDetailsVisibilityMode="VisibleWhenSelected"   BorderBrush="Yellow" BorderThickness="5" FontSize="14" FontFamily="Yu Gothic Medium" >
             <DataGrid.Columns>
@@ -70,7 +70,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content=":פרטי התחנה" HorizontalAlignment="Left" Height="37" Margin="146,78,0,0" VerticalAlignment="Top" Width="123" FontSize="16" FontFamily="Yu Gothic Medium"/>
+        <Label Content=":פרטי התחנה" HorizontalAlignment="Left" Height="37" Margin="106,78,0,0" VerticalAlignment="Top" Width="122" FontSize="16" FontFamily="Yu Gothic Medium" RenderTransformOrigin="0.317,0.486"/>
         <Label Content=":פרטי הקווים העוברים בתחנה" HorizontalAlignment="Left" Height="37" Margin="449,72,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontFamily="Yu Gothic Medium"/>
     </Grid>
 </Window>

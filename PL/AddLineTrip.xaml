@@ -6,12 +6,14 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.AddLineTrip"
         mc:Ignorable="d"
-        Title="AddLineTrip" Height="450" Width="800"  >
-   
+        Title="AddLineTrip" Height="350" Width="350"  >
+    <Window.Background>
+        <ImageBrush ImageSource="https://img.freepik.com/free-vector/orange-smoke-yellow-background_1182-688.jpg" Stretch="Fill" />
+    </Window.Background>
     <Grid>
 
       
-        <Grid x:Name="LineTripGrid"  HorizontalAlignment="Left" Margin="99,54,0,0" VerticalAlignment="Top">
+        <Grid x:Name="LineTripGrid"  HorizontalAlignment="Center"  VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -20,11 +22,12 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="ת.ז של הקו:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="lineIdTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding LineId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="זמן התחלת המסלול:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="startAtTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding StartAt, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":ת.ז של הקו" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium" />
+            <TextBox x:Name="lineIdTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding LineId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":זמן התחלת המסלול" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14" FontFamily="Yu Gothic Medium" />
+            <TextBox x:Name="startAtTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding StartAt, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
+        <Label Content=":הוסף יציאת קו" HorizontalAlignment="Right"  VerticalAlignment="Top" FontSize="16" FontFamily="Yu Gothic Medium" Margin="0,86,48,0"  />
 
     </Grid>
 </Window>

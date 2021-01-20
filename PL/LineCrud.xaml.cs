@@ -72,6 +72,10 @@ namespace PL
             {
                 MessageBox.Show(ex.Message);//if line doesnt exist
             }
+            catch (BO.CantBeMinusException ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void Button_Click(object sender, RoutedEventArgs e)//add bus and opens AddLine window 
         {

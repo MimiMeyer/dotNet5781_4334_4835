@@ -37,7 +37,6 @@ namespace DLAPI
         DO.LineTrip RequestLineTrip( int lineId, TimeSpan StartAt);//requests for line trip and returns it if it exists;
         IEnumerable<DO.LineTrip> RequestAllLineTrips();//returns all line tripss;
         IEnumerable<DO.LineTrip> RequestAllLineTripsByLine(int lineId);//returns all LineTrips for requested line
-
         void UpdateLineTrip(DO.LineTrip lineTrip);//updates linetrip
         void DeleteLineTrip(int lineId, TimeSpan StartAt);//deletes linetrip
         #endregion

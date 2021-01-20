@@ -25,16 +25,16 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="אזור:" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <TextBox x:Name="areaTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Area, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="מספר:" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <TextBox x:Name="codeTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="תחנה ראשונה:" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <TextBox x:Name="firstStationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding FirstStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ת.ז:" FontSize="14" FontFamily="Yu Gothic Medium" />
-            <TextBox x:Name="idTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Id, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="תחנה אחרונה:" FontSize="14" FontFamily="Yu Gothic Medium"/>
-            <TextBox x:Name="lastStationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LastStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content=":אזור" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="areaTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Area, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Right" Grid.Column="0" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content=":מספר" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="codeTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Right" Grid.Column="0" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content=":תחנה ראשונה" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="firstStationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding FirstStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Right" Grid.Column="0" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content=":ת.ז" FontSize="14" FontFamily="Yu Gothic Medium" />
+            <TextBox x:Name="idTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Id, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Right" Grid.Column="0" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content=":תחנה אחרונה" FontSize="14" FontFamily="Yu Gothic Medium"/>
+            <TextBox x:Name="lastStationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LastStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Right" Grid.Column="0" FontSize="14" FontFamily="Yu Gothic Medium"/>
         </Grid>
         <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="320,106,10,131" RowDetailsVisibilityMode="VisibleWhenSelected" FontSize="14" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5" >
             <DataGrid.Columns>
@@ -75,7 +75,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content=":פרטי הקו" HorizontalAlignment="Left" Margin="194,70,0,0" VerticalAlignment="Top" Width="216" FontSize="16" FontFamily="Yu Gothic Medium"  />
+        <Label Content=":פרטי הקו" HorizontalAlignment="Left" Margin="155,65,0,0" VerticalAlignment="Top" Width="216" FontSize="16" FontFamily="Yu Gothic Medium"  />
         <Label Content=":פרטי התחנות של  הקו" HorizontalAlignment="Left" Margin="470,70,0,0" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Yu Gothic Medium"  />
 
     </Grid>

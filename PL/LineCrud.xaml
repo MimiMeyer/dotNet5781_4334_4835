@@ -12,8 +12,8 @@
     <Grid>
         <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="30,32,30,185" RowDetailsVisibilityMode="VisibleWhenSelected" FontSize="14" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5">
 
-            <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="codeColumn" Header="מספר קו" Width="10*"  >
+            <DataGrid.Columns >
+                <DataGridTemplateColumn x:Name="codeColumn"  Header="מספר קו"   Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 

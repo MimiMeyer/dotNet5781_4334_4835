@@ -1,31 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfLineStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <LineStation>
-    <LineId>1</LineId>
-    <Station>73</Station>
-    <LineStationIndex>0</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>1</LineId>
-    <Station>76</Station>
-    <LineStationIndex>1</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>1</LineId>
-    <Station>77</Station>
-    <LineStationIndex>2</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>1</LineId>
-    <Station>78</Station>
-    <LineStationIndex>3</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>1</LineId>
-    <Station>83</Station>
-    <LineStationIndex>4</LineStationIndex>
-  </LineStation>
-  <LineStation>
     <LineId>2</LineId>
     <Station>84</Station>
     <LineStationIndex>0</LineStationIndex>
@@ -276,13 +251,43 @@
     <LineStationIndex>4</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>11</LineId>
+    <LineId>1</LineId>
     <Station>73</Station>
     <LineStationIndex>0</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>11</LineId>
+    <LineId>1</LineId>
     <Station>76</Station>
+    <LineStationIndex>1</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>1</LineId>
+    <Station>77</Station>
+    <LineStationIndex>2</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>1</LineId>
+    <Station>78</Station>
+    <LineStationIndex>3</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>11</LineId>
+    <Station>112</Station>
+    <LineStationIndex>0</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>11</LineId>
+    <Station>73</Station>
+    <LineStationIndex>1</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>12</LineId>
+    <Station>1524</Station>
+    <LineStationIndex>0</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>12</LineId>
+    <Station>73</Station>
     <LineStationIndex>1</LineStationIndex>
   </LineStation>
 </ArrayOfLineStation>

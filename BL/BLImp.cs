@@ -1,4 +1,6 @@
-﻿using BLAPI;
+﻿
+  
+using BLAPI;
 using DLAPI;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ namespace BL
     {
         Random r = new Random();
         IDL dl = DLFactory.GetDL();
-        
+
         #region Line
         BO.Line LineDoBoAdapter(DO.Line LineDO) //convert  do to bo
         {
@@ -321,6 +323,14 @@ namespace BL
 
         public void AddStationToLine(BO.LineStation lineStation)//add station to line
         {
+            if (lineStation.Distance<0) 
+            {
+                throw new BO.CantBeMinusException(lineStation.Distance, "The Distance must be over 0");
+            }
+            if (lineStation.Time < 0)
+            {
+                throw new BO.CantBeMinusException(lineStation.Distance, "The Time must be over 0");
+            }
             DO.Line lineDO = dl.RequestLine(lineStation.LineId);//gets the line for the line id
 
             DO.LineStation lineStationDO = new DO.LineStation();//new linesStation
@@ -417,6 +427,14 @@ namespace BL
         }
         public void UpdateLineStation(BO.LineStation lineStation) //updating line station
         {
+            if (lineStation.Distance < 0)
+            {
+                throw new BO.CantBeMinusException(lineStation.Distance, "The Distance must be over 0");
+            }
+            if (lineStation.Time < 0)
+            {
+                throw new BO.CantBeMinusException(lineStation.Distance, "The Time must be over 0");
+            }
             DO.LineStation LineStationDO = dl.RequestLineStation(lineStation.Station, lineStation.LineId);
             IEnumerable<int> stations = dl.RequestStationsByLine(LineStationDO.LineId);//returns all stations
             dl.UpdateLineStation(LineStationDO);
@@ -524,8 +542,8 @@ namespace BL
                 DO.LineTrip lineTripDO = new DO.LineTrip();
                 lineTrip.CopyPropertiesTo(lineTripDO);//copys lineTrip properties into lineTripDO
                 dl.AddLineTrip(lineTripDO);
-             }
-            catch(DO.LineIdException ex)
+            }
+            catch (DO.LineIdException ex)
             {
                 throw new BO.LineIdException("line Id does not exist ", ex);
             }
@@ -533,6 +551,7 @@ namespace BL
         }
         public void UpdateLineTrip(BO.LineTrip lineTrip) //updating lineTrip
         {
+
             DO.LineTrip lineTripDO = new DO.LineTrip();
             lineTrip.CopyPropertiesTo(lineTripDO);//copys lineTrip properties into lineTripDO
             try
@@ -558,7 +577,7 @@ namespace BL
         }
         #endregion
         #region simulation
-       public void StartSimulator() 
+        public void StartSimulator()
         {
         }
         #endregion

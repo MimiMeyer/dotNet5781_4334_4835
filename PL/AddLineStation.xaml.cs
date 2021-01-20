@@ -25,11 +25,15 @@ namespace PL
         {
             InitializeComponent();
             LineStationGrid.DataContext = station;//new line station
-    
+            
+
+
 
 
         }
 
         public BO.LineStation NewStation { get { return station; } }//returns user input 
+
+       
     }
 }

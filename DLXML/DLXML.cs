@@ -35,7 +35,7 @@ namespace DL
             List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
             List<int> num = XMLTools.LoadListFromXMLSerializer<int>(runningNuberPath);
             line.Id = num.ElementAt(0);
-           
+            num = num.Select(x => x + 1).ToList();
             ListLines.Add(line); //no need to Clone()
             XMLTools.SaveListToXMLSerializer(ListLines, linesPath);
             XMLTools.SaveListToXMLSerializer(num,runningNuberPath );
@@ -45,19 +45,10 @@ namespace DL
         }
         public DO.Line RequestLine(int Id)//returns requested line by id
         {
-            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets the wanted xml
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
 
-            Line line = (from li in linesRootElem.Elements()
-                         where int.Parse(li.Element("Id").Value) == Id//only where the line has the sam id
-                         select new Line()
-                         {
-                             Id = Int32.Parse(li.Element("Id").Value),//gets id
-                             Code = Int32.Parse(li.Element("Code").Value),//gest bus number
-                             Area = (Areas)Enum.Parse(typeof(Areas), li.Element("Area").Value),//gets area
-                             FirstStation = Int32.Parse(li.Element("FirstStation").Value),//gets first station
-                             LastStation = Int32.Parse(li.Element("LastStation").Value)//gets last station
-                         }
-                        ).FirstOrDefault();//line equals the first line that has the same id
+            DO.Line line = ListLines.Find(l => l.Id == Id);
+
 
             if (line == null)//means that line doesnt exist and exeption is thrown
                 throw new DO.LineIdException(Id, $"Line Doesn't exist: {Id}");
@@ -66,19 +57,10 @@ namespace DL
         }
         public DO.Line RequestLineByCode(int code)//returns  requested line by code
         {
-            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets the wanted xml
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
 
-            Line line = (from l in linesRootElem.Elements()
-                         where int.Parse(l.Element("Code").Value) == code//only where the line has the sam code
-                         select new Line()
-                         {
-                             Id = Int32.Parse(l.Element("Id").Value),//gets id
-                             Code = Int32.Parse(l.Element("Code").Value),//gest bus number
-                             Area = (Areas)Enum.Parse(typeof(Areas), l.Element("Area").Value),//gets area
-                             FirstStation = Int32.Parse(l.Element("FirstStation").Value),//gets first station
-                             LastStation = Int32.Parse(l.Element("LastStation").Value)//gets last station
-                         }
-                        ).FirstOrDefault();//line equals the first line that has the same bus Number
+            DO.Line line = ListLines.Find(l => l.Code == code);
+           
 
             if (line == null)//means that line doesnt exist and exeption is thrown
                 throw new DO.LineIdException(code, $"Line Doesn't exist: {code}");
@@ -102,25 +84,17 @@ namespace DL
         }
         public void UpdateLine(DO.Line line)//updates line
         {
-            XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets wanted xml
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
 
-            XElement lin = (from l in linesRootElem.Elements()
-                            where int.Parse(l.Element("ID").Value) == line.Id//finds the line with same id
-                            select l).FirstOrDefault();
-
-            if (lin != null)//the line exists
+            DO.Line li= ListLines.Find(l => l.Id == line.Id );//checks line station. if exists li will get the value of the chosen line.
+            if (li != null)
             {
-
-                lin.Element("Id").Value = line.Id.ToString();//updating id
-                lin.Element("Code").Value = line.Code.ToString();//updating code
-                lin.Element("Area").Value = line.Area.ToString();//updating area
-                lin.Element("FirstStation").Value = line.FirstStation.ToString();//updating first station
-                lin.Element("LastStation").Value = line.LastStation.ToString();//updating last station
-
-                XMLTools.SaveListToXMLElement(linesRootElem, linesPath);//updating xml
+                ListLines.Remove(li);
+                ListLines.Add(line); //no nee to Clone()
             }
             else//the line doesnt exist
                 throw new DO.LineIdException(line.Id, $"Line Doesn't exist: {line.Id}");
+            XMLTools.SaveListToXMLSerializer(ListLines, linesPath);
         }
         public void DeleteLine(int id)
         {
@@ -168,8 +142,6 @@ namespace DL
             if (sta != null)
                 return sta; //no need to Clone()
             else
-                throw new DO.LineIdException(lineId, $"linetrip does not exist for  this start time and linetrip : {lineId}");
-
             throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
         }
         public IEnumerable<DO.LineStation> RequestAllLinesStation(int id) //returns a  list of  Line stations by line
@@ -306,11 +278,13 @@ namespace DL
                     select new LineTrip()
                     {
                         LineId = Int32.Parse(li.Element("LineId").Value),//gets id
-                        StartAt = TimeSpan.Parse(li.Element("StartAt").Value)//gets start time
+                        StartAtTotalSeconds = double.Parse(li.Element("StartAt").Value),//gets start time
+                        StartAt=TimeSpan.FromSeconds(double.Parse(li.Element("StartAt").Value))
                     }
                    );
 
         }
+
         public IEnumerable<DO.LineTrip> RequestAllLineTrips() //returns all line trips
         {
             XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);//gets the wanted xml
@@ -329,21 +303,23 @@ namespace DL
         }
         public void DeleteLineTrip(int lineId, TimeSpan StartAt) //delets linetrips
         {
-            List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripsPath);
+
 
             XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);//gets wanted xml
 
             XElement lin = (from l in lineTripsRootElem.Elements()
-                            where int.Parse(l.Element("LineId").Value) == lineId && TimeSpan.Parse(l.Element("StartAt").Value) == StartAt //finds the line with the wante id
+                            where int.Parse(l.Element("LineId").Value) == lineId && double.Parse(l.Element("StartAt").Value) == StartAt.TotalSeconds //finds the line with the wante id
                             select l).FirstOrDefault();
 
-            if (lin != null)//the line exists
+            if (lin != null)//the line exist
             {
                 lin.Remove();//deletes line
                 XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);//updating xml
             }
             else//the line doesnt exist
+            {
                 throw new DO.LineIdException(lineId, $"Trip Line Doesn't exist: {lineId}");
+        }
         }
         #endregion
         #region Station

@@ -1,9 +1,5 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfLineTrip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <LineTrip>
-    <LineId>1</LineId>
-    <StartAt>25200</StartAt>
-  </LineTrip>
   <LineTrip>
     <LineId>1</LineId>
     <StartAt>28800</StartAt>

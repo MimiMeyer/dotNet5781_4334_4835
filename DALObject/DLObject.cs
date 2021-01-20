@@ -208,6 +208,7 @@ namespace DL
                    select LineTrip.Clone();
                                             
         }
+       
         public IEnumerable<DO.LineTrip> RequestAllLineTrips()//returns a copy of list of line trips
         {
             return from LineTrip in DataSource.listLineTrip
@@ -430,6 +431,8 @@ namespace DL
             else
                 throw new DO.AdjacentStationseException(station1, station2, "AdjacentStations does't exist:");
         }
+
+       
         #endregion
 
     }

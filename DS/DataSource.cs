@@ -30,6 +30,7 @@ namespace DS
             SaveListToXML(listLines, "..\\xml\\LinesXml.xml");
             SaveListToXML(listLineTrip, "..\\xml\\LineTripsXml.xml");
             SaveListToXML(RunningNumber, "..\\xml\\RunningNumberXml.xml");
+            SaveListToXML(listAdjacentStations, "..\\xml\\AdjacentStationsXml.xml");
 
 
 
@@ -41,6 +42,14 @@ namespace DS
             x.Serialize(fs, num);
             fs.Close();
         }
+        public static void SaveListToXML(List<AdjacentStations> list, string path)
+        {
+            XmlSerializer x = new XmlSerializer(list.GetType());
+            FileStream fs = new FileStream(path, FileMode.Create);
+            x.Serialize(fs, list);
+            fs.Close();
+        }
+
 
 
         public static void SaveListToXML(List<Station> list, string path)

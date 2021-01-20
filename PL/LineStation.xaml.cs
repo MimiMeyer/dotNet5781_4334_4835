@@ -28,6 +28,10 @@ namespace PL
             {
                 MessageBox.Show(ex.Message);//if exception was thrown will show message
             }
+            catch (BO.CantBeMinusException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
         }
