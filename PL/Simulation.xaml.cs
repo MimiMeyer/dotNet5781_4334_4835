@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLAPI;
 
 namespace PL
 {
@@ -24,9 +25,10 @@ namespace PL
         BackgroundWorker timeWorker=new BackgroundWorker();
         TimeSpan updateTime;
         int rate = new int();
-        int r = new int();
-       
-        
+        TimeSpan Twelve = new TimeSpan(1,0, 0, 0);
+
+        IBL bl = BLFactory.GetBL("1");
+             
         public Simulation()
         {
             InitializeComponent();
@@ -49,7 +51,14 @@ namespace PL
 
         private void timeWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            startTime.Text = (updateTime.Add(TimeSpan.FromSeconds(e.ProgressPercentage)).ToString());
+
+           if (startTime.Text == "23:59:59") 
+            {
+                updateTime=updateTime.Add(TimeSpan.FromSeconds(e.ProgressPercentage).Subtract(Twelve));
+                startTime.Text = (updateTime).ToString();
+
+            }
+            startTime.Text = (updateTime.Add(TimeSpan.FromSeconds(e.ProgressPercentage))).ToString();
         }
 
         public void timeWorker_DoWork(Object sender,DoWorkEventArgs e) 
@@ -57,17 +66,17 @@ namespace PL
             
             this.Dispatcher.Invoke(() =>
             {
-                r = int.Parse(Rate.Text);
+                rate = int.Parse(Rate.Text);
                 updateTime = TimeSpan.Parse(startTime.Text);
-               
-                
+
+
             });
 
-            if (r >0)
+            if (rate >0)
             {
-                for (int i = 0; ; i++)
+                for (int i = 1; ; i++)
                 {
-                    System.Threading.Thread.Sleep(1000/r);//will go by rate lets say my rate is 50 so for every second, 50 seconds will pass
+                    System.Threading.Thread.Sleep(1000/rate);//will go by rate lets say my rate is 50 so for every second, 50 seconds will pass
                     timeWorker.ReportProgress(i);
                     if (timeWorker.CancellationPending)
                     {
