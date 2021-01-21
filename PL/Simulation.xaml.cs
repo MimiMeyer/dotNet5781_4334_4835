@@ -34,7 +34,7 @@ namespace PL
           
             startTime.Text = updateTime.ToString();
             timeWorker.DoWork += timeWorker_DoWork;
-            timeWorker.WorkerSupportsCancellation = true;//allows to cancle
+            timeWorker.WorkerSupportsCancellation = true;//allows to cancle thread
             timeWorker.ProgressChanged += timeWorker_ProgressChanged;
             timeWorker.WorkerReportsProgress = true;
             timeWorker.RunWorkerCompleted += timeWorker_RunWorkerCompleted;
