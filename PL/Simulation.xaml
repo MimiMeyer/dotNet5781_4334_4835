@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Simulation" Height="450" Width="800">
+        Title="Simulation" Height="567.838" Width="200">
     <Grid>
-        <Button x:Name ="Button"  Content="Start" HorizontalAlignment="Left" Height="85"  VerticalAlignment="Center" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Click="Button_Click" />
-        <TextBox x:Name="startTime" HorizontalAlignment="Center" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5"/>
-        <TextBox x:Name="Rate" HorizontalAlignment="Right" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5"/>
+        <Button x:Name ="Button"  Content="Start" HorizontalAlignment="Center" Height="85"  VerticalAlignment="Top" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Click="Button_Click"  />
+        <TextBox x:Name="startTime"   HorizontalAlignment="Center" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" />
+        <TextBox x:Name="Rate" HorizontalAlignment="Center" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Margin="17,0,17,34" />
     </Grid>
 </Window>

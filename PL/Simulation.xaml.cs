@@ -23,24 +23,75 @@ namespace PL
         
         BackgroundWorker timeWorker=new BackgroundWorker();
         TimeSpan updateTime;
-        int rate;
+        int rate = new int();
+        int r = new int();
+       
+        
         public Simulation()
         {
             InitializeComponent();
-            Rate.DataContext = rate;
+            Rate.Text = rate.ToString();
+          
+            startTime.Text = updateTime.ToString();
             timeWorker.DoWork += timeWorker_DoWork;
-
+            timeWorker.WorkerSupportsCancellation = true;//allows to cancle
+            timeWorker.ProgressChanged += timeWorker_ProgressChanged;
+            timeWorker.WorkerReportsProgress = true;
+            timeWorker.RunWorkerCompleted += timeWorker_RunWorkerCompleted;
 
 
         }
-        public void timeWorker_DoWork(Object sender,DoWorkEventArgs e) 
-        { 
 
+        private void timeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Button.Content = "Start Again";
+        }
+
+        private void timeWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            startTime.Text = (updateTime.Add(TimeSpan.FromSeconds(e.ProgressPercentage)).ToString());
+        }
+
+        public void timeWorker_DoWork(Object sender,DoWorkEventArgs e) 
+        {
+            
+            this.Dispatcher.Invoke(() =>
+            {
+                r = int.Parse(Rate.Text);
+                updateTime = TimeSpan.Parse(startTime.Text);
+               
+                
+            });
+
+            if (r >0)
+            {
+                for (int i = 0; ; i++)
+                {
+                    System.Threading.Thread.Sleep(1000/r);//will go by rate lets say my rate is 50 so for every second, 50 seconds will pass
+                    timeWorker.ReportProgress(i);
+                    if (timeWorker.CancellationPending)
+                    {
+                        break;
+                    }
+                } 
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (!timeWorker.IsBusy)
+            {
+               
+              
+                timeWorker.RunWorkerAsync();
+                Button.Content = "Stop";
+            }
+            else
+            {
+                timeWorker.CancelAsync();
+                Button.Content = "Start";
+
+            }
         }
     }
 }
