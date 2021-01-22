@@ -621,7 +621,7 @@ namespace BL
                         while (st.MoveNext())
                         {
                             BO.LineTiming lineTime = new BO.LineTiming();
-                            lineTime.Id = li.Current.Code;
+                            lineTime.Id = li.Current.Code;//gets line number
                             lineTime.Code = Code;
                             lineTime.ArrivalTime = ArrivalTime(li.Current.Id, Code, st.Current.StartAt);
                             lineTime.MinutesTillArival = (int)(lineTime.ArrivalTime.Subtract(startTime).TotalMinutes);
@@ -647,11 +647,11 @@ namespace BL
             if (li == null)
             {
                 li = listOfLineTimes.ToList().Find(l => l.ArrivalTime.TotalSeconds<startTime.TotalSeconds); 
-                return li.Code;
+                return li.Id;
                 
             }
             else
-                return li.Code;
+                return li.Id;
              
         }
         public TimeSpan ArrivalTime(int id, int Code, TimeSpan time)//returns arrival time for the 
