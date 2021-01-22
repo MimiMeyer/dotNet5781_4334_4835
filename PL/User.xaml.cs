@@ -34,7 +34,7 @@ namespace PL
             lineDataGrid.DataContext = bl.GetAlllinesByStation(st.Code);
             lineDataGrid.IsReadOnly = true;
 
-            Simulation window = new Simulation();
+            Simulation window = new Simulation(st.Code);
             window.Show();
         }
 

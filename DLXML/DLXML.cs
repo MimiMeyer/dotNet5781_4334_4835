@@ -237,15 +237,9 @@ namespace DL
         {
             XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);
 
-            XElement trip = (from l in lineTripsRootElem.Elements()
-                             where int.Parse(l.Element("LineId").Value) == lineTrip.LineId
-                             select l).FirstOrDefault();
-
-            if (trip == null)
-                throw new DO.LineIdException(lineTrip.LineId, "LineTrip ID doesn't exist");
             XElement lineTripElem = new XElement("LineTrip",
                                  new XElement("LineId", lineTrip.LineId.ToString()),
-                                 new XElement("StartAt", lineTrip.StartAt));
+                                 new XElement("StartAt", lineTrip.StartAtTotalSeconds));
 
             lineTripsRootElem.Add(lineTripElem);
 

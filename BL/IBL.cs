@@ -40,7 +40,9 @@ namespace BLAPI
         void DeleteLineTrip(int lineId, TimeSpan StartAt);//deletes lineTrip
         #endregion
         #region simulation
-        void StartSimulator(TimeSpan startTime, int Rate, Action<TimeSpan> updateTime);
+        IEnumerable<BO.LineTiming> GetLineTimingForSimulator(TimeSpan startTime, int Code);
+        int LastBusInStation(TimeSpan startTime, int Code);
+
         #endregion
 
 

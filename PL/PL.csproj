@@ -202,6 +202,7 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\BO.Line.datasource" />
     <None Include="Properties\DataSources\BO.LineStation.datasource" />
+    <None Include="Properties\DataSources\BO.LineTiming.datasource" />
     <None Include="Properties\DataSources\BO.LineTrip.datasource" />
     <None Include="Properties\DataSources\BO.Station.datasource" />
     <None Include="Properties\Settings.settings">

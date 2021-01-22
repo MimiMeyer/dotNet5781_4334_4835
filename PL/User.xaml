@@ -40,7 +40,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="146,112,461,97" RowDetailsVisibilityMode="VisibleWhenSelected"  FontSize="14" FontFamily="Yu Gothic Medium" BorderBrush="Black" BorderThickness="5" >
+        <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="146,98,461,97" RowDetailsVisibilityMode="VisibleWhenSelected"  FontSize="14" FontFamily="Yu Gothic Medium" BorderBrush="Black" BorderThickness="5" >
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn x:Name="codeColumn1" Header="קווים שעוברים בתחנה" Width="*"  >

@@ -1,5 +1,5 @@
 ﻿
-  
+
 using BLAPI;
 using DLAPI;
 using System;
@@ -323,7 +323,7 @@ namespace BL
 
         public void AddStationToLine(BO.LineStation lineStation)//add station to line
         {
-            if (lineStation.Distance<0) 
+            if (lineStation.Distance < 0)
             {
                 throw new BO.CantBeMinusException(lineStation.Distance, "The Distance must be over 0");
             }
@@ -537,16 +537,13 @@ namespace BL
         }
         public void AddLineTrip(BO.LineTrip lineTrip)//add LineTrip
         {
-            try
-            {
+           
                 DO.LineTrip lineTripDO = new DO.LineTrip();
                 lineTrip.CopyPropertiesTo(lineTripDO);//copys lineTrip properties into lineTripDO
-                dl.AddLineTrip(lineTripDO);
-            }
-            catch (DO.LineIdException ex)
-            {
-                throw new BO.LineIdException("line Id does not exist ", ex);
-            }
+                BO.Line li =GetLine(lineTrip.LineId);
+            if (li==null)
+                throw new BO.LineIdException(lineTrip.LineId, "line Id does not exist ");
+            dl.AddLineTrip(lineTripDO);
 
         }
         public void UpdateLineTrip(BO.LineTrip lineTrip) //updating lineTrip
@@ -577,9 +574,115 @@ namespace BL
         }
         #endregion
         #region simulation
-        public void StartSimulator(TimeSpan startTime, int Rate, Action<TimeSpan> updateTime)
-        {
+      
+
+        public IEnumerable <BO.LineTiming> GetLineTimingForSimulator(TimeSpan startTime, int Code)
+        { 
+            List<BO.LineTiming> listOfLineTiming = new List< BO.LineTiming > ();
+            IEnumerable<BO.Line> lines = GetAlllinesByStation(Code);//gets all lines
+          
+            using (var li = lines.GetEnumerator())
+            {
+                while (li.MoveNext())
+                {
+                    IEnumerable<BO.LineTrip> lineTrips = GetLineTripsForLine(li.Current.Id);
+                    using (var st = lineTrips.GetEnumerator())
+                    {
+                        while (st.MoveNext())
+                        {
+                            BO.LineTiming lineTime = new BO.LineTiming();
+                            lineTime.Id = li.Current.Code;
+                            lineTime.Code = Code;
+                            lineTime.ArrivalTime = ArrivalTime(li.Current.Id, Code, st.Current.StartAt);
+                            lineTime.MinutesTillArival = (int)(lineTime.ArrivalTime.Subtract(startTime).TotalMinutes);
+                            listOfLineTiming.Add(lineTime);
+    
+                        }
+                    }
+                }
+            }
+            return (from lineTiming in listOfLineTiming.
+                   FindAll(l => l.MinutesTillArival <= 120&& l.MinutesTillArival>=0).
+                   OrderBy(l => l.ArrivalTime )
+                   select lineTiming).Take(5);
+
         }
-        #endregion
+        public IEnumerable<BO.LineTiming> ListOfLineTiming(TimeSpan startTime, int Code) {
+            List<BO.LineTiming> listOfLineTiming = new List<BO.LineTiming>();
+            IEnumerable<BO.Line> lines = GetAlllinesByStation(Code);//gets all lines
+
+            using (var li = lines.GetEnumerator())
+            {
+                while (li.MoveNext())
+                {
+                    IEnumerable<BO.LineTrip> lineTrips = GetLineTripsForLine(li.Current.Id);
+                    using (var st = lineTrips.GetEnumerator())
+                    {
+                        while (st.MoveNext())
+                        {
+                            BO.LineTiming lineTime = new BO.LineTiming();
+                            lineTime.Id = li.Current.Code;
+                            lineTime.Code = Code;
+                            lineTime.ArrivalTime = ArrivalTime(li.Current.Id, Code, st.Current.StartAt);
+                            lineTime.MinutesTillArival = (int)(lineTime.ArrivalTime.Subtract(startTime).TotalMinutes);
+                            listOfLineTiming.Add(lineTime);
+
+                        }
+                    }
+                }
+            }
+            return from lineTiming in listOfLineTiming.
+     
+                  OrderByDescending(l => l.ArrivalTime)
+                   select lineTiming;
+        }
+        public int LastBusInStation(TimeSpan startTime,int Code)
+        {
+            
+            IEnumerable<BO.LineTiming> listOfLineTimes = ListOfLineTiming(startTime, Code);
+            TimeSpan Day=new TimeSpan(1, 0, 0, 0);
+            
+
+            BO.LineTiming li = listOfLineTimes.ToList().Find(l => l.ArrivalTime == startTime);
+            if (li == null)
+            {
+                li = listOfLineTimes.ToList().Find(l => l.ArrivalTime.TotalSeconds<startTime.TotalSeconds); 
+                return li.Code;
+                
+            }
+            else
+                return li.Code;
+             
+        }
+        public TimeSpan ArrivalTime(int id, int Code, TimeSpan time)//returns arrival time for the 
+        {
+           
+            IEnumerable<BO.LineStation> Stations = GetStationsForLine(id);
+            using (var st = Stations.GetEnumerator())
+            {
+                while (st.MoveNext())
+                {
+                    if (!(st.Current.Station == Code)) //once it equals the code will break and give us the wanted time
+                    {
+
+                        time += TimeSpan.FromMinutes(st.Current.Time);//adds on to the time time between the busstops
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+
+            }
+            return time;
+
+        }
+
+
+
+
     }
+    #endregion
 }
+

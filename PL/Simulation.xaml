@@ -5,10 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Simulation" Height="567.838" Width="200">
+        Title="Simulation" Height="550" Width="550">
     <Grid>
-        <Button x:Name ="Button"  Content="Start" HorizontalAlignment="Center" Height="85"  VerticalAlignment="Top" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Click="Button_Click"  />
-        <TextBox x:Name="startTime"   HorizontalAlignment="Center" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" />
-        <TextBox x:Name="Rate" HorizontalAlignment="Center" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Margin="17,0,17,34" />
+        <Button x:Name ="Button"  Content="Start" HorizontalAlignment="Center" Height="84"  VerticalAlignment="Top" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Click="Button_Click" Margin="50,28,334,0"  />
+        <TextBox x:Name="startTime"   HorizontalAlignment="Center" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Margin="50,117,334,317" />
+        <TextBox x:Name="Rate" HorizontalAlignment="Center" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Margin="50,0,334,214" />
+        <Grid >
+
+            <DataGrid x:Name="lineTimingDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="237,31,92,227" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5">
+                <DataGrid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="1.572"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="2.223"/>
+                    </TransformGroup>
+                </DataGrid.RenderTransform>
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="arrivalTimeColumn" Width="SizeToHeader" Header="Arrival Time" Binding="{Binding ArrivalTime}"/>
+                    <DataGridTextColumn x:Name="idColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
+                    
+                    <DataGridTextColumn x:Name="minutesTillArivalColumn" Width="SizeToHeader" Header="Minutes Till Arrival" Binding="{Binding MinutesTillArival}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBox Name="LastBusTextBox" HorizontalAlignment="Left" Height="56" Margin="479,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="53"/>
+
+        </Grid>
     </Grid>
+
 </Window>
