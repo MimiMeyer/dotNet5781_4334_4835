@@ -129,7 +129,7 @@ namespace PL
 
             if (rate > 0)//we don't want 0 because you cant devide a number by 0 and it cant be minus
             {
-                for (int j= 1; ; j++)//will go on forever untill user presses bus
+                for (int j = 1; ; j++)//will go on forever untill user presses bus
                 {
                     System.Threading.Thread.Sleep(1000 / rate);//will go by rate lets say my rate is 50 so for every second, 50 seconds will pass
                     TimeBoard.ReportProgress(j);
