@@ -537,11 +537,11 @@ namespace BL
         }
         public void AddLineTrip(BO.LineTrip lineTrip)//add LineTrip
         {
-           
-                DO.LineTrip lineTripDO = new DO.LineTrip();
-                lineTrip.CopyPropertiesTo(lineTripDO);//copys lineTrip properties into lineTripDO
-                BO.Line li =GetLine(lineTrip.LineId);
-            if (li==null)
+
+            DO.LineTrip lineTripDO = new DO.LineTrip();
+            lineTrip.CopyPropertiesTo(lineTripDO);//copys lineTrip properties into lineTripDO
+            BO.Line li = GetLine(lineTrip.LineId);
+            if (li == null)
                 throw new BO.LineIdException(lineTrip.LineId, "line Id does not exist ");
             dl.AddLineTrip(lineTripDO);
 
@@ -574,13 +574,13 @@ namespace BL
         }
         #endregion
         #region simulation
-      
 
-        public IEnumerable <BO.LineTiming> GetLineTimingForSimulator(TimeSpan startTime, int Code)
-        { 
-            List<BO.LineTiming> listOfLineTiming = new List< BO.LineTiming > ();
+
+        public IEnumerable<BO.LineTiming> GetLineTimingForSimulator(TimeSpan startTime, int Code)
+        {
+            List<BO.LineTiming> listOfLineTiming = new List<BO.LineTiming>();
             IEnumerable<BO.Line> lines = GetAlllinesByStation(Code);//gets all lines
-          
+
             using (var li = lines.GetEnumerator())
             {
                 while (li.MoveNext())
@@ -596,15 +596,15 @@ namespace BL
                             lineTime.ArrivalTime = ArrivalTime(li.Current.Id, Code, st.Current.StartAt);
                             lineTime.MinutesTillArival = (int)(lineTime.ArrivalTime.Subtract(startTime).TotalMinutes);
                             listOfLineTiming.Add(lineTime);
-    
+
                         }
                     }
                 }
             }
             return (from lineTiming in listOfLineTiming.
-                   FindAll(l => l.MinutesTillArival <= 120&& l.MinutesTillArival>=0).
-                   OrderBy(l => l.ArrivalTime )
-                   select lineTiming).Take(5);
+                   FindAll(l => l.MinutesTillArival <= 120 && l.MinutesTillArival >= 0).
+                   OrderBy(l => l.ArrivalTime)
+                    select lineTiming).Take(5);
 
         }
         public IEnumerable<BO.LineTiming> ListOfLineTiming(TimeSpan startTime, int Code) {
@@ -632,28 +632,34 @@ namespace BL
                 }
             }
             return from lineTiming in listOfLineTiming.
-     
+
                   OrderByDescending(l => l.ArrivalTime)
                    select lineTiming;
         }
-        public int LastBusInStation(TimeSpan startTime,int Code)
+        public int LastBusInStation(TimeSpan startTime, int Code)//returns last bus that was at station
         {
-            
+
             IEnumerable<BO.LineTiming> listOfLineTimes = ListOfLineTiming(startTime, Code);
-            TimeSpan Day=new TimeSpan(1, 0, 0, 0);
-            
+            TimeSpan Day = new TimeSpan(1, 0, 0, 0);
+
 
             BO.LineTiming li = listOfLineTimes.ToList().Find(l => l.ArrivalTime == startTime);
+       
             if (li == null)
             {
-                li = listOfLineTimes.ToList().Find(l => l.ArrivalTime.TotalSeconds<startTime.TotalSeconds); 
-                return li.Id;
-                
+                li = listOfLineTimes.ToList().Find(l => l.ArrivalTime < startTime);//means its not equeal so we wnat to find the last
+                if (li == null)//means its an early hour so we want to add a day
+                {
+                   startTime= startTime.Add(Day);
+                    li = listOfLineTimes.ToList().Find(l => l.ArrivalTime< startTime);
+                }
+               
+
             }
-            else
+            
                 return li.Id;
-             
-        }
+
+        } 
         public TimeSpan ArrivalTime(int id, int Code, TimeSpan time)//returns arrival time for the 
         {
            
@@ -674,6 +680,10 @@ namespace BL
 
                 }
 
+            }
+            if (time.Days > 0) 
+            {
+               time.Subtract(new TimeSpan(1, 0, 0, 0));
             }
             return time;
 

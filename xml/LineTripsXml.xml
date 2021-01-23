@@ -892,4 +892,8 @@
     <LineId>12</LineId>
     <StartAt>86340</StartAt>
   </LineTrip>
+  <LineTrip>
+    <LineId>13</LineId>
+    <StartAt>68400</StartAt>
+  </LineTrip>
 </ArrayOfLineTrip>

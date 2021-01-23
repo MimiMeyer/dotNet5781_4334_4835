@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BLAPI;
+using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using BLAPI;
 
 namespace PL
 {
@@ -20,16 +10,16 @@ namespace PL
     /// Interaction logic for Simulation.xaml
     /// </summary>
     public partial class Simulation : Window
-    { 
-        
-        BackgroundWorker timeWorker=new BackgroundWorker();//will use for threads
+    {
+
+        BackgroundWorker timeWorker = new BackgroundWorker();//will use for threads
         BackgroundWorker TimeBoard = new BackgroundWorker();//will use for threads
         TimeSpan updateTime;//the time 
         int rate = new int();//the rate
-        TimeSpan Day= new TimeSpan(1, 0, 0, 0);//a day
+        TimeSpan Day = new TimeSpan(1, 0, 0, 0);//a day
         int station;
         IBL bl = BLFactory.GetBL("1");
-             
+
         public Simulation(int Code)
         {
             InitializeComponent();
@@ -40,7 +30,7 @@ namespace PL
             timeWorker.ProgressChanged += TimeWorker_ProgressChanged;
             timeWorker.WorkerReportsProgress = true;//allows to report progress
             timeWorker.RunWorkerCompleted += timeWorker_RunWorkerCompleted;//will do when Timework is finished
-            
+
             TimeBoard.DoWork += TimeBoard_DoWork;
             TimeBoard.WorkerSupportsCancellation = true;//allows to cancle thread
             TimeBoard.ProgressChanged += TimeBoard_ProgressChanged;
@@ -50,11 +40,11 @@ namespace PL
 
         }
 
-        
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!timeWorker.IsBusy&& !TimeBoard.IsBusy)//if not busy
+            if (!timeWorker.IsBusy && !TimeBoard.IsBusy)//if not busy
             {
 
 
@@ -74,7 +64,7 @@ namespace PL
             }
         }
 
-            public void timeWorker_DoWork(Object sender, DoWorkEventArgs e)
+        public void timeWorker_DoWork(Object sender, DoWorkEventArgs e)
         {
 
             this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
@@ -109,7 +99,7 @@ namespace PL
             }
             else
                 startTime.Text = (updateTime.Add(TimeSpan.FromSeconds(e.ProgressPercentage))).ToString();//will raise the text by one second
-            
+
         }
         private void timeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -144,7 +134,7 @@ namespace PL
                 this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
                 {
                     LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();
-                    
+
 
                 });
             }
@@ -154,12 +144,15 @@ namespace PL
         }
         private void TimeBoard_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+
             lineTimingDataGrid.DataContext = bl.GetLineTimingForSimulator(TimeSpan.Parse(startTime.Text), station);
+
             LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();
         }
 
     }
-        }
-       
+
+}
+
 
 
