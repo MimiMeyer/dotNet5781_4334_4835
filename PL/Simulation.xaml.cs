@@ -24,8 +24,8 @@ namespace PL
         public Simulation(int Code)
         {
             InitializeComponent();
-            header.Text = " עבור מספר תחנה" +" "+ Code;
-            
+            header.Text = " עבור מספר תחנה" + " " + Code;
+
             Rate.Text = rate.ToString();//puts 0 in the rate text box
             startTime.Text = updateTime.ToString();//will show timespan in start time textbox
             timeWorker.DoWork += timeWorker_DoWork;
@@ -52,19 +52,17 @@ namespace PL
 
 
                 timeWorker.RunWorkerAsync();//start timework and calls dowork
-                TimeBoard.RunWorkerAsync();
-                Button.Content = "Stop";
-                Button.Background = Brushes.Red;
+                TimeBoard.RunWorkerAsync();//start timeboard
+                Button.Content = "Stop";//new content
+                Button.Background = Brushes.Red;//new backround
                 Rate.IsReadOnly = true;//can't change while the program is running
                 startTime.IsReadOnly = true;//can't change while the program is running
             }
             else
             {
-                timeWorker.CancelAsync();//stops the dowork
-                TimeBoard.CancelAsync();
-                Button.Content = "Start";
-                Rate.IsReadOnly = false;//can change once the program stopped
-                startTime.IsReadOnly = false; //can change once the program stopped
+                timeWorker.CancelAsync();//stops the dowork for Timeworker
+                TimeBoard.CancelAsync();//stops the do wrok for timeboard
+
             }
         }
 
@@ -138,7 +136,14 @@ namespace PL
             {
                 this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
                 {
-                    LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();
+                    try
+                    {
+                        LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
+                    }
+                    catch (BO.StationCodeException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
 
 
                 });
@@ -149,13 +154,20 @@ namespace PL
         }
         private void TimeBoard_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            try
+            {
+                lineTimingDataGrid.DataContext = bl.GetLineTimingForSimulator(TimeSpan.Parse(startTime.Text), station);//gets the info from the bl with the function GetLineTimingForSimulator
 
-            lineTimingDataGrid.DataContext = bl.GetLineTimingForSimulator(TimeSpan.Parse(startTime.Text), station);
+                LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
+            }
+            catch (BO.StationCodeException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();
         }
 
-      
+
     }
 
 }

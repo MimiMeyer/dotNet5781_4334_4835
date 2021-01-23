@@ -247,27 +247,9 @@
     <Time>1</Time>
   </AdjacentStations>
   <AdjacentStations>
-    <Station1>0</Station1>
-    <Station2>0</Station2>
-    <Distance>0</Distance>
-    <Time>0</Time>
-  </AdjacentStations>
-  <AdjacentStations>
-    <Station1>112</Station1>
-    <Station2>73</Station2>
-    <Distance>2</Distance>
-    <Time>4</Time>
-  </AdjacentStations>
-  <AdjacentStations>
     <Station1>1524</Station1>
-    <Station2>73</Station2>
-    <Distance>8.8113956381154228</Distance>
-    <Time>17.622791276230846</Time>
-  </AdjacentStations>
-  <AdjacentStations>
-    <Station1>112</Station1>
-    <Station2>123</Station2>
-    <Distance>1.8200764395855724</Distance>
-    <Time>3.6401528791711448</Time>
+    <Station2>76</Station2>
+    <Distance>36.361157877073232</Distance>
+    <Time>72.722315754146464</Time>
   </AdjacentStations>
 </ArrayOfAdjacentStations>

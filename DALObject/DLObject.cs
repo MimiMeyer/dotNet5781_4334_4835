@@ -18,14 +18,14 @@ namespace DL
         //Implement IDL methods, CRUD
         #region Line
 
-        public int AddLine(DO.Line line)
+        public int AddLine(DO.Line line)//adds line
         {
-            line.Id = RunningNumber.RunningNumberID;
-            DataSource.listLines.Add(line.Clone());
-            RunningNumber.RunningNumberID++;
-            return line.Id;
+            line.Id = RunningNumber.RunningNumberID;//gets running number for Id
+            DataSource.listLines.Add(line.Clone());//adds line
+            RunningNumber.RunningNumberID++;//Running number +1
+            return line.Id;//returning the Id for the BL
         }
-        public DO.Line RequestLine(int Id)
+        public DO.Line RequestLine(int Id)//request line by Id and if exists returns
         {
             DO.Line li = DataSource.listLines.Find(l => l.Id == Id);//checks line. if exists li will get the value of the chosen line.
 
@@ -34,7 +34,7 @@ namespace DL
             else
                 throw new DO.LineIdException(Id, $"line Id does not exist: {Id}");
         }
-        public DO.Line RequestLineByCode(int code)
+        public DO.Line RequestLineByCode(int code)//request line by code and if exists returns
         {
             DO.Line li = DataSource.listLines.Find(l => l.Code == code);//checks line. if exists li will get the value of the chosen line.
 
@@ -101,7 +101,7 @@ namespace DL
                                               Select(lineStation => lineStation.LineId);
 
         }
-       public IEnumerable<DO.Line> GetLinesByStation(int Station)//returns list of lines for requested station.
+       public IEnumerable<DO.Line> GetLinesByStation(int Station)//returns list of lines with all there details for requested station.
         {
             IEnumerable<int> lines = RequestLinesByStation(Station);//gets line ids
             IEnumerable<DO.Line> DOlines = DataSource.listLines.FindAll(line => lines.Contains(line.Id));//only adds line if it exists in line
@@ -133,7 +133,7 @@ namespace DL
                    FindAll(lineStation => lineStation.LineId == lineID)
                    select LineStation.Clone();
         }
-        public void UpdateLineStation(DO.LineStation lineStation)
+        public void UpdateLineStation(DO.LineStation lineStation)//updates line station if it has the same line and station
         {
             DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineStation.LineId&& l.Station == lineStation.Station);//checks line station. if exists li will get the value of the chosen line.
 
@@ -156,7 +156,7 @@ namespace DL
             else
                 throw new DO.LineIdException(lineId, $"line Id does not exist: {lineId}");
         }
-        public void DeleteLineStationbyStation(int station) ////deletes all line stations with same Station
+        public void DeleteLineStationbyStation(int station) //deletes all line stations with same Station
         {
             if (RequestLinesByStation(station) != null)//if it equels null it means no lines does not go through requested station
             {
@@ -165,7 +165,7 @@ namespace DL
             else
                 throw new DO.StationCodeException(station, $"Station code does not exist: {station}");
         }
-        public void DeleteLineStation(int Station, int lineId)
+        public void DeleteLineStation(int Station, int lineId)//deletes line station
         {
             DO.LineStation li = DataSource.listLineStation.Find(l => l.LineId == lineId && l.Station == Station);//checks line station. if exists li will get the value of the chosen lineStation.
 
@@ -181,7 +181,7 @@ namespace DL
         }
         #endregion
         #region LineTrip
-        public void AddLineTrip(DO.LineTrip lineTrip)
+        public void AddLineTrip(DO.LineTrip lineTrip)//adds linetrip
         {DO.Line li= DataSource.listLines.Find(l => l.Id == lineTrip.LineId );//checking that line exists
             if (li != null) //line exists
             {
@@ -191,7 +191,7 @@ namespace DL
             else
                 throw new LineIdException(lineTrip.LineId, $"Line does not exist: {lineTrip.LineId}");
         }
-        public DO.LineTrip RequestLineTrip(int lineId, TimeSpan StartAt)
+        public DO.LineTrip RequestLineTrip(int lineId, TimeSpan StartAt)//returns the wanted linetrip if exists
         {
             DO.LineTrip li = DataSource.listLineTrip.Find(l => l.LineId == lineId && l.StartAt == StartAt);//checks linetrip. if exists li will get the value of the chosen linetrip.
 
@@ -226,7 +226,7 @@ namespace DL
             else
                 throw new DO.LineIdException(lineTrip.LineId, $"lineTrip does not exist : {lineTrip.LineId}");
         }
-        public void DeleteLineTrip(int lineId, TimeSpan StartAt)
+        public void DeleteLineTrip(int lineId, TimeSpan StartAt)//deletes linetrip
         {
             DO.LineTrip li = DataSource.listLineTrip.Find(l => l.LineId == lineId && l.StartAt == StartAt);//checks linetrip. if exists li will get the value of the chosen linetrip.
             DO.LineTrip Id = DataSource.listLineTrip.Find(l => l.LineId == lineId);
@@ -249,7 +249,7 @@ namespace DL
                 throw new DO.StationCodeException(station.Code, $"Duplicate station code: {station.Code}");
             DataSource.listStations.Add(station.Clone());
         }
-        public DO.Station RequestStation(int code)
+        public DO.Station RequestStation(int code)//returns requested station 
         {
             DO.Station st = DataSource.listStations.Find(s => s.Code == code);//checks station. if exists st will get the value of the chosen station.
 
@@ -289,111 +289,12 @@ namespace DL
                 throw new DO.StationCodeException(code, $"Station does't exist : {code}");
         }
         #endregion
-        #region Trip
-
-        public int AddTrip(DO.Trip trip)
-        {
-            
-            
-            trip.Id= RunningNumber.RunningTripID;
-            DataSource.listTrip.Add(trip.Clone());
-            RunningNumber.RunningTripID++;
-            return trip.Id;
-        }
-        public DO.Trip RequestTrip(int id)
-        {
-            DO.Trip tr = DataSource.listTrip.Find(t => t.Id == id);//checks trip. if exists tr will get the value of the chosen station.
-
-            if (tr != null)//if tr= null that means trip does not exist
-                return tr.Clone();//returns the chosen trip
-            else
-                throw new DO.StationCodeException(id, $"Trip does't exist : {id}");
-        }
-
-        public IEnumerable<DO.Trip> RequestAllTrips()//returns a copy of list of trips
-        {
-            return from Trip in DataSource.listTrip
-                   select Trip.Clone();
-        }
-        public void UpdateTrip(DO.Trip trip)
-        {
-            DO.Trip tr = DataSource.listTrip.Find(t => t.Id == trip.Id);//checks trip. if exists tr will get the value of the chosen station.
-
-            if (tr != null)//if tr= null that means trip does not exist
-            {
-                DataSource.listTrip.Remove(tr);//remove 
-                DataSource.listTrip.Add(trip.Clone());//add new updated trip
-            }
-
-            else
-                throw new DO.StationCodeException(trip.Id, $"Trip does't exist : {trip.Id}");
-        }
-        public void DeleteTrip(int id)
-        {
-            DO.Trip tr = DataSource.listTrip.Find(t => t.Id == id);//checks trip. if exists tr will get the value of the chosen station.
-
-            if (tr != null)//if tr= null that means trip does not exist
-            {
-                DataSource.listTrip.Remove(tr);//remove 
-            }
-            else
-                throw new DO.StationCodeException(id, $"Trip does't exist : {id}");
-        }
-        #endregion
-        #region User
-
-        public void AddUser(DO.User user)
-        {
-            if (DataSource.listUser.FirstOrDefault(u => u.UserName == user.UserName) != null)//makes sure there are no duplicates
-                throw new DO.UserIdException(user.UserName, $"Duplicate UserName: {user.UserName}");
-            DataSource.listUser.Add(user.Clone());
-        }
-        public DO.User RequestUser(string userName)
-        {
-            DO.User us = DataSource.listUser.Find(u => u.UserName == userName);//checks user. if exists tr will get the value of the chosen user.
-
-            if (us != null)//if us= null that means user does not exist
-                return us.Clone();//returns the chosen user
-            else
-                throw new DO.UserIdException(userName, $"UserName does not exist: {userName}");
-        }
-
-        public IEnumerable<DO.User> RequestAllUsers() //returns a copy of list of users
-        {
-            return from User in DataSource.listUser
-                   select User.Clone();
-        }
-        public void UpdateUser(DO.User user)
-        {
-            DO.User us = DataSource.listUser.Find(u => u.UserName == user.UserName);//checks user. if exists tr will get the value of the chosen user.
-
-            if (us != null)//if us= null that means user does not exist
-            {
-                DataSource.listUser.Remove(us);//removes 
-                DataSource.listUser.Add(user);//updating
-
-            }
-            else
-                throw new DO.UserIdException(user.UserName, $"UserName does not exist: {user.UserName}");
-        }
-        public void DeleteUser(string userName)
-        {
-            DO.User us = DataSource.listUser.Find(u => u.UserName == userName);//checks user. if exists tr will get the value of the chosen user.
-
-            if (us != null)//if us= null that means user does not exist
-            {
-                DataSource.listUser.Remove(us);//deleting the user
-            }
-            else
-                throw new DO.UserIdException(userName, $"UserName does not exist: {userName}");
-        }
-        #endregion
         #region AdjacentStations
         public void AddAdjacentStations(DO.AdjacentStations stations)//add AdjacentStations
         {
             DataSource.listAdjacentStations.Add(stations.Clone());
         }
-        public DO.AdjacentStations RequestAdjacentStations(int station1, int station2)
+        public DO.AdjacentStations RequestAdjacentStations(int station1, int station2)//returns requested adjent statations
         {
             DO.AdjacentStations st = DataSource.listAdjacentStations.Find(s => s.Station1 == station1 && s.Station2 == station2);//checks AdjacentStations. if exists st will get the values of the chosen AdjacentStations.
 
@@ -402,7 +303,7 @@ namespace DL
             else
                 return null;
         }
-       
+
         public IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations()//returns all AdjacentStations
         {
             return from AdjacentStations in DataSource.listAdjacentStations
@@ -420,7 +321,7 @@ namespace DL
             else
                 throw new DO.AdjacentStationseException(Stations.Station1, Stations.Station2, "AdjacentStations does't exist:");
         }
-        public void DeleteAdjacentStations(int station1, int station2)
+        public void DeleteAdjacentStations(int station1, int station2)//deletes adajcent stations
         {
             DO.AdjacentStations st = DataSource.listAdjacentStations.Find(s => s.Station1 == station1 && s.Station2 == station2);//checks AdjacentStations. if exists st will get the values of the chosen AdjacentStations.
 
@@ -432,8 +333,108 @@ namespace DL
                 throw new DO.AdjacentStationseException(station1, station2, "AdjacentStations does't exist:");
         }
 
-       
+
         #endregion
+        //#region Trip
+
+        //public int AddTrip(DO.Trip trip)
+        //{
+
+
+        //    trip.Id= RunningNumber.RunningTripID;
+        //    DataSource.listTrip.Add(trip.Clone());
+        //    RunningNumber.RunningTripID++;
+        //    return trip.Id;
+        //}
+        //public DO.Trip RequestTrip(int id)
+        //{
+        //    DO.Trip tr = DataSource.listTrip.Find(t => t.Id == id);//checks trip. if exists tr will get the value of the chosen station.
+
+        //    if (tr != null)//if tr= null that means trip does not exist
+        //        return tr.Clone();//returns the chosen trip
+        //    else
+        //        throw new DO.StationCodeException(id, $"Trip does't exist : {id}");
+        //}
+
+        //public IEnumerable<DO.Trip> RequestAllTrips()//returns a copy of list of trips
+        //{
+        //    return from Trip in DataSource.listTrip
+        //           select Trip.Clone();
+        //}
+        //public void UpdateTrip(DO.Trip trip)
+        //{
+        //    DO.Trip tr = DataSource.listTrip.Find(t => t.Id == trip.Id);//checks trip. if exists tr will get the value of the chosen station.
+
+        //    if (tr != null)//if tr= null that means trip does not exist
+        //    {
+        //        DataSource.listTrip.Remove(tr);//remove 
+        //        DataSource.listTrip.Add(trip.Clone());//add new updated trip
+        //    }
+
+        //    else
+        //        throw new DO.StationCodeException(trip.Id, $"Trip does't exist : {trip.Id}");
+        //}
+        //public void DeleteTrip(int id)
+        //{
+        //    DO.Trip tr = DataSource.listTrip.Find(t => t.Id == id);//checks trip. if exists tr will get the value of the chosen station.
+
+        //    if (tr != null)//if tr= null that means trip does not exist
+        //    {
+        //        DataSource.listTrip.Remove(tr);//remove 
+        //    }
+        //    else
+        //        throw new DO.StationCodeException(id, $"Trip does't exist : {id}");
+        //}
+        //#endregion
+        //#region User
+
+        //public void AddUser(DO.User user)
+        //{
+        //    if (DataSource.listUser.FirstOrDefault(u => u.UserName == user.UserName) != null)//makes sure there are no duplicates
+        //        throw new DO.UserIdException(user.UserName, $"Duplicate UserName: {user.UserName}");
+        //    DataSource.listUser.Add(user.Clone());
+        //}
+        //public DO.User RequestUser(string userName)
+        //{
+        //    DO.User us = DataSource.listUser.Find(u => u.UserName == userName);//checks user. if exists tr will get the value of the chosen user.
+
+        //    if (us != null)//if us= null that means user does not exist
+        //        return us.Clone();//returns the chosen user
+        //    else
+        //        throw new DO.UserIdException(userName, $"UserName does not exist: {userName}");
+        //}
+
+        //public IEnumerable<DO.User> RequestAllUsers() //returns a copy of list of users
+        //{
+        //    return from User in DataSource.listUser
+        //           select User.Clone();
+        //}
+        //public void UpdateUser(DO.User user)
+        //{
+        //    DO.User us = DataSource.listUser.Find(u => u.UserName == user.UserName);//checks user. if exists tr will get the value of the chosen user.
+
+        //    if (us != null)//if us= null that means user does not exist
+        //    {
+        //        DataSource.listUser.Remove(us);//removes 
+        //        DataSource.listUser.Add(user);//updating
+
+        //    }
+        //    else
+        //        throw new DO.UserIdException(user.UserName, $"UserName does not exist: {user.UserName}");
+        //}
+        //public void DeleteUser(string userName)
+        //{
+        //    DO.User us = DataSource.listUser.Find(u => u.UserName == userName);//checks user. if exists tr will get the value of the chosen user.
+
+        //    if (us != null)//if us= null that means user does not exist
+        //    {
+        //        DataSource.listUser.Remove(us);//deleting the user
+        //    }
+        //    else
+        //        throw new DO.UserIdException(userName, $"UserName does not exist: {userName}");
+        //}
+        //#endregion
+
 
     }
 }

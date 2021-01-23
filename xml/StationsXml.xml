@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
+    <Code>73</Code>
+    <Name>שדרות גולדה מאיר/המשורר אצ''ג</Name>
+    <Longitude>35.188624</Longitude>
+    <Lattitude>31.825302</Lattitude>
+    <Address>רחוב:שדרות גולדה מאיר  עיר: ירושלים </Address>
+  </Station>
+  <Station>
     <Code>76</Code>
     <Name>בית ספר צור באהר בנות/אלמדינה אלמונוורה</Name>
     <Longitude>35.228765</Longitude>
@@ -13,6 +20,20 @@
     <Longitude>35.226704</Longitude>
     <Lattitude>31.738676</Lattitude>
     <Address>רחוב:אל מדינה אל מונאוורה  עיר: ירושלים </Address>
+  </Station>
+  <Station>
+    <Code>78</Code>
+    <Name>שרי ישראל/יפו</Name>
+    <Longitude>35.206146</Longitude>
+    <Lattitude>31.789128</Lattitude>
+    <Address>רחוב:שדרות שרי ישראל 15 עיר: ירושלים</Address>
+  </Station>
+  <Station>
+    <Code>83</Code>
+    <Name>בטן אלהווא/חוש אל מרג</Name>
+    <Longitude>35.240417</Longitude>
+    <Lattitude>31.766358</Lattitude>
+    <Address>רחוב:בטן אל הווא  עיר: ירושלים</Address>
   </Station>
   <Station>
     <Code>84</Code>
@@ -328,12 +349,5 @@
     <Longitude>35.206158</Longitude>
     <Lattitude>31.79617</Lattitude>
     <Address>  רחוב:הרב סורוצקין 28 עיר: ירושלים</Address>
-  </Station>
-  <Station>
-    <Code>73</Code>
-    <Name>שדרות גולדה מאיר/המשורר אצ''ג</Name>
-    <Longitude>35.188624</Longitude>
-    <Lattitude>31.825302</Lattitude>
-    <Address>רחוב:שדרות גולדה מאיר  עיר: ירושלים </Address>
   </Station>
 </ArrayOfStation>

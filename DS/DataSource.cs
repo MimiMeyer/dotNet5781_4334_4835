@@ -8,12 +8,7 @@ using System.Xml.Serialization;
 namespace DS
 {
     public static class DataSource
-
-    {
-       // static XElement linesRootElem;
-
-
-       //static string lineTripsPath = @"LineTripsXml.xml"; //XElement
+    { 
         public static List<Station> listStations;//list of stations
         public static List<LineStation> listLineStation;//list of line stations
         public static List<Line> listLines;//list of lines
@@ -21,11 +16,11 @@ namespace DS
         public static List<LineTrip> listLineTrip;//list of line trip
         public static List<Trip> listTrip;//list of trips
         public static List<AdjacentStations> listAdjacentStations;//list of AdjacentStations
-        public static List<int> RunningNumber= new List<int>{11};//lis with running number
+        public static List<int> RunningNumber= new List<int>{11};//list with running number
         static DataSource()
         {
             InitAllLists();//inialize all lists
-            SaveListToXML(listStations, "..\\xml\\StationsXml.xml");
+            SaveListToXML(listStations, "..\\xml\\StationsXml.xml");//saving to xml
             SaveListToXML(listLineStation, "..\\xml\\LineStationsXml.xml");
             SaveListToXML(listLines, "..\\xml\\LinesXml.xml");
             SaveListToXML(listLineTrip, "..\\xml\\LineTripsXml.xml");
@@ -33,16 +28,16 @@ namespace DS
             SaveListToXML(listAdjacentStations, "..\\xml\\AdjacentStationsXml.xml");
 
 
-
         }
-        public static void SaveListToXML(List <int> num, string path)
+        #region Xml
+        public static void SaveListToXML(List <int> num, string path)//inializing xml for Running Number
         {
             XmlSerializer x = new XmlSerializer(num.GetType());
             FileStream fs = new FileStream(path, FileMode.Create);
             x.Serialize(fs, num);
             fs.Close();
         }
-        public static void SaveListToXML(List<AdjacentStations> list, string path)
+        public static void SaveListToXML(List<AdjacentStations> list, string path)//inializing xml for AdjacentStations
         {
             XmlSerializer x = new XmlSerializer(list.GetType());
             FileStream fs = new FileStream(path, FileMode.Create);
@@ -52,36 +47,36 @@ namespace DS
 
 
 
-        public static void SaveListToXML(List<Station> list, string path)
+        public static void SaveListToXML(List<Station> list, string path)//inializing xml for Station
         {
             XmlSerializer x = new XmlSerializer(list.GetType());
             FileStream fs = new FileStream(path, FileMode.Create);
             x.Serialize(fs, list);
             fs.Close();
         }
-        public static void SaveListToXML(List<LineTrip> list, string path)
+        public static void SaveListToXML(List<LineTrip> list, string path)//inializing xml for line trip
         {
             XmlSerializer x = new XmlSerializer(list.GetType());
             FileStream fs = new FileStream(path, FileMode.Create);
             x.Serialize(fs, list);
             fs.Close();
         }
-        public static void SaveListToXML(List<LineStation> list, string path)
+        public static void SaveListToXML(List<LineStation> list, string path)//inializing xml for line station
         {
             XmlSerializer x = new XmlSerializer(list.GetType());
             FileStream fs = new FileStream(path, FileMode.Create);
             x.Serialize(fs, list);
             fs.Close();
         }
-        public static void SaveListToXML(List<Line> list, string path)
+        public static void SaveListToXML(List<Line> list, string path)//inializing xml for line lines
         {
             XmlSerializer x = new XmlSerializer(list.GetType());
             FileStream fs = new FileStream(path, FileMode.Create);
             x.Serialize(fs, list);
             fs.Close();
         }
-        
-        static void InitAllLists()
+        #endregion 
+        static void InitAllLists()//Inializing all lists dor DlObject
         {
         
             #region Boot Lines

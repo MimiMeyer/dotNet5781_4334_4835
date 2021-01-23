@@ -8,6 +8,6 @@ namespace BO
         public int Code { get; set; }//stop
         public TimeSpan ArrivalTime { get; set; }
         public int MinutesTillArival { get; set; }
-        //public int LastStation { get; set; }
+        
     }
 }

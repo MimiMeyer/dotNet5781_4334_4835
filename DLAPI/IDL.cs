@@ -48,29 +48,30 @@ namespace DLAPI
         void UpdateStation(DO.Station station);//updates selected station
         void DeleteStation(int code);//deletes station
         #endregion
-        #region Trip
-        
-        int AddTrip(DO.Trip trip);//add trip
-        DO.Trip RequestTrip(int id);//request trip
-        IEnumerable<DO.Trip> RequestAllTrips();//returns all trips
-        void UpdateTrip(DO.Trip trip);//updates trip
-        void DeleteTrip(int id);//deletes tripo
-        #endregion 
-        #region User
-
-        void AddUser(DO.User user);//add user
-        DO.User RequestUser(string userName);//requests user and if exists returns it
-        IEnumerable<DO.User> RequestAllUsers();//returnsall users
-        void UpdateUser(DO.User user);//updates user
-        void DeleteUser(string userName);//deletes user
-        #endregion
         #region AdjacentStations
         void AddAdjacentStations(DO.AdjacentStations Stations);//adds AdjacentStations
         DO.AdjacentStations RequestAdjacentStations(int station1, int station2);//request and if it exists returns AdjacentStations
         IEnumerable<DO.AdjacentStations> RequestAllAdjacentStations();//returns all AdjacentStations
         void UpdateAdjacentStations(DO.AdjacentStations Stations);//updates AdjacentStations
-        void DeleteAdjacentStations(int station1,int station2);//deletes AdjacentStations
+        void DeleteAdjacentStations(int station1, int station2);//deletes AdjacentStations
         #endregion
+
+        //#region Trip
+
+        //int AddTrip(DO.Trip trip);//add trip
+        //DO.Trip RequestTrip(int id);//request trip
+        //IEnumerable<DO.Trip> RequestAllTrips();//returns all trips
+        //void UpdateTrip(DO.Trip trip);//updates trip
+        //void DeleteTrip(int id);//deletes tripo
+        //#endregion 
+        //#region User
+
+        ////void AddUser(DO.User user);//add user
+        ////DO.User RequestUser(string userName);//requests user and if exists returns it
+        ////IEnumerable<DO.User> RequestAllUsers();//returnsall users
+        ////void UpdateUser(DO.User user);//updates user
+        ////void DeleteUser(string userName);//deletes user
+        //#endregion
 
     }
 }

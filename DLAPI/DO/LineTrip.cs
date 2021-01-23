@@ -14,7 +14,7 @@ namespace DO
         [XmlIgnore]
         public TimeSpan StartAt { get; set; }
         [XmlElement(ElementName = "StartAt")]
-        public double StartAtTotalSeconds
+        public double StartAtTotalSeconds//for XML 
         {
             get
             {

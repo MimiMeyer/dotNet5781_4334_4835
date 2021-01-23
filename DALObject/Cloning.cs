@@ -9,6 +9,7 @@ namespace DL
 {
     static class Cloning
     {//defining the cloning
+        //so that it takes the copy and not the original object itself
         internal static T Clone<T>(this T original) where T : new()
         {
             T copyToObject = new T();

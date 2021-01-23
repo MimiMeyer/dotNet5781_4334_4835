@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Line>
     <Id>2</Id>
@@ -65,30 +65,9 @@
   </Line>
   <Line>
     <Id>11</Id>
-    <Code>90</Code>
-    <Area>GENERAL</Area>
-    <FirstStation>112</FirstStation>
-    <LastStation>73</LastStation>
-  </Line>
-  <Line>
-    <Id>12</Id>
-    <Code>12</Code>
+    <Code>60</Code>
     <Area>GENERAL</Area>
     <FirstStation>1524</FirstStation>
-    <LastStation>73</LastStation>
-  </Line>
-  <Line>
-    <Id>1</Id>
-    <Code>1</Code>
-    <Area>JERUSALEM</Area>
-    <FirstStation>73</FirstStation>
-    <LastStation>77</LastStation>
-  </Line>
-  <Line>
-    <Id>13</Id>
-    <Code>56</Code>
-    <Area>CENTERAL</Area>
-    <FirstStation>112</FirstStation>
-    <LastStation>123</LastStation>
+    <LastStation>76</LastStation>
   </Line>
 </ArrayOfLine>

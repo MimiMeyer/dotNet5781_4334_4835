@@ -1,5 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <ArrayOfLineTrip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LineTrip>
+    <LineId>1</LineId>
+    <StartAt>25200</StartAt>
+  </LineTrip>
+  <LineTrip>
+    <LineId>1</LineId>
+    <StartAt>28800</StartAt>
+  </LineTrip>
   <LineTrip>
     <LineId>1</LineId>
     <StartAt>32400</StartAt>
@@ -883,17 +891,5 @@
   <LineTrip>
     <LineId>10</LineId>
     <StartAt>0</StartAt>
-  </LineTrip>
-  <LineTrip>
-    <LineId>12</LineId>
-    <StartAt>0</StartAt>
-  </LineTrip>
-  <LineTrip>
-    <LineId>12</LineId>
-    <StartAt>86340</StartAt>
-  </LineTrip>
-  <LineTrip>
-    <LineId>13</LineId>
-    <StartAt>68400</StartAt>
   </LineTrip>
 </ArrayOfLineTrip>

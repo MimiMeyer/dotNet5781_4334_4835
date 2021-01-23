@@ -18,7 +18,7 @@ namespace DL
                 Directory.CreateDirectory(dir);
         }
         #region SaveLoadWithXElement
-        public static void SaveListToXMLElement(XElement rootElem, string filePath)
+        public static void SaveListToXMLElement(XElement rootElem, string filePath)//saves to list
         {
             try
             {
@@ -30,7 +30,7 @@ namespace DL
             }
         }
 
-        public static XElement LoadListFromXMLElement(string filePath)
+        public static XElement LoadListFromXMLElement(string filePath)//gets list
         {
             try
             {
@@ -53,7 +53,7 @@ namespace DL
         #endregion
 
         #region SaveLoadWithXMLSerializer
-        public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)
+        public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)//Saves list
         {
             try
             {
@@ -67,11 +67,11 @@ namespace DL
                 throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
             }
         }
-        public static List<T> LoadListFromXMLSerializer<T>(string filePath)
+        public static List<T> LoadListFromXMLSerializer<T>(string filePath)//gets list
         {
             try
             {
-                if (File.Exists(dir + filePath))
+                if (File.Exists(dir + filePath))//if file exist
                 {
                     List<T> list;
                     XmlSerializer x = new XmlSerializer(typeof(List<T>));
@@ -81,7 +81,7 @@ namespace DL
                     return list;
                 }
                 else
-                    return new List<T>();
+                    return new List<T>();//makes new file
             }
             catch (Exception ex)
             {

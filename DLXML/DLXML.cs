@@ -32,22 +32,22 @@ namespace DL
 
         public int AddLine(DO.Line line) //adds line and returns running number
         {
-            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
-            List<int> num = XMLTools.LoadListFromXMLSerializer<int>(runningNuberPath);
-            line.Id = num.ElementAt(0);
-            num = num.Select(x => x + 1).ToList();
-            ListLines.Add(line); //no need to Clone()
-            XMLTools.SaveListToXMLSerializer(ListLines, linesPath);
-            XMLTools.SaveListToXMLSerializer(num,runningNuberPath );
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);//gets  lines list from  wanted xml
+            List<int> RunningNumber = XMLTools.LoadListFromXMLSerializer<int>(runningNuberPath);//gets running Number from wanted xml
+            line.Id = RunningNumber.ElementAt(0);//gets the running number
+            RunningNumber = RunningNumber.Select(x => x + 1).ToList();//adds to all elements in runningNumber 1
+            ListLines.Add(line); //adds line to list no need to Clone()
+            XMLTools.SaveListToXMLSerializer(ListLines, linesPath);//saves list with added bus
+            XMLTools.SaveListToXMLSerializer(RunningNumber, runningNuberPath );//saves Running Number to xml
 
-            return line.Id;
+            return line.Id;//for the IBL 
 
         }
         public DO.Line RequestLine(int Id)//returns requested line by id
         {
-            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);//gets wanted xml file and loads it into list
 
-            DO.Line line = ListLines.Find(l => l.Id == Id);
+            DO.Line line = ListLines.Find(l => l.Id == Id);//finds line
 
 
             if (line == null)//means that line doesnt exist and exeption is thrown
@@ -57,9 +57,9 @@ namespace DL
         }
         public DO.Line RequestLineByCode(int code)//returns  requested line by code
         {
-            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);//gets wanted xml file and loads it into list
 
-            DO.Line line = ListLines.Find(l => l.Code == code);
+            DO.Line line = ListLines.Find(l => l.Code == code);//finds wanted line
            
 
             if (line == null)//means that line doesnt exist and exeption is thrown
@@ -84,19 +84,19 @@ namespace DL
         }
         public void UpdateLine(DO.Line line)//updates line
         {
-            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);//gets wanted xml file and loads it into list
 
             DO.Line li= ListLines.Find(l => l.Id == line.Id );//checks line station. if exists li will get the value of the chosen line.
             if (li != null)
             {
-                ListLines.Remove(li);
-                ListLines.Add(line); //no nee to Clone()
+                ListLines.Remove(li);//removes
+                ListLines.Add(line); // adds the updated no nee to Clone()
             }
             else//the line doesnt exist
                 throw new DO.LineIdException(line.Id, $"Line Doesn't exist: {line.Id}");
-            XMLTools.SaveListToXMLSerializer(ListLines, linesPath);
+            XMLTools.SaveListToXMLSerializer(ListLines, linesPath);//saves list to xml with updated line
         }
-        public void DeleteLine(int id)
+        public void DeleteLine(int id)//deltes the line
         {
             XElement linesRootElem = XMLTools.LoadListFromXMLElement(linesPath);//gets wanted xml
 
@@ -134,7 +134,7 @@ namespace DL
             }
 
         }
-        public DO.LineStation RequestLineStation(int Station, int lineId)
+        public DO.LineStation RequestLineStation(int Station, int lineId)//gets wanted line station
         {
             List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
 
@@ -239,7 +239,7 @@ namespace DL
 
             XElement lineTripElem = new XElement("LineTrip",
                                  new XElement("LineId", lineTrip.LineId.ToString()),
-                                 new XElement("StartAt", lineTrip.StartAtTotalSeconds));
+                                 new XElement("StartAt", lineTrip.StartAtTotalSeconds));//saves in seconds
 
             lineTripsRootElem.Add(lineTripElem);
 
@@ -272,7 +272,7 @@ namespace DL
                     select new LineTrip()
                     {
                         LineId = Int32.Parse(li.Element("LineId").Value),//gets id
-                        StartAtTotalSeconds = double.Parse(li.Element("StartAt").Value),//gets start time
+                        //StartAtTotalSeconds = double.Parse(li.Element("StartAt").Value),//gets start time
                         StartAt=TimeSpan.FromSeconds(double.Parse(li.Element("StartAt").Value))
                     }
                    );
@@ -439,54 +439,54 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(ListAdjacentStations, adjacentStationsPath);
         }
         #endregion
-        #region Trip
+        //#region Trip
 
-        public int AddTrip(DO.Trip trip)
-        {
-            throw new NotImplementedException();
-        }
-        public DO.Trip RequestTrip(int id)
-        {
-            throw new NotImplementedException();
-        }
-        public IEnumerable<DO.Trip> RequestAllTrips()
-        {
-            throw new NotImplementedException();
-        }
-        public void UpdateTrip(DO.Trip trip)
-        {
-            throw new NotImplementedException();
-        }
-        public void DeleteTrip(int id)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-        #region User
+        //public int AddTrip(DO.Trip trip)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //public DO.Trip RequestTrip(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //public IEnumerable<DO.Trip> RequestAllTrips()
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //public void UpdateTrip(DO.Trip trip)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //public void DeleteTrip(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //#endregion
+        //#region User
 
-        public void AddUser(DO.User user)
-        {
-            throw new NotImplementedException();
-        }
+        //public void AddUser(DO.User user)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public DO.User RequestUser(string userName)
-        {
-            throw new NotImplementedException();
-        }
+        //public DO.User RequestUser(string userName)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public IEnumerable<DO.User> RequestAllUsers()
-        {
-            throw new NotImplementedException();
-        }
-        public void UpdateUser(DO.User user)
-        {
-            throw new NotImplementedException();
-        }
-        public void DeleteUser(string userName)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+        //public IEnumerable<DO.User> RequestAllUsers()
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //public void UpdateUser(DO.User user)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //public void DeleteUser(string userName)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //#endregion
 
 
 
