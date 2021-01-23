@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PL
 {
@@ -23,6 +24,8 @@ namespace PL
         public Simulation(int Code)
         {
             InitializeComponent();
+            header.Text = " עבור מספר תחנה" +" "+ Code;
+            
             Rate.Text = rate.ToString();//puts 0 in the rate text box
             startTime.Text = updateTime.ToString();//will show timespan in start time textbox
             timeWorker.DoWork += timeWorker_DoWork;
@@ -51,6 +54,7 @@ namespace PL
                 timeWorker.RunWorkerAsync();//start timework and calls dowork
                 TimeBoard.RunWorkerAsync();
                 Button.Content = "Stop";
+                Button.Background = Brushes.Red;
                 Rate.IsReadOnly = true;//can't change while the program is running
                 startTime.IsReadOnly = true;//can't change while the program is running
             }
@@ -104,6 +108,7 @@ namespace PL
         private void timeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             Button.Content = "Start Again";//function will never end but this will show when cancled
+            Button.Background = Brushes.LightGreen;
             Rate.IsReadOnly = false;//can change once the program stopped
             startTime.IsReadOnly = false; //can change once the program stopped
         }
@@ -150,6 +155,7 @@ namespace PL
             LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();
         }
 
+      
     }
 
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.User"
         mc:Ignorable="d"
-        Title="User" Height="450" Width="800"  >
+        Title="User" Height="450" Width="800" Left="0" >
     <Window.Background>
         <ImageBrush ImageSource="https://t4.ftcdn.net/jpg/03/58/38/27/240_F_358382796_4ZjsZinbeYXN0NSDflvxpWy5v73XbkwW.jpg" Stretch="Fill" />
     </Window.Background>

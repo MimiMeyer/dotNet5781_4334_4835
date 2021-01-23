@@ -5,32 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Simulation" Height="550" Width="550">
-    <Grid>
-        <Button x:Name ="Button"  Content="Start" HorizontalAlignment="Center" Height="84"  VerticalAlignment="Top" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Click="Button_Click" Margin="50,28,334,0"  />
-        <TextBox x:Name="startTime"   HorizontalAlignment="Center" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Margin="50,117,334,317" />
-        <TextBox x:Name="Rate" HorizontalAlignment="Center" Height="85"  TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="158" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Margin="50,0,334,214" />
-        <Grid >
+        Title="Simulation" Height="550" Width="600" Left="600">
+    <Window.Background>
+        <ImageBrush ImageSource="https://t3.ftcdn.net/jpg/03/25/41/08/240_F_325410881_75ibcRpITqo8LkabOXHx9SiEdMxRj4ah.jpg" Stretch="Fill" />
+    </Window.Background>
 
-            <DataGrid x:Name="lineTimingDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="237,31,92,227" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5">
-                <DataGrid.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="1.572"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="2.223"/>
-                    </TransformGroup>
-                </DataGrid.RenderTransform>
-                <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="arrivalTimeColumn" Width="SizeToHeader" Header="Arrival Time" Binding="{Binding ArrivalTime}"/>
-                    <DataGridTextColumn x:Name="idColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
-                    
-                    <DataGridTextColumn x:Name="minutesTillArivalColumn" Width="SizeToHeader" Header="Minutes Till Arrival" Binding="{Binding MinutesTillArival}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <TextBox Name="LastBusTextBox" HorizontalAlignment="Left" Height="56" Margin="479,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="53"/>
+    <Grid  >
 
-        </Grid>
+        <DataGrid x:Name="lineTimingDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Margin="155,91,116,218" Background="LightGray">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="arrivalTimeColumn"  Header="זמן הגעה" Binding="{Binding ArrivalTime}" Width="*" />
+                <DataGridTextColumn x:Name="idColumn" Width="SizeToHeader" Header="מספר קו" Binding="{Binding Id}"/>
+
+                <DataGridTextColumn x:Name="minutesTillArivalColumn" Width="SizeToHeader" Header=" :(יגיע בעוד (דקות " Binding="{Binding MinutesTillArival}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox Name="LastBusTextBox" HorizontalAlignment="Left" Height="42" Margin="50,164,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="53" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" Background="LightGray"/>
+        <Label Content="מס קו אחרון &#xD;&#xA;:שהיה בתחנה" Margin="23,93,437,360" FontSize="18" FontFamily="Yu Gothic Medium" RenderTransformOrigin="0.488,0.296" />
+
+        <Button x:Name ="Button"  Content="Start"  Height="80"   Width="156" FontSize="16" FontFamily="Yu Gothic Medium" Click="Button_Click" Margin="223,381,213,58" BorderBrush="black"  Background="LightGreen"/>
+        <TextBox x:Name="startTime" Height="80"  TextWrapping="Wrap"   Width="112" FontSize="16" FontFamily="Yu Gothic Medium"   Margin="23,381,457,58" Background="LightGray" />
+        <TextBox x:Name="Rate"  Height="80"  TextWrapping="Wrap"   Width="112" FontSize="16" FontFamily="Yu Gothic Medium"  Margin="470,381,10,58" Background="LightGray"  />
+
+        <Label Content=":הכנס זמן התחלה" HorizontalAlignment="Left" Height="34" Margin="10,342,0,143"  FontSize="16" FontFamily="Yu Gothic Medium"  />
+        <Label Content=":הכנס מהירות"  Margin="470,347,0,0" VerticalAlignment="Top" Width="122" FontSize="16" FontFamily="Yu Gothic Medium" RenderTransformOrigin="0.541,-0.111" />
+        <TextBox x:Name="header" HorizontalAlignment="Left" Height="33" Margin="190,34,0,0" VerticalAlignment="Top" Width="286" FontSize="18" FontFamily="Yu Gothic Medium" Background="Yellow"/>
     </Grid>
+
 
 </Window>
