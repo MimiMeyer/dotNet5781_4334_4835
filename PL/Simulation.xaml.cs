@@ -71,8 +71,22 @@ namespace PL
 
             this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
             {
-                rate = int.Parse(Rate.Text);//getting users input and converting from string to int
+                try
+                {
+                    rate = int.Parse(Rate.Text);//getting users input and converting from string to int
+                
                 updateTime = TimeSpan.Parse(startTime.Text);////getting users input and converting from string to TimeSpan
+                }
+                catch (OverflowException ex)//makes sure its timespan
+                {
+                    MessageBox.Show(ex.Message);//makes sure its int
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
 
 
             });
@@ -114,40 +128,58 @@ namespace PL
         {
             this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
             {
-                rate = int.Parse(Rate.Text);//getting users input and converting from string to int
-                updateTime = TimeSpan.Parse(startTime.Text);////getting users input and converting from string to TimeSpan
-
+                try
+                {
+                    rate = int.Parse(Rate.Text);//getting users input and converting from string to int
+                
+                    updateTime = TimeSpan.Parse(startTime.Text);////getting users input and converting from string to TimeSpan
+                }
+                catch (OverflowException ex)//makes sure its timespan
+                {
+                    MessageBox.Show(ex.Message);//makes sure its int
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
             });
-
-            if (rate > 0)//we don't want 0 because you cant devide a number by 0 and it cant be minus
+            if (updateTime.Days == 0)
             {
-                for (int j = 1; ; j++)//will go on forever untill user presses bus
+                if (rate > 0)//we don't want 0 because you cant devide a number by 0 and it cant be minus
                 {
-                    System.Threading.Thread.Sleep(1000 / rate);//will go by rate lets say my rate is 50 so for every second, 50 seconds will pass
-                    TimeBoard.ReportProgress(j);
-                    if (timeWorker.CancellationPending)//if timewworker was cancled leave loop
+                    for (int j = 1; ; j++)//will go on forever untill user presses bus
                     {
-                        break;
+                        System.Threading.Thread.Sleep(1000 / rate);//will go by rate lets say my rate is 50 so for every second, 50 seconds will pass
+                        TimeBoard.ReportProgress(j);
+                        if (timeWorker.CancellationPending)//if timewworker was cancled leave loop
+                        {
+                            break;
+                        }
                     }
+                }
+                else
+                {
+                    this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
+                    {
+                        try
+                        {
+                            LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
+                        }
+                        catch (BO.StationCodeException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        catch (OverflowException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+
+                    });
                 }
             }
             else
-            {
-                this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
-                {
-                    try
-                    {
-                        LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
-                    }
-                    catch (BO.StationCodeException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-
-
-                });
-            }
+                MessageBox.Show("Time has to be in format of hours:minutes:seconds");
 
 
 
@@ -164,6 +196,11 @@ namespace PL
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (OverflowException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
         }
 

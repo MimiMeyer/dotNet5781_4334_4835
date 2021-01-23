@@ -584,31 +584,8 @@ namespace BL
 
         public IEnumerable<BO.LineTiming> GetLineTimingForSimulator(TimeSpan startTime, int Code)//gets from the pl the updated time and the station and returns the wanted  information for the xml 
         {
-            List<BO.LineTiming> listOfLineTiming = new List<BO.LineTiming>();//new list type LineTiming
-            IEnumerable<BO.Line> lines = GetAlllinesByStation(Code);//gets all lines that go through station
-            if (lines.Count() == 0)
-                throw new BO.StationCodeException(Code, "The station does not have lines");
-            using (var li = lines.GetEnumerator())
-            {
-                while (li.MoveNext())
-                {
-                    IEnumerable<BO.LineTrip> lineTrips = GetLineTripsForLine(li.Current.Id);//gets the line trips for wanted line
-                    using (var st = lineTrips.GetEnumerator())
-                    {
-                        while (st.MoveNext())
-                        {
-                            BO.LineTiming lineTime = new BO.LineTiming();
-                            lineTime.Id = li.Current.Code;//the currnt lines bus number
-                            lineTime.Code = Code;//the Station we got From the PL
-                            lineTime.ArrivalTime = ArrivalTime(li.Current.Id, Code, st.Current.StartAt);//arrival time of the bus
-                            lineTime.MinutesTillArival = (int)(lineTime.ArrivalTime.Subtract(startTime).TotalMinutes);//total minutes till bus will arive using the onfo from the pl
-                            listOfLineTiming.Add(lineTime);//adding the lineTime To the list
-
-                        }
-                    }
-                }
-            }
-            return (from lineTiming in listOfLineTiming.
+          
+            return (from lineTiming in ListOfLineTiming(startTime, Code).ToList().
                    FindAll(l=>l.MinutesTillArival >= 0).//all busses that the minutes till arrival are bigger then 0 or equal
                    OrderBy(l => l.MinutesTillArival)//ordered by MinutesTillArival
                     select lineTiming).Take(5);//only takes the first 5 for the orderby
