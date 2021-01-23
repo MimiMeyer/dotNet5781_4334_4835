@@ -683,7 +683,7 @@ namespace BL
                     if (!(st.Current.Station == Code)) //once it equals the code will break and give us the wanted time
                     {
 
-                        time += TimeSpan.FromMinutes(st.Current.Time);//adds on to the time time between the busstops
+                        time += TimeSpan.FromMinutes(st.Current.Time);//adds on to the time time between the busstop
                     }
                     else
                     {
