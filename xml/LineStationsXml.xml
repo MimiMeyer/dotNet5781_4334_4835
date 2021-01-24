@@ -1,21 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfLineStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <LineStation>
-    <LineId>2</LineId>
-    <Station>84</Station>
-    <LineStationIndex>0</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>2</LineId>
-    <Station>85</Station>
-    <LineStationIndex>1</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>2</LineId>
-    <Station>86</Station>
-    <LineStationIndex>2</LineStationIndex>
-  </LineStation>
-  <LineStation>
     <LineId>3</LineId>
     <Station>90</Station>
     <LineStationIndex>0</LineStationIndex>
@@ -176,21 +161,6 @@
     <LineStationIndex>1</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>2</LineId>
-    <Station>88</Station>
-    <LineStationIndex>4</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>2</LineId>
-    <Station>89</Station>
-    <LineStationIndex>5</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>2</LineId>
-    <Station>76</Station>
-    <LineStationIndex>3</LineStationIndex>
-  </LineStation>
-  <LineStation>
     <LineId>9</LineId>
     <Station>1514</Station>
     <LineStationIndex>1</LineStationIndex>
@@ -289,5 +259,30 @@
     <LineId>13</LineId>
     <Station>84</Station>
     <LineStationIndex>1</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <Station>85</Station>
+    <LineStationIndex>0</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <Station>86</Station>
+    <LineStationIndex>1</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <Station>76</Station>
+    <LineStationIndex>2</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <Station>88</Station>
+    <LineStationIndex>3</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <Station>89</Station>
+    <LineStationIndex>4</LineStationIndex>
   </LineStation>
 </ArrayOfLineStation>
