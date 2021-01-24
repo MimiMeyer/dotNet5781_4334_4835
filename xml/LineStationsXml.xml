@@ -280,4 +280,14 @@
     <Station>102</Station>
     <LineStationIndex>1</LineStationIndex>
   </LineStation>
+  <LineStation>
+    <LineId>13</LineId>
+    <Station>89</Station>
+    <LineStationIndex>0</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>13</LineId>
+    <Station>84</Station>
+    <LineStationIndex>1</LineStationIndex>
+  </LineStation>
 </ArrayOfLineStation>

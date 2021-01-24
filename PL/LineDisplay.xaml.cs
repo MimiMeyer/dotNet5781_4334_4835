@@ -58,7 +58,12 @@ namespace PL
             {
                 MessageBox.Show(ex.Message);
             }
+            catch(BO.LineTripTimeSpanException ex) 
+            {
+                MessageBox.Show(ex.Message); 
+            }
         }
+            
 
 
     }

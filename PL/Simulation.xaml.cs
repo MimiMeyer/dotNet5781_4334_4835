@@ -150,7 +150,7 @@ namespace PL
                 {
                     for (int j = 1; ; j++)//will go on forever untill user presses bus
                     {
-                        System.Threading.Thread.Sleep(1000 );//will go by rate lets say my rate is 50 so for every second, 50 seconds will pass
+                        System.Threading.Thread.Sleep(1000 );//will go to sleep for a second and then update
                         TimeBoard.ReportProgress(j);
                         if (timeWorker.CancellationPending)//if timewworker was cancled leave loop
                         {
@@ -166,11 +166,11 @@ namespace PL
                         {
                             LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
                         }
-                        catch (BO.StationCodeException ex)
+                        catch (BO.StationCodeException ex)//catches if not type Timesapn
                         {
                             MessageBox.Show(ex.Message);
                         }
-                        catch (OverflowException ex)
+                        catch (OverflowException ex)//catches if not type int
                         {
                             MessageBox.Show(ex.Message);
                         }
@@ -188,7 +188,7 @@ namespace PL
         {
             try
             {
-                lineTimingDataGrid.DataContext = bl.GetLineTimingForSimulator(TimeSpan.Parse(startTime.Text), station);//gets the info from the bl with the function GetLineTimingForSimulator
+                lineTimingDataGrid.DataContext = bl.GetLineTimingForSimulator(TimeSpan.Parse(startTime.Text), station);//gets the info from the bl with the function GetLineTimingForSimulator sending the updated time and station
 
                 LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
             }

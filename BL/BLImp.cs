@@ -549,6 +549,10 @@ namespace BL
             BO.Line li = GetLine(lineTrip.LineId);
             if (li == null)
                 throw new BO.LineIdException(lineTrip.LineId, "line Id does not exist ");
+            if (lineTrip.StartAt.Days > 0) 
+            {
+                throw new BO.LineTripTimeSpanException(lineTrip.StartAt, "Time format incorrect can't contain days");
+            }
             dl.AddLineTrip(lineTripDO);
 
         }
@@ -591,7 +595,7 @@ namespace BL
                     select lineTiming).Take(5);//only takes the first 5 for the orderby
 
         }
-        public IEnumerable<BO.LineTiming> ListOfLineTiming(TimeSpan startTime, int Code)
+        public IEnumerable<BO.LineTiming> ListOfLineTiming(TimeSpan startTime, int Code)//used to help  GetLineTimingForSimulator and LastBusInStation makes list of all line timimng for station
         {
             List<BO.LineTiming> listOfLineTiming = new List<BO.LineTiming>();//new list type LineTiming
             IEnumerable<BO.Line> lines = GetAlllinesByStation(Code);//gets all lines that go through station

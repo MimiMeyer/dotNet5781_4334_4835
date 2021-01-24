@@ -66,6 +66,16 @@ namespace BO
         public override string ToString() => base.ToString() + $", bad LineStation index: {Index}";
     }
     #endregion
+    #region lineTrip
+    public class LineTripTimeSpanException : Exception
+    {
+        public TimeSpan Time;
+        public LineTripTimeSpanException(TimeSpan time, string message) :
+           base(message) => Time = time;
+        public override string ToString() => base.ToString() + $", bad LineTrip time index: {Time}";
+    }
+    #endregion
+
 
 
 
