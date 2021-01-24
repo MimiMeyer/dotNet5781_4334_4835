@@ -260,4 +260,14 @@
     <Station>76</Station>
     <LineStationIndex>1</LineStationIndex>
   </LineStation>
+  <LineStation>
+    <LineId>12</LineId>
+    <Station>73</Station>
+    <LineStationIndex>0</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>12</LineId>
+    <Station>76</Station>
+    <LineStationIndex>1</LineStationIndex>
+  </LineStation>
 </ArrayOfLineStation>

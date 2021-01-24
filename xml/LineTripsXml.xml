@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfLineTrip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <LineTrip>
     <LineId>1</LineId>
@@ -891,5 +891,13 @@
   <LineTrip>
     <LineId>10</LineId>
     <StartAt>0</StartAt>
+  </LineTrip>
+  <LineTrip>
+    <LineId>11</LineId>
+    <StartAt>0</StartAt>
+  </LineTrip>
+  <LineTrip>
+    <LineId>11</LineId>
+    <StartAt>46800</StartAt>
   </LineTrip>
 </ArrayOfLineTrip>
