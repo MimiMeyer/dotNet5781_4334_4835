@@ -442,7 +442,7 @@ namespace BL
                 throw new BO.CantBeMinusException(lineStation.Distance, "The Time must be over 0");
             }
             DO.LineStation LineStationDO = dl.RequestLineStation(lineStation.Station, lineStation.LineId);
-            IEnumerable<int> stations = dl.RequestStationsByLine(LineStationDO.LineId);//returns all stations
+            IEnumerable<int> stations = dl.RequestStationsByLine(LineStationDO.LineId);//Returns all stations
             dl.UpdateLineStation(LineStationDO);
             try
             {
