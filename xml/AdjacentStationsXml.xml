@@ -252,4 +252,46 @@
     <Distance>36.361157877073232</Distance>
     <Time>72.722315754146464</Time>
   </AdjacentStations>
+  <AdjacentStations>
+    <Station1>86</Station1>
+    <Station2>76</Station2>
+    <Distance>25.048838925477508</Distance>
+    <Time>50.097677850955016</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>76</Station1>
+    <Station2>88</Station2>
+    <Distance>2</Distance>
+    <Time>4</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>0</Station1>
+    <Station2>0</Station2>
+    <Distance>0</Distance>
+    <Time>0</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>73</Station1>
+    <Station2>1514</Station2>
+    <Distance>2</Distance>
+    <Time>4</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>0</Station1>
+    <Station2>0</Station2>
+    <Distance>0</Distance>
+    <Time>0</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>1</Station1>
+    <Station2>73</Station2>
+    <Distance>3</Distance>
+    <Time>6</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>102</Station1>
+    <Station2>105</Station2>
+    <Distance>11</Distance>
+    <Time>22</Time>
+  </AdjacentStations>
 </ArrayOfAdjacentStations>

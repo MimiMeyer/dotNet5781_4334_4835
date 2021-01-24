@@ -16,16 +16,6 @@
     <LineStationIndex>2</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>2</LineId>
-    <Station>88</Station>
-    <LineStationIndex>3</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>2</LineId>
-    <Station>89</Station>
-    <LineStationIndex>4</LineStationIndex>
-  </LineStation>
-  <LineStation>
     <LineId>3</LineId>
     <Station>90</Station>
     <LineStationIndex>0</LineStationIndex>
@@ -49,56 +39,6 @@
     <LineId>3</LineId>
     <Station>95</Station>
     <LineStationIndex>4</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>97</Station>
-    <LineStationIndex>0</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>102</Station>
-    <LineStationIndex>1</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>103</Station>
-    <LineStationIndex>2</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>105</Station>
-    <LineStationIndex>3</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>106</Station>
-    <LineStationIndex>4</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>108</Station>
-    <LineStationIndex>5</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>109</Station>
-    <LineStationIndex>6</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>110</Station>
-    <LineStationIndex>7</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>111</Station>
-    <LineStationIndex>8</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>4</LineId>
-    <Station>112</Station>
-    <LineStationIndex>9</LineStationIndex>
   </LineStation>
   <LineStation>
     <LineId>5</LineId>
@@ -201,31 +141,6 @@
     <LineStationIndex>4</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>9</LineId>
-    <Station>1514</Station>
-    <LineStationIndex>0</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>9</LineId>
-    <Station>1518</Station>
-    <LineStationIndex>1</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>9</LineId>
-    <Station>1522</Station>
-    <LineStationIndex>2</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>9</LineId>
-    <Station>1523</Station>
-    <LineStationIndex>3</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>9</LineId>
-    <Station>1524</Station>
-    <LineStationIndex>4</LineStationIndex>
-  </LineStation>
-  <LineStation>
     <LineId>10</LineId>
     <Station>1523</Station>
     <LineStationIndex>0</LineStationIndex>
@@ -261,13 +176,108 @@
     <LineStationIndex>1</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>12</LineId>
+    <LineId>2</LineId>
+    <Station>88</Station>
+    <LineStationIndex>4</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <Station>89</Station>
+    <LineStationIndex>5</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <Station>76</Station>
+    <LineStationIndex>3</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>9</LineId>
+    <Station>1514</Station>
+    <LineStationIndex>1</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>9</LineId>
+    <Station>1518</Station>
+    <LineStationIndex>2</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>9</LineId>
+    <Station>1522</Station>
+    <LineStationIndex>3</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>9</LineId>
+    <Station>1523</Station>
+    <LineStationIndex>4</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>9</LineId>
+    <Station>1524</Station>
+    <LineStationIndex>5</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>9</LineId>
     <Station>73</Station>
     <LineStationIndex>0</LineStationIndex>
   </LineStation>
   <LineStation>
     <LineId>12</LineId>
+    <Station>73</Station>
+    <LineStationIndex>1</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>12</LineId>
     <Station>76</Station>
+    <LineStationIndex>2</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>12</LineId>
+    <Station>1</Station>
+    <LineStationIndex>0</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>97</Station>
+    <LineStationIndex>0</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>105</Station>
+    <LineStationIndex>2</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>106</Station>
+    <LineStationIndex>3</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>108</Station>
+    <LineStationIndex>4</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>109</Station>
+    <LineStationIndex>5</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>110</Station>
+    <LineStationIndex>6</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>111</Station>
+    <LineStationIndex>7</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>112</Station>
+    <LineStationIndex>8</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>102</Station>
     <LineStationIndex>1</LineStationIndex>
   </LineStation>
 </ArrayOfLineStation>

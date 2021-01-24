@@ -900,4 +900,12 @@
     <LineId>11</LineId>
     <StartAt>46800</StartAt>
   </LineTrip>
+  <LineTrip>
+    <LineId>12</LineId>
+    <StartAt>50400</StartAt>
+  </LineTrip>
+  <LineTrip>
+    <LineId>12</LineId>
+    <StartAt>43200</StartAt>
+  </LineTrip>
 </ArrayOfLineTrip>

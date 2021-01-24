@@ -50,13 +50,6 @@
     <LastStation>1512</LastStation>
   </Line>
   <Line>
-    <Id>9</Id>
-    <Code>9</Code>
-    <Area>JERUSALEM</Area>
-    <FirstStation>1514</FirstStation>
-    <LastStation>1524</LastStation>
-  </Line>
-  <Line>
     <Id>10</Id>
     <Code>10</Code>
     <Area>JERUSALEM</Area>
@@ -71,10 +64,17 @@
     <LastStation>76</LastStation>
   </Line>
   <Line>
+    <Id>9</Id>
+    <Code>9</Code>
+    <Area>JERUSALEM</Area>
+    <FirstStation>73</FirstStation>
+    <LastStation>1524</LastStation>
+  </Line>
+  <Line>
     <Id>12</Id>
     <Code>32</Code>
     <Area>GENERAL</Area>
-    <FirstStation>73</FirstStation>
+    <FirstStation>1</FirstStation>
     <LastStation>76</LastStation>
   </Line>
 </ArrayOfLine>
