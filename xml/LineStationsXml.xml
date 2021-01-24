@@ -273,16 +273,31 @@
   <LineStation>
     <LineId>2</LineId>
     <Station>76</Station>
-    <LineStationIndex>2</LineStationIndex>
-  </LineStation>
-  <LineStation>
-    <LineId>2</LineId>
-    <Station>88</Station>
     <LineStationIndex>3</LineStationIndex>
   </LineStation>
   <LineStation>
     <LineId>2</LineId>
-    <Station>89</Station>
+    <Station>88</Station>
     <LineStationIndex>4</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <Station>89</Station>
+    <LineStationIndex>5</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <Station>115</Station>
+    <LineStationIndex>3</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>14</LineId>
+    <Station>73</Station>
+    <LineStationIndex>0</LineStationIndex>
+  </LineStation>
+  <LineStation>
+    <LineId>14</LineId>
+    <Station>86</Station>
+    <LineStationIndex>1</LineStationIndex>
   </LineStation>
 </ArrayOfLineStation>

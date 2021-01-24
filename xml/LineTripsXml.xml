@@ -916,4 +916,8 @@
     <LineId>12</LineId>
     <StartAt>600</StartAt>
   </LineTrip>
+  <LineTrip>
+    <LineId>2</LineId>
+    <StartAt>57600</StartAt>
+  </LineTrip>
 </ArrayOfLineTrip>

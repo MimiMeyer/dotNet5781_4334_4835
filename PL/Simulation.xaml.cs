@@ -71,20 +71,10 @@ namespace PL
 
             this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
             {
-                try
-                {
-                    rate = int.Parse(Rate.Text);//getting users input and converting from string to int
+                 rate = int.Parse(Rate.Text);//getting users input and converting from string to int
                 
                 updateTime = TimeSpan.Parse(startTime.Text);////getting users input and converting from string to TimeSpan
-                }
-                catch (OverflowException ex)//makes sure its timespan
-                {
-                    MessageBox.Show(ex.Message);//makes sure its int
-                }
-                catch (FormatException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+               
 
 
 
@@ -128,20 +118,10 @@ namespace PL
         {
             this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
             {
-                try
-                {
-                    rate = int.Parse(Rate.Text);//getting users input and converting from string to int
+                 rate = int.Parse(Rate.Text);//getting users input and converting from string to int
                 
                     updateTime = TimeSpan.Parse(startTime.Text);////getting users input and converting from string to TimeSpan
-                }
-                catch (OverflowException ex)//makes sure its timespan
-                {
-                    MessageBox.Show(ex.Message);//makes sure its int
-                }
-                catch (FormatException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+              
 
             });
             if (updateTime.Days == 0)
@@ -162,18 +142,9 @@ namespace PL
                 {
                     this.Dispatcher.Invoke(() =>//lets us use  rate and upatetime even though they are owned  by diffrent thred
                     {
-                        try
-                        {
+                       
                             LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
-                        }
-                        catch (BO.StationCodeException ex)//catches if not type Timesapn
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                        catch (OverflowException ex)//catches if not type int
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
+                        
 
                     });
                 }
@@ -186,21 +157,11 @@ namespace PL
         }
         private void TimeBoard_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            try
-            {
-                lineTimingDataGrid.DataContext = bl.GetLineTimingForSimulator(TimeSpan.Parse(startTime.Text), station);//gets the info from the bl with the function GetLineTimingForSimulator sending the updated time and station
+               lineTimingDataGrid.DataContext = bl.GetLineTimingForSimulator(TimeSpan.Parse(startTime.Text), station);//gets the info from the bl with the function GetLineTimingForSimulator sending the updated time and station
 
                 LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
-            }
-            catch (BO.StationCodeException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (OverflowException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
+           
+         
 
         }
 

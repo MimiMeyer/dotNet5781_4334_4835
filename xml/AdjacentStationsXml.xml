@@ -300,4 +300,22 @@
     <Distance>30.984270298659929</Distance>
     <Time>61.968540597319858</Time>
   </AdjacentStations>
+  <AdjacentStations>
+    <Station1>76</Station1>
+    <Station2>115</Station2>
+    <Distance>16.42053463427375</Distance>
+    <Time>32.8410692685475</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>115</Station1>
+    <Station2>88</Station2>
+    <Distance>5</Distance>
+    <Time>10</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>73</Station1>
+    <Station2>86</Station2>
+    <Distance>17.659651083480405</Distance>
+    <Time>35.31930216696081</Time>
+  </AdjacentStations>
 </ArrayOfAdjacentStations>

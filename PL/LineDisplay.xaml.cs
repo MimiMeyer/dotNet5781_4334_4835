@@ -33,13 +33,25 @@ namespace PL
         {
             LineDetails window = new LineDetails(lineDataGrid.SelectedItem as BO.Line);//sending line that was chosen to LineDetails
             window.Show();
+          
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)//will  open LineCrud window peulut nosfot
         {
             LineCrud window = new LineCrud();
             window.Show();
+            window.Closed += Window_Closed;
+           
+
+
+
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            lineDataGrid.DataContext = bl.GetAlllines();//all lines ;
+        }
+
         private void LineTrip_Click(object sender, RoutedEventArgs e)//will  open LineCrud window peulut nosfot
         {
             LineTrip window = new LineTrip(lineDataGrid.SelectedItem as BO.Line);

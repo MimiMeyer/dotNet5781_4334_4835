@@ -616,8 +616,9 @@ namespace BL
                             lineTime.Code = Code;//the Station we got From the PL
                             lineTime.ArrivalTime = ArrivalTime(li.Current.Id, Code, st.Current.StartAt);//arrival time of the bus
                             lineTime.MinutesTillArival = (int)(lineTime.ArrivalTime.Subtract(startTime).TotalMinutes);//total minutes till bus will arive using the onfo from the pl
-                            if(lineTime.MinutesTillArival<0 )
-                            { lineTime.ArrivalTime = lineTime.ArrivalTime.Add(new TimeSpan(1, 0, 0, 0));
+                            if (lineTime.MinutesTillArival < 0)
+                            {
+                                lineTime.ArrivalTime = lineTime.ArrivalTime.Add(new TimeSpan(1, 0, 0, 0));
                                 lineTime.MinutesTillArival = (int)(lineTime.ArrivalTime.Subtract(startTime).TotalMinutes);//total minutes till bus will arive using the onfo from the pl
                             }
                             listOfLineTiming.Add(lineTime);//adding the lineTime To the list
