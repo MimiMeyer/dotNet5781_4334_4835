@@ -50,9 +50,10 @@ namespace PL
         private void Window_Closed(object sender, EventArgs e)
         {
             lineDataGrid.DataContext = bl.GetAlllines();//all lines ;
+            lineDataGrid.IsReadOnly = true;//cant change
         }
 
-        private void LineTrip_Click(object sender, RoutedEventArgs e)//will  open LineCrud window peulut nosfot
+        private void LineTrip_Click(object sender, RoutedEventArgs e)//will open linetrip
         {
             LineTrip window = new LineTrip(lineDataGrid.SelectedItem as BO.Line);
             window.Show();

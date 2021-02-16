@@ -27,18 +27,27 @@ namespace DS
             SaveListToXML(listLineTrip, "..\\xml\\LineTripsXml.xml");
             SaveListToXML(RunningNumber, "..\\xml\\RunningNumberXml.xml");
             SaveListToXML(listAdjacentStations, "..\\xml\\AdjacentStationsXml.xml");
+            SaveListToXML(listBuses, "..\\xml\\BusesXml.xml");
+
 
 
         }
         #region Xml
-        public static void SaveListToXML(List <int> num, string path)//inializing xml for Running Number
+        public static void SaveListToXML(List<int> num, string path)//inializing xml for Running Number
         {
             XmlSerializer x = new XmlSerializer(num.GetType());
             FileStream fs = new FileStream(path, FileMode.Create);
             x.Serialize(fs, num);
             fs.Close();
         }
-        public static void SaveListToXML(List<AdjacentStations> list, string path)//inializing xml for AdjacentStations
+            public static void SaveListToXML(List<Bus> list, string path)//inializing xml for Buses
+            {
+                XmlSerializer x = new XmlSerializer(list.GetType());
+                FileStream fs = new FileStream(path, FileMode.Create);
+                x.Serialize(fs, list);
+                fs.Close();
+            }
+            public static void SaveListToXML(List<AdjacentStations> list, string path)//inializing xml for AdjacentStations
         {
             XmlSerializer x = new XmlSerializer(list.GetType());
             FileStream fs = new FileStream(path, FileMode.Create);
@@ -2534,7 +2543,91 @@ namespace DS
             };
             #endregion
             #region Bus
-            #endregion 
+            listBuses = new List<Bus>
+            {
+            new Bus
+            {
+                LicenseNum=12345078,
+                FromDate=new DateTime(2019, 05, 25),
+                ToatalTrip=19800,
+                FuelRemain=1200,
+            },
+            new Bus
+            {
+                LicenseNum=12005678,
+                FromDate=new DateTime(2019, 12, 25),
+                ToatalTrip=800,
+                FuelRemain=200,
+            },
+            new Bus
+            {
+                LicenseNum=22345678,
+                FromDate=new DateTime(2020, 05, 30),
+                ToatalTrip=19000,
+                FuelRemain=1200,
+            },
+            new Bus
+            {
+                LicenseNum=12945678,
+                FromDate=new DateTime(2020, 10, 12),
+                ToatalTrip=10000,
+                FuelRemain=1200,
+            },
+            new Bus
+            {
+                LicenseNum=18345678,
+                FromDate=new DateTime(2018, 08, 01),
+                ToatalTrip=600,
+                FuelRemain=1100,
+            },
+            new Bus
+            {
+                LicenseNum=12365678,
+                FromDate=new DateTime(2020, 07, 05),
+                ToatalTrip=500,
+                FuelRemain=10,
+            },
+            new Bus
+            {
+                LicenseNum=15345678,
+                FromDate=new DateTime(2020, 10, 02),
+                ToatalTrip=70,
+                FuelRemain=1130,
+            },
+            new Bus
+            {
+                LicenseNum=12365678,
+                FromDate=new DateTime(2020, 05, 15),
+                ToatalTrip=300,
+                FuelRemain=600,
+            },
+            new Bus
+            {
+                LicenseNum=12340008,
+                FromDate=new DateTime(2020, 09, 20),
+                ToatalTrip=10000,
+                FuelRemain=250,
+            },
+            new Bus
+            {
+                LicenseNum=1234566,
+                FromDate=new DateTime(2017, 06, 30),
+                ToatalTrip=4000,
+                FuelRemain=15,
+            },
+
+
+            };
+            #endregion
+           
+            
+           
+          
+           
+            
+            
+          
+           
 
 
         }

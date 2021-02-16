@@ -44,6 +44,13 @@ namespace BLAPI
         int LastBusInStation(TimeSpan startTime, int Code);
 
         #endregion
+        #region Bus
+        BO.Bus GetBus(int license);//returns requested bus
+        IEnumerable<BO.Bus> GetAlllBuses();//returns all buses
+        void AddBus(BO.Bus bus);//add Bus
+        void UpdateBus(BO.Bus bus); //updating bus
+        void DeleteBus(int license);//deletes bus
+        #endregion 
 
 
     }

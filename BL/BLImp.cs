@@ -10,7 +10,7 @@ namespace BL
 {
     class BLImp : IBL
     {
-      
+
         //#region singelton
         //static readonly BLImp instance = new BLImp();
         //static BLImp() { }// static ctor to ensure instance init is done just before first usage
@@ -549,7 +549,7 @@ namespace BL
             BO.Line li = GetLine(lineTrip.LineId);
             if (li == null)
                 throw new BO.LineIdException(lineTrip.LineId, "line Id does not exist ");
-            if (lineTrip.StartAt.Days > 0) 
+            if (lineTrip.StartAt.Days > 0)
             {
                 throw new BO.LineTripTimeSpanException(lineTrip.StartAt, "Time format incorrect can't contain days");
             }
@@ -588,9 +588,9 @@ namespace BL
 
         public IEnumerable<BO.LineTiming> GetLineTimingForSimulator(TimeSpan startTime, int Code)//gets from the pl the updated time and the station and returns the wanted  information for the xml 
         {
-          
+
             return (from lineTiming in ListOfLineTiming(startTime, Code).ToList().
-                   FindAll(l=>l.MinutesTillArival >= 0).//all busses that the minutes till arrival are bigger then 0 or equal
+                   FindAll(l => l.MinutesTillArival >= 0).//all busses that the minutes till arrival are bigger then 0 or equal
                    OrderBy(l => l.MinutesTillArival)//ordered by MinutesTillArival
                     select lineTiming).Take(5);//only takes the first 5 for the orderby
 
@@ -605,7 +605,7 @@ namespace BL
             {
                 while (li.MoveNext())
                 {
-                   
+
                     IEnumerable<BO.LineTrip> lineTrips = GetLineTripsForLine(li.Current.Id);//gets the line trips for wanted line
                     using (var st = lineTrips.GetEnumerator())
                     {
@@ -640,27 +640,27 @@ namespace BL
 
 
             BO.LineTiming li = listOfLineTimes.ToList().Find(l => l.ArrivalTime == startTime);//if arrival time equealt the time given from the pl thhen thats the last bus
-       
+
             if (li == null)
             {
                 li = listOfLineTimes.ToList().Find(l => l.ArrivalTime < startTime);//means its not equeal so we wnat to find the last
                 if (li == null)//means its an early hour so we want to add a day
                 {
-                   startTime= startTime.Add(Day);
-                    li = listOfLineTimes.ToList().Find(l => l.ArrivalTime< startTime);
+                    startTime = startTime.Add(Day);
+                    li = listOfLineTimes.ToList().Find(l => l.ArrivalTime < startTime);
                 }
-               
+
 
             }
-            
-                return li.Id;
 
-        } 
+            return li.Id;
+
+        }
         public TimeSpan ArrivalTime(int id, int Code, TimeSpan time)//returns arrival time for the bus
         {
-           
+
             IEnumerable<BO.LineStation> Stations = GetStationsForLine(id);//returns all linestations for line
-           
+
 
             using (var st = Stations.GetEnumerator())
             {
@@ -681,16 +681,96 @@ namespace BL
             }
             if (time.Days > 0) //if has gone to next day then
             {
-               time.Subtract(new TimeSpan(1, 0, 0, 0));//subtract a day
+                time.Subtract(new TimeSpan(1, 0, 0, 0));//subtract a day
             }
             return time;
 
         }
+        #endregion
 
+        #region bus
+        BO.Bus BusDoBoAdapter(DO.Bus BusDO)//convert do to bo
+        {
+            BO.Bus BusBO = new BO.Bus();
+            int license = BusDO.LicenseNum;
+            BusDO.CopyPropertiesTo(BusBO);//copys the properties from do to bo for the Bus
 
+            return BusBO;
+        }
 
+        public BO.Bus GetBus(int license)//returns requested bus
+        {
+            DO.Bus BusDo;
+            try
+            {
+                BusDo = dl.RequestBus(license);//gets the requested bus and if does not exist will throw exception
+            }
+            catch (DO.LicenseNumException ex)
+            {
+                throw new BO.BusException("Bus does not exist", ex);
+            }
+            return BusDoBoAdapter(BusDo);//returns the Bus if did not exist will return null
+        }
+        public IEnumerable<BO.Bus> GetAlllBuses()//returns all buses
+        {
+            return from BusDO in dl.RequestAllBuses()//gets all busses from the function RequestAllBuses
+
+                   select BusDoBoAdapter(BusDO);//each bus
+        }
+        public void AddBus(BO.Bus bus)//add Bus
+        {
+
+            try
+            {
+                DO.Bus busDO = new DO.Bus();
+                bus.CopyPropertiesTo(busDO);//copys station properties into StationDO
+                if (!(bus.FromDate.Year < 2018 && bus.LicenseNum.ToString().Length == 7) || (bus.FromDate.Year >= 2018 && bus.LicenseNum.ToString().Length == 8)) //checks that license plate is valid
+                {
+                    throw new BO.BusException(bus.LicenseNum, "invalid License");
+                }
+
+                dl.AddBus(busDO);//adds bus
+            }
+            catch (DO.LicenseNumException ex)
+            {
+                throw new BO.BusException("License already exists", ex);
+            }
+        }
+        public void UpdateBus(BO.Bus bus) //updating bus
+        {
+            try
+            {
+                DO.Bus busDO = new DO.Bus();
+                bus.CopyPropertiesTo(busDO);//copys station properties into StationDO
+                if (!(bus.FromDate.Year < 2018 && bus.LicenseNum.ToString().Length == 7) || (bus.FromDate.Year >= 2018 && bus.LicenseNum.ToString().Length == 8)) //checks that license plate is valid
+                {
+                    throw new BO.BusException(bus.LicenseNum, "invalid License");
+                }
+
+                dl.UpdateBus(busDO);//updates bus
+            }
+            catch (DO.LicenseNumException ex)
+            {
+                throw new BO.BusException("License already exists", ex);
+            }
+        }
+        
+        public void DeleteBus(int license)//deletes bus
+        {
+            try
+            {
+                dl.DeleteBus(license);//deletes the bus
+
+            }
+            catch (DO.LicenseNumException ex)//if license does not exist will throw exception
+            {
+                throw new BO.BusException("Bus does not exist ", ex);
+            }
+        }
+        #endregion
 
     }
-    #endregion
+
+
 }
 

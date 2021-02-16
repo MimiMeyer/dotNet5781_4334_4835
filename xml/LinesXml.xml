@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Line>
+    <Id>1</Id>
+    <Code>1</Code>
+    <Area>JERUSALEM</Area>
+    <FirstStation>73</FirstStation>
+    <LastStation>83</LastStation>
+  </Line>
+  <Line>
+    <Id>2</Id>
+    <Code>2</Code>
+    <Area>JERUSALEM</Area>
+    <FirstStation>84</FirstStation>
+    <LastStation>89</LastStation>
+  </Line>
+  <Line>
     <Id>3</Id>
     <Code>3</Code>
     <Area>JERUSALEM</Area>
@@ -43,52 +57,17 @@
     <LastStation>1512</LastStation>
   </Line>
   <Line>
+    <Id>9</Id>
+    <Code>9</Code>
+    <Area>JERUSALEM</Area>
+    <FirstStation>1514</FirstStation>
+    <LastStation>1524</LastStation>
+  </Line>
+  <Line>
     <Id>10</Id>
     <Code>10</Code>
     <Area>JERUSALEM</Area>
     <FirstStation>1523</FirstStation>
     <LastStation>122</LastStation>
-  </Line>
-  <Line>
-    <Id>11</Id>
-    <Code>60</Code>
-    <Area>GENERAL</Area>
-    <FirstStation>1524</FirstStation>
-    <LastStation>76</LastStation>
-  </Line>
-  <Line>
-    <Id>9</Id>
-    <Code>9</Code>
-    <Area>JERUSALEM</Area>
-    <FirstStation>73</FirstStation>
-    <LastStation>1524</LastStation>
-  </Line>
-  <Line>
-    <Id>12</Id>
-    <Code>32</Code>
-    <Area>GENERAL</Area>
-    <FirstStation>1</FirstStation>
-    <LastStation>76</LastStation>
-  </Line>
-  <Line>
-    <Id>13</Id>
-    <Code>2</Code>
-    <Area>GENERAL</Area>
-    <FirstStation>89</FirstStation>
-    <LastStation>84</LastStation>
-  </Line>
-  <Line>
-    <Id>2</Id>
-    <Code>2</Code>
-    <Area>JERUSALEM</Area>
-    <FirstStation>85</FirstStation>
-    <LastStation>89</LastStation>
-  </Line>
-  <Line>
-    <Id>14</Id>
-    <Code>45</Code>
-    <Area>GENERAL</Area>
-    <FirstStation>73</FirstStation>
-    <LastStation>86</LastStation>
   </Line>
 </ArrayOfLine>

@@ -1,54 +1,52 @@
-﻿<Window x:Class="PL.StationCrud"
+﻿<Window x:Class="PL.BusCrud"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="StationCrud" Height="450" Width="800">
+        Title="BusCrud" Height="450" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="https://images.all-free-download.com/images/graphicthumb/blue_background_picture_12_169451.jpg" Stretch="Fill" />
     </Window.Background>
-
     <Grid  >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="107*"/>
             <ColumnDefinition Width="273*"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="stationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39,112,113" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" FontSize="14" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5">
+        <DataGrid x:Name="BusDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39,112,113" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" FontSize="14" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5">
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="codeColumn" Header="מספר תחנה" Width="10*"  >
+                <DataGridTemplateColumn x:Name="codeColumn" Header="מספר רישיון" Width="10*"  >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
-                            <TextBlock x:Name="CodeTextBox" Text="{Binding Code}" TextAlignment="Center" />
+                            <TextBlock x:Name="CodeTextBox" Text="{Binding  LicenseNum }" TextAlignment="Center" />
 
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="DeleteColumn" Header="מחיקת התחנה " Width="10*" >
+                <DataGridTemplateColumn x:Name="DeleteColumn" Header="מחיקת האוטובוס " Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="DeleteStation" Content="מחק"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Delete_Click" Background="Yellow" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="UpdateColumn" Header="עדכון התחנה " Width="10*" >
+                <DataGridTemplateColumn x:Name="UpdateColumn" Header="עדכון האוטובוס " Width="10*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="UpdateStation" Content="עדכון"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Update_Click" Background="Yellow"   />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="הוספת תחנה" HorizontalAlignment="Left" Height="61" Margin="134,0,0,47" VerticalAlignment="Bottom" Width="128" Click="Button_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="White" BorderThickness="5" Background="Yellow" Grid.ColumnSpan="2"/>
-     
+        <Button Content="הוספת אוטובוס" HorizontalAlignment="Left" Height="61" Margin="134,0,0,47" VerticalAlignment="Bottom" Width="128" Click="Button_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="White" BorderThickness="5" Background="Yellow" Grid.ColumnSpan="2"/>
+
 
 
     </Grid>
-
-
+    
 </Window>

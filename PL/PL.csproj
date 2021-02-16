@@ -69,6 +69,12 @@
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
     <Compile Include="BackRoundWorker.cs" />
+    <Compile Include="BusCrud.xaml.cs">
+      <DependentUpon>BusCrud.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BusDisplay.xaml.cs">
+      <DependentUpon>BusDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LineCrud.xaml.cs">
       <DependentUpon>LineCrud.xaml</DependentUpon>
     </Compile>
@@ -118,6 +124,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddStation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BusCrud.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BusDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -200,6 +214,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\BO.Bus.datasource" />
     <None Include="Properties\DataSources\BO.Line.datasource" />
     <None Include="Properties\DataSources\BO.LineStation.datasource" />
     <None Include="Properties\DataSources\BO.LineTiming.datasource" />

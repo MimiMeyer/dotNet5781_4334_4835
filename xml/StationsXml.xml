@@ -15,6 +15,13 @@
     <Address>רחוב:אל מדינה אל מונאוורה  עיר: ירושלים</Address>
   </Station>
   <Station>
+    <Code>77</Code>
+    <Name>בית ספר אבן רשד/אלמדינה אלמונוורה</Name>
+    <Longitude>35.226704</Longitude>
+    <Lattitude>31.738676</Lattitude>
+    <Address>רחוב:אל מדינה אל מונאוורה  עיר: ירושלים </Address>
+  </Station>
+  <Station>
     <Code>78</Code>
     <Name>שרי ישראל/יפו</Name>
     <Longitude>35.206146</Longitude>
@@ -342,12 +349,5 @@
     <Longitude>35.206158</Longitude>
     <Lattitude>31.79617</Lattitude>
     <Address>  רחוב:הרב סורוצקין 28 עיר: ירושלים</Address>
-  </Station>
-  <Station>
-    <Code>1</Code>
-    <Name>ארזים</Name>
-    <Longitude>35</Longitude>
-    <Lattitude>32</Lattitude>
-    <Address>ארזים</Address>
   </Station>
 </ArrayOfStation>

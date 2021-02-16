@@ -75,7 +75,18 @@ namespace BO
         public override string ToString() => base.ToString() + $", bad LineTrip time index: {Time}";
     }
     #endregion
-
+    #region Bus
+    public class BusException : Exception
+    {
+        public int License;
+        public BusException(string message, Exception innerException) :
+       base(message, innerException) => License = ((DO.LicenseNumException)innerException).LicenseNum;
+        public BusException(int license, string message) :
+           base(message) => License = license;
+        public override string ToString() => base.ToString() + $", bad Bus: {License}";
+    }
+    #endregion
+  
 
 
 

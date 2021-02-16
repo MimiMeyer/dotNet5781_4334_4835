@@ -43,6 +43,11 @@ namespace PL
             User window = new User();
             window.ShowDialog();
         }
+        private void BusDisplay_Click(object sender, RoutedEventArgs e)//opens user window
+        {
+           BusDisplay window = new BusDisplay();
+            window.ShowDialog();
+        }
     }
 }
 

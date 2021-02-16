@@ -10,11 +10,12 @@
         <ImageBrush ImageSource="https://airqualitynews.com/wp-content/uploads/2020/02/TfL-Image-Route-94-electric-bus.jpg" Stretch="Fill" />
     </Window.Background>
     <Grid>
-        <Button Content="סימולציה" HorizontalAlignment="Left" Height="102" Margin="10,384,0,18" Width="206" Click="User_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5"/>
-        <Button Content="תצוגת תחנות" HorizontalAlignment="Left" Height="102" Margin="258,384,0,18" Width="206" Click="StationDisplay_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" />
+        <Button Content="סימולציה" HorizontalAlignment="Left" Height="102" Margin="0,384,0,18" Width="140" Click="User_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5"/>
+        <Button Content="תצוגת תחנות" HorizontalAlignment="Left" Height="102" Margin="200,384,0,18" Width="140" Click="StationDisplay_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" />
 
 
 
-        <Button Content="תצוגת קווים" HorizontalAlignment="Left" Height="102" Margin="517,384,0,18"  Width="206" Click="LineDisplay_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" />
+        <Button Content="תצוגת קווים" HorizontalAlignment="Left" Height="102" Margin="410,384,0,18"  Width="140" Click="LineDisplay_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" />
+        <Button Content="תצוגת אוטובוסים" HorizontalAlignment="Left" Height="102" Margin="610,384,0,18"  Width="140" Click="BusDisplay_Click" FontSize="16" FontFamily="Yu Gothic Medium" BorderBrush="black" BorderThickness="5" />
     </Grid>
 </Window>
