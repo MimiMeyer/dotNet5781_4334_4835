@@ -26,6 +26,7 @@ namespace DL
         string lineTripsPath = @"LineTripsXml.xml"; //XElement
         //string tripsPath = @"TripsXml.xml"; //XMLSerializer
         string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XMLSerializer
+        string busesPath = @"BusesXml.xml"; //XMLSerializer
         string runningNuberPath = @"RunningNumberXml.xml";//XMLSerializer
         #endregion
         #region Line
@@ -438,6 +439,75 @@ namespace DL
 
             XMLTools.SaveListToXMLSerializer(ListAdjacentStations, adjacentStationsPath);
         }
+
+
+        #endregion
+        #region Bus
+        public void AddBus(Bus bus)//adds bus
+        {
+            List<Bus> ListBuses = XMLTools.LoadListFromXMLSerializer<Bus>(busesPath);//gets wanted list
+
+            if (ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)//if bus already exists
+                throw new DO.LicenseNumException(bus.LicenseNum, $"Duplicate License: {bus.LicenseNum}");
+
+            ListBuses.Add(bus); //no need to Clone()
+
+            XMLTools.SaveListToXMLSerializer(ListBuses, busesPath);
+        }
+
+        public Bus RequestBus(int license)//returns requested bus
+        {
+            List<Bus> ListBuses = XMLTools.LoadListFromXMLSerializer<Bus>(busesPath);//gets wanted list
+
+            DO.Bus bus = ListBuses.Find(b => b.LicenseNum == license);//finds bus
+
+
+            if (bus == null)//means that bus doesnt exist and exeption is thrown
+                throw new DO.LicenseNumException(license, $"Bus Doesn't exist: {license}");
+
+            return bus;
+        }
+
+        public IEnumerable<Bus> RequestAllBuses()//returns all buses
+        {
+            List<Bus> ListBuses = XMLTools.LoadListFromXMLSerializer<Bus>(busesPath);//gets wanted list
+
+            return from Buses in ListBuses
+                   select Buses; //no need to Clone()
+        }
+
+        public void UpdateBus(Bus bus)//updates bus
+        {
+            List<Bus> ListBuses = XMLTools.LoadListFromXMLSerializer<Bus>(busesPath);//gets wanted list
+
+            DO.Bus bu = ListBuses.Find(b => b.LicenseNum == bus.LicenseNum);//checks Buses. if exists bu will get the values of the chosen Bus.
+            if (bu != null)
+            {
+                ListBuses.Remove(bu);
+                ListBuses.Add(bus); //no nee to Clone()
+            }
+            else
+                throw new DO.LicenseNumException(bus.LicenseNum, "Bus does't exist:");
+
+            XMLTools.SaveListToXMLSerializer(ListBuses, busesPath);
+        }
+
+        public void DeleteBus(int license)//deletes bus
+        {
+            List<Bus> ListBuses = XMLTools.LoadListFromXMLSerializer<Bus>(busesPath);
+
+            DO.Bus bu = ListBuses.Find(b => b.LicenseNum == license) ;//checks Buses. if exists bu will get the values of the chosen Bus.
+
+            if (bu != null)//bus exists
+            {
+                ListBuses.Remove(bu);//removing buses
+            }
+            else
+                throw new DO.LicenseNumException(license, "Bus does't exist:");
+
+            XMLTools.SaveListToXMLSerializer(ListBuses, busesPath);
+        }
+
         #endregion
         //#region Trip
 

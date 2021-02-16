@@ -55,6 +55,16 @@ namespace DLAPI
         void UpdateAdjacentStations(DO.AdjacentStations Stations);//updates AdjacentStations
         void DeleteAdjacentStations(int station1, int station2);//deletes AdjacentStations
         #endregion
+        #region Bus
+
+        void AddBus(DO.Bus bus);//add bus
+        DO.Bus RequestBus(int license);//requests for a bus and returs if exists
+        IEnumerable<DO.Bus> RequestAllBuses();//returns all buses
+        void UpdateBus(DO.Bus bus);//updates bus
+        void DeleteBus(int license);//delets bus
+
+
+        #endregion
 
         //#region Trip
 

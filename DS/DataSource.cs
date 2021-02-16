@@ -16,6 +16,7 @@ namespace DS
         public static List<LineTrip> listLineTrip;//list of line trip
         public static List<Trip> listTrip;//list of trips
         public static List<AdjacentStations> listAdjacentStations;//list of AdjacentStations
+        public static List<Bus> listBuses;//list of buses
         public static List<int> RunningNumber= new List<int>{11};//list with running number
         static DataSource()
         {
@@ -2532,7 +2533,10 @@ namespace DS
             #endregion
             };
             #endregion
-            
+            #region Bus
+            #endregion 
+
+
         }
 
 

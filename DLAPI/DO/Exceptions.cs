@@ -4,7 +4,7 @@ namespace DO
 {
 
    
-        #region LineId
+    #region LineId
         public class LineIdException : Exception
         {
             public int ID;
@@ -34,7 +34,7 @@ namespace DO
             public override string ToString() => base.ToString() + $", bad Line id: {lineID}" ;
         }
         #endregion
-        #region StationCode
+    #region StationCode
         public class StationCodeException : Exception
         {
             public int Code;
@@ -47,7 +47,20 @@ namespace DO
             public override string ToString() => base.ToString() + $", bad Station code: {Code}";
         }
     #endregion
-   
+    #region Bus
+    public class LicenseNumException : Exception
+    {
+        public int LicenseNum;
+        public LicenseNumException(int licenseNum) : base() => LicenseNum = licenseNum;
+        public LicenseNumException(int licenseNum, string message) :
+            base(message) => LicenseNum = licenseNum;
+        public LicenseNumException(int licenseNum, string message, Exception innerException) :
+            base(message, innerException) => LicenseNum = licenseNum;
+
+        public override string ToString() => base.ToString() + $", bad Station code: {LicenseNum}";
+    }
+    #endregion
+
     #region TripId
     public class TripIdException : Exception
         {
@@ -61,7 +74,7 @@ namespace DO
             public override string ToString() => base.ToString() + $", bad trip id: {ID}";
         }
         #endregion
-        #region UserId
+    #region UserId
         public class UserIdException : Exception
         {
             public string ID;

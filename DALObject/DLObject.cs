@@ -335,6 +335,55 @@ namespace DL
 
 
         #endregion
+        #region Bus
+        public void AddBus(Bus bus)
+        {
+            if (DataSource.listBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)//makes sure there are no duplicates
+                throw new DO.LicenseNumException(bus.LicenseNum, $"Duplicate License Number: {bus.LicenseNum}");
+            DataSource.listBuses.Add(bus.Clone());
+        }
+   
+        public Bus RequestBus(int license)
+        {
+        DO.Bus bu = DataSource.listBuses.Find(b => b.LicenseNum== license);//checks Buses. if exists st will get the values of the chosen Bus.
+
+        if (bu != null)//if bu = null that means Bus does not exist
+            return bu.Clone();//returns the chosen Buses
+        else
+                throw new DO.LicenseNumException(license, $" bus does not exist: { license}");
+        }
+
+        public IEnumerable<Bus> RequestAllBuses()
+        {
+            return from Bus in DataSource.listBuses
+                   select Bus.Clone();
+        }
+
+        public void UpdateBus(Bus bus)
+        {
+            DO.Bus bu = DataSource.listBuses.Find(b => b.LicenseNum == bus.LicenseNum);//checks Buses. if exists st will get the values of the chosen Bus.
+            if (bu != null)//if bu = null that means Bus does not exist
+            {
+                DataSource.listBuses.Remove(bu);//remove
+                DataSource.listBuses.Add(bus);
+            }
+            else
+                throw new DO.LicenseNumException(bus.LicenseNum, $" bus does not exist: {bus.LicenseNum}");
+        }
+
+        public void DeleteBus(int license)
+        {
+            DO.Bus bu = DataSource.listBuses.Find(b => b.LicenseNum == license);//checks Buses. if exists st will get the values of the chosen Bus.
+            if (bu != null)//if bu = null that means Bus does not exist
+            {
+                DataSource.listBuses.Remove(bu);//remove
+               
+            }
+            else
+                throw new DO.LicenseNumException(license, $" bus does not exist: {license}");
+        }
+
+        #endregion
         //#region Trip
 
         //public int AddTrip(DO.Trip trip)
