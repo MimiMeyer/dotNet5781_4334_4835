@@ -1,0 +1,43 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.BusDetails"
+        mc:Ignorable="d"
+        Title="BusDetails" Height="450" Width="800"  >
+
+   
+
+    <Window.Background>
+        <ImageBrush ImageSource="https://images.all-free-download.com/images/graphicthumb/blue_background_picture_12_169451.jpg" Stretch="Fill" />
+    </Window.Background>
+    <Grid>
+
+        <Grid x:Name="busGrid" VerticalAlignment="Top" Margin="130,132,0,0" HorizontalAlignment="Left" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1" Content=":תאריך התחלה\בדיקה אחרונה"/>
+            <DatePicker x:Name="fromDateDatePicker" VerticalAlignment="Center" SelectedDate="{Binding FromDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="1" Content=":יתרת דלק"/>
+            <TextBox x:Name="fuelRemainTextBox" Width="120" VerticalAlignment="Center" Text="{Binding FuelRemain, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="1" Content=":מספר רישיון"/>
+            <TextBox x:Name="licenseNumTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LicenseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="1" Content=":סטאטוס"/>
+            <TextBox x:Name="statusTextBox" Width="120" VerticalAlignment="Center" Text="{Binding status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="1" Content=":סהכ קמ שנסע"/>
+            <TextBox x:Name="toatalTripTextBox" Width="120" VerticalAlignment="Center" Text="{Binding ToatalTrip, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+        </Grid>
+
+    </Grid>
+</Window>

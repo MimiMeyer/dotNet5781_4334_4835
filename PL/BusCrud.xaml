@@ -17,7 +17,7 @@
 
         <DataGrid x:Name="BusDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="134,39,112,113" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" FontSize="14" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5">
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="codeColumn" Header="מספר רישיון" Width="10*"  >
+                <DataGridTemplateColumn x:Name="codeColumn" Header="מספר רישיון" Width="*"  >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
@@ -26,17 +26,24 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="DeleteColumn" Header="מחיקת האוטובוס " Width="10*" >
+                <DataGridTemplateColumn x:Name="DeleteColumn" Header="מחיקת האוטובוס " Width="*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="DeleteStation" Content="מחק"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Delete_Click" Background="Yellow" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="UpdateColumn" Header="עדכון האוטובוס " Width="10*" >
+                <DataGridTemplateColumn x:Name="refuelColumn" Header=" תדלוק האוטובוס" Width="*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="UpdateStation" Content="עדכון"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Update_Click" Background="Yellow"   />
+                            <Button x:Name="CheckupStation" Content="תדלוק"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Refuel_Click" Background="Yellow" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="CheckupColumn" Header=" בדיקת האוטובוס" Width="*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="checkUpStation" Content="בדיקה"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CheckUp_Click" Background="Yellow" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

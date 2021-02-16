@@ -50,7 +50,13 @@ namespace BLAPI
         void AddBus(BO.Bus bus);//add Bus
         void UpdateBus(BO.Bus bus); //updating bus
         void DeleteBus(int license);//deletes bus
-        #endregion 
+        
+        void Refuel(BO.Bus bus);//fills tank
+
+        void Checkup(BO.Bus bus);//after a checkup updates the km to 0 and the checkup date to today and also refills gas if needed
+
+
+        #endregion
 
 
     }

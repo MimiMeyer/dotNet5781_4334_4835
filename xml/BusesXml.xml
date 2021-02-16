@@ -8,27 +8,6 @@
     <status>Ready</status>
   </Bus>
   <Bus>
-    <LicenseNum>12005678</LicenseNum>
-    <FromDate>2019-12-25T00:00:00</FromDate>
-    <ToatalTrip>800</ToatalTrip>
-    <FuelRemain>200</FuelRemain>
-    <status>Ready</status>
-  </Bus>
-  <Bus>
-    <LicenseNum>22345678</LicenseNum>
-    <FromDate>2020-05-30T00:00:00</FromDate>
-    <ToatalTrip>19000</ToatalTrip>
-    <FuelRemain>1200</FuelRemain>
-    <status>Ready</status>
-  </Bus>
-  <Bus>
-    <LicenseNum>12945678</LicenseNum>
-    <FromDate>2020-10-12T00:00:00</FromDate>
-    <ToatalTrip>10000</ToatalTrip>
-    <FuelRemain>1200</FuelRemain>
-    <status>Ready</status>
-  </Bus>
-  <Bus>
     <LicenseNum>18345678</LicenseNum>
     <FromDate>2018-08-01T00:00:00</FromDate>
     <ToatalTrip>600</ToatalTrip>
@@ -64,10 +43,31 @@
     <status>Ready</status>
   </Bus>
   <Bus>
+    <LicenseNum>12005678</LicenseNum>
+    <FromDate>2019-12-25T00:00:00</FromDate>
+    <ToatalTrip>800</ToatalTrip>
+    <FuelRemain>1200</FuelRemain>
+    <status>In_refuel</status>
+  </Bus>
+  <Bus>
+    <LicenseNum>22345678</LicenseNum>
+    <FromDate>2020-05-30T00:00:00</FromDate>
+    <ToatalTrip>19000</ToatalTrip>
+    <FuelRemain>1200</FuelRemain>
+    <status>In_refuel</status>
+  </Bus>
+  <Bus>
+    <LicenseNum>12945678</LicenseNum>
+    <FromDate>2020-10-12T00:00:00</FromDate>
+    <ToatalTrip>10000</ToatalTrip>
+    <FuelRemain>1200</FuelRemain>
+    <status>In_refuel</status>
+  </Bus>
+  <Bus>
     <LicenseNum>1234566</LicenseNum>
-    <FromDate>2017-06-30T00:00:00</FromDate>
-    <ToatalTrip>4000</ToatalTrip>
-    <FuelRemain>15</FuelRemain>
-    <status>Ready</status>
+    <FromDate>2021-02-16T00:00:00+02:00</FromDate>
+    <ToatalTrip>0</ToatalTrip>
+    <FuelRemain>1200</FuelRemain>
+    <status>In_checkup</status>
   </Bus>
 </ArrayOfBus>

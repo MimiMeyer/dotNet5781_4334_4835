@@ -29,15 +29,54 @@ namespace PL
 
 
         }
-        private void Button_Click(object sender, RoutedEventArgs e)//adding a Station
+        private void Window_Closed(object sender, EventArgs e)
         {
+            BusDataGrid.DataContext = bl.GetAlllBuses();//gets all busses
+            BusDataGrid.IsReadOnly = true;
+        }
+            private void Button_Click(object sender, RoutedEventArgs e)//adding a Bus
+        {
+            AddBus window = new AddBus();//opens up window addBus
+            window.ShowDialog();
+            BO.Bus bu = window.NewBus;//gets new Bus
+            try
+            {
+                bl.AddBus(bu);//adds Bus
+            }
+            catch (BO.BusException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            window.Closed += Window_Closed;
+
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)//adding a Station
+        private void Delete_Click(object sender, RoutedEventArgs e)//Deleting the bus
         {
+            BO.Bus bu = BusDataGrid.SelectedItem as BO.Bus;//the requested bus
+            try
+            {
+                bl.DeleteBus(bu.LicenseNum);//deletes bus
+            }
+            catch (BO.BusException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
-        private void Update_Click(object sender, RoutedEventArgs e)//adding a Station
+            
+        private void Refuel_Click(object sender, RoutedEventArgs e)//updating the bus
         {
+            BO.Bus bu = BusDataGrid.SelectedItem as BO.Bus;//the requested bus
+            bl.Refuel(bu);
+            
+         
         }
+        private void CheckUp_Click(object sender, RoutedEventArgs e)//updating the bus
+        {
+            BO.Bus bu = BusDataGrid.SelectedItem as BO.Bus;//the requested bus
+            bl.Checkup(bu);
+        }
+
     }
 }

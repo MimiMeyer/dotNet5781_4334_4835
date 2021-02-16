@@ -36,12 +36,20 @@ namespace PL
 
 
 
-
         }
         private void Window_Closed(object sender, EventArgs e)
         {
             busDataGrid.DataContext = bl.GetAlllBuses();
           busDataGrid.IsReadOnly = true;
+        }
+        private void Details_Click(object sender, RoutedEventArgs e)//will  open LineCrud window peulut nosfot
+        {
+            BusDetails window = new BusDetails(busDataGrid.SelectedItem as BO.Bus);
+            window.Show();
+            window.Closed += Window_Closed;
+
+
+
         }
 
     }

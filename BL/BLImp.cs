@@ -728,6 +728,7 @@ namespace BL
                 {
                     throw new BO.BusException(bus.LicenseNum, "invalid License");
                 }
+              
 
                 dl.AddBus(busDO);//adds bus
             }
@@ -741,7 +742,7 @@ namespace BL
             try
             {
                 DO.Bus busDO = new DO.Bus();
-                bus.CopyPropertiesTo(busDO);//copys station properties into StationDO
+                bus.CopyPropertiesTo(busDO);//copys bus properties into BusDO
                 if (!(bus.FromDate.Year < 2018 && bus.LicenseNum.ToString().Length == 7) || (bus.FromDate.Year >= 2018 && bus.LicenseNum.ToString().Length == 8)) //checks that license plate is valid
                 {
                     throw new BO.BusException(bus.LicenseNum, "invalid License");
@@ -766,6 +767,31 @@ namespace BL
             {
                 throw new BO.BusException("Bus does not exist ", ex);
             }
+        }
+        
+        public void Refuel(BO.Bus bus)//fills tank
+        {
+            bus.FuelRemain = 1200;
+            bus.status = BO.BusStatus.In_refuel;
+            DO.Bus busDO = new DO.Bus();
+            bus.CopyPropertiesTo(busDO);//copys bus properties into BusDO
+            dl.UpdateBus(busDO);//updating the gas 
+
+
+        }
+
+       
+        public void Checkup(BO.Bus bus) //after a checkup updates the km to 0 and the checkup date to today and also refills gas if needed
+        {
+            if (bus.FuelRemain < 100) //if gas is low too... refuel
+            { Refuel(bus); }
+            bus.ToatalTrip = 0;
+            bus.FromDate = DateTime.Today;
+            bus.status = BO.BusStatus.In_checkup;
+            DO.Bus busDO = new DO.Bus();
+            bus.CopyPropertiesTo(busDO);//copys bus properties into BusDO
+            dl.UpdateBus(busDO);//updating the checkup
+
         }
         #endregion
 

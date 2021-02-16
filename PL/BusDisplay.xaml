@@ -12,22 +12,21 @@
     </Window.Background>
     <Grid >
 
-        <DataGrid x:Name="busDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="122,105,122,199" RowDetailsVisibilityMode="VisibleWhenSelected"  FontSize="16" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5" >
+        <DataGrid x:Name="busDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="False" ItemsSource="{Binding}" Margin="122,105,306,199" RowDetailsVisibilityMode="VisibleWhenSelected"  FontSize="16" FontFamily="Yu Gothic Medium"  BorderBrush="Yellow" BorderThickness="5" >
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="fromDateColumn" Width="*" Header="זמן התחלתי">
+                
+
+
+                <DataGridTextColumn x:Name="licenseNumColumn" Width="*" Header="מספר רישיון" Binding="{Binding LicenseNum}"/>
+                <DataGridTemplateColumn x:Name="DetailColumn" Header="פרטי הקו" Width="*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding FromDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            <Button x:Name="LineDetails" Content="פרטים"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Details_Click" Background="Yellow" />
                         </DataTemplate>
+                        
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-
-                <DataGridTextColumn x:Name="statusColumn" Width="*" Header="סטאטוס" Binding="{Binding status}"/>
-                <DataGridTextColumn x:Name="fuelRemainColumn" Width="*" Header="כמות דלק יתרה" Binding="{Binding FuelRemain}"/>
-                <DataGridTextColumn x:Name="toatalTripColumn" Width="*" Header=" קילומטר שנסע" Binding="{Binding ToatalTrip}"/>
-                <DataGridTextColumn x:Name="licenseNumColumn" Width="*" Header="מספר רישיון" Binding="{Binding LicenseNum}"/>
-                
             </DataGrid.Columns>
       
         </DataGrid>
