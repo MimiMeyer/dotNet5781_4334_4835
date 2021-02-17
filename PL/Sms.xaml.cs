@@ -22,11 +22,12 @@ namespace PL
         IBL bl = BLFactory.GetBL("1");
         int bus;
         TimeSpan time;
+        int station;
         public Sms(int code)
         {
             InitializeComponent();
             busCB.ItemsSource = bl.GetAlllineNumberaByStation(code);
-           
+            station = code;
 
 
         }
@@ -47,7 +48,7 @@ namespace PL
         private void Handle()
         {
             bus = (int)busCB.SelectedItem;
-            TimeCB.ItemsSource = bl.GetAllStartAtTimesForLine(bus);
+            TimeCB.ItemsSource = bl.GetAllStartAtTimesForLine(bus,station);
 
         }
         private void ComboBox_DropDownClosedTime(object sender, EventArgs e)

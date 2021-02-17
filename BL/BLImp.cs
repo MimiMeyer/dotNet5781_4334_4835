@@ -549,11 +549,26 @@ namespace BL
                    orderby lineTripDO.StartAt//orders by start at
                    select LineTripDoBoAdapter(lineTripDO);//each line goes to functio and changes to bo
         }
-       public IEnumerable<TimeSpan> GetAllStartAtTimesForLine(int Id)//returns all the start times
+       public IEnumerable<TimeSpan> GetAllStartAtTimesForLine(int Id,int code)//returns all the start times
         {
-            return from lineTripDO in dl.RequestAllLineTripsByLine(Id)//gets all the line tripswith same line 
+            IEnumerable<TimeSpan> listOfArrivaltimesToFirstStations= from lineTripDO in dl.RequestAllLineTripsByLine(Id)//gets all the line tripswith same line 
                    orderby lineTripDO.StartAt//orders by start at
                    select lineTripDO.StartAt;
+            List<TimeSpan> listOfArrivalTimes = new List<TimeSpan>();
+
+            using (var times = listOfArrivaltimesToFirstStations.GetEnumerator())
+            {
+
+                while (times.MoveNext())
+                {
+                    listOfArrivalTimes.Add(ArrivalTime(Id, code, times.Current));
+
+                }
+            }
+
+                     return from lineTrip in listOfArrivalTimes//gets all the line tripswith same line 
+                               orderby lineTrip.TotalMilliseconds//orders by start at
+                               select lineTrip;
         }
         public void AddLineTrip(BO.LineTrip lineTrip)//add LineTrip
         {
@@ -705,26 +720,31 @@ namespace BL
         {
             
             BO.LineTiming lm = ListOfLineTiming(time, code).ToList(). Find(l => l.ArrivalTime == Hour);
-            if (lm.MinutesTillArival==1&&count==0) 
-            {
-                // Find your Account Sid and Token at twilio.com/console
-                // and set the environment variables. See http://twil.io/secure
-                string accountSid = Environment.GetEnvironmentVariable("ACbd72e6adf346da40cf07a2782f06312f");
-                string authToken = Environment.GetEnvironmentVariable("8fc6829d53f4e08c16fc278e876d9bff");
+            if (lm!= null)
+                {
+                if (lm.MinutesTillArival == 1 && count == 0)
+                {
+                    // Find your Account Sid and Token at twilio.com/console
+                    // and set the environment variables. See http://twil.io/secure
+                    string accountSid = Environment.GetEnvironmentVariable("sid");
+                    string authToken = Environment.GetEnvironmentVariable("token");
 
-                TwilioClient.Init(accountSid, authToken);
-                string result = "קו" + " " + bus + " " + "יגיע בעוד דקה לתחנה מספר" + ": " + code;
-                var message = MessageResource.Create(
-                    body: result,
-                    from: new Twilio.Types.PhoneNumber("+17252162024"),
-                    to: new Twilio.Types.PhoneNumber(number)
-                );
+                    TwilioClient.Init(accountSid, authToken);
+                    string result = "Bus number" + " " + bus + " " + "wil be at your station in one minute";
+                    var message = MessageResource.Create(
 
-                Console.WriteLine(message.Sid);
+                        from: new Twilio.Types.PhoneNumber("+17252162024"),
+                        to: new Twilio.Types.PhoneNumber(number),
+                        body: result
+                    );
 
-                count++;
+                    Console.WriteLine(message.Sid);
+
+                    count++;
+                }
+
             }
-                   
+
         }
         #endregion
 

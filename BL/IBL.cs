@@ -37,7 +37,7 @@ namespace BLAPI
         #endregion
         #region LineTrip
         IEnumerable<BO.LineTrip> GetLineTripsForLine(int Id);//returns all LineTrips for requested line
-        IEnumerable<TimeSpan> GetAllStartAtTimesForLine(int Id);//returns all the start times
+        IEnumerable<TimeSpan> GetAllStartAtTimesForLine(int Id,int code);//returns all the start times
         void AddLineTrip(BO.LineTrip lineTrip);//add LineTrip
         void UpdateLineTrip(BO.LineTrip lineTrip); //updating lineTrip
         void DeleteLineTrip(int lineId, TimeSpan StartAt);//deletes lineTrip
