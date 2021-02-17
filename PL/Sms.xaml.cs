@@ -26,7 +26,7 @@ namespace PL
         public Sms(int code)
         {
             InitializeComponent();
-            busCB.ItemsSource = bl.GetAlllineNumberaByStation(code);
+            busCB.ItemsSource = bl.GetAlllineNumberaByStation(code);//getting all busses in station
             station = code;
 
 
@@ -47,8 +47,8 @@ namespace PL
         }
         private void Handle()
         {
-            bus = (int)busCB.SelectedItem;
-            TimeCB.ItemsSource = bl.GetAllStartAtTimesForLine(bus,station);
+            bus = (int)busCB.SelectedItem;//users bus choice
+            TimeCB.ItemsSource = bl.GetAllStartAtTimesForLine(bus,station);//arrival times for the selected bus
 
         }
         private void ComboBox_DropDownClosedTime(object sender, EventArgs e)
@@ -68,9 +68,9 @@ namespace PL
         {
             time = (TimeSpan)TimeCB.SelectedItem;
         }
-        public string Number { get { return numberText.Text; } }//returns user input 
-        public int Bus { get { return bus; } }
-        public TimeSpan Hour { get { return time; } }
+        public string Number { get { return numberText.Text; } }//returns user input phone number if he chose too add
+        public int Bus { get { return bus; } }//returns bus num
+        public TimeSpan Hour { get { return time; } }//returns selected arrival time
 
 
     }

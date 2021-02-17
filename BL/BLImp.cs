@@ -716,16 +716,15 @@ namespace BL
 
         }
         static int count = 0;
-        public void Sms(int bus, TimeSpan Hour, String number,TimeSpan time, int code)
+        public void Sms(int bus, TimeSpan Hour, String number,TimeSpan time, int code)//for user to get an update a minute before the bus comes
         {
             
-            BO.LineTiming lm = ListOfLineTiming(time, code).ToList(). Find(l => l.ArrivalTime == Hour);
-            if (lm!= null)
+            BO.LineTiming lm = ListOfLineTiming(time, code).ToList(). Find(l => l.ArrivalTime == Hour);//finding the wanted linetrip with the right arrival time
+            if (lm!= null)//if lm exists
                 {
-                if (lm.MinutesTillArival == 1 && count == 0)
+                if (lm.MinutesTillArival == 1 && count == 0)//1 minute left or didnt get an update yet
                 {
-                    // Find your Account Sid and Token at twilio.com/console
-                    // and set the environment variables. See http://twil.io/secure
+                    //from twilio
                     string accountSid = Environment.GetEnvironmentVariable("sid");
                     string authToken = Environment.GetEnvironmentVariable("token");
 

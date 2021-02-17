@@ -37,15 +37,15 @@ namespace BLAPI
         #endregion
         #region LineTrip
         IEnumerable<BO.LineTrip> GetLineTripsForLine(int Id);//returns all LineTrips for requested line
-        IEnumerable<TimeSpan> GetAllStartAtTimesForLine(int Id,int code);//returns all the start times
+        IEnumerable<TimeSpan> GetAllStartAtTimesForLine(int Id,int code);//returns all the arrival times for station
         void AddLineTrip(BO.LineTrip lineTrip);//add LineTrip
         void UpdateLineTrip(BO.LineTrip lineTrip); //updating lineTrip
         void DeleteLineTrip(int lineId, TimeSpan StartAt);//deletes lineTrip
         #endregion
         #region simulation
-        IEnumerable<BO.LineTiming> GetLineTimingForSimulator(TimeSpan startTime, int Code);
-        int LastBusInStation(TimeSpan startTime, int Code);
-        void Sms(int bus, TimeSpan hour, String number, TimeSpan time,int code);
+        IEnumerable<BO.LineTiming> GetLineTimingForSimulator(TimeSpan startTime, int Code);//return all data for the simulator
+        int LastBusInStation(TimeSpan startTime, int Code);//for last bus in station
+        void Sms(int bus, TimeSpan hour, String number, TimeSpan time,int code);//for user to get an update a minute before the bus comes
 
         #endregion
         #region Bus

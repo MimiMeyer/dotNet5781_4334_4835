@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Sms" Height="450" Width="450" Left="0" Background="LightBlue" >
-  
+
 
     <Grid>
         <TextBox Name="numberText" HorizontalAlignment="Left" Height="23" Margin="165,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" Background="LightGray"/>
-        <Label Content=":אם את/ה מעוניין לקבל עדכונים לנייד אנא הכניסו מספר נייד" HorizontalAlignment="Left" Height="35" Margin="89,41,-21,0" VerticalAlignment="Top" Width="324" FontSize="10" FontFamily="Yu Gothic Medium"/>
+        <Label Content=": אם את/ה מעוניין לקבל עדכון לנייד דקה לפני שהאוטובוס מגיע אנא הכניסו מספר נייד" HorizontalAlignment="Left" Height="35" Margin="51,41,0,0" VerticalAlignment="Top" Width="381" FontSize="10" FontFamily="Yu Gothic Medium"/>
         <Label Content="?לאיזה אוטובוס" HorizontalAlignment="Left" Height="35" Margin="302,99,-234,0" VerticalAlignment="Top" Width="324" FontSize="10" FontFamily="Yu Gothic Medium"/>
         <Label Content="?באיזה שעה" HorizontalAlignment="Left" Height="35" Margin="309,156,-241,0" VerticalAlignment="Top" Width="324" FontSize="10" FontFamily="Yu Gothic Medium"/>
         <ComboBox Name="busCB" HorizontalAlignment="Left" Height="23" Margin="165,99,0,0" VerticalAlignment="Top" Width="132" SelectionChanged="ComboBox_SelectionChanged" DropDownClosed="ComboBox_DropDownClosed" RenderTransformOrigin="0.303,0.507" Background="LightGray"/>
