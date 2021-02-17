@@ -176,9 +176,7 @@ namespace PL
             {
                 bl.Sms(Bus,Time,Number, TimeSpan.Parse(startTime.Text), station);
             }
-            //return from lineTrip in ListOfLineTiming(, Id)//gets all the line tripswith same line 
-            //       orderby lineTrip.ArrivalTime//orders by start at
-            //       select lineTrip.ArrivalTime;
+           
 
 
 
