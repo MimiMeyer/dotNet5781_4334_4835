@@ -28,13 +28,16 @@ namespace BLAPI
         #endregion
         #region LineStation
         IEnumerable<BO.LineStation> GetStationsForLine(int Id);//returns all stations that go through line
-        IEnumerable<BO.Line> GetAlllinesByStation(int code);//returns all lines that go through requested station
+
+        IEnumerable<BO.Line> GetAlllinesByStation(int code);//returns all lines that go through requested station#
+        IEnumerable<int> GetAlllineNumberaByStation(int code);//returns all lines that go through requested station
         void AddStationToLine(BO.LineStation lineStation);//add station to line
         void UpdateLineStation(BO.LineStation lineStation); //updating line station
         void DeleteLineStation(BO.LineStation lineStation);//deletes line station
         #endregion
         #region LineTrip
         IEnumerable<BO.LineTrip> GetLineTripsForLine(int Id);//returns all LineTrips for requested line
+        IEnumerable<TimeSpan> GetAllStartAtTimesForLine(int Id);//returns all the start times
         void AddLineTrip(BO.LineTrip lineTrip);//add LineTrip
         void UpdateLineTrip(BO.LineTrip lineTrip); //updating lineTrip
         void DeleteLineTrip(int lineId, TimeSpan StartAt);//deletes lineTrip
@@ -42,6 +45,7 @@ namespace BLAPI
         #region simulation
         IEnumerable<BO.LineTiming> GetLineTimingForSimulator(TimeSpan startTime, int Code);
         int LastBusInStation(TimeSpan startTime, int Code);
+        void Sms(int bus, TimeSpan hour, String number, TimeSpan time,int code);
 
         #endregion
         #region Bus

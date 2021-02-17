@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+
+
 namespace PL
 {
     /// <summary>
@@ -19,11 +21,16 @@ namespace PL
         int rate = new int();//the rate
         TimeSpan Day = new TimeSpan(1, 0, 0, 0);//a day
         int station;
+        int Bus;
+        string Number;
+        TimeSpan Time;
         IBL bl = BLFactory.GetBL("1");
 
-        public Simulation(int Code)
+        public Simulation(int Code,int bus,string num,TimeSpan time)
         {
             InitializeComponent();
+           
+            
             header.Text = " עבור מספר תחנה" + " " + Code;
 
             Rate.Text = rate.ToString();//puts 0 in the rate text box
@@ -40,6 +47,10 @@ namespace PL
             TimeBoard.WorkerReportsProgress = true;//allows to cancle thread
 
             station = Code;
+            Bus = bus;
+            Time = time;
+            Number = num;
+            
 
         }
 
@@ -160,6 +171,12 @@ namespace PL
                lineTimingDataGrid.DataContext = bl.GetLineTimingForSimulator(TimeSpan.Parse(startTime.Text), station);//gets the info from the bl with the function GetLineTimingForSimulator sending the updated time and station
 
                 LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
+
+            if( Number!= null &&Time!=null)//user put in input correctly
+            {
+                bl.Sms(Bus,Time,Number, TimeSpan.Parse(startTime.Text), station);
+            }
+            
            
          
 

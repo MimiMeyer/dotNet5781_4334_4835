@@ -5,6 +5,8 @@ using DLAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 
 namespace BL
 {
@@ -326,7 +328,13 @@ namespace BL
                    orderby lineDO.Id//orders by id number
                    select LineDoBoAdapter(lineDO);//each line goes to function and changes to bo
         }
+       public IEnumerable<int> GetAlllineNumberaByStation(int code)//returns all lines that go through requested station
+        {
+            return from lineDO in dl.GetLinesByStation(code)//gets all lines that go through station from the function RequestAllLines
+                   orderby lineDO.Id//orders by id number
+                   select lineDO.Code;
 
+        }
         public void AddStationToLine(BO.LineStation lineStation)//add station to line
         {
             if (lineStation.Distance < 0)
@@ -541,6 +549,12 @@ namespace BL
                    orderby lineTripDO.StartAt//orders by start at
                    select LineTripDoBoAdapter(lineTripDO);//each line goes to functio and changes to bo
         }
+       public IEnumerable<TimeSpan> GetAllStartAtTimesForLine(int Id)//returns all the start times
+        {
+            return from lineTripDO in dl.RequestAllLineTripsByLine(Id)//gets all the line tripswith same line 
+                   orderby lineTripDO.StartAt//orders by start at
+                   select lineTripDO.StartAt;
+        }
         public void AddLineTrip(BO.LineTrip lineTrip)//add LineTrip
         {
 
@@ -685,6 +699,32 @@ namespace BL
             }
             return time;
 
+        }
+        static int count = 0;
+        public void Sms(int bus, TimeSpan Hour, String number,TimeSpan time, int code)
+        {
+            
+            BO.LineTiming lm = ListOfLineTiming(time, code).ToList(). Find(l => l.ArrivalTime == Hour);
+            if (lm.MinutesTillArival==1&&count==0) 
+            {
+                // Find your Account Sid and Token at twilio.com/console
+                // and set the environment variables. See http://twil.io/secure
+                string accountSid = Environment.GetEnvironmentVariable("ACbd72e6adf346da40cf07a2782f06312f");
+                string authToken = Environment.GetEnvironmentVariable("8fc6829d53f4e08c16fc278e876d9bff");
+
+                TwilioClient.Init(accountSid, authToken);
+                string result = "קו" + " " + bus + " " + "יגיע בעוד דקה לתחנה מספר" + ": " + code;
+                var message = MessageResource.Create(
+                    body: result,
+                    from: new Twilio.Types.PhoneNumber("+17252162024"),
+                    to: new Twilio.Types.PhoneNumber(number)
+                );
+
+                Console.WriteLine(message.Sid);
+
+                count++;
+            }
+                   
         }
         #endregion
 

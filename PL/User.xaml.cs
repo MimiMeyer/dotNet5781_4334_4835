@@ -33,9 +33,16 @@ namespace PL
             BO.Station st = stationDataGrid.SelectedItem as BO.Station;
             lineDataGrid.DataContext = bl.GetAlllinesByStation(st.Code);
             lineDataGrid.IsReadOnly = true;
+            Sms window1 = new Sms(st.Code);
+            window1.ShowDialog();
+            int Bus = window1.Bus;//gets the bus from user for sms
+            string Number = window1.Number;//gets the number fos sms
+            TimeSpan time = window1.Hour;//gets the hour for sms
 
-            Simulation window = new Simulation(st.Code);
+
+            Simulation window = new Simulation(st.Code,Bus,Number,time);
             window.Show();
+           
         }
 
        
