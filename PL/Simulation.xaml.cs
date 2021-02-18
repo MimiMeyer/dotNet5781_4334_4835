@@ -172,7 +172,7 @@ namespace PL
 
                 LastBusTextBox.Text = bl.LastBusInStation(TimeSpan.Parse(startTime.Text), station).ToString();//gets the last bus
 
-            if( Number!= null &&Time!=null)//user put in input correctly
+            if( Number!= null &&Time!=null)//user input
             {
                 bl.Sms(Bus,Time,Number, TimeSpan.Parse(startTime.Text), station);
             }
